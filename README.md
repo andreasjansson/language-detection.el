@@ -10,6 +10,101 @@ Emacs Lisp library that automatically detects the programming language in a buff
 * `(language-detection-string STRING)`
  - Non-interactive function, returns the language of STRING
 
+## EWW syntax highlighting
+
+Write this in your .emacs:
+
+```emacslisp
+(defmacro temporarily-disable-read-only (&rest body)
+  `(let ((current-buffer-read-only buffer-read-only))
+     (setq-local buffer-read-only nil)
+     ,@body
+     (setq-local buffer-read-only current-buffer-read-only)))
+
+(defun eww-tag-pre (dom)
+  (let ((shr-folding-mode 'none)
+        (shr-current-font 'default))
+    (shr-ensure-newline)
+    (insert (eww-fontify-pre dom))
+    (shr-ensure-newline)))
+
+(defun eww-fontify-pre (dom)
+  (with-temp-buffer
+    (shr-generic dom)
+    (let ((mode (eww-buffer-auto-detect-mode)))
+      (when mode
+        (eww-fontify-buffer mode)))
+    (buffer-string)))
+
+(defun eww-fontify-buffer (mode)
+  (delay-mode-hooks (funcall mode))
+  (font-lock-default-function mode)
+  (font-lock-default-fontify-region (point-min)
+                                    (point-max)
+                                    nil))
+
+(defun eww-fontify-region (mode)
+  (interactive "aMode: ")
+  (let* ((start (region-beginning))
+         (end (region-end))
+         (text (buffer-substring-no-properties start end))
+         (fontified-text (with-temp-buffer
+                           (erase-buffer)
+                           (insert text)
+                           (eww-fontify-buffer mode)
+                           (buffer-string))))
+    (temporarily-disable-read-only
+     (delete-region start end)
+     (insert fontified-text))))
+
+(defun eww-buffer-auto-detect-mode ()
+  (let* ((map '((c c-mode)
+                (cpp c++-mode)
+                (clojure clojure-mode lisp-mode)
+                (csharp csharp-mode java-mode)
+                (css css-mode)
+                (delphi delphi-mode)
+                (emacslisp emacs-lisp-mode)
+                (erlang erlang-mode)
+                (fsharp fsharp-mode)
+                (go go-mode)
+                (groovy groovy-mode)
+                (haskell haskell-mode)
+                (html html-mode)
+                (java java-mode)
+                (javascript javascript-mode)
+                (json json-mode javascript-mode)
+                (latex latex-mode)
+                (lisp lisp-mode)
+                (matlab matlab-mode octave-mode)
+                (objc objc-mode c-mode)
+                (perl perl-mode)
+                (php php-mode)
+                (python python-mode)
+                (r r-mode)
+                (ruby ruby-mode)
+                (rust rust-mode)
+                (scala scala-mode)
+                (shell shell-script-mode)
+                (sql sql-mode)
+                (swift swift-mode)
+                (visualbasic visual-basic-mode)
+                (xml sgml-mode)))
+         (language (language-detection-string
+                    (buffer-substring-no-properties (point-min) (point-max))))
+         (modes (cdr (assoc language map)))
+         (mode (loop for mode in modes
+                     when (fboundp mode)
+                     return mode)))
+    (message (format "%s" language))
+    (when (fboundp mode)
+      mode)))
+
+(setq shr-external-rendering-functions
+      '((pre . eww-tag-pre)))
+
+```
+
 ## Classifier training procedure
 
 The model consists of a Random Forest ensemble of 7 Decision Tree classifiers.

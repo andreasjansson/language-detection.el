@@ -11,6 +11,12 @@ from collections import defaultdict, Counter
 import re
 import numpy as np
 
+# TODO:
+#   * download stackoverflow dump from archive.org
+#   * use code samples in questions as ground truth if one
+#     and only one language is in the tags
+#   * https://archive.org/details/stackexchange
+
 FOLDER_STRUCTURES = {
     'Advent-Of-Code-Polyglot': '*/<language>',
     'ProgrammingLanguage-Detection': 'sources/<language>',
