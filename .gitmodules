@@ -1,0 +1,21 @@
+[submodule "data/Advent-Of-Code-Polyglot"]
+        path = data/Advent-Of-Code-Polyglot
+        url = git@github.com:ChrisPenner/Advent-Of-Code-Polyglot.git
+[submodule "data/polyglot"]
+        path = data/polyglot
+        url = git@github.com:polyrabbit/polyglot.git
+[submodule "data/linguist"]
+        path = data/linguist
+        url = git@github.com:github/linguist.git
+[submodule "data/ProgrammingLanguage-Detection"]
+        path = data/ProgrammingLanguage-Detection
+        url = git@github.com:kaushik94/ProgrammingLanguage-Detection.git
+[submodule "data/langolier"]
+        path = data/langolier
+        url = git@github.com:mishadoff/langolier.git
+[submodule "data/RosettaCodeData"]
+        path = data/RosettaCodeData
+        url = git@github.com:acmeism/RosettaCodeData.git
+[submodule "data/Languages"]
+        path = data/Languages
+        url = git@github.com:Gerst20051/Languages.git
