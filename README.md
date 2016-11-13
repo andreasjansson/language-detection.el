@@ -65,34 +65,36 @@ I then tokenize the snippets using this simple regex: `([a-zA-Z0-9_]+|[^ a-zA-Z0
 
 Finally, the tokens counted for frequency and placed in a 2241-dimensional bag-of-words vector. (2241 is the total number of unique tokens.) For example, this is a bag corresponding to a C snippet:
 
- * `(`: 0.05371
- * `.`: 0.05115
- * `);`: 0.03581
- * `/**`: 0.03325
- * `void`: 0.03069
- * `*/`: 0.03069
- * `const`: 0.02302
- * `&`: 0.02302
- * `col`: 0.02302
- * `to`: 0.0179
- * `property`: 0.0179
- * `text`: 0.01535
- * `,`: 0.01535
- * `background`: 0.01535
- * `)`: 0.01535
- * `of`: 0.01535
- * `focus`: 0.01279
- * `name`: 0.01279
- * `bool`: 0.01279
- * `{`: 0.01023
- * `not`: 0.01023
- * `id`: 0.01023
- * `-`: 0.01023
- * `inline`: 0.01023
- * `}`: 0.01023
- * `\`: 0.007673
- * `default`: 0.007673
- * `=`: 0.007673
+```
+(          : 0.05371
+.          : 0.05115
+);         : 0.03581
+/**        : 0.03325
+void       : 0.03069
+*/         : 0.03069
+const      : 0.02302
+&          : 0.02302
+col        : 0.02302
+to         : 0.0179
+property   : 0.0179
+text       : 0.01535
+,          : 0.01535
+background : 0.01535
+)          : 0.01535
+of         : 0.01535
+focus      : 0.01279
+name       : 0.01279
+bool       : 0.01279
+{          : 0.01023
+not        : 0.01023
+id         : 0.01023
+-          : 0.01023
+inline     : 0.01023
+}          : 0.01023
+\          : 0.007673
+default    : 0.007673
+=          : 0.007673
+```
 
 For classification I use a basic sklearn Random Forest. The hyperparameters were found using random grid search. I use an ensemble of 7 decision trees. Cross-validated accuracy of around 94%. Here's a confusion matrix:
 
