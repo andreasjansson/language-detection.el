@@ -94,6 +94,8 @@ Finally, the tokens counted for frequency and placed in a 2241-dimensional bag-o
  * `default`: 0.007673
  * `=`: 0.007673
 
-For classification I use a basic sklearn Random Forest. The hyperparameters were found using random grid search. I use an ensemble of 7 decision trees. Cross-validated accuracy of around 94%.
+For classification I use a basic sklearn Random Forest. The hyperparameters were found using random grid search. I use an ensemble of 7 decision trees. Cross-validated accuracy of around 94%. Here's a confusion matrix:
+
+![Confusion matrix](https://github.com/andreasjansson/language-detection.el/raw/master/assets/confusion-matrix.png)
 
 The decision trees are written out as Emacs Lisp sexps in the format `(TOKEN THRESHOLD LEFT_CHILD RIGHT_CHILD VALUE)`. In `language-detection.el` that data structure is traversed recursively until leaves are found in each tree. The most common leaf class is then chosen as the language.
