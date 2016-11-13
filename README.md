@@ -16,13 +16,13 @@ The model consists of a Random Forest ensemble of 7 Decision Tree classifiers.
 
 It was trained on a number of corpuses:
 
- * [Advent-Of-Code-Polyglot](https://github.com/ChrisPenner/Advent-Of-Code-Polyglot
- * [ProgrammingLanguage-Detection](https://github.com/kaushik94/ProgrammingLanguage-Detection
- * [RosettaCodeData](https://github.com/acmeism/RosettaCodeData
- * [langolier](https://github.com/mishadoff/langolier
- * [linguist](https://github.com/github/linguist
- * [polyglot](https://github.com/polyrabbit/polyglot
- * [Languages](https://github.com/Gerst20051/Languages
+ * [Advent-Of-Code-Polyglot](https://github.com/ChrisPenner/Advent-Of-Code-Polyglot)
+ * [ProgrammingLanguage-Detection](https://github.com/kaushik94/ProgrammingLanguage-Detection)
+ * [RosettaCodeData](https://github.com/acmeism/RosettaCodeData)
+ * [langolier](https://github.com/mishadoff/langolier)
+ * [linguist](https://github.com/github/linguist)
+ * [polyglot](https://github.com/polyrabbit/polyglot)
+ * [Languages](https://github.com/Gerst20051/Languages)
 
 Number of lines of code per language:
 
