@@ -14,7 +14,7 @@ Emacs Lisp library that automatically detects the programming language in a buff
 
 Write this in your .emacs:
 
-```emacslisp
+```elisp
 (defmacro temporarily-disable-read-only (&rest body)
   `(let ((current-buffer-read-only buffer-read-only))
      (setq-local buffer-read-only nil)
