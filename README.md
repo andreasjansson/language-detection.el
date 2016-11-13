@@ -43,20 +43,6 @@ Write this in your .emacs:
                                     (point-max)
                                     nil))
 
-(defun eww-fontify-region (mode)
-  (interactive "aMode: ")
-  (let* ((start (region-beginning))
-         (end (region-end))
-         (text (buffer-substring-no-properties start end))
-         (fontified-text (with-temp-buffer
-                           (erase-buffer)
-                           (insert text)
-                           (eww-fontify-buffer mode)
-                           (buffer-string))))
-    (temporarily-disable-read-only
-     (delete-region start end)
-     (insert fontified-text))))
-
 (defun eww-buffer-auto-detect-mode ()
   (let* ((map '((c c-mode)
                 (cpp c++-mode)
