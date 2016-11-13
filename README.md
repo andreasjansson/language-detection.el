@@ -1,6 +1,6 @@
 # language-detection.el
 
-Emacs Lisp library that automatically detects the language in a buffer. Supports 32 languages, with around 94% accuracy.
+Emacs Lisp library that automatically detects the programming language in a buffer or string. Supports 32 languages, with around 94% accuracy.
 
 ## Usage
 

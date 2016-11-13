@@ -3,7 +3,7 @@
 ;; Copyright (C) 2016 Andreas Jansson
 
 ;; Author: Andreas Jansson
-;; URL: https://github.com/andreasjansson/language-detection
+;; URL: https://github.com/andreasjansson/language-detection.el
 ;; Version: 0.1.0
 
 ;; This program is free software; you can redistribute it and/or modify
