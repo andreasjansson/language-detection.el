@@ -26,38 +26,38 @@ It was trained on a number of corpuses:
 
 Number of lines of code per language:
 
- * 'c': 419721
- * 'clojure': 8060
- * 'cpp': 132972
- * 'csharp': 9896
- * 'css': 39426
- * 'delphi': 8128
- * 'emacslisp': 948
- * 'erlang': 12948
- * 'fsharp': 2340
- * 'go': 45505
- * 'groovy': 9149
- * 'haskell': 22400
- * 'html': 101109
- * 'java': 48440
- * 'javascript': 219667
- * 'json': 154
- * 'latex': 172
- * 'lisp': 8330
- * 'matlab': 14351
- * 'objc': 26116
- * 'perl': 26276
- * 'php': 354789
- * 'python': 530642
- * 'r': 7205
- * 'ruby': 28461
- * 'rust': 4291
- * 'scala': 14568
- * 'shell': 12414
- * 'sql': 1969
- * 'swift': 735
- * 'visualbasic': 4871
- * 'xml': 4078
+ * c: 419721
+ * clojure: 8060
+ * cpp: 132972
+ * csharp: 9896
+ * css: 39426
+ * delphi: 8128
+ * emacslisp: 948
+ * erlang: 12948
+ * fsharp: 2340
+ * go: 45505
+ * groovy: 9149
+ * haskell: 22400
+ * html: 101109
+ * java: 48440
+ * javascript: 219667
+ * json: 154
+ * latex: 172
+ * lisp: 8330
+ * matlab: 14351
+ * objc: 26116
+ * perl: 26276
+ * php: 354789
+ * python: 530642
+ * r: 7205
+ * ruby: 28461
+ * rust: 4291
+ * scala: 14568
+ * shell: 12414
+ * sql: 1969
+ * swift: 735
+ * visualbasic: 4871
+ * xml: 4078
 
 Since the distribution of languges is highly skewed, I created a dataset by concatenating all lines per language and sampling 1000 snippets of 5-100 lines.
 
@@ -94,6 +94,6 @@ Finally, the tokens counted for frequency and placed in a 2241-dimensional bag-o
  * `default`: 0.007673
  * `=`: 0.007673
 
-For classification I use a basic sklearn Random Forest. The hyperparameters were found using random grid search. I use an ensemble of 7 decision trees.
+For classification I use a basic sklearn Random Forest. The hyperparameters were found using random grid search. I use an ensemble of 7 decision trees. Cross-validated accuracy of around 94%.
 
 The decision trees are written out as Emacs Lisp sexps in the format `(TOKEN THRESHOLD LEFT_CHILD RIGHT_CHILD VALUE)`. In `language-detection.el` that data structure is traversed recursively until leaves are found in each tree. The most common leaf class is then chosen as the language.
