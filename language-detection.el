@@ -2,9 +2,12 @@
 
 ;; Copyright (C) 2016 Andreas Jansson
 
-;; Author: Andreas Jansson
+;; Author: Andreas Jansson <andreas@jansson.me.uk>
 ;; URL: https://github.com/andreasjansson/language-detection.el
+;; Package-Requires: ((emacs "24") (cl-lib "0.5"))
 ;; Version: 0.1.0
+
+;; This file is NOT part of GNU Emacs.
 
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
