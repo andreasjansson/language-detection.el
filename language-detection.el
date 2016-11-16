@@ -101,13 +101,15 @@
           finally (return max-element))))
 
 (defun language-detection-tree-lookup (freqs tree)
-  (destructuring-bind (token threshold left-child right-child value) tree
-    (if value
-        value
-      (let ((freq (gethash token freqs 0)))
-        (if (<= freq threshold)
-            (language-detection-tree-lookup freqs left-child)
-          (language-detection-tree-lookup freqs right-child))))))
+  (let ((node tree))
+    (loop for (token threshold left-child right-child value) = node
+          for freq = (gethash token freqs 0)
+          while (not value)
+          when (<= freq threshold)
+          do (setq node left-child)
+          else
+          do (setq node right-child)
+          finally (return value))))
 
 (defun language-detection-token-frequencies (tokens)
   (loop with table = (make-hash-table :test 'equal)
