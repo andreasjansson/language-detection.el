@@ -5,7 +5,7 @@ Emacs Lisp library that automatically detects the programming language in a buff
 ## Usage
 
 * `M-x language-detection-buffer`
- - Interactive function, outputs the buffer's language to *\*Messages\**
+ - Interactive function, outputs the buffer's language to _\*Messages\*_
 
 * `(language-detection-string STRING)`
  - Non-interactive function, returns the language of STRING
