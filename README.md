@@ -15,6 +15,8 @@ Emacs Lisp library that automatically detects the programming language in a buff
 Write this in your .emacs:
 
 ```elisp
+(require 'cl-lib)
+
 (defun eww-tag-pre (dom)
   (let ((shr-folding-mode 'none)
         (shr-current-font 'default))
@@ -73,16 +75,15 @@ Write this in your .emacs:
          (language (language-detection-string
                     (buffer-substring-no-properties (point-min) (point-max))))
          (modes (cdr (assoc language map)))
-         (mode (loop for mode in modes
-                     when (fboundp mode)
-                     return mode)))
+         (mode (cl-loop for mode in modes
+                        when (fboundp mode)
+                        return mode)))
     (message (format "%s" language))
     (when (fboundp mode)
       mode)))
 
 (setq shr-external-rendering-functions
       '((pre . eww-tag-pre)))
-
 ```
 
 ## Classifier training procedure

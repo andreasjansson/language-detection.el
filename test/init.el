@@ -1,5 +1,7 @@
 (load-file "~/.emacs.d/language-detection.el")
 
+(require 'cl-lib)
+
 (defun eww-tag-pre (dom)
   (let ((shr-folding-mode 'none)
         (shr-current-font 'default))
@@ -58,9 +60,9 @@
          (language (language-detection-string
                     (buffer-substring-no-properties (point-min) (point-max))))
          (modes (cdr (assoc language map)))
-         (mode (loop for mode in modes
-                     when (fboundp mode)
-                     return mode)))
+         (mode (cl-loop for mode in modes
+                        when (fboundp mode)
+                        return mode)))
     (message (format "%s" language))
     (when (fboundp mode)
       mode)))
