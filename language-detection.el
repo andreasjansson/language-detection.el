@@ -64,8 +64,13 @@
 ;;
 ;; Entrypoints:
 ;;
-;;  * language-detection-buffer (interactive)
-;;  * language-detection-string (non-interactive)
+;;  * language-detection-buffer
+;;    - When called interactively, prints the language of the current
+;;      buffer to the echo area
+;;    - When called non-interactively, returns the language of the
+;;      current buffer
+;;  * language-detection-string
+;;    - Non-interactive function, returns the language of its argument
 
 ;;; Code:
 
@@ -74,11 +79,14 @@
 (defconst language-detection-token-pattern "\\([a-zA-Z0-9_]+\\|[^ a-zA-Z0-9_\n\t]+\\)")
 
 ;;;###autoload
-(defun language-detection-buffer ()
+(defun language-detection-buffer (&optional print-message)
   "Predict the programming language of the current buffer and output it to messages."
-  (interactive)
-  (message (format "%s" (language-detection-string
-                         (buffer-substring-no-properties (point-min) (point-max))))))
+  (interactive "p")
+  (let ((language (language-detection-string
+                   (buffer-substring-no-properties (point-min) (point-max)))))
+    (when print-message
+      (message (format "%s" language)))
+    language))
 
 ;;;###autoload
 (defun language-detection-string (string)

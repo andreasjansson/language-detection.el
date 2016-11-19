@@ -1,11 +1,14 @@
 # language-detection.el
 
+[![MELPA](https://melpa.org/packages/language-detection-badge.svg)](https://melpa.org/#/language-detection)
+
 Emacs Lisp library that automatically detects the programming language in a buffer or string. Supports 32 languages, with around 94% accuracy.
 
 ## Usage
 
 * `M-x language-detection-buffer`
  - Interactive function, outputs the buffer's language to _\*Messages\*_
+ - When called non-interactively, returns the language
 
 * `(language-detection-string STRING)`
  - Non-interactive function, returns the language of STRING
