@@ -15,7 +15,7 @@ Emacs Lisp library that automatically detects the programming language in a buff
 
 ## Model performance
 
-Comparison of this model to two well-known existing systems on three different datasets:
+Comparison of this model to a few existing systems on three different datasets:
 
 <table>
   <thead>
@@ -44,6 +44,12 @@ Comparison of this model to two well-known existing systems on three different d
       <td>10%</td>
       <td>25%</td>
       <td>37%</td>
+    </tr>
+    <tr>
+      <td><a href="https://github.com/chrislo/sourceclassifier">SourceClassifier</a></td>
+      <td>51%</td>
+      <td>48%</td>
+      <td>65%</td>
     </tr>
   </tbody>
 </table>
@@ -195,9 +201,9 @@ The model consists of a Random Forest ensemble of 11 Decision Tree classifiers.
 
 It was trained on code snippets from the [Stack Overflow data dump](https://archive.org/details/stackexchange), extracted from `<pre>` tags. The number of snippets per language was capped at 10,000. The actual training snippets can be unpickled from `snippets.cpkl`.
 
-The snippets were tokenized simple regex: `([a-zA-Z0-9_]+|[^ a-zA-Z0-9_\n\t]+)`. Single tokens and pairs of consecutive tokens are pruned to the top 500 token/token pairs per language.
+The snippets were tokenized simple regex: `([a-zA-Z0-9_]+|[^ a-zA-Z0-9_\n\t]+)`. The set of single tokens and pairs of consecutive tokens are pruned to the top 500 token/token pairs per language.
 
-Finally, the tokens counted for frequency and placed in a 7772-dimensional bag-of-words vector. (7772 is the total number of unique tokens.) For example, this is a bag corresponding to a Haskell snippet:
+Finally, the tokens are counted for frequency and placed in a 7772-dimensional bag-of-words vector. (7772 is the total number of unique tokens/pairs.) For example, this is a bag corresponding to a short Haskell snippet:
 
 ```
 "         : 0.057971
