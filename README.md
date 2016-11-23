@@ -15,6 +15,8 @@ Emacs Lisp library that automatically detects the programming language in a buff
 
 ## Model performance
 
+Comparison of this model to two well-known existing systems on three different datasets:
+
 <table>
   <thead>
     <tr>
@@ -133,14 +135,18 @@ Write this in your .emacs:
                                     nil))
 
 (defun eww-buffer-auto-detect-mode ()
-  (let* ((map '((c c-mode)
+  (let* ((map '((ada ada-mode)
+                (awk awk-mode)
+                (c c-mode)
                 (cpp c++-mode)
                 (clojure clojure-mode lisp-mode)
                 (csharp csharp-mode java-mode)
                 (css css-mode)
+                (dart dart-mode)
                 (delphi delphi-mode)
                 (emacslisp emacs-lisp-mode)
                 (erlang erlang-mode)
+                (fortran fortran-mode)
                 (fsharp fsharp-mode)
                 (go go-mode)
                 (groovy groovy-mode)
@@ -151,16 +157,19 @@ Write this in your .emacs:
                 (json json-mode javascript-mode)
                 (latex latex-mode)
                 (lisp lisp-mode)
+                (lua lua-mode)
                 (matlab matlab-mode octave-mode)
                 (objc objc-mode c-mode)
                 (perl perl-mode)
                 (php php-mode)
+                (prolog prolog-mode)
                 (python python-mode)
                 (r r-mode)
                 (ruby ruby-mode)
                 (rust rust-mode)
                 (scala scala-mode)
                 (shell shell-script-mode)
+                (smalltalk smalltalk-mode)
                 (sql sql-mode)
                 (swift swift-mode)
                 (visualbasic visual-basic-mode)
