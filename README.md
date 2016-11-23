@@ -2,7 +2,7 @@
 
 [![MELPA](https://melpa.org/packages/language-detection-badge.svg)](https://melpa.org/#/language-detection) [![Build Status](https://travis-ci.org/andreasjansson/language-detection.el.svg?branch=master)](https://travis-ci.org/andreasjansson/language-detection.el)
 
-Emacs Lisp library that automatically detects the programming language in a buffer or string.
+Emacs Lisp library that automatically detects the programming language in a buffer or string. Implemented as a random forest classifier, trained in scikit-learn and deployed to Emacs Lisp.
 
 ## Usage
 
