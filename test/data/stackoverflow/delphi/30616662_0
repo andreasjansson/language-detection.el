@@ -1,0 +1,10 @@
+TCPCliente := TIdTCPClient.Create(nil);
+TCPCliente.Host := edtIP.Text;
+TCPCliente.Port := 492;
+TCPCliente.ConnectTimeout := 1000;
+TCPCliente.Connect;
+TCPCliente.Socket.WriteLnRFC(TextoEnvio, IndyTextEncoding_8Bit);
+Texto := TCPCliente.Socket.ReadLn(IndyTextEncoding_8Bit);
+TCPCliente.Socket.Close;
+TCPCliente.Disconnect;
+TCPCliente.Free;

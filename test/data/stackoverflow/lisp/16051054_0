@@ -1,0 +1,14 @@
+(if(equal? (peek-char srcf) (#\newline) )
+
+  (begin
+
+    (read-char srcf)
+    (Lines srcf (+ Line 1))
+  )
+
+  (begin
+
+    (read-char srcf)
+    (Lines srcf Line)                       
+  )
+)

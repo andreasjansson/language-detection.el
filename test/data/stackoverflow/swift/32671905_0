@@ -1,0 +1,63 @@
+class sideTest: NSObject, UITableViewDelegate, UITableViewDataSource {
+
+
+    let tesTable: UITableView = UITableView()
+    var items: [String]?
+    var mView: UIView = UIView()
+
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        print("The number of rows is: \(self.items!.count)")
+
+        return self.items!.count
+    }
+
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+
+        print("\nLets create some cells.")
+
+        let sCell: UITableViewCell = tableView.dequeueReusableCellWithIdentifier("cell") as UITableViewCell!
+
+        sCell.textLabel?.text = self.items![indexPath.row]
+        sCell.textLabel?.textColor = UIColor.darkTextColor()
+
+        return sCell
+    }
+
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        print("You selected cell #\(indexPath.row)!")
+    }
+
+    func tblSetup() {
+
+        self.tesTable.frame = CGRectMake(0, 0, 320, mView.bounds.height)
+        self.tesTable.delegate = self
+        self.tesTable.dataSource = self
+
+        self.tesTable.backgroundColor = UIColor.cyanColor()
+
+        // load cells
+        self.tesTable.registerClass(UITableViewCell.self, forCellReuseIdentifier: "Cell")
+        self.tesTable.reloadData()
+
+        print("Currenlty in tblSetup.\nCurrent rows is: \(self.items!.count)")
+    }
+
+    //Init
+
+    override init() {
+        super.init()
+
+        self.items = nil
+
+        self.tblSetup()
+    }
+
+    init(sourceView: UIView , itemListAsArrayString: [String]) {
+        super.init()
+
+        self.items = itemListAsArrayString
+        self.mView = sourceView
+
+        self.tblSetup()
+    }
+}

@@ -1,0 +1,6 @@
+- (IBAction) google: (id) sender {
+    NSURL *url = [NSURL URLWithString:@"http://www.google.com/"];
+    WebViewController *webViewController = [[WebViewController alloc] initWithURL:url andTitle:@"Google"];
+    [self presentModalViewController:webViewController animated:YES];
+    //[webViewController release];
+}

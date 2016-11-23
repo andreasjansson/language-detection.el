@@ -1,0 +1,31 @@
+object If {
+  def apply(cond: => GE): IfBuilder = ???
+}
+
+trait IfBuilder {
+  def Then [A](branch: => A): If[A]
+}
+
+trait If[A] {
+  def Else: ElseBuilder[A]
+  def ElseIf(cond: => GE): ElseIfBuilder[A]
+}
+
+trait IfGE extends If[GE] with GE
+
+object ElseBuilder {
+  trait LowPri {
+    implicit def AnyRes[A]: Result[A, If[A]] = ???
+  }
+  object Result extends LowPri {
+    implicit def GERes: Result[GE, IfGE] = ???
+  }
+  sealed trait Result[A, Out]
+}
+trait ElseBuilder[A] {
+  def apply[B >: A, Out](b: => B)(implicit res: ElseBuilder.Result[B, Out]): Out
+}
+
+trait ElseIfBuilder[A] {
+  def Then [B >: A](branch: => B): If[B]
+}

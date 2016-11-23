@@ -1,0 +1,20 @@
+error: cannot infer an appropriate lifetime for lifetime parameter in function call due to conflicting requirements [E0495]
+  --> src/main.rs:19:24
+19 |>     let res = try!(doc.get(0).ok_or(SomeError::Other));
+   |>                        ^^^
+src/main.rs:19:15: 19:55: note: in this expansion of try! (defined in <std macros>)
+note: first, the lifetime cannot outlive the anonymous lifetime #1 defined on the block at 18:65...
+  --> src/main.rs:18:66
+18 |> fn get_things(doc: &Vec<Json>) -> Result<SomeStruct, Box<Error>> {
+   |>                                                                  ^
+note: ...so that reference does not outlive borrowed content
+  --> src/main.rs:19:20
+19 |>     let res = try!(doc.get(0).ok_or(SomeError::Other));
+   |>                    ^^^
+src/main.rs:19:15: 19:55: note: in this expansion of try! (defined in <std macros>)
+note: but, the lifetime must be valid for the static lifetime...
+note: ...so that types are compatible (expected std::result::Result<SomeStruct, Box<std::error::Error + 'static>>, found std::result::Result<SomeStruct, Box<std::error::Error>>)
+ --> <std macros>:5:8
+5 |> return $ crate :: result :: Result :: Err (
+  |>        ^
+src/main.rs:20:8: 20:28: note: in this expansion of try! (defined in <std macros>)

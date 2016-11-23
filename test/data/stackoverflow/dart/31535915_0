@@ -1,0 +1,22 @@
+main() {
+  test("test", () async{
+    await myCall( );
+    print( "done");
+  });
+}
+
+Future myCall( ) async{
+
+  ["0","1","2"].forEach( (item) async{
+    print( "about to callback");
+    await futurePrint( item);
+    print( "done  callback");
+  });
+  print( "done mycall");
+  return new Future.value();
+}
+
+Future futurePrint( String str){
+  print( "string = ${str}");
+  return new Future.value();
+}

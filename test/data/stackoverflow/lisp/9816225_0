@@ -1,0 +1,13 @@
+(defmacro define-term-construct (name filter-p list-keywords)
+  (let* ((do-list-name (output-symbol "do-~a-list" name))
+         (with-name (output-symbol "with-~a" name))
+         (do-filter-name (output-symbol "do-~as" name)))
+   `(progn
+       (defmacro ,do-list-name 
+         (ls (&key ,@(append list-keywords '(id operation))) &body body)
+          (with-gensyms (el)
+           `(loop-list (,el ,ls :id ,id :operation ,operation)
+              (let (XXX,@(build-bind ,,name ,el))
+                 (when (,',filter-p ,el)
+                    (,',with-name ,el
+                          ,@body)))))))))

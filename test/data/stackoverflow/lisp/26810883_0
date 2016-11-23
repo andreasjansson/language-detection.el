@@ -1,0 +1,5 @@
+(define (occurences d n)
+   (if (equal? (remainder d 10) n)
+       (add1 (occurences (quotient d 10) n))
+       (occurences (quotient d 10) n)
+       ))

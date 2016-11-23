@@ -1,0 +1,5 @@
+if ([elementName isEqualToString:@"media:thumbnail"])   
+{
+    NSString *imgURL=[attributeDict valueForKey:@"url"];
+    NSLog(@"imgURL %@",imgURL);
+}

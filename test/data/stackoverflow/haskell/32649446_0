@@ -1,0 +1,9 @@
+allExcept :: [Char] -> [[Char]] -> Maybe [[Char]]
+
+allExcept ch1 chars 
+   | ch1  `notElem` chars = Nothing
+
+allExcept ch [] = []      
+allExcept ch (x:xs)
+  | ch /= x = Just(x:(fromJust(allExcept ch xs)))
+  | otherwise = Just(xs)

@@ -1,0 +1,3 @@
+if @booking.propose_offer_as_guest
+  # do some stuff
+end

@@ -1,0 +1,5 @@
+adb forward tcp:50000 tcp:50000
+
+exec 3<>/dev/tcp/localhost/50000
+
+cat &3 >> dump-file.txt

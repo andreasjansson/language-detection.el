@@ -1,0 +1,4 @@
+-(void) update
+{
+  self.textbox.test =@"new text";
+}

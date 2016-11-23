@@ -1,0 +1,12 @@
+function[] = model1(vel, angle)
+close all; 
+tspan = [0 3];
+x0 = [0; 0.915; vel*cos(angle); vel*sin(angle)];
+[x] = ode45(@ball, tspan, x0);
+
+function xdot = ball(x)
+g = 9.81; 
+xdot = [x(3); x(4); 0; -g];
+
+end 
+end

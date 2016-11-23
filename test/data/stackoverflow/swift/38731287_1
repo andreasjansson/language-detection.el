@@ -1,0 +1,5 @@
+if appDelegate.elapsedTime > 30 {
+
+        decideEnemy()
+
+    }

@@ -1,0 +1,2 @@
+Mp = floor(1+(10*rand(2,20)));
+mp1 = sort(Mp,2);

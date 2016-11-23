@@ -1,0 +1,13 @@
+<script src="<%=Url.Content("~/Scripts/shadowbox-build-3.0rc1/shadowbox.js") %>" type="text/javascript"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        // insert functions calls here that provide some default behaviour
+        externalLinks();
+    });
+
+    Shadowbox.init({
+        language: "en",
+        players: ["img", "html", "iframe"],
+        onClose: function() { location.reload(true) }
+    });
+</script>

@@ -1,0 +1,9 @@
+\begin{nobreak}  
+
+Text here will not split over pages, it will remain
+as one continuous chunk. If there isn't enough room
+for it on the current page a pagebreak will happen
+before it and the whole chunk will start on the next
+page.  
+
+\end{nobreak}

@@ -1,0 +1,9 @@
+FileStream 
+    newFileNamed: '/tmp/cog.tgz' 
+    do: [ :stream | | entity |
+            stream binary.
+            entity := ZnClient new
+                    streaming: true;
+                    get: 'https://ci.lille.inria.fr/pharo/job/Cog%20Git%20Tracker/lastSuccessfulBuild/artifact/cog.tar.gz';
+                    entity.
+            entity writeOn: fileStream ]

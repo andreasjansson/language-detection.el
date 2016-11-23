@@ -1,0 +1,10 @@
+father(ahmad,samer).
+father(ahmad,lolo).
+father(ahmad,koko).
+
+
+grandfather(X,Y):-
+    father(U,X),
+    father(Y,U).
+
+main :- father(ahmad, X), writef('%t\n', [X]).

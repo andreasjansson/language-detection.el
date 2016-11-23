@@ -1,0 +1,14 @@
+public class TestColumn {
+
+  @Component(ordinal = 0)
+  String bComponent;
+
+  @Component(ordinal = 1)
+  String cComponent;
+
+  @Component(ordinal = 2)
+  String columnName;
+
+  public TestColumn() {
+  }
+}

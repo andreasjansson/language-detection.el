@@ -1,0 +1,19 @@
+abstract class SuperClass (cs: Seq[C]) {
+  def init {}
+}
+
+object A extends SuperClass(Seq(B, C))
+object B extends SuperClass(Seq(A, D))
+object C extends SuperClass(Seq(A, B))
+object D extends SuperClass(Seq(C, B, A))
+object E extends SuperClass(Seq(B, A, B))
+
+object Initializer {
+  def init {
+    A.init
+    B.init
+    C.init
+    D.init
+    E.init
+  }
+}

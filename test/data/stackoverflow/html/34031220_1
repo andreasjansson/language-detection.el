@@ -1,0 +1,34 @@
+<div class="main-container">
+{% if page.sections_top %}
+<div class="container-fluid no-pad">
+{% assign sections_top = page.sections_top['sections'] %}
+ {% for section in sections_top %}
+  {% include {{ section }} %}
+ {% endfor %}
+</div>
+{% endif %}
+
+
+<!-- Section main content -->
+<section class="article-body">
+
+<div class="container">
+ <div class="row">
+  <div class="col-sm-12">
+  {{ content }}
+  </div>
+ </div>
+</div><!-- end .container -->                 
+
+</section><!-- end section main content -->
+
+{% if page.sections_bottom %}
+<div class="container-fluid no-pad">
+{% assign sections_bottom = page.sections_bottom['sections'] %}
+ {% for section in sections_bottom %}
+  {% include {{ section }} %}
+ {% endfor %}
+</div>
+{% endif %}
+
+</div><!-- end .main-container -->

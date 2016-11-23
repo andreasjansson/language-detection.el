@@ -1,0 +1,11 @@
+<div class="btn-group" data-toggle="buttons-checkbox">
+    <div class="row">
+        <div class="span7"><button type="button" class="btn btn-primary">Sun</button></div>
+        <div class="span7"><button type="button" class="btn btn-primary">Mon</button></div>
+        <div class="span7"><button type="button" class="btn btn-primary">Tue</button></div>
+        <div class="span7"><button type="button" class="btn btn-primary">Wed</button></div>
+        <div class="span7"><button type="button" class="btn btn-primary">Thu</button></div>
+        <div class="span7"><button type="button" class="btn btn-primary">Fri</button></div>
+        <div class="span7"><button type="button" class="btn btn-primary">Sat</button></div>
+    </div>
+</div>

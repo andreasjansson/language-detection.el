@@ -1,0 +1,6 @@
+Exception in thread "main" java.lang.RuntimeException: java.io.FileNotFoundException: Could not locate quote/twitter__init.class or quote/twitter.clj on classpath: 
+    at clojure.lang.Util.runtimeException(Util.java:165)
+...
+Caused by: java.io.FileNotFoundException: Could not locate quote/twitter__init.class or quote/twitter.clj on classpath: 
+    at clojure.lang.RT.load(RT.java:430)
+...

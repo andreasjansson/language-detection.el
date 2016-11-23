@@ -1,0 +1,6 @@
+struct StructData_Type
+{
+   int FirstLong;
+   int SecondLong;
+   VARIANT_BOOL Status;
+} StructData_Type;

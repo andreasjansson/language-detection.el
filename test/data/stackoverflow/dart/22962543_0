@@ -1,0 +1,17 @@
+class MyData {
+  String name;
+  String age;
+
+  MyData(this.name, this.age);
+}
+
+... 
+class AlertSimulatorElement extends PolymerElement {
+
+void handleClick(e,d,t) {
+   asyncFire('polymer-signal',detail: new MyData("Mike",99));
+
+   // this works:
+   //asyncFire('polymer-signal', detail: {'name': "foo", 'data': "Foo!"});
+   }
+}

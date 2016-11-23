@@ -1,0 +1,4 @@
+-record(connection, {pid, name}).
+
+handle_join(ServiceName, WebSocketId, State, EventName) ->
+  mnesia:dirty_write(#connection{pid=WebSocketId, name=EventName}).

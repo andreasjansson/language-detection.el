@@ -1,0 +1,7 @@
+{{ define "header" }}
+<!DOCTYPE html>
+<html>
+<head>
+<body>
+<h1>HEADER</h1>
+{{ end }}

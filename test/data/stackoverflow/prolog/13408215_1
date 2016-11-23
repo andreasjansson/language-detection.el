@@ -1,0 +1,2 @@
+parent_of(X,Y) :- father_of(X,Y),!.  <-- fixes an X and Y and thus will list only Y=john
+parent_of(X,Y) :- !,father_of(X,Y). <-- works for parent_of(max,Y) but not parent_of(jane)

@@ -1,0 +1,3 @@
+phoneRecord - ID,phone
+companies - ID,phone1,phone2, name
+contacts - ID, phone1, phone2, companies.ID

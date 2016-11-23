@@ -1,0 +1,16 @@
+void caller1() {
+  function(1);
+}
+void caller2() {
+  function(2);
+}
+void caller3() {
+  function(3);
+}
+
+void function(int dimensions) {
+
+  if(dimensions <= 0 || dimensions > 3)
+     throw out_of_range("Wrong dims");
+
+}

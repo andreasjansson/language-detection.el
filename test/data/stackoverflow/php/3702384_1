@@ -1,0 +1,3 @@
+Mage::getModel('comunity/news')->getCollection()
+            ->addFieldToFilter('title', array('like'=>'%'.$this->getRequest()->getParam('q').'%'))  
+           ->addFieldToFilter('shortdesc', array('like'=>'%'.$this->getRequest()->getParam('q').'%'));

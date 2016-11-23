@@ -1,0 +1,7 @@
+|client|
+client:= ZnClient new.
+client https;
+host: 'www.api.twitter.com/1.1/followers/ids.json';
+queryAt: 'q' put: 'cursor=-1&screen_name=my name'.
+client request headers at: 'Authorization' put:' OAuth  oauth_consumer_key="Hp6FpBU7Bbqv89RqrHJzHw", oauth_nonce="9677be3a12e128702b06348677319e75", oauth_signature="GUQR%2FI%2Bd0XhQLJP5B0IHtDfiiLE%3D", oauth_signature_method="HMAC-SHA1", oauth_timestamp="1387729271", oauth_token=" my acess token", oauth_version="1.0" '. 
+client get.

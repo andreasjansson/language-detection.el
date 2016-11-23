@@ -1,0 +1,4 @@
+[root@eulbi002] # ping eulbi001 | awk -F'[ =]' '/64 bytes/{"date +%s"|getline D; print D,$11}'
+1360069298 0.056
+1360069298 0.051
+1360069298 0.051

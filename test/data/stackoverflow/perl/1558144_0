@@ -1,0 +1,32 @@
+#!/usr/bin/perl -w
+
+
+while (<DATA>) {
+    chomp;
+    print "$_\n";
+    my ($id,$rna_sq) = split(/\s+/,$_);
+
+    local $_ = $rna_sq;
+    while (/atg/g) {
+        my $start = pos() - 2;
+
+        if (/tga|taa|tag/g) {
+
+            my $stop    = pos();
+            my $gene    = substr( $_, $start - 1, $stop - $start + 1 ),$/;
+            my $genelen = length($gene);
+            my $ct      = "$id $start $stop $gene $genelen";
+            print "\t$ct\n";
+
+        }
+
+    }
+
+}
+
+__DATA__
+DM208659    gtgggcctcaaatgtggagcactattctgatgtccaagtggaaagtgctgcgacatttgagcgtcac
+AF038953    gatcccagacctcggcttgcagtagtgttagactgaagataaagtaagtgctgtttgggctaacaggatctcctcttgcagtctgcagcccaggacgctgattccagcagcgccttaccgcgcagcccgaagattcactatggtgaaaatcgccttcaatacccctaccgccgtgcaaaaggaggaggcgcggcaagacgtggaggccctcctgagccgcacggtcagaactcagatactgaccggcaaggagctccgagttgccacccaggaaaaagagggctcctctgggagatgtatgcttactctcttaggcctttcattcatcttggcaggacttattgttggtggagcctgcatttacaagtacttcatgcccaagagcaccatttaccgtggagagatgtgcttttttgattctgaggatcctgcaaattcccttcgtggaggagagcctaacttcctgcctgtgactgaggaggctgacattcgtgaggatgacaacattgcaatcattgatgtgcctgtccccagtttctctgatagtgaccctgcagcaattattcatgactttgaaaagggaatgactgcttacctggacttgttgctggggaactgctatctgatgcccctcaatacttctattgttatgcctccaaaaaatctggtagagctctttggcaaactggcgagtggcagatatctgcctcaaacttatgtggttcgagaagacctagttgctgtggaggaaattcgtgatgttagtaaccttggcatctttatttaccaactttgcaataacagaaagtccttccgccttcgtcgcagagacctcttgctgggtttcaacaaacgtgccattgataaatgctggaagattagacacttccccaacgaatttattgttgagaccaagatctgtcaagagtaagaggcaacagatagagtgtccttggtaataagaagtcagagatttacaatatgactttaacattaaggtttatgggatactcaagatatttactcatgcatttactctattgcttatgccgtaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+BC021011    ggggagtccggggcggcgcctggaggcggagccgcccgctgggctaaatggggcagaggccgggaggggtgggggttccccgcgccgcagccatggagcagcttcgcgccgccgcccgtctgcagattgttctg
+DM208660    gggatactcaaaatgggggcgctttcctttttgtctgtactgggaagtgcttcgattttggggtgtccc
+AF038954    ggacccaagggggccttcgaggtgccttaggccgcttgccttgctctcagaatcgctgccgccatggctagtcagtctcaggggattcagcagctgctgcaggccgagaagcgggcagccgagaaggtgtccgaggcccgcaaaagaaagaaccggaggctgaagcaggccaaagaagaagctcaggctgaaattgaacagtaccgcctgcagagggagaaagaattcaaggccaaggaagctgcggcattgggatcccgtggcagttgcagcactgaagtggagaaggagacccaggagaagatgaccatcctccagacatacttccggcagaacagggatgaagtcttggacaacctcttggcttttgtctgtgacattcggccagaaatccatgaaaactaccgcataaatggatagaagagagaagcacctgtgctgtggagtggcattttagatgccctcacgaatatggaagcttagcacagctctagttacattcttaggagatggccattaaattatttccatatattataagagaggtccttccactttttggagagtagccaatctagctttttggtaacagacttagaaattagcaaagatgtccagctttttaccacagattcctgagggattttagatgggtaaatagagtcagactttgaccaggttttgggcaaagcacatgtatatcagtgtggacttttcctttcttagatctagtttaaaaaaaaaaaccccttaccattctttgaagaaaggaggggattaaataattttttcccctaacactttcttgaaggtcaggggctttatctatgaaaagttagtaaatagttctttgtaacctgtgtgaagcagcagccagccttaaagtagtccattcttgctaatggttagaacagtgaatactagtggaattgtttgggctgcttttagtttctcttaatcaaaattactagatgatagaattcaagaacttgttacatgtattacttggtgtatcgataatcatttaaaagtaaagactctgtcatgcaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa

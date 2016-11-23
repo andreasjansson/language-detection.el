@@ -1,0 +1,12 @@
+delete(Key, Database) ->
+    remove(Database, Key, []).
+
+remove([], Key, Acc) ->
+    Acc;
+remove([H|T], Key, Acc) ->
+    if
+        element(1, H) /= Key ->             
+            [H| remove(T, Key, Acc)];
+        true  -> 
+            remove(T, Key, Acc)
+    end.

@@ -1,0 +1,32 @@
+ffmpeg version 2.2.git Copyright (c) 2000-2014 the FFmpeg developers
+  built on Jun 17 2014 11:08:12 with gcc 4.8 (Ubuntu 4.8.2-19ubuntu1)
+  configuration: --prefix=/usr/local --enable-gpl --enable-nonfree --enable-libass --enable-libfdk-aac --enable-libfreetype --enable-libmp3lame --enable-libopus --enable-libtheora --enable-libvorbis --enable-libvpx --enable-libx264 --enable-libxvid --enable-libvidstab --enable-libx265
+  libavutil      52. 89.100 / 52. 89.100
+  libavcodec     55. 67.100 / 55. 67.100
+  libavformat    55. 43.100 / 55. 43.100
+  libavdevice    55. 13.101 / 55. 13.101
+  libavfilter     4.  8.100 /  4.  8.100
+  libswscale      2.  6.100 /  2.  6.100
+  libswresample   0. 19.100 /  0. 19.100
+  libpostproc    52.  3.100 / 52.  3.100
+Input #0, hls,applehttp, from 'http://ftvodhdsecz-f.akamaihd.net/i/streaming-adaptatif_france-dom-tom/2014/S26/J7/104904507-20140629-,398,632,934,k.mp4.csmil/index_2_av.m3u8?null=':
+  Duration: 00:51:05.07, start: 0.100667, bitrate: 0 kb/s
+  Program 0 
+    Metadata:
+      variant_bitrate : 0
+    Stream #0:0: Video: h264 (Main) ([27][0][0][0] / 0x001B), yuv420p, 704x396 [SAR 1:1 DAR 16:9], 25 fps, 25 tbr, 90k tbn, 50 tbc
+    Stream #0:1: Audio: aac ([15][0][0][0] / 0x000F), 48000 Hz, stereo, fltp, 67 kb/s
+    Stream #0:2: Data: timed_id3 (ID3  / 0x20334449)
+File '/media/path/video.mkv' already exists. Overwrite ? [y/N] y
+[matroska @ 0x2958840] Error parsing AAC extradata, unable to determine samplerate.
+Output #0, matroska, to '/media/path/video.mkv':
+  Metadata:
+    encoder         : Lavf55.43.100
+    Stream #0:0: Video: h264 (H264 / 0x34363248), yuv420p, 704x396 [SAR 1:1 DAR 16:9], q=2-31, 25 fps, 1k tbn, 90k tbc
+    Stream #0:1: Audio: aac ([255][0][0][0] / 0x00FF), 48000 Hz, stereo, 67 kb/s
+Stream mapping:
+  Stream #0:0 -> #0:0 (copy)
+  Stream #0:1 -> #0:1 (copy)
+Press [q] to stop, [?] for help
+[hls,applehttp @ 0x2864c20] Failed to open segment of playlist 0ate= 844.6kbits/s    
+frame= 3000 fps=174 q=-1.0 Lsize=   12325kB time=00:02:00.00 bitrate= 841.4kbits/s

@@ -1,0 +1,7 @@
+(defun my-clojure-reset ()
+  "Reload clojure once file were saved."
+  (when
+      (s-ends-with? "clj" (buffer-file-name))
+    (cider-interactive-eval "(do (ns user) (reset))")))
+
+(add-hook 'after-save-hook 'my-clojure-reset)

@@ -1,0 +1,5 @@
+*/This is how it works*/
+* busStops(number_of_the_bus,number_of_stops)*/
+
+/*?- busLineLonger([busStops(1,7),busStops(2,4),busStops(3,6)],5,WHICH).
+* WHICH = [1,3].

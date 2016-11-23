@@ -1,0 +1,3 @@
+#import "ViewController.h"
+#import "AFNetworking.h"
+static NSString * const BaseURLString =     @"http://www.outpan.com/api/get-product.php?barcode=9780785265740&apikey=bbb053368784fed4f89d37f5fbabcf4";

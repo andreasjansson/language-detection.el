@@ -1,0 +1,6 @@
+JsonSerializerSettings microsoftDateFormatSettings = new JsonSerializerSettings
+    {
+        DateFormatHandling = DateFormatHandling..MicrosoftDateFormat
+    };
+
+return JsonConvert.SerializeObject(headers, microsoftDateFormatSettings);

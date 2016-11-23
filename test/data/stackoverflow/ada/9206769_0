@@ -1,0 +1,9 @@
+subtype int32 is Interfaces.Interger_32;
+
+function Intrinsic_Sync_Add_And_Fetch
+    (P : access int32; I : int32) return int32;
+
+pragma Import(
+            Intrinsic, 
+            Intrinsic_Sync_Add_And_Fetch, 
+            "__sync_add_and_fetch_4");

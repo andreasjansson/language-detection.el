@@ -1,0 +1,22 @@
+#!/bin/sh
+
+tmpf=/tmp/xlmanip$$a.lisp
+cat >${tmpf} <<__EOF__
+(proclaim '(optimize speed space))
+;;; SBCL:Muffle compiler-notes
+#+sbcl (declaim (sb-ext:muffle-conditions sb-ext:compiler-note))
+(ql:quickload :xlmanip/tests)
+(time (asdf:oos 'asdf:test-op :xlmanip))
+(quit)
+__EOF__
+
+trap "rm -f ${tmpf}" 0 1 2 3 15
+
+if test "x${CL_LISPS}" = x; then
+  CL_LISPS="sbcl ccl clisp ecl"
+fi
+
+for l in $CL_LISPS; do
+  echo "\n======== $l ========\n"
+  cl-launch --lisp $l --execute --quicklisp --init '(load "'"${tmpf}"'")'
+done

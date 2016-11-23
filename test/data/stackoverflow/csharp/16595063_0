@@ -1,0 +1,4 @@
+private void normalCheck_Checked(object sender, RoutedEventArgs e)
+{
+    normal();
+}

@@ -1,0 +1,55 @@
+class ExpVisitor{
+public:
+    virtual void visit(class Add*)=0;
+    virtual void visit(class Int*)=0;
+};
+
+class Exp{
+public:
+    virtual void accept(ExpVisitor *v){};
+};
+
+class Add : public Exp{
+public:
+    Exp e1,e2;
+    Add(Exp in1,Exp in2){
+        e1=in1;
+        e2=in2;
+    }
+    void accept(ExpVisitor *v){
+        v->visit(this);
+    }
+};
+
+class Int : public Exp{
+public:
+    int val;
+    Int(int v){
+        val=v;
+    }
+    void accept(ExpVisitor *v){
+        v->visit(this);
+    }
+};
+
+class PrintExp : public ExpVisitor{
+public:
+    void visit(Add *e){
+        cout  << '(';
+        (e->e1).accept(this);
+        cout << '+';
+        (e->e2).accept(this);
+        cout << ')';
+    }
+    void visit(Int *e){
+        cout << e->val;
+    }
+};
+
+
+int main(){
+    Add e=Add(Add(Int(1),Int(2)),Int(3));
+    PrintExp p;
+    e.accept(&p);
+    cout << endl;
+}

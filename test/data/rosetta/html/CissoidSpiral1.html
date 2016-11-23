@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Cissoid</title>
+    <script type="text/javascript"><!--
+window.addEventListener('load', function () {
+  // Get the canvas element in the <body> tag
+  var elem = document.getElementById('myCanvas');
+
+  if (!elem || !elem.getContext) {
+    return;
+  }
+
+  // Get the canvas 2d context 
+  var context = elem.getContext('2d');
+  if (!context) {
+    return;
+  }
+
+  var basePointX  = 100;
+  var basePointY  = 300;
+  var currentX    = 0;
+  var currentY    = 0;
+  var offsetX     = 0;
+  var offsetY     = 0;
+  var radius      = 0;
+  var sine        = 0;
+  var cosine      = 0;
+  var factor      = 1;
+  var Constant    = 200;
+  var angle       = 0;
+  var maxAngle    = 720;
+  var rectWidth   = 90;
+  var rectHeight  = 50;
+ 
+  for(angle=0; angle<maxAngle; angle++) {
+     sine     = Math.sin(factor*angle*Math.PI/180);
+     cosine   = Math.cos(factor*angle*Math.PI/180);
+     radius   = Constant*sine*sine/cosine;
+ 
+     offsetX  = radius*Math.cos(angle*Math.PI/180);
+     offsetY  = radius*Math.sin(angle*Math.PI/180);
+     currentX = basePointX+offsetX;
+     currentY = basePointY-offsetY;
+
+     // alternate between red and blue
+     if(angle % 2 == 0) {
+        context.fillStyle = '#f00';
+     }
+     else {
+        context.fillStyle = '#00f';
+     }
+
+     // draw the current rectangle
+     context.fillRect(currentX, currentY, rectWidth, rectHeight);
+  }
+}, false);
+    // --></script>
+  </head>
+
+  <body>
+    <canvas id="myCanvas" width="800" height="500">
+         Your browser does not support Canvas
+    </canvas>
+  </body>
+</html>
+

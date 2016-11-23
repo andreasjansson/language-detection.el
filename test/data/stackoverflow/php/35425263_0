@@ -1,0 +1,7 @@
+$business_cat   = $this->input->post('cat_id');
+
+$business_sub_cat= $this->input->post('sub_cat_id');
+
+$msg="<td><b>Business Catagories :</b></td><td>".implode(", ", $business_cat)."</td>
+                        </tr><tr>   
+                            <td><b>Business Subcatagories :</b></td><td>".implode(", ", $business_sub_cat)."</td>";

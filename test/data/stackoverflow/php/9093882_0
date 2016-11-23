@@ -1,0 +1,12 @@
+xml = new DOMDocument('1.0', 'utf-8'); $xml->formatOutput = true; 
+$xml->preserveWhiteSpace = false; $xml->load('test.xml'); 
+$elements = $xml->getElementsByTagName('key'); 
+foreach($elements as $node){ 
+    foreach($node->childNodes as $child) { 
+        $element = $xml->getElementsByTagName('key')->item($id);  
+        $temp = $element->getElementsByTagName($child->nodeName)->item(0); 
+        $temp->nodeValue = $_GET[$child->nodeName . '_' . ($id+1) ] ; 
+    } 
+    break; 
+} 
+$xml->save("test.xml"); $xml->saveXML();

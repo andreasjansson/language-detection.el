@@ -1,0 +1,29 @@
+local function removeLaser(event)
+    --[[
+    this doesn't work -> display.remove(laser)
+    this returns an error (main.lua:34: attempt to call method 'removeSelf' (a
+    nil value)) -> laser.removeSelf()
+    --]]
+end
+
+local function fire(event)
+    laser=display.newImageRect("laser.png",75,25)
+    laser.x=spaceship.contentWidth+spaceship.x/2+3
+    laser.y=spaceship.y 
+    transition.to(laser,{time=1000,x=display.contentWidth, onComplete=removeLaser})
+end
+
+local function createButton()
+    buttonFire=widget.newButton
+    {
+        defaultFile="buttonUNP.png",
+        overFile="buttonP.png",
+        width=130,
+        height=130,
+        emboss=true,
+        onPress=fire,
+        id="buttonFire"
+    }
+    buttonFire.x=display.contentWidth-buttonFire.contentWidth/2-10
+    buttonFire.y=display.contentHeight-buttonFire.contentHeight/2-10
+end

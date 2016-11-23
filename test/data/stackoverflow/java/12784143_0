@@ -1,0 +1,12 @@
+try {
+String sql = "SELECT * FROM nameOfDatabase WHERE code LIKE ?";
+
+pst=conn.prepareStatement(sql);
+pst.setString(1, txt_search.getText());
+
+rs=pst.executeQuery();
+table_details.setModel(DbUtils.resultSetToTableModel(rs));
+
+} catch (Exception e) {
+JOptionPane.showMessageDialog(null, e);
+}

@@ -1,0 +1,18 @@
+# Result wanted
+# Given the names and stats array generate the results array
+# result = {'user1' => 3, 'user2' => 1, 'user3' => 0, 'user4' => 1}
+
+names = ['user1', 'user2', 'user3', 'user4']
+stats = ['user1', 'user1', 'user1', 'user2', 'user4', 'user2', 'xxx']
+
+hash = Hash[names.map {|v| [v, 0]}] # to make sure every name gets a value
+
+stats.each do |item| # basic loop to count the records
+   hash[item] += 1 if hash.has_key?(item)
+end
+
+puts hash
+
+# terminal outcome
+# $ ruby example.rb 
+# {"user1"=>3, "user2"=>2, "user3"=>0, "user4"=>1}

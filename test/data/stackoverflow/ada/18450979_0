@@ -1,0 +1,24 @@
+type Type_1 is (val1, val2, val3, val4, val5, val6, val7, val8);
+for Type_1 use (val1 => 0, val2 = 1, val3 = 2, val4 => 3
+                 val5 => 4, val6 => 5, val7 => 6, val8 => 7);
+for Type_1'Size use 3;
+
+type Type_2 is (val1, val2);
+for Type_2 use (val1 => 0, val2 = 1);
+for Type_2'Size use 1;
+
+etc, etc
+
+type The_Record is record
+    element_1 : Type_1;
+    element_2 : Type_2;
+    element_3 : Type_3;
+    element_4 : Type_4;
+end record;
+for the_Record use record
+    element_1 at 0 range 0 .. 2;
+    element_2 at 0 range 3 .. 4;
+    element_3 at 0 range 5 .. 12;
+    element_4 at 0 range 13 .. 15;
+end record;
+for The_Record'Size use 16;

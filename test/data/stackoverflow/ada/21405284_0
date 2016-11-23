@@ -1,0 +1,6 @@
+declare
+    X : Integer := 1 - 1;
+    Y : Integer := 1 / X;
+begin
+    null;
+end;

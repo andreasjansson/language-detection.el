@@ -1,0 +1,8 @@
+(setq org-agenda-custom-commands
+  '(("pb" "Bugs "
+      (
+       (todo "KNOWNCAUSE")
+       (todo "BUG")
+       (todo "REPORT")
+      )
+    ((org-agenda-files (list projects-dir))))

@@ -1,0 +1,3 @@
+(defn action [action-fn]
+  (reify Action
+    (execute [metadata parameter] (action-fn metadata parameter))))

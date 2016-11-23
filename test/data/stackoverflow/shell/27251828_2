@@ -1,0 +1,15 @@
+$sudo ssh -i PATH/instance_key.pem ubuntu@000.000.000.00
+$cd git_repo
+$git fetch -a
+$git checkout master
+$git rebase origin/master
+
+(note:- need to inform with a message if any conflicts occurs and continue)
+
+$sudo ssh -i PATH/instance_key.pem ubuntu@111.111.111.11
+$cd git_repo
+$git fetch -a
+$git checkout release
+$git rebase origin/release
+
+(note:- need to inform with a message if any conflicts occurs)

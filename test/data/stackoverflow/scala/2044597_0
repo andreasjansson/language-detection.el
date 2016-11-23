@@ -1,0 +1,8 @@
+abstract class C
+case class CC() extends C
+
+trait T
+
+val c1 = CC()
+val c2 = new CC() with T
+println(c1.hashCode == c2.hashCode,c1 equals c2)

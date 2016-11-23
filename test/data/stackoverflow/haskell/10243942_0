@@ -1,0 +1,5 @@
+class A a where
+  foo :: a
+class A a => B a where
+  bar :: a
+  bar = (foo :: a)

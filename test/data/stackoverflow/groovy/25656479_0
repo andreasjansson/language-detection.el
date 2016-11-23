@@ -1,0 +1,28 @@
+public class JavaClass {
+
+    private String foo = "Foo";
+    private Calculation calculation;
+
+    public JavaClass() {
+        calculation = new Calculation();
+    }
+
+    public JavaClass(Calculation calculation) {
+        this.calculation = calculation;
+    }
+
+    public String getFoo() {
+        return foo;
+    }
+
+    public String getBar() {
+        return calculation.getBar();
+    }
+
+    public class Calculation {
+        public String getBar() {
+            return null;
+        }
+    }
+
+}

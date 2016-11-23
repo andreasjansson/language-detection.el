@@ -1,0 +1,4 @@
+seq$t1[seq$t1== "drawing"] <- 'leisure'
+seq$t1[seq$t1== "eating"] <- 'meal'
+seq$t1[seq$t1== "sleep"] <- 'personal care' 
+seq$t1[seq$t1== "..."] <- ...

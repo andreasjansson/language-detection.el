@@ -1,0 +1,22 @@
+@IBAction func button(sender: UIButton) {
+
+    let alertController = UIAlertController(title: "Title", message: "", preferredStyle: .ActionSheet)
+
+    let oneAction = UIAlertAction(title: "A", style: .Default) { (_) in }
+    let twoAction = UIAlertAction(title: "B", style: .Default) { (_) in }
+    let threeAction = UIAlertAction(title: "C", style: .Default) { (_) in }
+
+    let cancelAction = UIAlertAction(title: "Cancel", style: .Default) { (action) in
+        // ...
+    }
+
+    alertController.addAction(oneAction)
+    alertController.addAction(twoAction)
+
+    alertController.addAction(cancelAction)
+
+
+
+
+    self.presentViewController(alertController, animated: true) {
+        }

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>React Flux</title>
+        <script src="https://fb.me/react-0.13.3.js"></script>
+        <script src="https://fb.me/JSXTransformer-0.13.3.js"></script>
+        <script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+    </head>
+    <body>
+
+        <div id="component" style="color:red"></div>
+
+        <script type="text/jsx">
+
+
+//
+// create component
+//
+var Table = React.createClass({
+
+    render: function render() {
+        var _self = this;
+
+        var thead = React.DOM.thead({},
+            React.DOM.tr({},
+                this.props.cols.map(function (col) {
+                    return React.DOM.th({}, col);
+            })));
+
+        var tbody = this.props.rows.map(function (row) {
+            return React.DOM.tr({},
+            _self.props.cols.map(function (col) {
+                return React.DOM.td({}, row[col] || "");
+            }));
+        });
+
+        return React.DOM.table({}, [thead, tbody]);
+    }
+
+});
+
+var container = document.querySelector("#container");
+
+var tableModel = {
+    cols: ["Name", "Age"],
+    rows: [{
+        "Name": "Chase",
+            "Age": "27"
+    }],
+
+}
+
+React.render(Table(tableModel), container);
+
+
+
+        </script>
+    </body>
+</html>

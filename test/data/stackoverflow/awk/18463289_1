@@ -1,0 +1,4 @@
+drwxrwxr-x   2 root     root            0 Aug 22 09:32 bin
+lrwxrwxrwx   1 root     root            7 Aug 22 09:24 bin/addgroup -> busybox
+lrwxrwxrwx   1 root     root            7 Aug 22 09:24 bin/adduser -> busybox
+lrwxrwxrwx   1 root     root            7 Aug 22 09:24 bin/ash -> busybox

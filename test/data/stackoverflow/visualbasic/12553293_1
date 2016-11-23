@@ -1,0 +1,4 @@
+Protected Sub ButtonSearch_Click(sender As Object, e As EventArgs) Handles ButtonSearch.Click
+
+    GridViewParentsSummary.DataSource = theTableAdapter.GetData(strSearchText)
+End Sub

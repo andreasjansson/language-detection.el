@@ -1,0 +1,3 @@
+cv::vector<cv::Vec2f> lines;
+cv::HoughLines(I_BW, lines, 1, CV_PI/180,200);
+cv::Mat linesMat ( lines, true );

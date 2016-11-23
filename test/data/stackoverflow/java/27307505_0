@@ -1,0 +1,24 @@
+public static Point[] buildPossibleMatchRow(Point p, Board b) {
+
+    int x = p.x;
+    int y = p.y;
+    boolean[] matches = b.getRowBools(new Point(x,y));
+
+    int amtcorrectx = 0;
+    for (int i=0; i < matches.length; i++)
+    {
+        if (matches[i]) {
+            amtcorrectx++;
+        }
+    }
+    Point[] returnVals = new Point[amtcorrectx];
+
+    returnVals[0] = p;
+
+    for (int i=0; i < returnVals.length; i++)
+    {
+        x++;
+    }
+
+    return returnVals;
+}

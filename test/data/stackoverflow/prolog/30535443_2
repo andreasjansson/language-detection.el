@@ -1,0 +1,71 @@
+%CODE
+
+% these are the rooms and the number of keys they contain
+e(a,1).
+e(b,2).
+e(c,1).
+e(d,0).
+e(e,0). 
+e(f,0).
+
+%these are the doors and the number of keys needed to open them
+p(a,b,1).
+p(a,c,1).    
+p(b,d,1).    
+p(c,e,1).    
+p(d,f,1).    
+p(e,f,2).          
+
+concatenate([],L,L).        
+concatenate([X|M],L,[X|Y]) :-        
+   concatenate(M,L,Y).
+
+%%%%%%%%%%%%%
+camino(A,F,X):-    
+   A==F,                     %check if we start at the destiny    
+   concatenate([],[F],X).    
+%%%%%%%%%%%%%%%%%%%%%%%%%%    
+camino(A,F,X):-    
+   A\==F,                     %check if we dont start at the destiny    
+   concatenate([],[A],R),    
+   findRoad(A,F,0,R,X).    
+%%%%%%%%%%%%%%%%%%
+%TRUE if x is a road (list) that leads to room F starting from A
+%
+findRoad(A,F,K,R,X):-     %k is key ---  initial keys    
+    addkey(A,K,L),        %L new key--- number of keys after we add the keys of the room    
+    pickkey(A),           %we put the number of keys of the room to 0    
+    passDoor(A,L,P,_),    %P is position-- position of the new room    
+    opendoor(A,P),        %we put the number of keys needed to pass the door to 0    
+    P == F,               %we check if we have finished    
+    concatenate(R,[P],X). %we concatenate the destiny and end   
+findRoad(A,F,K,R,X):-     %k is key ---  initial keys   
+    addkey(A,K,L),        %L new key--- number of keys after we add the keys of the room    
+    pickkey(A),           %we put the number of keys of the room to 0    
+    passDoor(A,L,P,L2),   %P is position-- position of the new room   
+
+    opendoor(A,P),        %we put the number of keys needed to pass the door to 0    
+    P \== F,              %we check we haven't finished   
+    concatenate(R,[P],R2),%we concatenate the path we have for the moment   
+    findRoad(P,F,L2,R2,X).
+
+addkey(A,K,L):-    
+    e(A,N),    
+    L is K+N.    
+
+passDoor(A,L,P,L2):-    
+    p(A,P,W),    
+    L2 is L-W,    
+    L2 >= 0.   
+passDoor(A,L,P,L2):-   
+    p(P,A,W),   
+    L2 is L-W,    
+    L2 >= 0.    
+
+pickkey(A):-    
+    e(A,_) = e(A,0).    
+
+opendoor(A,P):-    
+    p(A,P,_) = p(A,P,0).       
+opendoor(A,P):-    
+    p(P,A,_) = p(P,A,0).

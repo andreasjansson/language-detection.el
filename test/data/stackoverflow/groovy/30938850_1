@@ -1,0 +1,14 @@
+public class Hello {
+String name;
+
+public void sayHello() {
+    System.out.println("Hello "+getName()+"!");
+}
+
+public void setName(String name) {
+    this.name = name;
+}
+
+public String getName() {
+    return name;
+}

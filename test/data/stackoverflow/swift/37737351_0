@@ -1,0 +1,82 @@
+import UIKit
+
+class ExerciseModel: NSObject, NSCoding
+{
+// MARK: Properties
+var name: String
+var sets: Int
+var reps: Int
+var heartrate: Int?
+var type: String?
+
+//MARK: Archiving Paths
+static let DocumentsDirectory = NSFileManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask).first!
+static let ArchiveURL = DocumentsDirectory.URLByAppendingPathComponent("exercises")
+
+
+// MARK: Initialization
+init?(name: String, sets: Int, reps: Int, heartrate: Int?, type: String)
+{
+
+// MARK: Initlaize stored properties
+self.name = name
+self.sets = sets
+self.reps = reps
+self.heartrate = heartrate
+self.type = type
+
+super.init()
+
+
+// Initialization should fail if there is no name or sets is negative
+if name.isEmpty || sets < 0
+    {
+        return nil
+    }
+
+}
+
+struct PropertyKey
+{
+    static let nameKey = "name"
+    static let setKey = "sets"
+    static let repKey = "reps"
+    static let heartrateKey = "heartrate"
+    static let typekey = "type"
+}
+
+
+// MARK: NSCoding
+func encodeWithCoder(aCoder: NSCoder)
+{
+    aCoder.encodeObject(name, forKey: PropertyKey.nameKey)
+    aCoder.encodeInteger(sets, forKey: PropertyKey.setKey)
+    aCoder.encodeInteger(reps, forKey: PropertyKey.repKey)
+    aCoder.encodeObject(type, forKey: PropertyKey.typekey)
+}
+
+required convenience init?(coder aDecoder: NSCoder)
+{
+    let name = aDecoder.decodeObjectForKey(PropertyKey.nameKey) as! String
+    let sets = aDecoder.decodeIntegerForKey(PropertyKey.setKey)
+    let reps = aDecoder.decodeIntegerForKey(PropertyKey.repKey)
+    let heartrate = aDecoder.decodeIntegerForKey(PropertyKey.heartrateKey)
+    let type = aDecoder.decodeObjectForKey(PropertyKey.typekey) as? String
+
+    // Must call designated initializer
+    self.init(name: name, sets: sets, reps: reps, heartrate: heartrate, type: type!)
+}
+
+init?(name: String, sets: Int, reps: Int, heartrate: Int, type: String)
+{
+    // Initialize stored properties.
+    self.name = name
+    self.sets = sets
+    self.reps = reps
+    self.heartrate = heartrate
+    self.type = type
+
+}
+
+
+}

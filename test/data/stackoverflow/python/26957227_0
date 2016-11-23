@@ -1,0 +1,7 @@
+"""Take the first ``points_per_stroke=20`` points coordinates of the first
+   ``strokes=4`` strokes as features. This leads to
+   :math:`2 \cdot \text{points\_per\_stroke} \cdot \text{strokes}`
+   features.
+   If ``points`` is set to 0, the first ``points\_per\_stroke`` point
+   coordinates and the \verb+pen_down+ feature is used. This leads to
+   :math:`3 \cdot \text{points_per_stroke}` features."""

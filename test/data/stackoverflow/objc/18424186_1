@@ -1,0 +1,7 @@
+- (void)viewDidLoad
+{
+[super viewDidLoad];
+
+voteTbl = [[vTable alloc]init];
+[self.voteTbl setDelegate:voteTbl];
+[self.voteTbl setDataSource:voteTbl];

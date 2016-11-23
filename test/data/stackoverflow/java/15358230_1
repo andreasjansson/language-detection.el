@@ -1,0 +1,25 @@
+@ManagedBean
+@RequestScoped
+public class UserManagerBean {
+
+    private String somValue;
+    private String selectedUser;
+    private List<User> userData;    
+    private List<User> users;
+
+    public UserManagerBean() {  
+
+    }
+
+    public String getSomValue(){
+        return somValue;        
+    }
+
+    public void setSomValue(String somValue){
+        this.somValue = somValue;
+    }
+
+    // Getter for Table Content
+    public List<User> getUserData() {
+        return userData;
+    }

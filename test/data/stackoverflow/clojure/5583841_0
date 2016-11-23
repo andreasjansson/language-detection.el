@@ -1,0 +1,3 @@
+(def ab{:a 1         :b 2         :c ( #(.nextInt (java.util.Random.) 1000))}) 
+
+(str (:c ab) " " (:c ab) " " (:c ab))

@@ -1,0 +1,14 @@
+.product-image.product-image-zoom.zoom-available:before {
+    content: url("/media/css/image_top.png");
+    z-index: 10;
+    position: absolute;
+    top: -6px;
+    left: -5px;
+}
+
+.product-image.product-image-zoom.zoom-available:after {
+    content: url("/media/css/image_bottom.png");
+    z-index: 10;
+    position: absolute;
+    bottom: -4px;
+}

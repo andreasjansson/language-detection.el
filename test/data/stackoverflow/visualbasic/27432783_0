@@ -1,0 +1,110 @@
+Option Explicit On
+Option Strict On
+Option Infer Off
+
+Public Class frmMain
+
+    Private Sub frmMain_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        'TODO: This line of code loads data into the 'TripsDataSet.tblTrips' table. You can move, or remove it, as needed.
+        Me.TblTripsTableAdapter.Fill(Me.TripsDataSet.tblTrips)
+    End Sub
+
+    Private Sub btnExit_Click(sender As Object, e As EventArgs) Handles btnExit.Click
+        Me.Close()
+    End Sub
+
+    Private Sub btnAll_Click(sender As Object, e As EventArgs) Handles btnAll.Click
+        'displays all trips
+        Me.TblTripsTableAdapter.Fill(Me.TripsDataSet.tblTrips)
+        TblTripsDataGridView.DataSource = TripsDataSet.tblTrips
+    End Sub
+
+
+    Private Sub btnCount_Click(sender As Object, e As EventArgs) Handles btnCount.Click
+        'displays either business trips or pleasure trips
+        Dim foundRows() As TripsDataSet.tblTripsRow
+        Dim businesspleasure As String = ""
+        If radBusiness.Checked Then
+            businesspleasure = "B"
+        ElseIf radPleasure.Checked Then
+            businesspleasure = "P"
+        End If
+
+        foundRows = CType(Me.TripsDataSet.tblTrips.Select("BusinessPleasure = '" & businesspleasure & "'"), Trips_Project.TripsDataSet.tblTripsRow())
+
+        Dim ds As New TripsDataSet.tblTripsDataTable
+        For Each row As DataRow In foundRows
+            ds.ImportRow(row)
+        Next
+        TblTripsDataGridView.DataSource = ds
+
+        MessageBox.Show("Trips:  " & TblTripsDataGridView.RowCount - 1)
+    End Sub
+
+    Private Sub btnTrips_Click(sender As Object, e As EventArgs) Handles btnTrips.Click
+        Dim foundTrips() As TripsDataSet.tblTripsRow
+        Dim originTrip As String
+        Dim destinTrip As String
+
+        If radOrAtl.Checked Then
+            originTrip = "Atlanta"
+        ElseIf radOrChi.Checked Then
+            originTrip = "Chicago"
+        ElseIf radOrLa.Checked Then
+            originTrip = "Los Angeles"
+        Else
+            originTrip = "Nashville"
+        End If
+
+        If radDestAtl.Checked Then
+            destinTrip = "Atlanta"
+        ElseIf radDestChi.Checked Then
+            destinTrip = "Chicago"
+        ElseIf radDestLa.Checked Then
+            destinTrip = "Los Angeles"
+        Else
+            destinTrip = "Nashville"
+        End If
+        foundTrips = CType(Me.TripsDataSet.tblTrips.Select(String.Format("Origin = '{0}' AND Destination = '{1}'", originTrip, destinTrip)), Trips_Project.TripsDataSet.tblTripsRow())
+
+        Dim ds As New TripsDataSet.tblTripsDataTable
+        For Each row As DataRow In foundTrips
+            ds.ImportRow(row)
+        Next
+
+        TblTripsDataGridView.DataSource = ds
+
+        MessageBox.Show("Total Trips:  " & TblTripsDataGridView.RowCount - 1)
+    End Sub
+
+    Private Sub BindingNavigatorSaveData_Click(sender As Object, e As EventArgs) Handles BindingNavigatorSaveData.Click
+        Try
+            Me.Validate()
+            Me.TblTripsBindingSource.EndEdit()
+            Me.TableAdapterManager.UpdateAll(Me.TripsDataSet)
+            MessageBox.Show("Updates saved", "My Trips", MessageBoxButtons.OK, MessageBoxIcon.Information)
+        Catch ex As Exception
+            MessageBox.Show(ex.Message, "My Trips", MessageBoxButtons.OK, MessageBoxIcon.Information)
+        End Try
+    End Sub
+
+    Private Sub BindingNavigatorAddNewItem_Click(sender As Object, e As EventArgs) Handles BindingNavigatorAddNewItem.Click
+        Try
+            TblTripsBindingSource.AddNew()
+        Catch ex As Exception
+            MessageBox.Show(ex.ToString)
+        End Try
+    End Sub
+
+    Private Sub BindingNavigatorDeleteItem_Click(sender As Object, e As EventArgs) Handles BindingNavigatorDeleteItem.Click
+        Me.BindingNavigator1.BindingSource.RemoveCurrent()
+        Try
+            Me.Validate()
+            Me.TblTripsBindingSource.EndEdit()
+            Me.TableAdapterManager.UpdateAll(Me.TripsDataSet)
+            MessageBox.Show("Update Successful")
+        Catch ex As Exception
+            MessageBox.Show(ex.ToString)
+        End Try
+    End Sub
+End Class

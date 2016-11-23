@@ -1,0 +1,4 @@
+static namespace = "me"
+Closure myInput = { attrs ->
+  def dataMap = attrs.keySet()
+}

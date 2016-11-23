@@ -1,0 +1,6 @@
+scala> val bond = new SecretAgent("007", "James Bond")
+Construction of Logger
+Construction of EncryptingLogger
+Construction of SecretAgent
+Djhqw Mdphv Erqg zlwk lg 007 zdv fuhdwhg.
+bond: SecretAgent = SecretAgent@1aa484ca

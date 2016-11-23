@@ -1,0 +1,2 @@
+UInt8 buf[] = "play";
+int bytesWritten = CFWriteStreamWrite(writeStream, buf, strlen((char*)buf));

@@ -1,0 +1,5 @@
+components
+----------
+id int(11) unsigned
+idx mediumint(4) unsigned
+value char(100)

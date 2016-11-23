@@ -1,0 +1,23 @@
+Protected Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+
+    Dim oleDbConn As New OleDb.OleDbConnection(ConfigurationManager.ConnectionStrings("BookMeetConnString").ConnectionString)
+    Dim SqlString As String = "Insert into Events(EventTitle,EventDescription,EventDate,EventCategory) Values
+   (@f1,@f2,@f3,@f4)"
+    Dim cmd As OleDbCommand = New OleDbCommand(SqlString, oleDbConn)
+
+    Dim strDate As String = tb_eventdate.Text
+    Dim dtfi As New System.Globalization.DateTimeFormatInfo
+    dtfi.ShortDatePattern = "dd/MM/yyyy"
+    dtfi.DateSeparator = "/"
+    Dim objDate As DateTime = Convert.ToDateTime(strDate, dtfi)
+
+    cmd.CommandType = CommandType.Text
+    cmd.Parameters.AddWithValue("@f1", tb_eventtitle.Text)
+    cmd.Parameters.AddWithValue("@f2", tb_eventdescription.Text)
+    cmd.Parameters.AddWithValue("@f3", tb_eventdate.Text)
+    cmd.Parameters.AddWithValue("@f4", dd_eventcategory.Text)
+    oleDbConn.Open()
+    cmd.ExecuteNonQuery()
+    System.Threading.Thread.Sleep("2000")
+    Response.Redirect("~/calendar.aspx")
+End Sub

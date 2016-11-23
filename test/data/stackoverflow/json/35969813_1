@@ -1,0 +1,28 @@
+public class AddtoCart extends Application {
+    private static final String TAG_QUANTITY = "Quantity";
+    private static final String TAG_PRICE = "price";
+    ArrayList<HashMap<String, String>> cart = new ArrayList<HashMap<String, String>>();
+
+    public void setCart(ArrayList<HashMap<String, String>> data) {
+        //cart = data;
+        cart.addAll(data);
+        Log.d("Items in the cart", String.valueOf(cart));
+    }
+
+    public ArrayList<HashMap<String, String>> getCart() {
+        return cart;
+    }
+
+    public int getSize() {
+        return cart.size();
+    }
+
+    public void updateCart(ArrayList<HashMap<String, String>> data) {
+        cart = data;
+        Log.d("UPDATED CART", String.valueOf(cart));
+    }
+
+    public void updateQuantity(int index, String quantity) {
+        cart.get(index).put(TAG_QUANTITY,quantity);
+    }
+}

@@ -1,0 +1,10 @@
+import qualified Data.Map.Strict as SM
+data Position = Position !GLint !GLint
+
+drawMirrors :: SM.Map (Int,Int) Char -> IO()
+drawMirrors mirrors = do
+    mapM_ (\(x,y) c -> drawMirror c (Position x y)) mirrors
+
+drawMirror :: Char -> Position -> IO()
+drawMirror orientation (Position x y) = do
+    -- Some irrelevant stuff

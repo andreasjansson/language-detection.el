@@ -1,0 +1,3 @@
+(deftype Test [^:unsynchronized-mutable x]
+    TestInterface
+    (perform [this o] (fn [] (set! x o)) nil)) ; throws a compiler error about assigning to non-mutable field

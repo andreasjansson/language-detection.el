@@ -1,0 +1,2 @@
+?- isPowTwo(N).
+ERROR: >/2: Arguments are not sufficiently instantiated

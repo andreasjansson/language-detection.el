@@ -1,0 +1,6 @@
+/home/MuchToLearn/src> cat main.c
+int main(void)
+{
+  return 0;
+}
+/home/MuchToLearn/src> gcc -gdwarf-2 -gstrict-dwarf main.c

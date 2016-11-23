@@ -1,0 +1,38 @@
+male(jack).
+male(roy).
+male(ele).
+
+
+born(jack,2000).
+
+born(dave,1999).
+born(roy,1980).
+born(ele,1990).
+
+died(jack, 2100).
+died(dave, 2099).
+died(roy, 1990).
+died(ele, 1999).
+
+
+% compare X against all other possibleSuccessors and make sure he was born 1st.
+
+eldest(X,Year):-
+    born(X,T1),
+    born((possibleSuccessor(Year,_)),T2),
+    T1 < T2.
+
+% must be male and have been born before or durring the given year and must not be dead.
+
+possibleSuccessor(Year,X):-
+    male(X),
+    born(X,B),
+    died(X,D),
+    (B =< Year),
+    (D >= Year).
+
+
+successor(Year):-
+    possibleSuccessor(Year,X),
+    eldest(X,Year),
+    write(X).

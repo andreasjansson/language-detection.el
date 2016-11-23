@@ -1,0 +1,5 @@
+gulp.task('jade', function() { 
+  return gulp.src(config.jade)
+    .pipe(jade())
+    .pipe(gulp.dest('./assets/dist'))
+});

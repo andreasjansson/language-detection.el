@@ -1,0 +1,19 @@
+IWorshipTeamEvent = Interface(IInterface)
+  function GetId : integer;
+  function GetName : string;
+  function GetTeamId : integer;
+  function GetStartDate : TDate;
+  function GetEndDate : TDate;
+  function GetStartTime : TTime;
+  function GetEndTime : TTime;
+  function GetSets : IWorshipTeamSetList;
+
+  property Id : integer read GetId;
+  property Name : string read GetName;
+  property TeamId : integer read GetTeamId;
+  property StartDate : TDate read GetStartDate;
+  property EndDate : TDate read GetEndDate;
+  property StartTime : TTime read GetStartTime;
+  property EndTime : TTime read GetEndTime;
+  property Sets : IWorshipTeamSetList read GetSets;
+end;

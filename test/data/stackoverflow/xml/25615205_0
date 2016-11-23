@@ -1,0 +1,91 @@
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.util.ArrayList;
+
+import org.xmlpull.v1.XmlPullParser;
+import org.xmlpull.v1.XmlPullParserFactory;
+
+public class RssReader {
+private String title = null;
+private String link = null;
+private String description = null;
+private ArrayList<RssItem> posts = new ArrayList<RssItem>();
+private Thread thread;
+
+private String urlString = null;
+private XmlPullParserFactory xmlFactoryObject;
+public volatile boolean parsingComplete = true;
+
+public RssReader(String url) {
+    this.urlString = url;
+}
+public boolean getParsingComplete() {
+    return this.parsingComplete;
+}
+public ArrayList<RssItem> getPosts() {
+    return posts;
+
+}
+public void parseXML(XmlPullParser parser) {
+    int event;
+    try {
+        event = parser.getEventType();
+        while (event != XmlPullParser.END_DOCUMENT) {
+            String name = parser.getName();
+            switch (event) {
+            case XmlPullParser.START_TAG:
+                break;
+            case XmlPullParser.END_TAG:
+                if (name.equals("title")) {
+                    title = parser.getText();
+                } else if (name.equals("link")) {
+                    link = parser.getText();
+                } else if (name.equals("description")) {
+                    description = parser.getText();
+                }
+                break;
+            }
+            if(title != null && link != null && description != null) {
+                RssItem item = new RssItem(this.title,this.description,this.link);
+                posts.add(item);
+                this.title = this.description = this.link = null;
+            }
+            event = parser.next();
+        }
+        parsingComplete = false;
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+}
+
+public void fetchXML() {
+    thread = new Thread(new Runnable() {
+        @Override
+        public void run() {
+            try {
+                URL url = new URL(urlString);
+                HttpURLConnection conn = (HttpURLConnection) url
+                        .openConnection();
+                conn.setReadTimeout(10000 /* milliseconds */);
+                conn.setConnectTimeout(15000 /* milliseconds */);
+                conn.setRequestMethod("GET");
+                conn.setDoInput(true);
+                // Starts the query
+                conn.connect();
+                InputStream stream = conn.getInputStream();
+                xmlFactoryObject = XmlPullParserFactory.newInstance();
+                XmlPullParser myparser = xmlFactoryObject.newPullParser();
+                myparser.setFeature(
+                        XmlPullParser.FEATURE_PROCESS_NAMESPACES, false);
+                myparser.setInput(stream, null);
+                parseXML(myparser);
+                stream.close();
+            } catch (Exception e) {
+            } finally {
+                parsingComplete = true;
+            }
+        }
+    });
+    thread.start();
+}

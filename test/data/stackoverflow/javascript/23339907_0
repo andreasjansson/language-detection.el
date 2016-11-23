@@ -1,0 +1,4 @@
+urllib.request(urlToCall, { wd: 'nodejs' }, function (err, data, response) {                              
+    var statusCode = response.statusCode;
+    finalData = getResponseJson(statusCode, data.toString());
+});

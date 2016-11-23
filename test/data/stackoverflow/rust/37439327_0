@@ -1,0 +1,10 @@
+use std::path::Path;
+use std::fs;
+use std::io;
+
+pub fn read_filenames_from_dir<P>(path: P) -> Result<Vec<Path>, io::Error> 
+    where P: AsRef<Path>
+{
+    let paths = try!(fs::read_dir(path));
+    Ok(paths.unwrap())
+}

@@ -1,0 +1,12 @@
+def lcm(numbers):
+    return reduce(__lcm, numbers)
+
+def __lcm(a, b):
+    return ( a * b ) / __gcd(a, b)
+
+def __gcd(a, b):
+    a = int(a)
+    b = int(b)
+    while b:
+        a,b = b,a%b
+    return a

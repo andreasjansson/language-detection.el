@@ -1,0 +1,37 @@
+public class Lstack {
+    int size;
+    int numUsed = 0;
+    Car[] stack;
+    public Lstack(){
+        stack = new Car[size];
+    }
+    public void push(Car x){
+        stack[numUsed] = x;
+        numUsed++;
+    }
+    public Car pop(){
+        Car temp;
+        numUsed--;
+        temp = stack[numUsed];
+        return temp;
+    }
+    public boolean isEmpty(){
+        if(numUsed==0){
+            return true;
+        }
+        else
+            return false;
+    }
+    public int size(){
+        return numUsed;
+    }
+    public void display(){
+        System.out.println("--------------------------------------------");
+        System.out.print("TOP | ");
+        for(int i = 0; i < numUsed; i++){
+            System.out.print(stack[i].plate +" | ");
+        }
+        System.out.println("--------------------------------------------");
+    }
+
+}

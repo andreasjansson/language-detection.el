@@ -1,0 +1,27 @@
+class Contact < ActiveRecord::Base
+  has_and_belongs_to_many :assigned_users, class_name: 'User'
+
+  def auto_assign_team_member(project)
+    team = project.teams(true).order('last_assigned_contact_at ASC').first
+    if team && (user = team.user)
+      self.assigned_users << user
+      team.update_attribute(:last_assigned_contact_at, Time.now)
+    end
+  end
+end
+
+class Team < ActiveRecord::Base
+  belongs_to :user
+  belongs_to :project
+end
+
+class User < ActiveRecord::Base
+  has_many :teams
+  has_many :projects, through: :teams
+  has_and_belongs_to_many :assigned_contacts, class_name: 'Contact'
+end
+
+class Project < ActiveRecord::Base
+  has_many :teams
+  has_many :users, through: :teams
+end

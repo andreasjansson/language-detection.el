@@ -1,0 +1,5 @@
+@font-face
+{
+font-family: Myriad Pro;
+src: url(../font/MYRIADPRO-REGULAR.OTF);
+}

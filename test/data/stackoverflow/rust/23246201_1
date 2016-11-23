@@ -1,0 +1,77 @@
+trait Feature {
+  fn interact(&self, &mut Player) -> bool;
+}
+
+#[deriving(Eq, Show)]
+struct Fountain {
+  name: &'static str
+}
+
+impl Fountain {
+  fn new() -> ~Feature {
+    ~Fountain{name: "Fountain of health"} as ~Feature
+  }
+}
+
+impl Feature for Fountain {
+  fn interact(&self, player: &mut Player) -> bool {
+    if player.health < player.max_health {
+      player.health = player.max_health;
+      println!("You feel your wounds closing.");
+    }
+    false
+  }
+}
+
+struct Tile {
+  feature: Option<~Feature>
+}
+
+impl Tile {
+  fn new(feature: Option<~Feature>) -> Tile {
+    Tile{feature: feature}
+  }
+}
+
+struct Player {
+  health: int,
+  max_health: int,
+}
+
+impl Player {
+  fn new() -> Player {
+    Player{max_health: 100, health: 100}
+  }
+}
+
+struct GameState {
+  map: [[Tile, ..2], ..2],
+  player: Player,
+}
+
+impl GameState {
+  fn new() -> GameState {
+    GameState{
+      player: Player::new(),
+      map: [
+        [
+          Tile::new(None),
+          Tile::new(None)
+        ],
+        [
+          Tile::new(None),
+          Tile::new(Some(Fountain::new()))
+        ]
+      ]
+    }
+  }
+}
+
+#[test]
+fn test_fountain_interact_50() {
+  let mut state = GameState::new();
+  state.player.health = 50;
+  let b = state.map[1][1].feature.unwrap().interact(&mut state.player);
+  assert_eq!(state.player.health, 100);
+  assert!(!b);
+}

@@ -1,0 +1,5 @@
+import groovy.json.JsonSlurper
+import hudson.FilePath
+import hudson.model.Node
+import hudson.model.Slave
+import jenkins.model.Jenkins

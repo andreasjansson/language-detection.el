@@ -1,0 +1,11 @@
+impl Iterator for HugeFileIterator {
+  fn next<'a>(&'a mut self) -> Option<&'a mut Record> {
+    ...
+  }
+}
+
+impl Record {
+  fn read_field(name: &str) -> &str {
+    ...
+  }
+}

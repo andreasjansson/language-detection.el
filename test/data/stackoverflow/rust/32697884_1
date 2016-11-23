@@ -1,0 +1,4 @@
+fn main() {
+    let a = -1.0;
+    println!("{:?}", a.abs());
+}

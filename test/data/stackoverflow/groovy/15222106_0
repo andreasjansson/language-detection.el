@@ -1,0 +1,20 @@
+def List<CaseVisualImpairmentCause> bindVisualImpairmentCause(Long visualImpairmentPrimaryCauseId, ArrayList caseVisualImpairmentCausesList,
+    String visualImpairmentOtherCause) {
+    def caseVisualImpairmentCauses = []
+
+    if (visualImpairmentPrimaryCauseId) {
+        def visualImpairmentPrimaryCauseInstance = VisualImpairmentCause.get(visualImpairmentPrimaryCauseId)
+        CaseVisualImpairmentCause caseVisualImpairmentPrimaryCause = new CaseVisualImpairmentCause(visualImpairmentCauseIdvisualImpairmentCause: visualImpairmentPrimaryCauseInstance)
+        caseVisualImpairmentPrimaryCause.isPrimary = true
+        caseVisualImpairmentCauses << caseVisualImpairmentPrimaryCause
+    }
+    caseVisualImpairmentCausesList.each {
+        VisualImpairmentCause visualImpairmentCause = VisualImpairmentCause.get(it as Integer)
+        CaseVisualImpairmentCause caseVisualImpairmentCause = new CaseVisualImpairmentCause(visualImpairmentCauseIdvisualImpairmentCause: visualImpairmentCause)
+        if (it.equals('5')) {
+            caseVisualImpairmentCause.caseVisualImpairmentCauseOther = visualImpairmentOtherCause
+        }
+        caseVisualImpairmentCauses.add(caseVisualImpairmentCause)
+    }
+    return caseVisualImpairmentCauses
+}

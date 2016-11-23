@@ -1,0 +1,7 @@
+/go
+   /src
+     /print.io
+       /geo
+         main.go
+       /geodomain
+         [.. files ..]

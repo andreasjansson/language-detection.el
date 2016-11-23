@@ -1,0 +1,7 @@
+void Somefunction(){
+    Object1 * dangler = StaticClass::myFunc();
+    /*...
+      ...some processing using dangler
+      ...*/
+    delete dangler;
+}

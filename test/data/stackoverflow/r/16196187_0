@@ -1,0 +1,2 @@
+Error in stopifnot(length(Sr@polygons) == nrow(data)) : 
+  no slot of name "polygons" for this object of class "SpatialPointsDataFrame"

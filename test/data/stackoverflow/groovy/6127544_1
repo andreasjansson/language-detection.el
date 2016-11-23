@@ -1,0 +1,8 @@
+class SearchIndexing {
+
+        String search
+        Area area
+
+        static constraints = {
+        }
+    }

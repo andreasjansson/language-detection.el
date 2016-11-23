@@ -1,0 +1,60 @@
+def index
+    respond_to do |format|
+      format.html
+      format.json do
+        @sbcons = Subcontractor.scoped
+        filters = params[:filter]
+        @sbcons = @sbcons.where(sbcon_type: filters[:type]) unless filters[:type].nil? or filters[:type].blank?
+        @sbcons = @sbcons.where(cscs_card: filters[:cscs]) unless filters[:cscs].nil? or filters[:cscs].blank?
+        @sbcons = @sbcons.where(approved_status: filters[:approved]) unless filters[:approved].nil? or filters[:approved].blank?
+        render json: SubcontractorsDatatable.new(view_context, @sbcons)
+      end
+    end
+  end
+
+<% provide(:title, 'All Subcontractors') %>
+<h1>Subcontractors List</h1>
+<div class="filter">
+  <%= form_tag(method: :get, id: "filter_form") do %>
+    <%= label_tag :sbcon_type, "Type" %>
+    <%= select_tag "filter[type]", options_for_select([[],["Labour Only"], ["Specialist"], ["Both"]]) %>
+    <%= label_tag :cscs_card, "CSCS" %>
+    <%= select_tag "filter[cscs]", options_for_select([[],["Yes"], ["No"]]) %>
+    <%= label_tag :approved_status, "Approved Status" %>
+    <%= select_tag "filter[status]", options_for_select([[],["Approved"], ["Not Approved"]]) %> <br>
+    <%= link_to "Filter", '#', id: "filterbutton", class: "btn btn-mini" %>
+  <% end %>
+  <br>
+</div>
+<table id="subcontractors" class="table table-condensed table-hover display" data-source="<%= subcontractors_url(format: "json") %>">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Contact Number</th>
+      <th>CSCS</th>
+      <th>Type</th>
+      <th>Scotland</th>
+      <th>NE England</th>
+      <th>NW England</th>
+      <th>Midlands</th>
+      <th>SE England</th>
+      <th>SW England</th>
+      <th>London</th>
+      <th>Wales</th>
+      <th>Operatives</th>
+      <th>Product Liability</th>
+      <th>Employer Liability</th>
+      <th>Public Liability</th>
+      <th>Contractors All Risk</th>
+      <th>Status</th>
+    </tr>
+  </thead>
+  <tbody>
+  </tbody>
+</table>
+
+<%= javascript_tag do %> 
+  $('#filterbutton').click(function (){
+    $('#subcontractors').dataTable().fnDraw();
+  });
+<% end %>

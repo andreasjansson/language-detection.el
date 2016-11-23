@@ -1,0 +1,4 @@
+foreach ($expiredMatches as $em) {
+    // Check to see if points were used
+         // If ^ Yes then refund users 
+}

@@ -1,0 +1,13 @@
+Class StreamReader{
+
+public:
+
+static __declspec(dllexport) StreamReader* GetInstance();
+//other functions
+
+private:
+  StreamReader(){}
+  ~StreamReader(){}
+
+  static StreamReader *m_pInstance;
+};

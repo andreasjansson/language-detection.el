@@ -1,0 +1,10 @@
+-(void)viewWillAppear:(BOOL)animated
+    {
+
+self.objFirstView = [[FirstViewController alloc]initWithNibName:@"FirstViewController."    bundle:nil];
+
+self.finalScoreText.text = [NSString stringWithFormat:@"%i",self.objFirstView.finalScore];
+
+    NSLog(@"NEW VIEW!!!!!! AND THE  FINAL SCORE IS!!!! %i",self.objFirstView.finalScore);
+
+    }

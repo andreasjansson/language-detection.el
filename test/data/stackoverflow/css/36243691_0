@@ -1,0 +1,9 @@
+div {
+  width: 25vw;
+  height: 150vh;
+  float: left;
+  background: rgb(30,120,210)
+}
+div:nth-child(2n+2) {
+  background: rgb(210,120,30)
+}

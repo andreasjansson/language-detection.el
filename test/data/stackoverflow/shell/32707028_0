@@ -1,0 +1,7 @@
+filename="./service_log.*"
+if ls $filename 1> /dev/null 2>&1 ; then
+    echo "$filename found."
+    ##process files
+else
+    echo "$filename not found."
+fi

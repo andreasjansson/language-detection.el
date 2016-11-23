@@ -1,0 +1,15 @@
+describe User do
+  it 'has an unique email' do
+    first_user = Fabricate(:user, email: 'test@fundbase.com')
+    first_user.valid?.should be_true # good
+    first_user.save
+    first_user.delete
+
+    second_user = Fabricate(:user, email: 'test@fundbase.com')
+    second_user.valid?.should be_true # good
+    second_user.save
+
+    first_user.restore
+    first_user.valid?.should_not be_true # fail
+  end
+end

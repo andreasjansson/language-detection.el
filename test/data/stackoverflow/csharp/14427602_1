@@ -1,0 +1,5 @@
+// Get the request stream.
+            dataStream = request.GetRequestStream();
+
+            // Write the data to the request stream.
+            dataStream.Write(byteArray, 0, byteArray.Length);

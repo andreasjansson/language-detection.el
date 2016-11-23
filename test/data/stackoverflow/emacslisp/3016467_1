@@ -1,0 +1,2 @@
+#!/bin/sh
+openssl des3 -d -in $1

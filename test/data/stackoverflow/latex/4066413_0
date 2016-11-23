@@ -1,0 +1,5 @@
+$$
+\begin{array}{l r}    
+  \phi_{CJ}^* = \Sum_{SV} \psi_{CSJV} = P(S) P(S|V,C,S,J) & \text{(no summation on S or V which are in evidence.)}    
+\end{array}
+$$

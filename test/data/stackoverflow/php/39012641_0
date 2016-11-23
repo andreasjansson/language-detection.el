@@ -1,0 +1,8 @@
+doctrine:
+    orm:
+        metadata_cache_driver:
+            cache_provider: metadata_cache
+        query_cache_driver:
+            cache_provider: query_cache
+        result_cache_driver:
+            cache_provider: result_cache

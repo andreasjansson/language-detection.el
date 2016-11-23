@@ -1,0 +1,31 @@
+var codes = [(String)]()
+    var messages = [[String]]()
+    var senders = [[Int]]()
+    var dates = [(NSDate)]()
+    var bools = [(Bool)]()
+    var pairs = [[String]]()
+
+    for code in self.dictionary.keys {
+
+        codes.append(code)
+        messages.append(self.dictionary[code]!.0)
+        senders.append(self.dictionary[code]!.1)
+        dates.append(self.dictionary[code]!.2)
+        bools.append(self.dictionary[code]!.3)
+        pairs.append(self.dictionary[code]!.4)
+
+    }
+
+    self.userDefaultsMessages.setObject(codes, forKey: "userMessagesArrays")
+    self.userDefaultsSenders.setObject(messages, forKey: "userSentArrays")
+    self.userDefaultsDates.setObject(senders, forKey: "userDatesArray")
+    self.userDefaultsDeletedBool.setObject(dates, forKey: "userDeletedArrays")
+    self.userDefaultsPairs.setObject(bools, forKey: "userPairsArrays")
+    self.userDefaultsCodeKeys.setObject(pairs, forKey: "userCodesArrays")
+
+    self.userDefaultsCodeKeys.synchronize()
+    self.userDefaultsMessages.synchronize()
+    self.userDefaultsSenders.synchronize()
+    self.userDefaultsDates.synchronize()
+    self.userDefaultsDeletedBool.synchronize()
+    self.userDefaultsPairs.synchronize()

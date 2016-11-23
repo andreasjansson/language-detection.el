@@ -1,0 +1,7 @@
+JObject jsonObj = JObject.Parse(response.Content);
+
+            foreach (var j in jsonObj)
+            {
+               var t = j.Value;
+
+            }

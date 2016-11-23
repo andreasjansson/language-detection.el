@@ -1,0 +1,2 @@
+df <- iris
+choices <- count(unique(iris$Species))

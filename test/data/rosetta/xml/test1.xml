@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<contacts>
+    <contact>
+        <name>
+            John Doe
+        </name>
+        <phone>
+            123-456-7890
+        </phone>
+    </contact>
+
+    <contact>
+        <name>
+            Jane Doe
+        </name>
+        <phone>
+            123-456-0000
+        </phone>
+    </contact>
+
+
+    <contact>
+        <name>
+            John Smith
+        </name>
+        <phone>
+            123-456-1111
+        </phone>
+    </contact>
+
+    <contact>
+        <name>
+            Jane Smith
+        </name>
+        <phone>
+            123-456-9999
+        </phone>
+    </contact>
+
+</contacts>

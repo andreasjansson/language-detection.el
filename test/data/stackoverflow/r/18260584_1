@@ -1,0 +1,4 @@
+ggplot(df1, aes(x=Date.time, y=P, group=ID, color=ID)) + 
+      geom_line() +
+      facet_grid(~ID) +
+      theme(legend.position="none")

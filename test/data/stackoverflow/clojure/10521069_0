@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+
+if [[ $CLASSPATH ]] ; then
+    extra_classpath=""
+else
+    extra_classpath=":$CLASSPATH"
+fi
+
+while true ; do
+    case "$1" in
+        -cp | -classpath)
+            extra_classpath=":$2"
+            shift 2 ;;
+        --)
+            shift
+            break ;;
+        *)
+            break ;;
+    esac
+done
+
+java -cp /usr/share/java/clojure.jar:./classes/:./src/"$extra_classpath" \
+clojure.main "$@"

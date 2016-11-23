@@ -1,0 +1,4 @@
+func (s Server) ServeHTTP(w http.ResponseWriter, r *http.Request) {
+    r.ParseForm()
+    log.Println(r.Form)
+}

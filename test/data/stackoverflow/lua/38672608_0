@@ -1,0 +1,7 @@
+local tblTest =  
+{  
+    [1] = 2,  
+    [2] = 5,  
+    [5] = 10,  
+}  
+print(#tblTest)

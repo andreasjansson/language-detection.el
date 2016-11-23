@@ -1,0 +1,3 @@
+resources :post
+    root :to => "post#index"
+    match '/delete/:id/', :to => "post#delete"

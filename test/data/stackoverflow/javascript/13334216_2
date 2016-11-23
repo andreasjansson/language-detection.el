@@ -1,0 +1,8 @@
+<template name="search">
+<h1>test</h1>
+<table class="table table-hover">
+<tbody>
+  {{#each items}}
+    {{> searchItem}}
+  {{/each}}
+</tbody>

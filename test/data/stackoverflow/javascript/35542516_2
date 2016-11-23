@@ -1,0 +1,17 @@
+passport.use('local-login', new LocalStrategy({
+    usernameField : 'username',
+    passwordField : 'password',
+    passReqToCallback : true 
+},
+function(req, username, password, done) {
+    models.User.find({ where:{'username' :username }}).then(function(user) {
+        passwd = user ? user.password : ''
+        if (!user)
+            return done(null, false, req.flash('loginMessage', 'No user found.')); 
+
+        if (!models.User.validPassword(password, passwd))
+            return done(null, false, req.flash('loginMessage', 'Oops! Wrong password.')); 
+
+        return done(null, user);
+    });
+}));

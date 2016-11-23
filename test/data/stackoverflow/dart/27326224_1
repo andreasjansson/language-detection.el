@@ -1,0 +1,6 @@
+<template>
+  <paper-input value="{{itemList[Categoria.ID]}}"></paper-input>
+</template>
+
+<script type="application/dart" src="file.dart">
+</script>

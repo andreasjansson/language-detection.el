@@ -1,0 +1,157 @@
+TNiftyListTag = class(TCollectionItem)
+      private
+        FTagValue: string;
+        FDisplayTextTag: string;
+      public
+        procedure Assign(Source: TPersistent); override;
+      published
+        property DisplayTag: string read FDisplayTextTag write FDisplayTextTag;
+        property Value: string read FTagValue write FTagValue;
+      end;
+
+      TNiftyListTags = class(TOwnedCollection)
+      private
+        fOnChanged: TNotifyEvent;
+        procedure DoOnChanged;
+      protected
+        function GetItem(Index: Integer): TNiftyListTag;
+        procedure SetItem(Index: Integer; Value: TNiftyListTag);
+      public
+        constructor Create(AOwner: TPersistent; ItemClass: TCollectionItemClass);
+        function Add: TNiftyListTag;
+        procedure AppendItem(const aDisplayText, aTag: string);
+      end;
+
+      TNiftyRVFrameWithPopups = class(TRVEditFrame)
+      private
+        FMenu: TAdvSmoothListBox;
+        FMenuList: TStringList;
+        FCollectionTags: TNiftyListTags;
+        procedure RefreshMenu;
+        procedure SetCollectionTags(const Value: TNiftyListTags);
+      public
+        { Public declarations }
+        constructor Create(AOwner: TComponent); override;
+        destructor Destroy; override;
+        procedure Loaded; override;
+      published
+        property TagList: TNiftyListTags read FCollectionTags write SetCollectionTags;
+      end;
+
+    implementation
+
+
+    constructor TNiftyRVFrameWithPopups.Create(AOwner: TComponent);
+    begin
+      inherited Create(AOwner);
+      FMenuList := TStringList.Create;
+      FCollectionTags := TNiftyListTags.Create(Self, TNiftyListTag);
+      FCollectionTags.fOnChanged := RefreshMenu;
+    end;
+
+    destructor TNiftyRVFrameWithPopups.Destroy;
+    begin
+      FreeAndNil(FMenuList);
+      FCollectionTags.Free;
+      inherited;
+    end;
+
+    procedure TNiftyRVFrameWithPopups.RefreshMenu;
+    var
+      i: Integer;
+    begin
+        FMenu.Items.Clear;
+        for i := 0 to FCollectionTags.Count - 1 do
+        begin
+          FMenu.Items.Add;
+          FMenu.Items.Items[i].Caption := FCollectionTags.Items[i].FDisplayTextTag;
+        end;
+    end;
+
+    procedure TNiftyRVFrameWithPopups.Loaded;
+    begin
+      inherited Loaded;
+      RefreshMenu(Self);
+    end;
+
+    procedure TNiftyRVFrameWithPopups.RefreshMenu;
+    var
+      i: Integer;
+    begin
+      if Assigned(FRVEditor) then
+      begin
+        (FRVEditor as TCustomRichViewEdit).OnRVMouseUp := OnMouseUp;
+        FMenu.Parent := FRVEditor;
+        fmenu.Items.Clear;
+        for i := 0 to FCollectionTags.Count - 1 do
+        begin
+          FMenu.Items.Add;
+          FMenu.Items.Items[i].Caption := FCollectionTags.Items[i].FDisplayTextTag;
+        end;
+      end;
+    end;
+
+   procedure TNiftyRVFrameWithPopups.SetCollectionTags(const Value: TNiftyListTags);
+begin
+  FCollectionTags.Assign(Value);
+end;
+
+
+    { TNiftyListTag }
+
+    procedure TNiftyListTag.Assign(Source: TPersistent);
+    begin
+      if Source is TNiftyListTag then
+      begin
+        FTagValue := TNiftyListTag(Source).FTagValue;
+        FDisplayTextTag := TNiftyListTag(Source).FDisplayTextTag;
+      end
+      else
+        inherited;
+    end;
+
+    { TNiftyListTags }
+
+    function TNiftyListTags.Add: TNiftyListTag;
+    begin
+      Result := TNiftyListTag(inherited Add);
+    end;
+
+    procedure TNiftyListTags.AppendItem(const aDisplayText, aTag: string);
+    var
+      a: TNiftyListTag;
+    begin
+      a := TNiftyListTag(inherited Add);
+      a.FTagValue := aTag;
+      a.FDisplayTextTag := aDisplayText;
+      DoOnChanged;
+    end;
+
+    constructor TNiftyListTags.Create(AOwner: TPersistent; ItemClass: TCollectionItemClass);
+    begin
+      inherited Create(AOwner, ItemClass);
+    end;
+
+    procedure TNiftyListTags.DoOnChanged;
+    begin
+      if Assigned(fOnChanged) then
+        fOnChanged(self);
+    end;
+
+    procedure TNiftyListTags.SetItem(Index: Integer; Value: TNiftyListTag);
+    begin
+      inherited SetItem(index, Value);
+    end;
+
+    function TNiftyListTags.GetItem(Index: Integer): TNiftyListTag;
+    begin
+      Result := TNiftyListTag(inherited GetItem(Index));
+    end;
+
+    procedure TNiftyListTags.SetItem(Index: Integer; Value: TNiftyListTag);
+    begin
+      inherited SetItem(index, Value);
+      DoOnChanged;
+    end;
+
+end.

@@ -1,0 +1,7 @@
+program test
+use global
+integer(4) :: i, j
+real(8) :: tot, qq(jsz,3), wts(jsz)
+call read(jsz,qq,wts,tot)
+stop
+end program test

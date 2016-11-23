@@ -1,0 +1,20 @@
+def myMethod = {
+    val res = foo(Map[String,String](("hello" -> "Hello")),false)
+    if(!res) println("World!")
+}
+
+def foo(myMap:Map[String,String],myDefault:Boolean):Boolean = {
+    val actualDefault = baz(myDefault)
+    val m = myMap.withDefault{
+        case _ => return actualDefault
+    }
+    bar((s:String) => m(s))
+    return true
+}
+
+def bar(lookup:String => String):Unit = {
+    print(lookup("hello") + " ")
+    println(lookup("world"))
+}
+
+def baz(myDefault:Boolean):Boolean = false

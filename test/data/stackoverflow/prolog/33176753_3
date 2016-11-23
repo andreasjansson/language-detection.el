@@ -1,0 +1,8 @@
+X = [] ? ;
+X = [a] ? ;
+X = [a,b] ? ;
+X = [a,b,c] ? ;
+X = [a,b,c,d] ? ; <- Here it does not pick up e
+X = [a,b,c,d] ? ;
+X = [a,b,c,d] ? ;
+X = [a,b,c,d,f] ? ;

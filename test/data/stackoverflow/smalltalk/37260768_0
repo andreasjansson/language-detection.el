@@ -1,0 +1,3 @@
+FLSerializer
+    serialize: self allObjects
+    toFileNamed: self name , '.fl'**

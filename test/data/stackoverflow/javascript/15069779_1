@@ -1,0 +1,3 @@
+<input type="button" name="CheckValue" value = "Calculate cost" onclick="calculate_total(this.form.id)" />
+&nbsp;
+Total: <input type="text" name="total" id="total" size="10" readonly="readonly" />

@@ -1,0 +1,3 @@
+select name, color, (count(color)*100.0/count(*)) as 'perc'
+from mytable
+group by name, color;

@@ -1,0 +1,7 @@
+--overFoldable :: (Ord k) => Fold a b -> Fold (M.Map k a) (M.Map k b)
+overFoldable :: (Ord i, At (f i a), FoldableWithIndex i (f i), Monoid (f i x))
+             => Fold a b -> Fold (f i a) (f i b)
+overFoldable (Fold step begin done) = Fold step' mempty (fmap done)
+  where
+  step' acc m = Lens.ifoldr insert acc m
+  insert k el acc = Lens.at k %~ return . flip step el . fromMaybe begin $ acc

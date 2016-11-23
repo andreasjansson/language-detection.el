@@ -1,0 +1,3 @@
+{-# LANGUAGE NoImplicitPrelude #-} -- or extensions: NoImplicitPrelude in .cabal
+...
+import My.Prelude

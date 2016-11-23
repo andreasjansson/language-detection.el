@@ -1,0 +1,7 @@
+1. Some text with a blank
+line. I want not to have that line break
+2. Some more text. Also - with
+a line break.
+3. I want to have a defun which
+will capture each numbered entry
+and then join it

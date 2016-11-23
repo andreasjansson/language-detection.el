@@ -1,0 +1,5 @@
+#!/usr/bin/perl
+print "Content-type:text/html\n\n";
+print "<html><head><title>Umount</title></head><body>";
+system("sudo", "umount", "/dev/sda1");
+print "</body></html>";

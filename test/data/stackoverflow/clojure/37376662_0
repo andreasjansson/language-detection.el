@@ -1,0 +1,2 @@
+(def fibs (cons 0 (cons 1 (lazy-seq (map + fibs (rest fibs))))))
+(take 10 fibs)

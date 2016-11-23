@@ -1,0 +1,29 @@
+html, body{
+  height: 100%;
+}
+
+#app{
+  height: 100%;
+}
+
+.board{
+  background: silver;
+  width: 100%;
+  height: 100%;
+}
+
+.column{
+  display: inline-block;
+  margin: 0 0.5em;
+  background: gray;
+  width: 20%;
+  height: 100%;
+}
+
+.task{
+  background: yellow;
+  width: 90%;
+  margin: auto;
+  padding: 0.2em;
+  text-align: center;
+}

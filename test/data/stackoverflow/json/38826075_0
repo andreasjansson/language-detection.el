@@ -1,0 +1,14 @@
+"user": {
+  "id": 1,
+  "name": "nameuser",
+  "online": true,
+  "profile": {
+    "photo": "",
+    "validated": true,
+    "popular": true,
+    "suspect": false,
+    "moderator": false,
+    "age": "22 ani",
+    "gender_id": "M"
+  }
+}

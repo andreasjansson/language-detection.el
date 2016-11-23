@@ -1,0 +1,2 @@
+let screenSize = UIScreen.mainScreen().bounds.size
+let nativeBound = UIScreen.mainScreen().nativeBounds.size

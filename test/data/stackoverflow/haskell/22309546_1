@@ -1,0 +1,4 @@
+hasUserRated :: String -> Film -> Bool
+hasUserRated user (_, _, _, userrating)
+        | elem user (map fst (userrating)) = True
+        | otherwise                        = False

@@ -1,0 +1,3 @@
+?- member(a,[a,a]).
+true ;
+true.

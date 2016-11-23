@@ -1,0 +1,8 @@
+==10669== LEAK SUMMARY:
+==10669==    definitely lost: 0 bytes in 0 blocks
+==10669==    indirectly lost: 0 bytes in 0 blocks
+==10669==      possibly lost: 0 bytes in 0 blocks
+==10669==    still reachable: 1,824 bytes in 6 blocks
+==10669==         suppressed: 0 bytes in 0 blocks
+==10669== Reachable blocks (those to which a pointer was found) are not shown.
+==10669== To see them, rerun with: --leak-check=full --show-leak-kinds=all

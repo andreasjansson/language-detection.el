@@ -1,0 +1,4 @@
+oauth.Credentials credentials = new oauth.Credentials(code);
+http.Client client = new oauth.Client(CLIENT_ID, CLIENT_SECRET, credentials);
+Uri uri = new Uri("https://www.googleapis.com/drive/v2/files/$fileID");
+Future<http.Response> result = client.get(uri);

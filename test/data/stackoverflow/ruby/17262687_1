@@ -1,0 +1,6 @@
+module Sass::Script::Functions
+     # Does the supplied image exist?
+     def file_exists(source)
+        return Sass::Script::Bool.new(File.exists?(source.value))
+     end
+end

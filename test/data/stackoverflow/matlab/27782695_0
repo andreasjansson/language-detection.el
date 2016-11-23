@@ -1,0 +1,15 @@
+nx = 500 ;
+ny = 500 ;
+A = zeros(nx,ny);
+grating = nx/100;
+i = 0 ;
+C = grating;
+D = 2*grating;
+fac = D;
+while i ~= nx;
+    A(1:1:ny,C:1:D) = 1 ;
+    C = C + fac;
+    D = D + fac;
+    i = i + fac;
+end
+imshow(A,'InitialMagnification','fit');

@@ -1,0 +1,24 @@
+extern crate iron;
+extern crate router;
+
+use iron::prelude::*;
+use router::Router;
+use std::collections::HashMap;
+
+struct Context {
+    cache: HashMap<String, String>,
+}
+
+fn main() {
+    let mut context = Context { cache: HashMap::new(), };
+    let mut router = Router::new();
+
+    router.get("/", |request| index(request, context));
+
+    Iron::new(router).http("localhost:80").unwrap();
+}
+
+
+fn index(_: &mut Request, context: Context) -> IronResult<Response> {
+    Ok(Response::with((iron::status::Ok, "index")))
+}

@@ -1,0 +1,39 @@
+func (c *Client) parse() []string {
+    resp := []string{}
+    buf := c.recv_buf.Bytes()
+    var idx, offset int
+    idx = 0
+    offset = 0
+
+    for {
+        idx = bytes.IndexByte(buf[offset:], '\n')
+        if idx == -1 {
+            break
+        }
+        p := buf[offset : offset+idx]
+        offset += idx + 1
+        //fmt.Printf("> [%s]\n", p);
+        if len(p) == 0 || (len(p) == 1 && p[0] == '\r') {
+            if len(resp) == 0 {
+                continue
+            } else {
+                c.recv_buf.Next(offset)
+                return resp
+            }
+        }
+
+        size, err := strconv.Atoi(string(p))
+        if err != nil || size < 0 {
+            return nil
+        }
+        if offset+size >= c.recv_buf.Len() {
+            break
+        }
+
+        v := buf[offset : offset+size]
+        resp = append(resp, string(v))
+        offset += size + 1
+    }
+
+    return []string{}
+}

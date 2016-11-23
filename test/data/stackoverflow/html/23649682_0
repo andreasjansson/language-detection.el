@@ -1,0 +1,12 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Link</title>
+    </head>
+    <body>
+        <a href="http://issuu.com/3foxinternational/docs/gw_complete" target="_blank">
+            <img src="http://i.imgur.com/QmTzKiY.jpg" alt="site link" />
+        </a>
+    </body>
+</html>

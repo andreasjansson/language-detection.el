@@ -1,0 +1,20 @@
+Object = {};
+
+ObjectMeta = {__index = Object};
+
+function Object.new(args)
+    Obj = {};
+    Object.someObject = OtherObject.new(args)
+    return setmetatable(Obj,ObjectMeta );
+end
+
+function Object:setSomeObjectIsAttachedTo()
+    --OtherObject instance Should set its attached property to 
+    --This instance of Object
+    self.someObject.ObjectImAttachedTo = self;
+end
+
+--Calls after new to set the ObjectImAttachedTo Property, So it isnt nil
+Object:setSomeObjectIsAttachedTo();
+
+return Object;

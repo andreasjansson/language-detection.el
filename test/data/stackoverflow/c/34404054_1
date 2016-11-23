@@ -1,0 +1,24 @@
+int sequential_seach(int n, void* s, void* x, type_id) {
+    int location = 0;
+    switch(type_id) {
+        case INT:
+            int *list = s;
+            int element = *(int*)x;
+            break;
+        case FLOAT:
+            float *list = s;
+            float element = *(float*)x;
+            break;
+            // ...
+            // etc.
+    }
+
+    while(location < n && list[location] != element) { // <---This will cause a compile error
+
+        location++;
+        if(location > n - 1) {
+            location = -1;
+        }
+    }
+    return location;
+}

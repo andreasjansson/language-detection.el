@@ -1,0 +1,26 @@
+#include <cstdlib>
+#include <iostream>
+
+void *add2Ints(void *a, void *b)
+{
+    void *res = malloc(sizeof(int));
+    *((int *) res) = *((int *) a) + *((int *) b);
+    return res;
+}
+
+int main(int argc, char *argv[])
+{
+    void *x = malloc(sizeof(int));
+    void *y = malloc(sizeof(int));
+
+    *((int *) x) = 31;
+    *((int *) y) = 16;
+
+    void *(*add2Ints_p)(void*, void*, void*) = reinterpret_cast<void *(*)(void*, void*, void*)>(add2Ints);
+
+    void *z = add2Ints_p(x,y,nullptr);
+    std::cout << *((int *) z);
+    free(x);
+    free(y);
+    free(z);
+}

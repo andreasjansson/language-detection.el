@@ -1,0 +1,7 @@
+type Bar =
+    val private x:int
+    new(x) = { x=x }
+    static member test() =
+        let Bar = Bar(System.DateTime.Now.Month)
+        printfn "%A" Bar.x
+        ()

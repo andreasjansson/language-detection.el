@@ -1,0 +1,10 @@
+if (rank .eq. 0) total = num
+do i = 1,nproc-1
+    if (rank .eq. i) call MPI_SEND(num,1,MPI_DOUBLE_PRECISION,0,&
+                                  100,MPI_COMM_WORLD,ierr)
+    if (rank .eq. 0) then
+        call MPI_RECV(num,1,MPI_DOUBLE_PRECISION,i,&
+                      100,MPI_COMM_WORLD,stat,ierr)
+        total = total + num
+    end if
+end do

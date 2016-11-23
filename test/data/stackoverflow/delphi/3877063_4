@@ -1,0 +1,15 @@
+TComputer = class(TObject)
+public
+    constructor Create(Teapot: string='');
+end;
+
+TCellPhone = class(TComputer)
+public
+    constructor Create(Cup: Integer); overload; virtual;
+    constructor Create(Cup: Integer; Teapot: string); overload; virtual;
+end;
+
+TiPhone = class(TCellPhone)
+public
+    constructor Create(Cup: Integer); reintroduce;
+end;

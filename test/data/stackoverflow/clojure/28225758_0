@@ -1,0 +1,12 @@
+(defn foo [x] (println x))
+
+(defmacro bar [exp]
+  (let [length (count exp)]
+    (cond
+      (= length 0) '()
+      (= length 1) exp
+      :else (let [[head & tail] (vec exp)
+                  [new-tail] (bar tail)]
+        `(trap (~head ~@new-tail))))))
+
+(macroexpand '(bar (inc 1)))

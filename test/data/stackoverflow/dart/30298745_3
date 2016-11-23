@@ -1,0 +1,22 @@
+import 'dart:html';
+import 'pages/pages.dart';
+import 'dart:convert' show JSON;
+import 'package:dquery/dquery.dart';
+import 'package:bootjack/bootjack.dart';
+import 'package:bootjack_datepicker/bootjack_datepicker.dart';
+
+...
+
+void main() {
+
+    ...
+
+    // enable bootjack functionality
+    Transition.use();
+    Calendar.use();
+    Dropdown.use();
+    Modal.use();
+
+    ...
+
+}

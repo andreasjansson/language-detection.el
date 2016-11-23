@@ -1,0 +1,27 @@
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=20cm,height=30cm,keepaspectratio]{./Chapters/Chapter6/tab1.png}
+\end{figure}
+ \newpage
+ \begin{figure}[htbp]
+ \centering
+ \includegraphics[width=20cm,height=30cm,keepaspectratio]{./Chapters/Chapter6/tab2.png}
+  \end{figure}
+\newpage
+ \begin{figure}[htbp]
+\centering
+\includegraphics[width=20cm,height=30cm,keepaspectratio]{./Chapters/Chapter6/tab3.png}
+  \end{figure}
+\newpage
+ \begin{figure}[htbp]
+\centering
+\includegraphics[width=20cm,height=30cm,keepaspectratio]{./Chapters/Chapter6/tab4.png}
+  \end{figure}
+\newpage
+ \begin{figure}[htbp]
+\centering
+\includegraphics[width=20cm,height=30cm,keepaspectratio]{./Chapters/Chapter6/tab5.png}
+\caption{Proposed new tagset}
+\label{1}
+\end{figure}
+\newpage

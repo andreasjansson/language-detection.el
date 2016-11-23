@@ -1,0 +1,4 @@
+barChart.leftAxis.axisMaximum = 5.0
+    barChart.leftAxis.axisMinimum = 0.0
+    barChart.leftAxis.customAxisMin = 0
+    barChart.leftAxis.customAxisMax = 5.0

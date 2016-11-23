@@ -1,0 +1,67 @@
+// transform flat data scraped from a Quiz website into a hierarchical data structure
+
+type ScrapedQuiz =
+  | Title of string
+  | Description of string
+  | Blurb of string * picture: string
+  | QuizId of string
+  | Question of num:string * text:string * picture : string
+  | Answer of text:string
+  | Error of exn
+
+let input = 
+  [Title "Example Quiz Scraped from a website";
+   Description "What the Quiz is about";
+   Blurb ("more details","and a URL for a picture");
+   Question ("#1", "How good is F#", "URL to picture of new F# logo");
+   Answer ("we likes it");
+   Answer ("we very likes it");
+   Question ("#2", "How useful is Stack Overflow", "URL to picture of Stack Overflow logo");
+   Answer ("very good today");
+   Answer ("lobsters");
+  ]
+
+type Quiz =
+  { Title : string
+    Description : string
+    Blurb : string * PictureURL 
+    Questions : Quest list }
+and Quest =
+  { Number : string
+    Text : string
+    Pic : PictureURL
+    Answers : string list}
+and PictureURL = string
+
+let errorMessage = "unexpected input format"
+
+let parseList reader input =
+  let rec run acc inp =
+    match reader inp with
+    | Some(o, inp') -> run (o :: acc) inp'
+    | None -> List.rev acc, inp
+  run [] input
+
+let readAnswer = function Answer(a) :: t -> Some(a, t) | _ -> None
+
+let readDescription = 
+                function Description(a) :: t -> (a, t) | _ -> failwith errorMessage
+let readBlurb = function Blurb(a,b) :: t -> ((a,b),t)  | _ -> failwith errorMessage
+
+let readQuests = function
+  | Question(n,txt,pic) :: t ->
+      let answers, input' = parseList readAnswer t
+      Some( { Number=n; Text=txt; Pic=pic; Answers = answers}, input')
+  | _ -> None
+
+let readQuiz = function
+  | Title(s) :: t ->
+      let d,  input'   = readDescription t
+      let b,  input''  = readBlurb input'
+      let qs, input''' = parseList readQuests input''
+      Some( { Title = s; Description = d; Blurb = b; Questions = qs}, input''')
+  | _ -> None
+
+match readQuiz input with
+  | Some(a, []) -> a
+  | _ -> failwith errorMessage

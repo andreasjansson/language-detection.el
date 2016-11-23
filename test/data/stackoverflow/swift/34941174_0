@@ -1,0 +1,17 @@
+if data != nil{
+                    let dic = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableLeaves) as!  NSDictionary
+
+                    let lat = dic["results"]?.valueForKey("geometry")?.valueForKey("location")?.valueForKey("lat")?.objectAtIndex(0) as! Double
+                    let lon = dic["results"]?.valueForKey("geometry")?.valueForKey("location")?.valueForKey("lng")?.objectAtIndex(0) as! Double
+                    let point = MKPointAnnotation()
+                    point.coordinate = CLLocationCoordinate2D(latitude: lat, longitude: lon)
+                    point.title = self.resultsArray[indexPath.row]
+                    let region = MKCoordinateRegion(center: point.coordinate, span: MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1))
+                    dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                        self.mapView.setRegion(region, animated: true)
+                        self.mapView.addAnnotation(point)
+                        self.mapView.selectAnnotation(point, animated: true)
+                        //
+                        let placemark = MKPlacemark(coordinate: point.coordinate, addressDictionary: nil)
+                        let mapItem = MKMapItem(placemark: placemark)
+                        self.mapItemData = mapItem

@@ -1,0 +1,6 @@
+import 'dart:html';
+import 'package:chrome/chrome_app.dart' as chrome;
+
+void main() {
+  chrome.app.window.current().print();
+}

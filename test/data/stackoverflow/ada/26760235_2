@@ -1,0 +1,3 @@
+with Ada.Text_IO, Ada.Characters.Handling;
+with Ada.Exceptions; use Ada.Exceptions;
+USE Ada, Ada.Text_Io;

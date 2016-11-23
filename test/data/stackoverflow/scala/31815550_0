@@ -1,0 +1,5 @@
+rpc_address: localhost 
+# rpc_interface: eth1 
+# rpc_interface_prefer_ipv6: false 
+# port for Thrift to listen for clients on 
+rpc_port: 9160

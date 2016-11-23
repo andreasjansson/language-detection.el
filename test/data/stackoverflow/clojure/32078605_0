@@ -1,0 +1,12 @@
+(def foo ["some" "list" "of" "strings"])
+
+`[ ~@(apply concat (map (fn [a] [a (symbol a)]) foo)) ]
+; ["some" some "list" list "of" of "strings" strings]
+
+; Changing only the outer [] into {} 
+`{ ~@(apply concat (map (fn [a] [a (symbol a)]) foo)) }
+; RuntimeException Map literal must contain an even number of forms
+
+; However, this works:
+`{"some" some "list" list "of" of "strings" strings}
+; {"list" clojure.core/list, "of" user/of, "strings" user/strings, "some" clojure.core/some}

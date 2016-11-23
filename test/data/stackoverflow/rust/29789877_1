@@ -1,0 +1,6 @@
+<anon>:7:1: 11:2 error: the impl does not reference any types defined in this crate; only traits defined in the current crate can be implemented for arbitrary types [E0117]
+<anon>:7 impl Display for MyResult {
+<anon>:8     fn fmt(&self, f: &mut Formatter) -> Result<(), Error> {
+<anon>:9         f.write_str("some test string")
+<anon>:10     }
+<anon>:11 }

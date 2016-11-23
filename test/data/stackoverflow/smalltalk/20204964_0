@@ -1,0 +1,4 @@
+**Adding a TV**
+--> call `addTelevision` in `Household`
+----> this `addTV:` on the `tvConnection` property
+----> catch error if any, which implies that a TV was being added to a digital connection

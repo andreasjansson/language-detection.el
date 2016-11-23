@@ -1,0 +1,14 @@
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 1) {
+     NSString *name = [alertView textFieldAtIndex:0].text;
+    // name contains the entered value
+    NSLog(name);
+    if(login){
+        LoginToProfile(name);
+    } else if(createAccount){
+        //AddAcount(name);
+    }
+
+  }
+}

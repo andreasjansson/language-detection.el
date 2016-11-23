@@ -1,0 +1,7 @@
+((Objednavkaset select:[:a | a auto porucha notEmpty])
+    select: [:d | 
+        (d auto porucha select:[:x | 
+            x datum_poruchy
+                between: x datum_vypujceni
+                and: x datum_skutecneho_vraceni])
+            size > 0])

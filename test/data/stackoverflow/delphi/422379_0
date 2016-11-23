@@ -1,0 +1,7 @@
+type
+  TAuth = class(TDataModule)
+  private
+    procedure PrivateMethod;
+  public
+    procedure PublicMethod;
+  end;

@@ -1,0 +1,100 @@
+with ada.text_io; use ada.text_io;
+with ada.strings.bounded;
+with unchecked_conversion;
+with stack;
+
+procedure main is
+   package int_io is new ada.text_io.integer_io(integer);
+
+   stack_type : positive;
+   stack_size : natural;
+begin
+   loop
+      -- Select stack type
+      put_line("Select stack type by inputting corresponding number: ");
+      put_line("1) Character");
+      put_line("2) Integer");
+      put_line("3) Date");
+      int_io.get(stack_type);
+
+      -- Select size of stack
+      put_line("Enter the maximum size of your stack: ");
+      int_io.get(stack_size);
+
+      case (stack_type) is
+     -- Character stack (option C/D)
+     when 1 =>
+        declare
+           package char_stack is new stack(stack_size, character); use char_stack;
+           char : character;
+           done : integer := 0;
+           num_chars : natural := 48;  -- 48 = ASCII '0'
+           -- Reflects how many characters (including the number) of the name on top of the stack; used for limit in popping for loop
+           num_to_pop : natural := 0;
+
+           -- Pop and print characters from stack
+           procedure print_chars is
+           begin
+          for i in 0 .. (num_to_pop - 1) loop
+             put(char_stack.pop);
+          end loop;
+
+          -- Reset num_to_pop
+          num_to_pop := 0;
+           end print_chars;
+        begin
+           put_line("Enter characters; To finish sequence, terminate with '#': ");
+           new_line;
+
+           while (done /= 1) loop
+          while (char /= '#') loop
+             get(char);
+             if (char /= '#') then
+            push(char);
+            num_chars := num_chars + 1;
+             end if;
+          end loop;
+
+          -- Push number of characters onto stack; reset num_to_pop; reset num_chars
+          push(character'val(num_chars));
+          num_to_pop := (character'pos(peek)) - 47;
+          num_chars := 48;
+
+          -- Ask user if they wish to continue
+          new_line;
+          put_line("To repeat, enter '0'; to terminate program, enter '1': ");
+          new_line;
+          int_io.get(done);
+
+          -------------TEST----------------
+          new_line;
+          int_io.put(done);
+          new_line;
+          ---------------------------------
+          while (done /= 0 or done /= 1) loop
+             put_line("Please enter either a '0' or a '1'.");
+             new_line;
+             int_io.get(done);
+          end loop;
+           end loop;
+     end;
+    -- Integer stack (option B)
+    when 2 =>
+        begin
+           put("asfsF");
+        --
+     end;
+     -- Date stack (option A)
+     when 3 =>
+        begin
+           put("Asfasdf");
+        --
+        end;
+
+     when others =>
+        begin
+           put("asdfasdF");
+        end;
+    end case;
+   end loop;
+end main;

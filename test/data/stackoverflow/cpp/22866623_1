@@ -1,0 +1,95 @@
+if (!AfxSocketInit())
+Util_Log(0, 2, _T("AfxSocketInit() failed."));
+
+FILE* privKey;
+
+int err  = fopen_s( &privKey, "E:\\gkey.pem", "r" );
+
+if( err != 0 ){
+    Util_Log(0, 2, _T("Failed to open 'gkey.pem' file."));
+    return;
+}
+
+err = m_encrypt.readPrivateKey(privKey);
+
+fclose(privKey);
+
+if( err != 0 ){
+    Util_Log(0, 2, _T("readPrivateKey Failed."));
+    return;
+}
+
+
+sendGSPSessionInit();
+
+bool CGarenaInterface::sendGSPSessionInit(void)
+{
+FILE *f;
+if(AllocConsole()) {
+freopen_s(&f, "CONOUT$", "wt", stdout);
+SetConsoleTitle(_T("Debug Console"));
+SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), FOREGROUND_GREEN | FOREGROUND_BLUE | FOREGROUND_RED);
+}
+
+Util_Log(0, 0, _T("Sending GSP session init ..."));
+
+int nEncSize = 0;
+int nDecSize = 0;
+uint8_t* EncOut = NULL;
+uint8_t* DecOut = NULL;
+unsigned char *ek;
+unsigned char *iv;
+size_t ekl;
+size_t ivl;
+
+CByteBuffer *bytebuffer = new CByteBuffer();
+CByteBuffer *bytebuffer2 = new CByteBuffer();
+bytebuffer->Allocate(50);
+bytebuffer->PutBytes(m_encrypt.aesKey, 32);
+bytebuffer->PutBytes(m_encrypt.aesIV, 16);
+bytebuffer->PutShort(0xF00F);
+
+printf("\n original:\n");
+Util_HexPrint(*bytebuffer, bytebuffer->ByteBuffer->len);
+
+nEncSize = m_encrypt.rsaEncrypt(*bytebuffer, bytebuffer->ByteBuffer->len, &EncOut, &ek, &ekl, &iv, &ivl);
+
+printf("encrypted:\n");
+Util_HexPrint(EncOut, nEncSize);
+
+nDecSize = m_encrypt.rsaDecrypt(EncOut, nEncSize, ek, ekl, iv, ivl, &DecOut);
+
+printf("decrypted:\n");
+Util_HexPrint(DecOut, nDecSize);
+
+bytebuffer2->Allocate(nEncSize + 6);
+bytebuffer2->PutInt(258);
+bytebuffer2->PutShort(0x00AD);
+bytebuffer2->PutBytes(EncOut, nEncSize);
+
+printf("\n final:\n");
+Util_HexPrint(*bytebuffer2, bytebuffer2->ByteBuffer->len);
+
+//  m_socket.Create();
+//  m_socket.m_buffer = *bytebuffer2;
+//  m_socket.nBufLen = bytebuffer2->ByteBuffer->len;
+//  m_socket.Connect(GARENA_MAIN_SERVER_ADDRESS, 7456);
+
+
+delete bytebuffer;
+bytebuffer = NULL;
+//  delete bytebuffer2;
+//  bytebuffer2 = NULL;
+
+free(EncOut);
+free(DecOut);
+free(ek);
+free(iv);
+EncOut = NULL;
+DecOut = NULL;
+ek = NULL;
+iv = NULL;
+
+
+return true;
+}

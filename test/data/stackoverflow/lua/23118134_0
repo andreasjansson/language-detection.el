@@ -1,0 +1,35 @@
+grass1 = display.newImage('grass1.png')
+grass1.anchorX=0
+grass1.height=90
+grass1.x=0
+grass1.y = display.contentHeight-(grass1.height/2)
+physics.addBody(grass1, "static", {density=.1, bounce=0.1, friction=.2})
+grass1.speed = 6
+screenGroup:insert(grass1)
+
+grass1_duo = display.newImage('grass1.png')
+grass1_duo.anchorX=0
+grass1_duo.height=90
+grass1_duo.x=500
+grass1_duo.y = display.contentHeight-(grass1_duo.height/2)
+physics.addBody(grass1_duo, "static", {density=.1, bounce=0.1, friction=.2})
+grass1_duo.speed = 6
+screenGroup:insert(grass1_duo)
+
+grass2 = display.newImage('grass2.png')
+grass2.anchorX=0
+grass2.height=90
+grass2.x=0
+grass2.y = display.contentHeight-(grass2.height/1.8)
+physics.addBody(grass2, "static", {density=.1, bounce=0.1, friction=.2})
+grass2.speed = 6
+screenGroup:insert(grass2)  
+
+grass2_duo = display.newImage('grass2.png')
+grass2_duo.anchorX=0
+grass2_duo.height=90
+grass2_duo.x=500
+grass2_duo.y = display.contentHeight-(grass2_duo.height/1.8)
+physics.addBody(grass2_duo, "static", {density=.1, bounce=0.1, friction=.2})
+grass2_duo.speed = 6
+screenGroup:insert(grass2_duo)

@@ -1,0 +1,6 @@
+function use_library {
+    local name=$1
+    local enabled=1
+    [[ ,${LIBS_FROM_GIT}, =~ ,${name}, ]] && enabled=0
+    return $enabled
+}

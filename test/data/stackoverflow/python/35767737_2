@@ -1,0 +1,6 @@
+class FileViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows files to create and delete files
+    """
+    queryset = File.objects.all()
+    serializer_class = FileSerializer

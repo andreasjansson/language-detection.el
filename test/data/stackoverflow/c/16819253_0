@@ -1,0 +1,4 @@
+D3DCOLOR GetFadedColor(D3DCOLOR from, D3DCOLOR to, float factor)
+{
+    return (factor<0.0f)?from:((factor>1.0f)?to:((((from>>24)>(to>>24))?((from>>24)-(D3DCOLOR)(factor*(float)((from>>24)-(to>>24)))):((from>>24)+(D3DCOLOR)(factor*(float)((to>>24)-(from>>24))))<<24)|((((from<<8)>>24)>((to<<8)>>24))?(((from<<8)>>24)-(D3DCOLOR)(factor*(float)(((from<<8)>>24)-((to<<8)>>24)))):(((from<<8)>>24)+(D3DCOLOR)(factor*(float)(((to<<8)>>24)-((from<<8)>>24))))<<16)|((((from<<16)>>24)>((to<<16)>>24))?(((from<<16)>>24)-(D3DCOLOR)(factor*(float)(((from<<16)>>24)-((to<<16)>>24)))):(((from<<16)>>24)+(D3DCOLOR)(factor*(float)(((to<<16)>>24)-((from<<16)>>24))))<<8)|((((from<<24)>>24)>((to<<24)>>24))?(((from<<24)>>24)-(D3DCOLOR)(factor*(float)(((from<<24)>>24)-((to<<24)>>24)))):(((from<<24)>>24)+(D3DCOLOR)(factor*(float)(((to<<24)>>24)-((from<<24)>>24)))))));
+}

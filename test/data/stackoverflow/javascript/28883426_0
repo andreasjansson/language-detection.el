@@ -1,0 +1,7 @@
+var emptyString = '';
+    if (emptyString == null) {
+        console.log('emptyString == null');
+    }
+    else {
+        console.log('emptyString does not == null'); // but why?
+    }

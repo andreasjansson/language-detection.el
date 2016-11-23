@@ -1,0 +1,18 @@
+XmlRpcClient client = new XmlRpcClient();
+client.setConfig(config);
+
+/* Command string */
+String command = "add_rosteritem";
+
+/* Parameters as struct */
+Map struct = new HashMap();
+struct.put("localuser", localuser);
+struct.put("localserver", localserver);
+struct.put("user", user);
+struct.put("server", server_roster);
+struct.put("nick", "some utf-8 characters");
+struct.put("group", group);
+struct.put("subs", subs);
+
+Object[] params = new Object[] { struct };
+Object result_last = client.execute(command, params);

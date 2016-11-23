@@ -1,0 +1,4 @@
+ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+    86462    0.076    0.000    0.084    0.000 sparse.py:107(__setitem__)
+   189730    0.147    0.000    0.166    0.000 sparse.py:45(__getitem__)
+   276366    0.028    0.000    0.028    0.000 {built-in method isinstance}

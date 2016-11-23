@@ -1,0 +1,7 @@
+for I := 0 to Urls.Count-1 do begin
+  webbrowser1.Navigate('http://www.dragontavern.com' + Urls[I]);
+  if I < Urls.Count-1 then begin
+    Application.ProcessMessages;
+    Sleep(FConfig.CubeDelay);
+  end;
+end;

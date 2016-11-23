@@ -1,0 +1,15 @@
+alex@debian:~/code$ ./a.out 
+Thread 1:
+
+Struct address: 0x804e098
+fp.a = 1
+fp.b = 2
+fp.c = 3
+fp.d = 4
+
+a.out: malloc.c:3096: sYSMALLOc: Assertion `(old_top == (((mbinptr) (((char *) &((av)->bins[((1) - 1) * 2])) - __builtin_offsetof (struct malloc_chunk, fd)))) && old_size == 0) || ((unsigned long) (old_size) >= (unsigned long)((((__builtin_offsetof (struct malloc_chunk, fd_nextsize))+((2 * (sizeof(size_t))) - 1)) & ~((2 * (sizeof(size_t))) - 1))) && ((old_top)->size & 0x1) && ((unsigned long)old_end & pagemask) == 0)' failed.
+Aborted
+
+
+alex@debian:~/code$ file a.out 
+a.out: ELF 32-bit LSB executable, Intel 80386, version 1 (SYSV), dynamically linked (uses shared libs), for GNU/Linux 2.6.26, BuildID[sha1]=0x9966b205f3f6cd3d3a544ea010608e11346f6f9a, not stripped

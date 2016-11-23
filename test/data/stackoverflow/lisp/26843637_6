@@ -1,0 +1,5 @@
+(define (divide-by-2 n)
+    (/ n 2)
+)
+((repeated divide-by-2 3) 16)
+=> 2

@@ -1,0 +1,12 @@
+(defun smart-operator-- ()
+  "See `smart-operator-insert'."
+  (interactive)
+  (cond ((and c-buffer-is-cc-mode (looking-back "\\- *"))
+         (when (looking-back "[a-zA-Z0-9_] +\\- *")
+           (save-excursion
+             (backward-char 2)
+             (delete-horizontal-space)))
+         (smart-operator-insert "-" 'middle)
+         (indent-according-to-mode))
+        (t
+         (smart-operator-insert "-"))))

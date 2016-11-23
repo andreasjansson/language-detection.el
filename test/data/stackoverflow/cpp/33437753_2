@@ -1,0 +1,11 @@
+#ifndef GLOBALS_H
+#define GLOBALS_H
+
+#include <string>
+using std::string;
+
+class Person; // forward declaring
+
+void changeName(Person* person, string name);
+
+#endif

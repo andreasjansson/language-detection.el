@@ -1,0 +1,4 @@
+<div>
+  <div request-sender>First sender:<button ng-click="sender.send()">Send1</button></div>
+  <div request-sender>And <button ng-click="sender.send()">Send2</button> - second sender</div>
+</div>

@@ -1,0 +1,31 @@
+Private Sub frm_DragDrop(ByVal sender As System.Object, ByVal e As System.Windows.Forms.DragEventArgs) Handles tbAppEmail.DragDrop
+    tbAppEmail.Text = String.Empty
+    Try
+
+        If e.Data.GetDataPresent(DataFormats.FileDrop) Then
+            'supports a drop of a file from Windows Explorer
+
+            'Removed for visibility 
+
+
+        ElseIf e.Data.GetDataPresent("FileGroupDescriptor") Then
+            'supports a drop of a Outlook message
+
+            'Dim objMI As Object - if you want to do late-binding
+            Dim objMI As Microsoft.Office.Interop.Outlook.MailItem
+
+            For Each objMI In objOL.ActiveExplorer.Selection()
+                'hardcode a destination path for testing
+                Dim strFile As String = _
+                            IO.Path.Combine("\\ud1.utility\GSA\LWREPPLA\Databases_Dont_Touch\RTTEmails", _
+                                            (objMI.Subject + ".msg").Replace(":", ""))
+                tbAppEmail.Text += strFile + Environment.NewLine
+                objMI.SaveAs(strFile)
+            Next
+        End If
+        'tbAppEmail.Text = String.Empty
+
+    Catch ex As Exception
+        tbAppEmail.Text = "An error occured in the drop event" + Environment.NewLine + ex.ToString
+    End Try
+End Sub

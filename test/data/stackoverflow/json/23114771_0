@@ -1,0 +1,4 @@
+JsonSerializerSettings jss = new JsonSerializerSettings();
+        jss.TypeNameHandling = TypeNameHandling.All;
+
+        string file_text = JsonConvert.SerializeObject(MyHashSet, jss);

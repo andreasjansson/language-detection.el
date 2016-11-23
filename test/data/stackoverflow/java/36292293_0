@@ -1,0 +1,11 @@
+public class AppData {
+    static SharedPreferences prefdata;
+    static SharedPreferences.Editor editordata;
+
+    static final String  FCOLOR_KEY = "#FFFFFF"; //first color
+    static final String SCOLOR_KEY = "#FFFFFF"; //second color
+    static final String TCOLOR_KEY = "#FFFFFF"; //text color
+    static final String ICOLOR_KEY = "#FFFFFF"; //icon color
+    static final Image BIMG_KEY = null; //bakcground image
+
+}

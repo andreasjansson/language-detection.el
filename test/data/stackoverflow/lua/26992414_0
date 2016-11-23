@@ -1,0 +1,7 @@
+if (Audio.Play(CHANNEL_BACKGROUND) == true) then
+    Audio.Pause(CHANNEL_BACKGROUND);
+    Image.Load("playpause", "AutoPlay\\Images\\gg57570759.png");
+else
+    Image.Load("playpause", "AutoPlay\\Images\\gg57570759 on.png");
+    Audio.Play(CHANNEL_BACKGROUND);
+end

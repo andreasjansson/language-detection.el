@@ -1,0 +1,2 @@
+[:foo, "hello", 3]
+.path_to(:bar) => nil

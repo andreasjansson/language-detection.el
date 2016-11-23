@@ -1,0 +1,9 @@
+-module(anatomy, [Id,
+                 UID,
+                 Name,
+                 Property,
+                 Ratio::float(),
+                 Value::integer(),
+                 Pieces::float(),
+                 Status]).
+-compile(export_all).

@@ -1,0 +1,5 @@
+mylist <- list(c("apple", "banana", "cat", "dog", "elephant", "fish"), 
+              c("apple", "banana", "camel", "doll", "egg"),
+              c("apple", "bag", "cat", "donkey", "elephant", "frog", "gun"),
+              c("apple", "ball", "cage", "dolphin", "doggy", "fishy"),
+              c("apple", "baggy", "catty", "doggy", "eggie", "gun_powder"))

@@ -1,0 +1,4 @@
+main = print $ (flip evalState) "a" $ do
+    forever $ put "b"
+    put "c"
+    get

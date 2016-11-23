@@ -1,0 +1,26 @@
+program main
+
+implicit none
+real*8 :: A(10,2)
+real*8 :: A1(10),A2(10),B(10)
+integer :: ii,jj
+
+do jj=1,2
+  do ii=1,10
+    A(10,2)=dble(ii)+(jj)
+  end do
+end do
+A1=A(:,1)
+A2=A(:,2)
+
+! Method 1
+do ii=1,10
+  B(ii)=A1(ii)+A2(ii)
+end do
+
+! Method 2
+do ii=1,10
+  B(ii)=A(ii,1)+A(ii,2)
+end do
+
+end program main

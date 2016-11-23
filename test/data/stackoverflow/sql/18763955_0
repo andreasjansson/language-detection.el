@@ -1,0 +1,4 @@
+user                         user_address
+user_id  name           user_address_id   city   user_id    address_type
+   1     abc                 1             AAA      1         PRESENT
+                             2             AAA      1         PERMANANT

@@ -1,0 +1,6 @@
+$sentence = "hi this is me";
+$foo=~ m/is (.*)/;
+
+$foo = $1;
+$sentence =~ s/$foo/you/;
+print $newsentence;

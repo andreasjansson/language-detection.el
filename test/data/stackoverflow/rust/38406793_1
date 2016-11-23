@@ -1,0 +1,5 @@
+let s1 = "foobar";
+let mut v: Vec<char> = s1.chars().collect();
+v[0] = v[0].to_uppercase().nth(0).unwrap();
+let s2: String = v.into_iter().collect();
+let s3 = &s2;

@@ -1,0 +1,21 @@
+var text1 = "Type this into textbox usr";
+var text2 = "Type this into textbox usr2";
+
+var ta1 = document.getElementById("usr");
+var ta2 = document.getElementById("usr2");
+
+function type(string,element){
+ (function writer(i){
+  if(string.length <= i++){
+    element.value = string;
+    return;
+  }
+  element.value = string.substring(0,i);
+  if( element.value[element.value.length-1] != " " )element.focus();
+  var rand = Math.floor(Math.random() * (100)) + 140;
+  setTimeout(function(){writer(i);},rand);
+ })(0)
+}
+
+type(text1,ta1);
+type(text2,ta2); // This doesnt work right.

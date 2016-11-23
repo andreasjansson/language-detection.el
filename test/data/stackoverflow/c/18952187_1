@@ -1,0 +1,3 @@
+$ gcc -Wall -Werror a2ptr.c  
+$ ./a.out  
+GetSize() returns: 32

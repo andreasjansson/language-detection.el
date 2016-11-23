@@ -1,0 +1,38 @@
+type mockedStateRoute struct {
+    // How can I mock the stateRoute struct?
+    mock.Mock
+}
+type mockedEncoder struct {
+    mock.Mock
+}
+type mockedMongoDB struct {
+    mock.Mock
+}
+type mockedReqContext struct{
+    mock.Mock
+}
+type mockedRespWriter struct{
+    mock.Mock
+}
+type mockedReq struct{
+    mock.Mock
+}
+
+func (m *mockedStateRoute) testGetStatesRoute(m1 mockedEncoder,
+                    m2 mockedMongoDB, m3 mockedReqContext,
+                    m4 mockedReqContext, m5 mockedRespWriter,
+                    m6 mockedReq) (string) {
+                        args := m.Called(m1,m2,m3,m4,m5,m6)
+                        fmt.Print("You just called /states/GET")
+                        // 1 is just a test value I want to return
+                    return 1, args.Error(1)
+}
+
+func TestSomething (t *testing.T) {
+    testObj := new(mockedStateRoute)
+
+    testObj.On("testGetStatesRoute", 123).Return(true,nil)
+
+    // My target function that does something with mockedStateRoute
+    // How can I call the GET function in GenerateRoutes(). Or should I, since martini is handling all my requests
+}

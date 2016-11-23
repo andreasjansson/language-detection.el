@@ -1,0 +1,28 @@
+{
+"results": {
+    "localPlayers": {
+        "friends": [
+            {
+                "name": "Player Name 1",
+                "friend_name": "Friend Name 1",
+                "level": "3"
+            },
+            {
+                "name": "\"PlayerName2\"",
+                "friend_name": "",
+                "level": "3"
+            },
+            {
+                "name": "Pl/\\yer Name 3",
+                "friend_name": "Friend Name 3",
+                "level": "3"
+            },
+            {
+                "name": "Player Name 4",
+                "friend_name": "Friend \"Name4\"",
+                "level": "4"
+            }
+        ]
+    }
+}
+}

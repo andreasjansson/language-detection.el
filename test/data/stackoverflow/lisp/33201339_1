@@ -1,0 +1,9 @@
+(define %list_objects
+  (%rel (place)
+    [(place)
+     (%which (objects)
+       (%let (x)
+           (%bag-of x (%contains place x)
+               objects)))]
+    )
+  )

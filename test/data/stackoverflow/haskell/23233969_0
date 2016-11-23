@@ -1,0 +1,29 @@
+-- cabal install sbv hatt
+import Data.Logic.Propositional
+import Data.SBV
+
+
+-- Random test formula:
+-- (x or ~z) and (y or ~z)
+
+-- graphical depiction, see: https://www.wolframalpha.com/input/?i=%28x+or+~z%29+and+%28y+or+~z%29
+
+testParse = parseExpr "test source" "((X | ~Z) & (Y | ~Z))"
+
+myPredicate :: Predicate
+myPredicate = forSome_ $ \x y z -> ((x :: SBool) ||| (bnot z)) &&& (y ||| (bnot z))
+
+testSat = do 
+         x <- allSat $ myPredicate
+         putStrLn $ show x     
+
+
+main = do
+       putStrLn $ show $ testParse
+       testSat
+
+
+    {-
+       Need a function that dynamically creates a Predicate 
+(as I did with the function (like "\x y z -> ..") for an arbitrary expression of type "Expr" that is parsed from String. 
+    -}

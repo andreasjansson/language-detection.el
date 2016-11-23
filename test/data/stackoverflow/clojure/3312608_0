@@ -1,0 +1,7 @@
+(defstruct tree :val :left :right)
+
+(def my-tree (struct tree 1 (struct tree 2) (struct tree 3 4 5)))
+
+(def bfs (lazy-cat [my-tree] (map #(:left %) bfs) (map #(:right %) bfs) ))
+
+(println (take 4 bfs))

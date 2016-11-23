@@ -1,0 +1,9 @@
+dialyzer: Analysis failed with error:
+{function_clause,[{lists,nth,2,[]},
+                  {dialyzer_typesig,find_element,2,[]},
+                  {dialyzer_typesig,get_bif_constr,4,[]},
+                  {dialyzer_typesig,handle_call,3,[]},
+                  {dialyzer_typesig,traverse,3,[]},
+                  {dialyzer_typesig,handle_clauses_1,7,...},
+                  {dialyzer_typesig,handle_clauses,...},
+                  {dialyzer_typesig,...}]}

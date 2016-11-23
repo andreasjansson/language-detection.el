@@ -1,0 +1,6 @@
+Map<String, String> prefs = new Hashtable<String, String>();
+prefs.put("download.prompt_for_download", "true");
+DesiredCapabilities capabilities = DesiredCapabilities.chrome();
+capabilities.setCapability("prefs", prefs);
+//capabilities.setCapability("download.prompt_for_download", true);
+driver = new EventFiringWebDriver(new ChromeDriver(capabilities));

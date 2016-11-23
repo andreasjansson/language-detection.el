@@ -1,0 +1,3 @@
+void function(MyObject o) {
+    o.x = 5;
+}

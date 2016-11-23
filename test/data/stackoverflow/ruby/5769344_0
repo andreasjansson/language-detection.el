@@ -1,0 +1,3 @@
+<p>Welcome to example. To complete your registration, please click on the link below or paste it into a browser to confirm your e-mail address. You will then be redirected to example.com login page </p>
+
+<p> <%= confirmlogin_url(:id => @user.id, :msg =>  @user.verification_code )%> </p>

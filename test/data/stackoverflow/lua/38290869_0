@@ -1,0 +1,5 @@
+t = {
+    { name = "Bob", age = 34, gender = "Male"},
+    { name = "Bill", age = 40, gender = "Male"},
+    { name = "Barbara", age = 20, gender = "Female"}
+}

@@ -1,0 +1,5 @@
+\hline
+            to REGIONABC :={} & \origREGIONABCdestREGIONABC :={} & \origREGIONDEFdestREGIONABC :={} &\origREGIONXYZdestREGIONABC :={} \\
+            to REGIONDEF :={} & \origREGIONABCdestREGIONDEF :={} & \origREGIONDEFdestREGIONDEF :={} &\origREGIONXYZdestREGIONDEF :={} \\
+            to REGIONXYZ :={} & \origREGIONABCdestREGIONXYZ :={} & \origREGIONDEFdestREGIONXYZ :={} &\origREGIONXYZdestREGIONXYZ :={} \\
+            \hline

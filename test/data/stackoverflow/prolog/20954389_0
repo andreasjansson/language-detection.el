@@ -1,0 +1,6 @@
+daycompare(D,D1):-
+    parse_time(D,iso_8601,DateCode) @< parse_time(D1,iso_8601,DateCode1).
+
+listdates(P1,P2,D1) :-
+    message(P1,P2,D), daycompare(D,D1), print(D) ;
+    message(P2,P1,D), daycompare(D,D1), print(D).

@@ -1,0 +1,8 @@
+#+begin_src asm
+    mov cx,3
+
+    loopstart:
+       do stuff
+       dec cx
+       jnz loopstart
+#+end_src

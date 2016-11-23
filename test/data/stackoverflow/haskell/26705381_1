@@ -1,0 +1,7 @@
+data Spotting meta = Spotting {
+  state :: String,
+  bird :: String,
+  meta :: meta
+} deriving (Show, Generic)
+
+instance ToJSON meta => ToJSON (Spotting meta)

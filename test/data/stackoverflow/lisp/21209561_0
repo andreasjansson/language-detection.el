@@ -1,0 +1,5 @@
+(define foo1 "asd")
+(define foo2 "qwe")
+(define foo3 "zxc")
+(define foo4 "rte")
+(define foo5 "qlx")

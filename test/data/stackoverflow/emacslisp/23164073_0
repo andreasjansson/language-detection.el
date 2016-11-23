@@ -1,0 +1,3 @@
+(async-shell-command (concat "cd \""
+  (replace-regexp-in-string 
+    "/" "\\\\" (file-name-directory (buffer-file-name))) "\" ; git gui"))

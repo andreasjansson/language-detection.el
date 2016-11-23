@@ -1,0 +1,163 @@
+#!/usr/bin/perl
+$| = 1;
+
+
+use Net::Telnet;
+use Net::SNMP;
+use strict;
+use CGI;
+
+#variabls for power, connections and systemname
+my $power_host     = ('Power-APC');
+my $power_port     = ('Power-APC-Port');
+my $system_name    = ('system-name');
+my $console_server = ('Console-Server');
+my $console_mgmtA  = ('Console-ManagementA');
+my $match;
+my ($garbage, $trash);
+my $master_value;
+my $telnet;
+my @array;
+my @master_array;
+
+
+checkForNull("Console-Server",$console_server,1);
+checkForNull("Console-ManagementA",$console_mgmtA,1);
+checkForNull("Power_Host",$power_host,1);
+checkForNull("Power_Port",$power_port,1);
+checkForNull("System_Name", $system_name,1);
+
+
+#Starting reset script
+print("Please wait while $system_name resets.\n");
+print("Please do not interact with any consoles open to this device\n");
+print("The reset will take approximitly 5 minutes\n");
+
+#establishing Telnet connection
+$telnet = new Net::Telnet (Timeout=>120, Errmode=>'return', Port => $console_mgmtA);
+
+$telnet->open($console_server);
+sleep(1);
+
+#executing reboot via SNMP
+print("Deleting configuration files.\n");
+
+   my ($snmp, $error) = Net::SNMP->session(
+      -hostname  => shift || "$power_host",
+      -community => shift || 'private',
+      -port      => shift || 161
+   );
+   if (!defined($snmp)) {
+      printf("ERROR: %s.\n", $error);
+      exit 1;
+   }
+   my $sysx = ".1.3.6.1.4.1.318.1.1.12.3.3.1.1.4.$power_port";
+   my $result = $snmp->set_request(
+      -varbindlist => [$sysx, INTEGER, '3']
+   );
+   $snmp->close;
+
+
+
+
+$telnet->waitfor(match=> '/Profiles/');
+$telnet->cmd(string => '0', prompt => '/=>/');
+#shift to compact flash card
+$telnet->cmd (string=> 'cd cfa0', prompt => '/=>/');
+my $garbage_output = $telnet -> cmd (string => 'ls', prompt => '/=>/');
+$telnet->buffer_empty;
+
+
+#propigates primary array with file list
+undef @array;
+@array = $telnet->cmd(string => 'ls', prompt => '/=>/');
+
+
+#determines what should be deleted
+foreach my $item (@array) {
+    #cleans up the files for use in the if statement
+   chomp ($item);
+   #determines if it's a folder, passes folder name to sub
+   if ($item=~ /\//) {
+       subfolders ($item);
+       #adds folder AFTER files in dir to ensure deletion
+       push(@master_array, "rmdir $item");
+   }
+   #finds and ignores the primary and secondary firmware
+
+   elsif ($item =~ /btm.swi|secondary.swi/) {
+   }
+   else {
+    #adds all files to the master deletion list
+    push(@master_array,"rm $item");
+   }
+
+
+
+#deletes all files listed in the master array
+foreach $master_value (@master_array){
+$telnet -> print ("$master_value");
+}
+
+
+#reboot switch
+$telnet->print('boot');
+$telnet->put(chr(13));
+sleep(120);
+
+
+#looking for ready screen
+$telnet->waitfor(match=> '/continue/');
+sleep (1);
+$telnet->put(chr(13));
+sleep (1);
+$telnet->put(chr(13));
+$telnet->waitfor(match=> '/continue/');
+$telnet->put(chr(13));
+$telnet->print('config');
+$telnet->put(chr(13));
+$telnet->print("hostname $system_name\n");
+$telnet->print('lldp run');
+$telnet->put(chr(13));
+$telnet->print('wr mem');
+$telnet->put(chr(13));
+$telnet->print('boot');
+$telnet->put(chr(13));
+$telnet->print('y');
+
+
+print("$system_name has been reset to factory settings.\n");
+}
+
+
+#add all files in folders to master deletion list
+sub subfolders {
+ my @subfolder_contents;
+ my $subfolder = $_[0];
+ my $file;
+
+ @subfolder_contents = $telnet ->cmd(string => "ls $subfolder", prompt => '/=>/');
+ foreach $file (@subfolder_contents){
+  chomp ($file);
+    push(@master_array, "rm $subfolder$file");
+ }
+};
+
+
+sub checkForNull {
+    my $name = $_[0];
+    my $param = $_[1];
+    my $required = $_[2];
+
+    if($param eq "") {
+        if ($required == 1) {
+            print("\nSorry, no '$name' specified for this device, cannot continue.\n");
+            exit 1;
+        }
+    }
+# else {
+ #       print("\n$name: $param\n");
+  #  }
+}
+
+exit;

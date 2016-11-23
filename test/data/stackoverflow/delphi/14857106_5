@@ -1,0 +1,4 @@
+EXCEPTION_POINTERS = record
+   ExceptionRecord : PExceptionRecord;
+   ContextRecord : PContext;
+end;

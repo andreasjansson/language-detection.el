@@ -1,0 +1,44 @@
+public class TestShoutBox5 {
+
+/**
+ * @param args the command line arguments
+ */
+public static void main(String[] args) {
+    // TODO code application logic here
+      String Subjects[] = new String[]{"My Teacher","I","You"
+   };
+
+   Random RandomSubject=new Random();
+   int S = RandomSubject.nextInt(4);
+
+     String Objects[] = new String[]{"Homework", "Work","Quiz"
+   };
+
+   Random Randomobjects=new Random();
+   int O = Randomobjects.nextInt(4);
+
+ String Verbs[] = new String[]{"Studying", "Playing","Working"
+   };
+
+   Random Randomverbs=new Random();
+   int R = Randomverbs.nextInt(4);
+
+    String Adjectives[] = new String[]{"Smart", "Tall","Hard"
+   };
+
+   Random RandomAdjectives=new Random();
+   int A = RandomAdjectives.nextInt(4);
+
+    String Adverbs[] = new String[]{"quickly", "everywhere","fast"
+   };
+
+   Random RandomAdverb=new Random();
+   int Ad = RandomAdverb.nextInt(4);
+
+
+
+ System.out.print("Your Sentence"+S+O+R+A+Ad);
+
+}
+
+}

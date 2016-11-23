@@ -1,0 +1,51 @@
+import UIKit
+class ViewController: UIViewController {
+
+    //Declaring variables
+    @IBOutlet weak var numberOfColumnsSelector: UISegmentedControl!        
+    @IBOutlet weak var populatedPlacesSelector: UITextField!
+
+    var numberOfColumns: Int = 0
+    var populatedPlaces: [Int] = []
+
+    // This makes those previously declared variables accessible
+    func makeVariablesAccessible () -> ( size: Int, popPlacesArray: [Int] ) {
+        // THE LINE BELOW IS THE PROBLEMATIC ONE
+        switch numberOfColumnsSelector.selectedSegmentIndex {
+        case 0:
+            numberOfColumns = 2
+        case 1:
+            numberOfColumns = 3
+        case 2:
+            numberOfColumns = 4
+        case 3:
+            numberOfColumns = 5
+        case 4:
+            numberOfColumns = 6
+        case 6:
+            numberOfColumns = 7
+        case 8:
+            numberOfColumns = 8
+        default:
+            numberOfColumns = 2
+        }
+
+        if populatedPlacesSelector.text != "" {
+            var counter = 0
+            var popPlaceString = ""
+            for c in populatedPlacesSelector.text!.characters {
+                if c == "." {
+                    populatedPlaces.append(Int(popPlaceString)!)
+                    print(populatedPlaces)
+                    print(popPlaceString)
+                    popPlaceString = ""
+                    counter++
+                }
+                else {
+                    popPlaceString.append(c)
+                }
+            }
+        }
+        return ( numberOfColumns, populatedPlaces )
+    }
+}

@@ -1,0 +1,5 @@
+user=> (-> foo (cache/miss :1 1) (cache/miss :2 2) (cache/miss :3 3) (cache/miss :4 4))
+{:4 4, :3 3, :2 2, :1 1}
+
+user=> (-> foo (cache/miss :1 1) (cache/miss :2 2) (cache/miss :3 3) (cache/miss :4 4) (cache/miss :5 5))
+{:5 5, :4 4, :3 3, :2 2}

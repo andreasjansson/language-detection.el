@@ -1,0 +1,7 @@
+alias cd='_cd'
+
+function cd() 
+{
+    cd "$1"
+    PS1='[$USER] "$PWD" $ '
+}

@@ -1,0 +1,3 @@
+Caused by SQLNestedException: Cannot load JDBC driver class 'oracle.jdbc.driver.OracleDriver'
+stack trace
+Caused by ClassNotFoundException: oracle.jdbc.driver.OracleDriver

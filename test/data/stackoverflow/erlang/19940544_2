@@ -1,0 +1,3 @@
+(master@pencil)5> net_adm:names().
+{ok,[{"master",52564},{"client",52579}]}
+(master@pencil)6>

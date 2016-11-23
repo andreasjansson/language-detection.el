@@ -1,0 +1,2 @@
+lua: error loading module 'LuaXML' from file './LuaXML_lib.so':
+    ./LuaXML_lib.so: undefined symbol: luaL_prepbuffer

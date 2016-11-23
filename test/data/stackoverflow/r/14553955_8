@@ -1,0 +1,26 @@
+> class(mpfr (1/3, 54))
+[1] "mpfr"
+attr(,"package")
+[1] "Rmpfr"
+
+## determinant
+example1 <- function(x){
+  d <- c(mpfr(x, prec = 54), 3 * mpfr(x, prec = 54), 5 * mpfr(x, prec = 54), 7 * mpfr(x, prec = 54))
+  Mat = new("mpfrMatrix", d, Dim = c(2L, 2L))
+  return(det(Mat))
+}
+
+> example1(2)
+Error in UseMethod("determinant") : 
+no applicable method for 'determinant' applied to an object of class "c('mpfrMatrix',    'mpfrArray', 'Mnumber', 'mNumber', 'mpfr', 'list', 'vector')"
+
+##optimization 
+example2 <- function(x)  ## Rosenbrock Banana function
+   100 * (mpfr(x[2], prec = 54) - mpfr(x[1], prec = 54) * mpfr(x[1], prec = 54 ))^2 + (1 - mpfr(x[1], prec = 54))^2
+
+> example2(c(-1.2, 1))
+1 'mpfr' number of precision  54   bits 
+[1] 24.1999999999999957
+> optim(c(-1.2,1), example2)
+Error in optim(c(-1.2, 1), example2) : 
+(list) object cannot be coerced to type 'double'

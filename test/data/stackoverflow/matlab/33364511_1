@@ -1,0 +1,2 @@
+text_position = [0.025 0.05 0.95 0.90];
+text_h = uicontrol('Parent', text_panel_h, 'Style', 'text','FontSize', 12,'HorizontalAlignment', 'Left','BackgroundColor','white','units', 'normalized', 'position', text_position, 'String', '');

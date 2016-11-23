@@ -1,0 +1,9 @@
+$scope.urls = [{
+    path: 'http://a.com/index'        
+    }, {
+     path: 'http://a.com/home'        
+    }, {
+    path: 'http://a.com/etc'        
+    }, {
+    path: 'http://a.com/all'        
+   }];

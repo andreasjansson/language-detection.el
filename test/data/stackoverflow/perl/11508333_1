@@ -1,0 +1,16 @@
+# file: SortPackage.pm
+use strict;
+use warnings;
+package SortPackage;
+
+sub simplesort{
+    return ($a->[0] <=> $b->[0]);
+}
+
+sub sort_from_same_package{
+    my @arrs = @_;
+    foreach (sort simplesort @arrs){
+        print $_->[1],"\n";
+    } 
+}
+1;

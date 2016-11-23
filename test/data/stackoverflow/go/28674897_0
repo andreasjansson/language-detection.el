@@ -1,0 +1,20 @@
+package main
+
+import(
+    "fmt"
+    "time"
+    "runtime"
+)
+
+func main() {
+    runtime.GOMAXPROCS(runtime.NumCPU() * 8)
+
+    go func() {
+        for {
+            time.Sleep(1 * time.Second)
+            fmt.Println("From routine")
+        }
+    }()
+
+    for {}
+}

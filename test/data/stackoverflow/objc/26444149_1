@@ -1,0 +1,2 @@
+self.TotalWinTextField.text = @"23"; //DONT WORK
+}

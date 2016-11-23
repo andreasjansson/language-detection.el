@@ -1,0 +1,8 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<S:Envelope xmlns:S="http://schemas.xmlsoap.org/soap/envelope/">
+  <S:Body>
+    <ns2:GetStockPrice xmlns:ns2="http://www.example.org/stock">
+      <StockName>IBM</StockName>
+    </ns2:GetStockPrice>
+  </S:Body>
+</S:Envelope>

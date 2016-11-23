@@ -1,0 +1,89 @@
+@media aural {
+h1, h2, h3, h4, h5, h6    { voice-family: paul, male; stress: 20; richness: 90 }
+h1            { pitch: x-low; pitch-range: 90 }
+h2            { pitch: x-low; pitch-range: 80 }
+h3            { pitch: low; pitch-range: 70 }
+h4            { pitch: medium; pitch-range: 60 }
+h5            { pitch: medium; pitch-range: 50 }
+h6            { pitch: medium; pitch-range: 40 }
+li, dt, dd    { pitch: medium; richness: 60 }
+dt            { stress: 80 }
+pre, code, tt { pitch: medium; pitch-range: 0; stress: 0; richness: 80 }
+em            { pitch: medium; pitch-range: 60; stress: 60; richness: 50 }
+strong        { pitch: medium; pitch-range: 60; stress: 90; richness: 90 }
+dfn           { pitch: high; pitch-range: 60; stress: 60 }
+s, strike     { richness: 0 }
+i             { pitch: medium; pitch-range: 60; stress: 60; richness: 50 }
+b             { pitch: medium; pitch-range: 60; stress: 90; richness: 90 }
+u             { richness: 0 }
+a:link        { voice-family: harry, male }
+a:visited     { voice-family: betty, female }
+a:active      { voice-family: betty, female; pitch-range: 80; pitch: x-high }
+}
+
+/* --------------------------------------------------------------------------------------------------------------------- */
+
+@media speech {
+  body { voice-family: Paul }
+}
+
+@media aural {
+  body { voice-family: Paul }
+}
+
+/* --------------------------------------------------------------------------------------------------------------------- */
+
+h1, h2, h3, h4, h5, h6 {
+    voice-family: paul;
+    stress: 20;
+    richness: 90;
+    cue-before: url("ping.au")
+}
+p.heidi { azimuth: center-left }
+p.peter { azimuth: right }
+p.goat  { volume: x-soft }
+
+/* --------------------------------------------------------------------------------------------------------------------- */
+
+h1 { pause: 20ms } /* pause-before: 20ms; pause-after: 20ms */
+h2 { pause: 30ms 40ms } /* pause-before: 30ms; pause-after: 40ms */
+h3 { pause-after: 10ms } /* pause-before unspecified; pause-after: 10ms */
+
+/* --------------------------------------------------------------------------------------------------------------------- */
+
+a {cue-before: url("bell.aiff"); cue-after: url("dong.wav") }
+h1 {cue-before: url("pop.au"); cue-after: url("pop.au") }
+
+/* --------------------------------------------------------------------------------------------------------------------- */
+
+/* The following two rules are equivalent: */
+h1 {cue-before: url("pop.au"); cue-after: url("pop.au") }
+h1 {cue: url("pop.au") }
+
+/* --------------------------------------------------------------------------------------------------------------------- */
+
+blockquote.sad { play-during: url("violins.aiff") }
+blockquote Q   { play-during: url("harp.wav") mix }
+span.quiet     { play-during: none }
+
+/* --------------------------------------------------------------------------------------------------------------------- */
+
+h1   { azimuth: 30deg }
+td.a { azimuth: far-right }          /*  60deg */
+#12  { azimuth: behind far-right }   /* 120deg */
+p.comment { azimuth: behind }        /* 180deg */
+
+/* --------------------------------------------------------------------------------------------------------------------- */
+
+h1   { elevation: above }
+tr.a { elevation: 60deg }
+tr.b { elevation: 30deg }
+tr.c { elevation: level }
+
+/* --------------------------------------------------------------------------------------------------------------------- */
+
+h1 { voice-family: announcer, male }
+p.part.romeo  { voice-family: romeo, male }
+p.part.juliet { voice-family: juliet, female }
+
+/* --------------------------------------------------------------------------------------------------------------------- */

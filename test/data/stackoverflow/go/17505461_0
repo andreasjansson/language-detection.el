@@ -1,0 +1,15 @@
+package main
+
+import (
+    "fmt"
+    "container/list"
+)
+
+type Foo struct {
+    foo list  //want a reference to the list implementation   
+             //supplied by the language
+}
+
+
+func main() {
+   //empty

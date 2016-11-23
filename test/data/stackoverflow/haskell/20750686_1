@@ -1,0 +1,15 @@
+userBox :: User -> Html
+userBox user = do
+      dl $ do
+        dt $ "Username"
+        dd $ H.toHtml $ username user
+        dt $ "UserId"
+        dd $ H.toHtml $ userId user
+
+page :: User -> Html
+page user = do
+  H.docTypeHtml $ do
+    H.head $ title "Blaze Example, No Reader Monad"
+    H.body $ do
+      h1 $ "Hello world"
+      userBox user

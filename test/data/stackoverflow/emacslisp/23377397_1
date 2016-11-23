@@ -1,0 +1,34 @@
+(defcustom align-verilog-rules-list
+    `(
+         (verilog-declaration
+             (regexp . "\\(logic\\|input\\|output\\|inout\\|wire\\|reg\\)\\s-*\\(\\s-+[[][^]]+[]]\\|reg\\|\\)\\(\\s-+\\)")
+             (group . (3)))
+
+         (verilog-asgn_param
+             (regexp . "\\(assign\\|parameter\\)\\(\\s-+\\)\\S-")
+             (group . (2)))
+
+         (verilog-assign
+             (regexp . "\\S-+\\(\\s-*\\)[!=><]+\\(\\s-*\\)\\S-")
+             (group . (1 2)))
+
+         (verilog-ports-no-comment
+             (regexp . "[.][a-zA-Z0-9_]+\\(\\s-+\\)\\S-")
+             (group . (1)))
+
+;; Want to add code to align comments here.
+
+         )
+    "Verilog alignment rules."
+    :type  'align-rules-list-type
+    :group 'align)
+
+(put 'align-verilog-rules-list 'risky-local-variable t)
+
+(defun verilog-extras-hook ()
+    (setq align-mode-rules-list align-verilog-rules-list))
+
+(add-hook 'verilog-mode-hook 'verilog-extras-hook t)
+
+;; Align with spaces
+(setq-default indent-tabs-mode nil)

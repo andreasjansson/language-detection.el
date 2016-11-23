@@ -1,0 +1,111 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <ctype.h>
+#define __USE_BSD
+#include <string.h>
+
+#include "speller.h"
+#include "dict.h"
+
+typedef struct node * tree_ptr;
+struct node {
+  Key_Type element; // only data is the key itself
+  tree_ptr left, right;
+  // add anything else that you need
+};
+
+struct table {
+  tree_ptr head; // points to the head of the tree
+  // add anything else that you need
+}dictable;
+
+Table initialize_table(/*ignore parameter*/) {
+Table pointtable = malloc(sizeof(struct table));
+return pointtable;
+}
+////
+
+
+void insertnew(tree_ptr node, Key_Type element)
+{
+    Key_Type current = node->element;
+    if(strcmp(element,current) < 0)//left
+    {
+      if(node -> left == NULL)
+      {
+        typedef struct node *pointsobject;
+        //new sobject 
+    pointsobject structsobject;
+    // memory alocated
+    structsobject = malloc(sizeof(*structsobject));
+    structsobject-> element = element;
+    structsobject-> left = NULL;
+    structsobject-> right = NULL;
+    node->left = structsobject;
+      }
+      else
+        insertnew(node->left , element);
+      }
+      else if(strcmp(element,current) > 0)//right
+      {
+      if(node -> right == NULL)
+      {
+        typedef struct node *pointsobject;
+        //new sobject 
+    pointsobject structsobject;
+    // memory alocated
+    structsobject = malloc(sizeof(*structsobject));
+    structsobject-> element = element;
+    structsobject-> left = NULL;
+    structsobject-> right = NULL;
+    node->right = structsobject;
+      }
+      else
+        insertnew(node->right, element);
+      }
+
+}
+
+
+
+Table insert(Key_Type element,Table dictable) {
+  if (dictable -> head == NULL)
+  { 
+   typedef struct node *pointsobject;
+   //new sobject 
+   pointsobject structsobject;
+   // memory alocated
+   structsobject = malloc(sizeof(*structsobject));
+   structsobject-> element = element;
+   structsobject-> left = NULL;
+   structsobject-> right = NULL;
+   dictable->head = structsobject;
+  } 
+  else
+  {
+    insertnew(dictable->head,element);
+  }
+  return dictable;
+}
+
+Boolean find(Key_Type element, Table dictable)  {
+return FALSE;;
+}
+
+
+void printtab(tree_ptr node)
+{
+  if (node->left != NULL)
+    printtab(node->left);
+  if (node->right != NULL)
+    printtab(node->right);
+  printf("%s",node->element);
+}
+
+void print_table(Table dictable) {
+printtab(dictable->head);
+}
+
+
+void print_stats (Table dictable) {
+}

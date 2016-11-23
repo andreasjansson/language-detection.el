@@ -1,0 +1,3 @@
+func PointersOf(slice []AnyType) []*AnyType{
+    //create an slice of pointers to the elements of the slice parameter
+}

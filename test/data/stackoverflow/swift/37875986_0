@@ -1,0 +1,7 @@
+let userNameView = UserNameView()
+    let userButton = UIBarButtonItem()
+    userButton.customView = userNameView
+
+    navigationItem.rightBarButtonItem = userButton
+    userButton.target = self
+    userButton.action = #selector(BaseViewController.logOut)

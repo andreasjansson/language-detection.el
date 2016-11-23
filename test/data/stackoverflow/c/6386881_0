@@ -1,0 +1,26 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <stdarg.h>
+
+
+int main(int argc, char * argv[])
+{
+    char *arr[] = { "ab", "cd", "ef" };
+    char **ptr, **p, *str;
+    int num = 3;
+    int size = 0;
+
+    ptr = calloc(num, 4);
+    p = ptr;
+
+    for (; num > 0; num--)
+            size += strlen(*(p++) = arr[num - 1]);
+
+    str = calloc(1, ++size);
+    sprintf(str, "%s%s%s", ptr[0], ptr[1], ptr[2]);
+
+    printf("%s\n", str);
+
+    return 0;
+}

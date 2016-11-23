@@ -1,0 +1,9 @@
+N = []
+stop = 1
+
+while(stop != "0"):
+    number = input("Give a mark: ")
+    stop = raw_input("type 0 if you want to stop the program.")
+    N.append(number)
+
+print (float(sum(N))) / (len(N))

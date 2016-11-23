@@ -1,0 +1,13 @@
+class A {
+    void print() {
+        System.out.println("A");
+    }
+}
+
+class B extends A implements C {
+}
+
+public interface C {
+    void print();
+
+}

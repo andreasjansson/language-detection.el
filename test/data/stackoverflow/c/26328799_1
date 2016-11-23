@@ -1,0 +1,10 @@
+int state = 0;
+    char *tokLine;
+    char *buff = "0 0/0d 1/0d 2/1s 3/3s 4/2s 5/2s 6/5s 7/4s 8/4s 10/9d"
+    tokLine  = strtok( buff, " \n\0");
+    state = atoi( &tokLine[0] );        
+    for( int i = 1; i < sizeof( tokLine ); i++ ){
+        sscanf( tokLine[i], "%i %s", type, instr );
+        printf("(%i,%i) = %s",state,type,instr);
+
+    }

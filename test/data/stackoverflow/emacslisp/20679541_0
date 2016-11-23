@@ -1,0 +1,2 @@
+(defun test (f x) (f x))
+(test (lambda (x) (* x x)) 10)

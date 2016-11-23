@@ -1,0 +1,2 @@
+int result = (~3) | 3;
+printf("%i\n", result);

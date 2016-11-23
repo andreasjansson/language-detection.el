@@ -1,0 +1,9 @@
+soapenv:Header/
+soapenv:Body
+
+blablaa
+?
+?
+/urn:catalogCategoryTree
+/soapenv:Body
+/soapenv:Envelope

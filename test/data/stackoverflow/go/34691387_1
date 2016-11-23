@@ -1,0 +1,16 @@
+func TestAmazonSignature(t *testing.T) {
+/* here is the canonical string from Amazon documentation which should yield the expected signature below
+GET
+webservices.amazon.com
+/onca/xml
+AWSAccessKeyId=AKIAIOSFODNN7EXAMPLE&AssociateTag=mytag-20&ItemId=0679722769&Operation=ItemLookup&ResponseGroup=Images%2CItemAttributes%2COffers%2CReviews&Service=AWSECommerceService&Timestamp=2014-08-18T12%3A00%3A00Z&Version=2013-08-01
+*/
+  SECRET_KEY := "1234567890"
+  CANONICAL_STR := "GET\nwebservices.amazon.com\n/onca/xml\nAWSAccessKeyId=AKIAIOSFODNN7EXAMPLE&AssociateTag=mytag-20&ItemId=0679722769&Operation=ItemLookup&ResponseGroup=Images%2CItemAttributes%2COffers%2CReviews&Service=AWSECommerceService&Timestamp=2014-08-18T12%3A00%3A00Z&Version=2013-08-01"
+
+  EXPECTED := "j7bZM0LXZ9eXeZruTqWm2DIvDYVUU3wxPPpp%2BiXxzQc%3D"
+
+  if RESULT := HashSignature(CANONICAL_STR, SECRET_KEY); RESULT != EXPECTED {
+    t.Errorf("\nEXPECTED:\n%v\nRESULT:\n%v", EXPECTED, RESULT)
+  } else { fmt.Println("TestAmazonSignature: Signature: OK") }
+}

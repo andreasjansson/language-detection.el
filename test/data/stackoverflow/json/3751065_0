@@ -1,0 +1,2 @@
+[XmlAttribute("class")]
+public string cssClass = "";

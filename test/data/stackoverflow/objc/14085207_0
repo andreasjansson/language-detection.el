@@ -1,0 +1,14 @@
+for(NSDictionary *album in albums)
+         {
+             [albumNames addObject:[album objectForKey:@"name"]];
+             NSLog(@"%@\n", [album objectForKey:@"id"]);
+             [[FBRequest requestWithGraphPath:[NSString stringWithFormat:@"%@/photos", [album objectForKey:@"id"]] parameters:nil HTTPMethod:nil]
+              startWithCompletionHandler:
+              ^(FBRequestConnection *connection,
+                FBGraphObject *albumPhoto,
+                NSError *error) {
+                  if(!error) {
+                      [albumCoverPhotos addObject:[UIImage imageWithData:[[NSData alloc] initWithContentsOfURL:[NSURL URLWithString:[[albumPhoto objectForKey:@"data"] objectForKey:@"picture"]]]]];
+                  }
+              }];
+         }

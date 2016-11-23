@@ -1,0 +1,10 @@
+router.post('/create', function(req, res, next) {
+  models.form.create(req.body
+
+  ).then(function(form) {
+    res.send(form.dataValues)  
+  }).catch(function(error) {
+    console.log (error);
+    res.status(500).send(error);
+  });
+});

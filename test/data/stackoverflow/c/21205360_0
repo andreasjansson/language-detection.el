@@ -1,0 +1,7 @@
+printf("Input a value for the spring constant of each Spring\n");
+scanf("%lf", &ktmp);
+    for(tmp=0; tmp<argc-1; tmp++)
+    {
+        k[tmp] = ktmp;
+        printf("%lf\n", &k[tmp]);
+    }

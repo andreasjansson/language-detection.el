@@ -1,0 +1,2 @@
+(make-repeatable-command 'text-scale-increase '(("+" . text-scale-increase) 
+                                                ("-" . text-scale-decrease)))

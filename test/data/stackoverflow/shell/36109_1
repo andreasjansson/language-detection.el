@@ -1,0 +1,3 @@
+$ winewrap '/home/chris/.wine/drive_c/Program Files/Microsoft Research/Z3-1.3.6/bin/z3.exe' -smt /tmp/smtlib3cee8b.smt
+Executing: wine '/home/chris/.wine/drive_c/Program Files/Microsoft Research/Z3-1.3.6/bin/z3.exe' '-smt' 'Z: mp\smtlib3cee8b.smt'
+wine: cannot find ''/home/chris/.wine/drive_c/Program'

@@ -1,0 +1,10 @@
+#lang racket
+(define test (list 1 1 2 3 5))
+
+(define (F)
+  (map (lambda (element) (* 2 element))
+       test))
+
+(define (G)
+  (map (lambda (element) (+ 1 (* 2 element)))
+       test))

@@ -1,0 +1,23 @@
+func (document Document) Save() (hash string, err error) {
+    if err := os.MkdirAll(document.FileDirectory(), 0600); err != nil {
+        return "", err
+    }
+
+    file, err := os.Create(document.TmpFile())
+    if err != nil {
+        return "", err
+    }
+
+    file.Write(document.Data)
+    if err := file.Sync(); err != nil {
+        return "", err
+    }
+
+    file.Close()
+
+    if err := os.Rename(document.TmpFile(), document.File()); err != nil {
+        return "", err
+    }
+
+    return document.Hash(), nil
+}

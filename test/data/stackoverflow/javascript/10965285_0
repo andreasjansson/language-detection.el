@@ -1,0 +1,33 @@
+var adArray = [];
+// get links with class adfu
+var adfuClass = document.getElementsByClassName('adfu');
+for (var i = 0; i < adfuClass.length; i++) {
+    var ids = adfuClass[i].id
+    var newIds = ids.replace(/tg_/i, "l");
+    adArray.push(newIds);
+}
+// get links with class ad30
+var ad30Class = document.getElementsByClassName('ad30');
+for (var i = 0; i < ad30Class.length; i++) {
+    var ids = ad30Class[i].id;
+     var newIds = ids.replace(/tg_/i, "l");
+     adArray.push(newIds);
+}
+// get links with class adf
+var adfClass = document.getElementsByClassName('adf');
+for (var i = 0; i < adfClass.length; i++) {
+    var ids = adfClass[i].id;
+     var newIds = ids.replace(/tg_/i, "l");
+     adArray.push(newIds);
+}
+// loop through array with all new ids
+for (var i = 0, l = adArray.length; i < l; i++) {
+    var counter = 15;
+    var countDown = setTimeout(function() {
+        console.log(counter);
+        if (counter == 0) {
+            console.log(adArray[i]);
+        }
+        counter--;
+    }, 1000);
+}

@@ -1,0 +1,2 @@
+rustgen.rs:43:13: 43:33 error: unable to infer enough type information about `_`; type annotations required [E0282]
+    rustgen.rs:43     let a = Foobar::from_nowhere();

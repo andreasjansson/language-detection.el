@@ -1,0 +1,15 @@
+task body reader_task is    
+      Offset : Streams.Stream_Element_Count;
+      Buffer : Streams.Stream_Element_Array (1 .. 1);
+   begin
+     loop
+      Text_IO.put_line("Incoming > "); 
+      loop
+          Streams.Read (Channel.All, Buffer, Offset);
+      exit when offset = 0; 
+          for I in Buffer'Range loop
+              Text_IO.Put (Character'Val (Buffer (I)));
+          end loop;
+      end loop;
+     end loop;
+   end reader_task;

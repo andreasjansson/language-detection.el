@@ -1,0 +1,6 @@
+def create(item: Item): Future[Unit] = {
+    exists(item.id).map {
+      case true => 
+      case _ => db.run(Item.table += cc)
+    }
+  }

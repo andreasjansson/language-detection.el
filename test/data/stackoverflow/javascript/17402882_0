@@ -1,0 +1,8 @@
+$('body').on('click','.fakeinput',function(){
+    console.log(true);
+    $(this).next('select').show().click();
+
+});
+$('body').on('blur','select',function(){
+    $(this).hide();
+});

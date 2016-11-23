@@ -1,0 +1,15 @@
+class Installer:
+    def __init__(self, foo, bar, version):
+        # Init stuff
+        raise Exception('If we're here, mock didn't work')
+
+    def __enter__(self):
+        return self
+
+    def __exit__(self, type, value, tb):
+        # cleanup
+        pass
+
+    def install(self):
+        # Install stuff
+        raise Exception('If we're here, mock didn't work')

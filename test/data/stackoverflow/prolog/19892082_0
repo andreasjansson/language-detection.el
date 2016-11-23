@@ -1,0 +1,3 @@
+LABORATORY(LabNumber, SeatsNumber)
+RESERVATION(LabNumber, ProfName, Date)
+PROF(ProfName, Subject ,#Reservation)

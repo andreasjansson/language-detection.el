@@ -1,0 +1,10 @@
+void fDisplay(node *root)
+{
+    if(root->left!=NULL)
+        fDisplay(root->left);
+    display(root->entry);
+    printf("\n\n");
+    if(root->right!=NULL)
+        fDisplay(root->right);
+    return;
+}

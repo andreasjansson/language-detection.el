@@ -1,0 +1,25 @@
+package main
+
+import (
+    "time"
+    "log"
+    "fmt"
+)
+
+func main() {
+    interval := float64(1000)
+
+    ticker := time.NewTicker(time.Duration(interval) * time.Millisecond)
+    go func(){
+        counter := 1.0
+        for range ticker.C {
+            log.Println("ticker accelerating to " + fmt.Sprint(interval/counter) + " ms")
+            ticker = time.NewTicker(time.Duration(interval/counter) * time.Millisecond)
+            counter++
+        }
+        log.Println("stopped")
+    }()
+    time.Sleep(5 * time.Second)
+    log.Println("stopping ticker")
+    ticker.Stop()
+}

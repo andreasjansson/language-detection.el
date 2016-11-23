@@ -1,0 +1,7 @@
+project test is
+    for Source_Dirs use ("");
+    for Main use ("test.adb");
+    for Object_Dir use "obj";
+    for Library_Dir use "lib";
+    for Exec_Dir use "bin";
+end test;

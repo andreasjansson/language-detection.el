@@ -1,0 +1,3 @@
+(define top-side (build-new-layer 0)) ; store the first result
+...
+(set! top-side (build-new-layer 0.5)) ; throw away the first result and store the new one

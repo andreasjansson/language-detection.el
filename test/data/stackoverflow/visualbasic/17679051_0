@@ -1,0 +1,27 @@
+Private Sub copythat()
+    '*************MOVING to hrb FROM OTK*******************
+
+    If FORK.ComboBox1.Text = "OTK" And ListBox2.Text = "HRB" Then
+        Try
+            Dim strconnectionsrting = ClsFuncs.connstring("connectionstring1")
+            Dim cmdin As New SqlCommand
+            Dim cnnoledb As New SqlConnection
+            cnnoledb.ConnectionString = strconnectionsrting
+            cnnoledb.Open()
+            If bsknum <> "" Then
+                cmdin.CommandText = "insert into dbo.HRB_inlet([basket_id],[operator_name],[dte],[tme],[quantity],[resistance],[FLG])values('" & Label2.Text & "','" & Label3.Text & "','" & Label4.Text & "','" & Label5.Text & "','" & Label6.Text & "','" & Label7.Text & "','2')"
+                'cmdin.CommandText = "insert into dbo.HRB_inlet select * from dbo.outlet where basket_id = '" & bsknum & "'"
+                cmdin.CommandType = CommandType.Text
+                cmdin.Connection = cnnoledb
+                cmdin.ExecuteNonQuery()
+
+                cnnoledb.Close()
+
+            Else
+                MessageBox.Show("Unable to MOVE PRODUCT", "ERROR")
+            End If
+            deletion()
+
+        Catch ex As Exception
+            MessageBox.Show(ex.Message)
+        End Try

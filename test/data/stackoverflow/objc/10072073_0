@@ -1,0 +1,8 @@
+- (void)startFly
+{    
+[self runAction:[CCSequence actions:
+                 [CCBezierBy actionWithDuration:timeFlying bezier:[self getPathWithDirection:currentDirection]],
+                 [CCCallFuncN actionWithTarget:self selector:@selector(endFly)],
+                 nil]];
+
+}

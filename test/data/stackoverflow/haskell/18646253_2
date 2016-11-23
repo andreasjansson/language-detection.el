@@ -1,0 +1,4 @@
+No instance for (3 <= 4) arising from a use of `BigFoo'
+Possible fix: add an instance declaration for (3 <= 4)
+In the expression: BigFoo
+In an equation for `myFoo': myFoo = BigFoo

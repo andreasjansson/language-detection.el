@@ -1,0 +1,26 @@
+<div class="form-item">
+  <%= form.label :first_name %>
+  <%= form.text_field :first_name, type: "text" %>
+</div>
+
+<div class="form-item">
+  <%= form.label :last_name %>
+  <%= form.text_field :last_name, type: "text" %>
+</div>
+
+<div class="form-item">
+  <%= form.label :email %>
+  <%= form.text_field :email, type: "email" %>
+</div>
+
+<div class="form-item">
+  <%= form.fields_for :companies do |builder| %>
+    <label>Company</label>
+    <%= builder.text_field :name, type: "text" %>
+  <%end%>
+</div>
+
+<div class="form-item">
+  <%= form.label :password %>
+  <%= form.password_field :password %>
+</div>

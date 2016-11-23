@@ -1,0 +1,5 @@
+foreach( $data as $inform ) {
+       if ( isset( $inform['file1'] ) ) {
+         echo '<div style="position:absolute; top:400px;"><img src="'.$inform['file1'].'"><br><br>
+       </div>'; 
+    }}

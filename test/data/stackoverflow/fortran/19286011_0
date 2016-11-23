@@ -1,0 +1,3 @@
+ifort -I/include_dir_loc  -c -o file_1.f90
+ifort -I/include_dir_loc  -c -o file_2.f90
+ifort -o my.o file_1.o file_2.o -L/Lib_dir_loc

@@ -1,0 +1,4 @@
+\newtheorem{prob}{Problem}
+          \begin{prob} 
+          ...
+          \end{prob}

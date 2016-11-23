@@ -1,0 +1,10 @@
+type Storage struct {
+     conns map[int]*net.Conn
+}
+
+func (s *Storage) Add(id int, conn *net.Conn){
+   s.conns[id] = conn
+}
+
+... methods for initialising new storage, getting, deleting, 
+maybe giving list of user id's etc.

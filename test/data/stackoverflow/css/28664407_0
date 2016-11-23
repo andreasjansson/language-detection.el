@@ -1,0 +1,4 @@
+.sidebar
+  +translateX(100%)
+  &.opened
+    +translateX(0%)

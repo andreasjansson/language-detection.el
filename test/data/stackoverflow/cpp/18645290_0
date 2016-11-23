@@ -1,0 +1,8 @@
+struct A
+{
+    int i;
+    double d;
+    std::string s;
+};
+
+std::list<A> list_A;

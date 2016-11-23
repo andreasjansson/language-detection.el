@@ -1,0 +1,4 @@
+controller := &web.Controller{}
+application := &system.Application{}
+
+http.HandleFunc("/", application.Route(controller, "Index"))

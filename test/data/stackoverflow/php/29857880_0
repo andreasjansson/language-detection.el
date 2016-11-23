@@ -1,0 +1,13 @@
+$htmlOut = 'Some html code';
+
+include("libraries/MPDF60/mpdf60/mpdf.php");
+
+$mpdf=new mPDF('c','A4','','' , 0 , 0 , 0 , 0 , 0 , 0); 
+
+$mpdf->SetDisplayMode('fullpage');
+
+$mpdf->list_indent_first_level = 0;
+
+$mpdf->WriteHTML($htmlOut);
+
+$mpdf->Output("filename.pdf",'I');

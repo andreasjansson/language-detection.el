@@ -1,0 +1,5 @@
+class PeopleElement extends PolymerElement {
+  ObservableList<Person> people = toObservable(new List<Person>());
+
+  PeopleElement.created() : super.created();
+}

@@ -1,0 +1,10 @@
+$VAR1 = bless( {
+             '_content' => '',
+             '_uri' => bless( do{\(my $o = 'http://teamcity:8080/httpAuth/app/rest/server/backup?includeConfigs=true&includeDatabase=true&includeBuildLogs=true&fileName=foo')}, 'URI::http' ),
+             '_headers' => bless( {
+                                    'content-type' => 'application/x-www-form-urlencoded',
+                                    'content-length' => 0,
+                                    'authorization' => 'Basic c3lzQnVpbGRTeXN0ZW1JOnBhaWQuZmFpdGg='
+                                  }, 'HTTP::Headers' ),
+             '_method' => 'POST'
+           }, 'HTTP::Request' );

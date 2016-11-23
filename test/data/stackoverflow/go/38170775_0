@@ -1,0 +1,25 @@
+cert, err := tls.LoadX509KeyPair("myalcoholist.pem","myalcoholist.key")
+if err != nil {
+    log.Fatalf("server: loadkeys: %s", err)
+
+}
+    pem, err := ioutil.ReadFile("cert/sf_bundle-g2-g1.crt")
+    if err != nil {
+        log.Fatalf("Failed to read client certificate authority: %v", err)
+    }
+    if !certpool.AppendCertsFromPEM(pem) {
+        log.Fatalf("Can't parse client certificate authority")
+    }
+    tlsConfig := &tls.Config{
+        ClientCAs:    certpool,
+    Certificates: []tls.Certificate{cert},
+    }
+
+    srv := &http.Server{
+    Addr: "myalcoholist.com:443",
+    Handler: n,
+    ReadTimeout: time.Duration(5) * time.Second,
+    WriteTimeout: time.Duration(5) * time.Second,
+    TLSConfig: tlsConfig,
+}
+err := srv.ListenAndServeTLS("cert/myalcoholist.pem","cert/myalcoholist.key")

@@ -1,0 +1,212 @@
+import UIKit
+import SafariServices
+
+class NewsFeedTableViewController: UITableViewController, NSXMLParserDelegate, NSURLConnectionDelegate, NSURLConnectionDataDelegate, UINavigationControllerDelegate, SFSafariViewControllerDelegate, APLSlideMenuViewControllerDelegate {
+
+    var urlString = NSString()
+    var parser = NSXMLParser()
+    var posts = NSMutableArray()
+    var elements = NSMutableDictionary()
+    var element = NSString()
+    var itemTitle = NSMutableString()
+    var link = NSMutableString()
+    var thumbnailURL = NSMutableString()
+    var isActionAlert = false
+    var attributes = NSDictionary()
+    var connection: NSURLConnection?
+    var xmlData: NSMutableData?
+
+    var loadingIndicator = UIActivityIndicatorView()
+    var backgroundImage = UIImage()
+    var backgroundImageView = UIImageView()
+    let kfbBlue = UIColor(red: 8.0 / 255.0, green: 77.0 / 255.0, blue: 139.0 / 255.0, alpha: 0.7)
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        tableView.registerNib(UINib(nibName: "NewsCell", bundle: nil), forCellReuseIdentifier: "newsCell")
+
+        let menuButton = UIBarButtonItem(image: UIImage(named: "list_button"), style: .Done, target: self, action: "showMenu")
+        self.navigationItem.leftBarButtonItem = menuButton
+
+        let reloadButton = UIBarButtonItem(barButtonSystemItem: .Refresh, target: self, action: "reload")
+        self.navigationItem.rightBarButtonItem = reloadButton
+
+        backgroundImageView = UIImageView(image: backgroundImage)
+        tableView.backgroundView = backgroundImageView
+
+        let width = CGRectGetWidth(self.view.bounds)
+        let height = CGRectGetHeight(self.view.bounds)
+
+        loadingIndicator = UIActivityIndicatorView(frame: CGRectMake(width / 2, height / 2, 75, 75))
+        loadingIndicator.layer.cornerRadius = 10
+        loadingIndicator.backgroundColor = kfbBlue
+        loadingIndicator.center = CGPointMake(width / 2, height / 2 - 37)
+        loadingIndicator.activityIndicatorViewStyle = .WhiteLarge
+        loadingIndicator.hidesWhenStopped = true
+        tableView.addSubview(loadingIndicator)
+        loadingIndicator.startAnimating()
+    }
+
+    override func viewDidDisappear(animated: Bool) {
+        loadingIndicator.stopAnimating()
+    }
+
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+
+    func showMenu() {
+        self.slideMenuController().showLeftMenu(true)
+    }
+
+    func beginParsing() {
+        posts = []
+        xmlData = NSMutableData()
+        let url = NSURL(string: self.urlString as String)
+        let req = NSURLRequest(URL: url!)
+        connection = NSURLConnection(request: req, delegate: self, startImmediately: true)!
+    }
+
+    func reload() {
+        loadingIndicator.startAnimating()
+        self.beginParsing()
+    }
+
+    // MARK: - NSURLConnection Methods
+
+    func connection(connection: NSURLConnection, didReceiveData data: NSData) {
+        xmlData!.appendData(data)
+    }
+
+    func connectionDidFinishLoading(connection: NSURLConnection) {
+        loadingIndicator.stopAnimating()
+
+        let effectImage = self.backgroundImage.applyDarkEffect()
+        self.backgroundImageView.image = effectImage
+
+        parser = NSXMLParser(data: self.xmlData!)
+        parser.delegate = self
+        parser.parse()
+        xmlData = nil
+        tableView.reloadData()
+    }
+
+    func connection(connection: NSURLConnection, didFailWithError error: NSError) {
+        self.connection = nil
+        self.xmlData = nil
+
+        loadingIndicator.stopAnimating()
+
+        let errorString = NSString(format: "Fetch failed: %@", error.localizedDescription)
+        TSMessage.showNotificationWithTitle("Network Error", subtitle: errorString as String, type: .Error)
+    }
+
+    // MARK: - XML Parser Methods
+
+    func parser(parser: NSXMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String]) {
+
+        attributes = attributeDict
+
+        element = elementName
+        if ((elementName as NSString).isEqualToString("item")) {
+            elements = NSMutableDictionary()
+            elements = [:]
+            itemTitle = NSMutableString()
+            itemTitle = ""
+            link = NSMutableString()
+            link = ""
+            thumbnailURL = NSMutableString()
+            thumbnailURL = ""
+        }
+    }
+
+    func parser(parser: NSXMLParser, foundCharacters string: String) {
+        if (string == "Action Alert") {
+            self.isActionAlert = true
+        }
+
+        if (element.isEqualToString("title")) {
+            itemTitle.appendString(string)
+        } else if (element.isEqualToString("link")) {
+            link.appendString(string)
+        } else if (element.isEqualToString("media:thumbnail")) {
+            thumbnailURL.appendString(attributes.objectForKey("url") as! String)
+        }
+    }
+
+    func parser(parser: NSXMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?) {
+        if (!isActionAlert) {
+            if ((elementName as NSString).isEqualToString("item")) {
+                if !itemTitle.isEqual(nil) {
+                    elements.setObject(itemTitle, forKey: "title")
+                }
+                if !link.isEqual(nil) {
+                    elements.setObject(link, forKey: "link")
+                }
+                if !thumbnailURL.isEqual(nil) {
+                    elements.setObject(thumbnailURL, forKey: "thumbnail")
+                }
+
+                posts.addObject(elements)
+            }
+        }
+    }
+
+    // MARK: - Table view data source
+
+    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return 1
+    }
+
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return 136
+    }
+
+    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return posts.count
+    }
+
+    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCellWithIdentifier("newsCell", forIndexPath: indexPath) as! NewsCell
+
+        cell.newsTitle?.text = posts.objectAtIndex(indexPath.row).valueForKey("title") as? String
+        cell.newsTitle!.textColor = UIColor.whiteColor()
+        if (UIDevice.currentDevice().userInterfaceIdiom == .Phone) {
+            cell.newsTitle!.font = UIFont(name: "FranklinGothicStd-ExtraCond", size: 22.0)
+        } else {
+            cell.newsTitle!.font = UIFont(name: "FranklinGothicStd-ExtraCond", size: 30.0)
+        }
+        cell.backgroundColor = UIColor.clearColor()
+        cell.selectionStyle = .None
+
+        var thumbString = posts.objectAtIndex(indexPath.row).valueForKey("thumbnail") as? String
+    thumbString = thumbString!.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())
+    thumbString = thumbString!.stringByReplacingOccurrencesOfString("%09%09", withString:"")
+    print(String(format: "thumbString: %@", thumbString!))
+    // let thumbURL = NSURL(string: (posts.objectAtIndex(indexPath.row).valueForKey("thumbnail") as? String)!)
+    let thumbURL = NSURL(string: thumbString!)
+
+        cell.newsThumb?.sd_setImageWithURL(thumbURL, placeholderImage: UIImage(named: "placeholder"))
+        cell.newsThumb!.layer.cornerRadius = 45.0
+        cell.newsThumb!.clipsToBounds = true
+        cell.newsThumb!.layer.borderWidth = 2.0
+        cell.newsThumb!.layer.borderColor = UIColor.clearColor().CGColor
+        cell.newsThumb!.backgroundColor = UIColor.clearColor()
+
+        print(posts.objectAtIndex(indexPath.row).valueForKey("title"))
+        print(posts.objectAtIndex(indexPath.row).valueForKey("link"))
+        print(posts.objectAtIndex(indexPath.row).valueForKey("thumbnail"))
+
+        return cell
+    }
+
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let linkString = posts.objectAtIndex(indexPath.row).valueForKey("link") as? String
+        let url = NSURL(string: linkString!)
+        let safariVC = SFSafariViewController(URL: url!, entersReaderIfAvailable: true)
+        safariVC.view.tintColor = kfbBlue
+        self.navigationController?.presentViewController(safariVC, animated: true, completion: nil)
+    }
+}

@@ -1,0 +1,4 @@
+let element = data |> (Seq.filter (function | RawXml.Property (x) -> false | _ -> true))
+                   |> List.of_seq
+                   |> (function head :: [] -> head | head :: tail -> failwith("Too many elements.") | [] -> failwith("Empty sequence"))
+                   |> (fun x -> match x with MyElement (data) -> x | _ -> failwith("Bad element."))

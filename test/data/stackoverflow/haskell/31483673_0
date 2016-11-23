@@ -1,0 +1,10 @@
+printit :: Int -> IO ()
+printit i = print $ "Int i = " ++ show i
+
+printit :: [Char] -> IO ()
+printit s = print $ "[char] s = " ++ show s
+
+main :: IO ()
+main = do
+    printit 2
+    printit "two"

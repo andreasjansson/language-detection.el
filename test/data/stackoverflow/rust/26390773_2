@@ -1,0 +1,6 @@
+Compiling relations v0.0.1 (file:///home/chris/github/relations)
+/home/chris/github/relations/tests/test.rs:2:5: 2:19 error: unresolved import `relations::foo`. There is no `foo` in `relations`
+/home/chris/github/relations/tests/test.rs:2 use relations::foo;
+                                                 ^~~~~~~~~~~~~~
+error: aborting due to previous error
+Could not compile `relations`.

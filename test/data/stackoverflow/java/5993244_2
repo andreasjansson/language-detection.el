@@ -1,0 +1,5 @@
+private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {                                           
+        // TODO add your handling code here:
+        IVITEM i = new IVITEM();---- this is that form that opens inside the MDI appliaction
+        i.show();
+    }

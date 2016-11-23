@@ -1,0 +1,11 @@
+fn get_last_commit () -> String {
+
+    Command::new("git")
+            .arg("rev-parse")
+            .arg("HEAD")
+            .output()
+            .map(|output| {
+                String::from_utf8(output.stdout).ok().expect("error reading into string")
+            })
+            .ok().expect("error invoking git rev-parse")
+}

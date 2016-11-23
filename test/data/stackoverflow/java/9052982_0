@@ -1,0 +1,4 @@
+<servlet-mapping>
+<servlet-name>myapp</servlet-name>
+<url-pattern>*.htm</url-pattern>
+</servlet-mapping>

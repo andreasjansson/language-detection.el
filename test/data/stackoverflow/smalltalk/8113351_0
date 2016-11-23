@@ -1,0 +1,3 @@
+| myPkgs |
+myPkgs := MCPackage allInstances select: [: mcPkg | mcPkg name beginsWith: 'MyPrefix' ].
+myPkgs do: [ : myPkg | myPkg ??? ].

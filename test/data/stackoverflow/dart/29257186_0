@@ -1,0 +1,13 @@
+// E1.dart
+class E1 extends PolymerElement {
+  @observable List<Map> data;
+
+  dataChanged() => print(data.toString());
+}
+
+//E1.html
+<...>
+   <template repeat="{{map in data}}">
+      <E2 value="{{map[identifier]}}"></E2>
+   </template>
+</...>

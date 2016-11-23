@@ -1,0 +1,30 @@
+function shorten_file() {
+
+     $name = $_FILES['file']['name'];
+
+    $ltr = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIKLM'; 
+
+ srand((double) microtime() * 1000000); 
+
+ $short = '';
+     for ($i = 1; $i <= rand(4,4); $i++) { 
+ $q = rand() %98; 
+ $short = $short . $ltr[$q];
+ }
+
+     $file = strtolower($name);
+
+     $rand = mt_rand();
+     $short = substr($rand.$file, 0, 3);
+
+     return $short;
+
+}
+
+$filename = $_FILES['file']['name'];
+$filename = str_replace("'", "", $filename);
+$ext = $parts[count($parts)-1];
+$contenttype = strtolower($ext);
+
+$new_file = shorten($filename).".".$ext;
+$new_hash = shorten($filename);

@@ -1,0 +1,2 @@
+aTime := time.Time{}
+if defaultTime := time.Time{} ; aTime != defaultTime {}

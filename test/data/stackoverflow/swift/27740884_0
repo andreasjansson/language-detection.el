@@ -1,0 +1,34 @@
+func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [AnyObject]?  {
+
+    var shareAction = UITableViewRowAction(style: UITableViewRowActionStyle.Default, title: "Share" , handler: { (action:UITableViewRowAction!, indexPath:NSIndexPath!) -> Void in
+        // 2
+        let shareMenu = UIAlertController(title: nil, message: "Share using", preferredStyle: .ActionSheet)
+
+        let twitterAction = UIAlertAction(title: "Twitter", style: UIAlertActionStyle.Default, handler: nil)
+        let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: nil)
+
+        shareMenu.addAction(twitterAction)
+        shareMenu.addAction(cancelAction)
+
+
+        self.presentViewController(shareMenu, animated: true, completion: nil)
+    })
+    // 3
+    var rateAction =    (style: UITableViewRowActionStyle.Default, title: "rate",im , handler: { (action:UITableViewRowAction!, indexPath:NSIndexPath!) -> Void in
+        // 4
+
+        let rateMenu = UIAlertController(title: nil, message: "Rate this App", preferredStyle: .ActionSheet)
+
+        let appRateAction = UIAlertAction(title: "Rate", style: UIAlertActionStyle.Default, handler: nil)
+        let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: nil)
+
+        rateMenu.addAction(appRateAction)
+        rateMenu.addAction(cancelAction)
+
+
+        self.presentViewController(rateMenu, animated: true, completion: nil)
+    })
+
+    // 5
+    return [shareAction,rateAction]
+}

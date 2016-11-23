@@ -1,0 +1,10 @@
+user@f9195084fbf8:~$ ls -lah
+total 32K
+drwxr-xr-x 18 user user 4.0K Oct  8 17:35 .
+drwxr-xr-x 16 root root 4.0K Oct  8 04:57 ..
+-rwxr-xr-x  1 user user  220 Apr  3  2012 .bash_logout
+-rwxr-xr-x  1 user user 3.5K Apr  3  2012 .bashrc
+drwxr-xr-x  2 user user 4.0K Oct  8 05:43 .matplotlib
+drwxr-xr-x  2 user user 4.0K Oct  8 17:19 .pip
+-rwxr-xr-x  1 user user  675 Apr  3  2012 .profile
+drwxr-xr-x 15 user user 4.0K Oct  8 04:58 .virtualenvs

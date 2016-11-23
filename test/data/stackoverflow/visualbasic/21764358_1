@@ -1,0 +1,6 @@
+Dim R As IO.StreamReader
+  R = New IO.StreamReader(tFiles & "PlanExcluded.txt")
+  While (R.Peek() > -1)
+  lstRequired.Items.Remove(R.ReadLine)
+  End While
+  R.Close()

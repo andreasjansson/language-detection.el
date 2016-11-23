@@ -1,0 +1,13 @@
+- (void)layoutSubviews {
+
+[super layoutSubviews];
+
+CGRect imageFrame = self.imageView.frame;
+imageFrame = CGRectMake(truncf((self.bounds.size.width - imageFrame.size.width) / 2), 40.0f, imageFrame.size.width, imageFrame.size.height);
+self.imageView.frame = imageFrame;
+
+
+CGRect labelFrame = self.titleLabel.frame;
+labelFrame = CGRectMake(self.frame.origin.x, self.bounds.size.height - labelFrame.size.height - 10.0f, self.frame.size.width, labelFrame.size.height);
+self.titleLabel.frame = labelFrame;
+self.titleLabel.textAlignment = NSTextAlignmentCenter;

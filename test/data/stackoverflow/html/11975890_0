@@ -1,0 +1,23 @@
+<form action="action.php" method="post">
+<div id="thumbails" class="thumbnails">
+    <?php
+        $query="SELECT page_title, page_thumb FROM `pages` WHERE page_thumb != ''";
+        if($result = $mysqli->query($query))
+        {
+            $i = 1;
+            while($row = $result->fetch_assoc())
+            {?>
+                <div id="container<?php echo $i?>" class="container" style="width:25%; float:left;">
+                <img src="<?php echo $row[page_thumb]?>" height=220 width=200 />
+                <input class="cbox" type="checkbox" name="pages[]" value="<?php echo $row[page_title]?>"/>
+                </div>
+            <?php
+                $i++;
+            }
+        }
+    ?>
+</div>
+<div id="submit" class="submit"  style="padding-top:50px;text-align:center;">
+    <input type="submit"/>
+</div>
+</form>

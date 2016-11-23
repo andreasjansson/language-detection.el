@@ -1,0 +1,83 @@
+Server Error in '/' Application.
+
+CREATE DATABASE permission denied in database 'master'.
+
+Description: An unhandled exception occurred during the execution of the current web request. Please review the stack trace for more information about the error and where it originated in the code. 
+
+Exception Details: System.Data.SqlClient.SqlException: CREATE DATABASE permission denied in database 'master'.
+
+Source Error: 
+
+An unhandled exception was generated during the execution of the current web request. Information regarding the origin and location of the exception can be identified using the exception stack trace below.
+
+Stack Trace: 
+
+
+[SqlException (0x80131904): CREATE DATABASE permission denied in database 'master'.]
+System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction) +1787814
+System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction) +5341674
+System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose) +546
+System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady) +1693
+System.Data.SqlClient.SqlCommand.RunExecuteNonQueryTds(String methodName, Boolean async, Int32 timeout, Boolean asyncWrite) +869
+System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean asyncWrite) +413
+System.Data.SqlClient.SqlCommand.ExecuteNonQuery() +163
+System.Data.SqlClient.<>c__DisplayClassa.<DbCreateDatabase>b__7(SqlConnection conn) +33
+System.Data.SqlClient.SqlProviderServices.UsingConnection(SqlConnection sqlConnection, Action`1 act) +92
+System.Data.SqlClient.SqlProviderServices.UsingMasterConnection(SqlConnection sqlConnection, Action`1 act) +379
+System.Data.SqlClient.SqlProviderServices.DbCreateDatabase(DbConnection connection, Nullable`1 commandTimeout, StoreItemCollection storeItemCollection) +276
+System.Data.Objects.ObjectContext.CreateDatabase() +84
+System.Data.Entity.Migrations.Utilities.DatabaseCreator.Create(DbConnection connection) +84
+System.Data.Entity.Migrations.DbMigrator.EnsureDatabaseExists() +70
+System.Data.Entity.Migrations.DbMigrator.Update(String targetMigration) +44
+System.Data.Entity.Internal.DatabaseCreator.CreateDatabase(InternalContext internalContext, Func`3 createMigrator, ObjectContext objectContext) +253
+System.Data.Entity.Internal.InternalContext.CreateDatabase(ObjectContext objectContext) +125
+System.Data.Entity.Database.Create(Boolean skipExistsCheck) +115
+System.Data.Entity.CreateDatabaseIfNotExists`1.InitializeDatabase(TContext context) +307
+System.Data.Entity.Internal.<>c__DisplayClass8.<PerformDatabaseInitialization>b__6() +19
+System.Data.Entity.Internal.InternalContext.PerformInitializationAction(Action action) +60
+System.Data.Entity.Internal.InternalContext.PerformDatabaseInitialization() +181
+System.Data.Entity.Internal.LazyInternalContext.<InitializeDatabase>b__4(InternalContext c) +7
+System.Data.Entity.Internal.RetryAction`1.PerformAction(TInput input) +110
+System.Data.Entity.Internal.LazyInternalContext.InitializeDatabaseAction(Action`1 action) +185
+System.Data.Entity.Internal.LazyInternalContext.InitializeDatabase() +73
+System.Data.Entity.Internal.InternalContext.GetEntitySetAndBaseTypeForType(Type entityType) +28
+System.Data.Entity.Internal.Linq.InternalSet`1.Initialize() +52
+System.Data.Entity.Internal.Linq.InternalSet`1.GetEnumerator() +15
+System.Data.Entity.Infrastructure.DbQuery`1.System.Collections.Generic.IEnumerable<TResult>.GetEnume rator() +40
+System.Collections.Generic.List`1..ctor(IEnumerable`1 collection) +369
+System.Linq.Enumerable.ToList(IEnumerable`1 source) +58
+TampaBayDeliveryV4.OrdersController.Index() +21
+lambda_method(Closure , ControllerBase , Object[] ) +62
+System.Web.Mvc.ActionMethodDispatcher.Execute(ControllerBase controller, Object[] parameters) +14
+System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters) +181
+System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters) +27
+System.Web.Mvc.Async.<>c__DisplayClass42.<BeginInvokeSynchronousActionMethod>b__41() +28
+System.Web.Mvc.Async.<>c__DisplayClass8`1.<BeginSynchronous>b__7(IAsyncResult _) +10
+System.Web.Mvc.Async.WrappedAsyncResult`1.End() +50
+System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult) +32
+System.Web.Mvc.Async.<>c__DisplayClass39.<BeginInvokeActionMethodWithFilters>b__33() +58
+System.Web.Mvc.Async.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49() +225
+System.Web.Mvc.Async.<>c__DisplayClass37.<BeginInvokeActionMethodWithFilters>b__36(IAsyncResult asyncResult) +10
+System.Web.Mvc.Async.WrappedAsyncResult`1.End() +50
+System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult) +34
+System.Web.Mvc.Async.<>c__DisplayClass2a.<BeginInvokeAction>b__20() +24
+System.Web.Mvc.Async.<>c__DisplayClass25.<BeginInvokeAction>b__22(IAsyncResult asyncResult) +99
+System.Web.Mvc.Async.WrappedAsyncResult`1.End() +50
+System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeAction(IAsyncResult asyncResult) +27
+System.Web.Mvc.<>c__DisplayClass1d.<BeginExecuteCore>b__18(IAsyncResult asyncResult) +14
+System.Web.Mvc.Async.<>c__DisplayClass4.<MakeVoidDelegate>b__3(IAsyncResult ar) +23
+System.Web.Mvc.Async.WrappedAsyncResult`1.End() +55
+System.Web.Mvc.Controller.EndExecuteCore(IAsyncResult asyncResult) +39
+System.Web.Mvc.Async.<>c__DisplayClass4.<MakeVoidDelegate>b__3(IAsyncResult ar) +23
+System.Web.Mvc.Async.WrappedAsyncResult`1.End() +55
+System.Web.Mvc.Controller.EndExecute(IAsyncResult asyncResult) +29
+System.Web.Mvc.Controller.System.Web.Mvc.Async.IAsyncController.EndExecute(IAsyncResult asyncResult) +10
+System.Web.Mvc.<>c__DisplayClass8.<BeginProcessRequest>b__3(IAsyncResult asyncResult) +25
+System.Web.Mvc.Async.<>c__DisplayClass4.<MakeVoidDelegate>b__3(IAsyncResult ar) +23
+System.Web.Mvc.Async.WrappedAsyncResult`1.End() +55
+System.Web.Mvc.MvcHandler.EndProcessRequest(IAsyncResult asyncResult) +31
+System.Web.Mvc.MvcHandler.System.Web.IHttpAsyncHandler.EndProcessRequest(IAsyncResult result) +9
+System.Web.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute() +9651516
+System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously) +155
+
+Version Information: Microsoft .NET Framework Version:4.0.30319; ASP.NET Version:4.0.30319.34280

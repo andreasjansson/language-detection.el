@@ -1,0 +1,12 @@
+subroutine printA(message)
+  write(6,*) message
+end
+
+subroutine printB(message)
+  write(*,*) message
+end
+
+subroutine printC(message)
+  use iso_fortran_env
+  write(output_unit,*) message
+end

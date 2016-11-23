@@ -1,0 +1,6 @@
+SELECT 
+  article, 
+  (select min(regdate) from A where status = 3 and queue = INLOA) as FIRSTLOA,
+  (select max(regdate) from A where status = 2 and queue = LO2ST) as LAST
+FROM A
+GROUP BY A

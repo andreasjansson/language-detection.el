@@ -1,0 +1,10 @@
+let model: PagingTutorialModel
+
+init(withModel model: PagingTutorialModel) {
+    self.model = model
+    super.init(nibName: nil, bundle: nil)
+}
+
+required init?(coder aDecoder: NSCoder) {
+    super.init(coder: aDecoder)
+}

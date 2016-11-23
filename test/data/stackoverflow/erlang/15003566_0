@@ -1,0 +1,5 @@
+crypto-2.2
+crypto-2.2/priv/ (with some files in the priv folder)
+crypto-2.2.ez
+crypto-2.2.ez/crypto-2.2/ebin/crypto.app
+crypto-2.2.ez/crypto-2.2/ebin/ (with some .beam files in the ebin folder)

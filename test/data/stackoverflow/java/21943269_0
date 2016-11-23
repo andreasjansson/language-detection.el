@@ -1,0 +1,20 @@
+public void method1() {
+
+    lock1.lock();
+    //...
+    lock1.unlock();
+}
+
+public void method2() {
+   lock2.lock();
+   //...
+   lock2.unlock();
+}
+
+public void method3() {
+   lock1.lock();
+   lock2.lock();
+   // ...
+   lock2.unlock();
+   lock1.unlock();
+}

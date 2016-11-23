@@ -1,0 +1,64 @@
+func startCamera(){
+    var screenSize = UIScreen.mainScreen().bounds.size;
+    self.previewView = UIView(frame: CGRectMake(0, 0, UIScreen.mainScreen().bounds.size.width, UIScreen.mainScreen().bounds.size.height));
+    self.previewView.contentMode = UIViewContentMode.ScaleAspectFit
+    self.view.addSubview(previewView);
+
+    session.sessionPreset = AVCaptureSessionPresetHigh
+
+    let devices = AVCaptureDevice.devices();
+    // Loop through all the capture devices on this phone
+    for device in devices {
+        // Make sure this particular device supports video
+        if (device.hasMediaType(AVMediaTypeVideo)) {
+            // Finally check the position and confirm we've got the front camera
+            if(device.position == AVCaptureDevicePosition.Back) {
+                captureDevice = device as? AVCaptureDevice;
+                if captureDevice != nil {
+                    beginSession();
+                    break;
+                }
+            }
+        }
+    }
+}
+
+func beginSession() {
+    var err : NSError? = nil
+    var deviceInput:AVCaptureDeviceInput = AVCaptureDeviceInput(device: captureDevice!, error: &err);
+
+    if err != nil {
+        println("error: \(err?.localizedDescription)");
+    }
+    if session.canAddInput(deviceInput){
+        session.addInput(deviceInput);
+    }
+
+    videoDataOutput = AVCaptureVideoDataOutput()
+
+    if let videoDataOutput = videoDataOutput {
+        var rgbOutputSettings = [NSNumber(integer: kCMPixelFormat_32BGRA):kCVPixelBufferPixelFormatTypeKey]
+        videoDataOutput.alwaysDiscardsLateVideoFrames=true;
+        videoDataOutput.setSampleBufferDelegate(self, queue:self.videoDataOutputQueue)
+        if session.canAddOutput(self.videoDataOutput){
+            session.addOutput(self.videoDataOutput)
+        }
+        videoDataOutput.connectionWithMediaType(AVMediaTypeVideo).enabled = true
+
+        if let previewLayer = AVCaptureVideoPreviewLayer(session: self.session) {
+            self.previewLayer = previewLayer
+            previewLayer.videoGravity = AVLayerVideoGravityResizeAspect
+            previewLayer.connection.videoOrientation = AVCaptureVideoOrientation.LandscapeRight
+
+            var rootLayer :CALayer = self.previewView.layer;
+            rootLayer.masksToBounds=true;
+            previewLayer.frame = rootLayer.bounds;
+            rootLayer.addSublayer(self.previewLayer);
+            session.startRunning();
+
+            delay(8, closure: { () -> () in
+                self.processImage()
+            })
+        }
+    }
+}

@@ -1,0 +1,7 @@
+Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+    MessageBox.Show("I AM FORM 1")
+End Sub
+
+Private Sub Form2_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+    MessageBox.Show("I AM FORM 2")
+End Sub

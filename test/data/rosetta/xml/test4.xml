@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PurchaseRequisition>
+	<Submittor>
+		<SubmittorName>John Doe</SubmittorName>
+		<SubmittorEmail>john@nodomain.net</SubmittorEmail>
+		<SubmittorTelephone>1-123-456-7890</SubmittorTelephone>
+	</Submittor>
+	<Billing/>
+	<Approval/>
+	<Item number="1">
+		<ItemType>Electronic Component</ItemType>
+		<ItemDescription>25 microfarad 16 volt surface-mount tantalum capacitor</ItemDescription>
+		<ItemQuantity>42</ItemQuantity>
+		<Specification>
+			<Category type="UNSPSC" value="32121501" name="Fixed capacitors"/>
+			<RosettaNetSpecification>
+				<query max.records="1">
+					<element dicRef="XJA039">
+						<name>CAPACITOR - FIXED - TANTAL - SOLID</name>
+					</element>
+					<element>
+						<name>Specific Features</name>
+						<value>R</value>
+					</element>
+					<element>
+						<name>Body Material</name>
+						<value>C</value>
+					</element>
+					<element>
+						<name>Terminal Position</name>
+						<value>A</value>
+					</element>
+					<element>
+						<name>Package: Outline Style</name>
+						<value>CP</value>
+					</element>
+					<element>
+						<name>Lead Form</name>
+						<value>D</value>
+					</element>
+					<element>
+						<name>Rated Capacitance</name>
+						<value>0.000025</value>
+					</element>
+					<element>
+						<name>Tolerance On Rated Capacitance (%)</name>
+						<value>10</value>
+					</element>
+					<element>
+						<name>Leakage Current (Short Term)</name>
+						<value>0.0000001</value>
+					</element>
+					<element>
+						<name>Rated Voltage</name>
+						<value>16</value>
+					</element>
+					<element>
+						<name>Operating Temperature</name>
+						<value type="max">140</value>
+						<value type="min">-10</value>
+					</element>
+					<element>
+						<name>Mounting</name>
+						<value>Surface</value>
+					</element>
+				</query>
+			</RosettaNetSpecification>
+		</Specification>
+		<Vendor number="1">
+			<VendorName>Capacitors 'R' Us, Inc.</VendorName>
+			<VendorIdentifier>98-765-4321</VendorIdentifier>
+			<VendorImplementation>http://sylviaearle/capaciorsRus/wsdl/buyerseller-implementation.wsdl</VendorImplementation>
+		</Vendor>
+	</Item>
+</PurchaseRequisition>

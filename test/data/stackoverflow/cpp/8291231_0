@@ -1,0 +1,14 @@
+class Test
+{
+  boost::thread thread_;
+  void Process()
+  {
+    ...
+  }
+
+  public:
+    Test()
+    {
+       thread_ = boost::thread(Process);
+    }
+}

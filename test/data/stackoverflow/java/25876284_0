@@ -1,0 +1,127 @@
+public class MainActivity extends ActionBarActivity {
+
+
+    private Button mYesButton;
+    private Button mNoButton;
+    private Button mResultsButton;
+    private TextView mQuestionTextView;
+    private Button mEditButton;
+    private TextView EditQuestion;
+    private Button YesButtonEdit;
+    private Button NoButtonEdit;
+
+    int YesTimes;
+    int NoTimes;
+
+
+    public static final String EXTRA_EDIT_QUESTION = "com.example.surveyapp.EditActivity.edit_this_question";
+
+    //private SurveryQuestion[] mQuestionBank = new SurveryQuestion[] {
+        //      new SurveryQuestion(R.string.question_1),
+        //      new SurveryQuestion()
+        //};
+    String[] mSurveyArray = {
+
+        new String("hello"), //More questions coming soon!
+        new String("Hello1"),
+        //new String(R.string.question_1)
+    };
+    int mCurrentIndex = 0;
+
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+
+        mYesButton = (Button)findViewById(R.id.yes_button); //Yes/NoButton modified from LMGTFY app
+        mYesButton.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+
+                        YesTimes += 1;
+                        mCurrentIndex = (mCurrentIndex + 1) % mSurveyArray.length;
+                            // Coming soon!
+
+            }
+        });
+        mNoButton = (Button)findViewById(R.id.no_button);
+        mNoButton.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+
+                NoTimes += 1;
+
+            }
+        });
+        mResultsButton = (Button)findViewById(R.id.result_button);
+        mResultsButton.setOnClickListener(new View.OnClickListener() {
+            //Here we make toast!
+            @Override
+            public void onClick(View v) {
+
+                Toast.makeText(getApplicationContext(), //Discovered getApplicationContext from stackoverflow
+                    mYesButton + ": " + YesTimes + mNoButton + ": " + NoTimes, Toast.LENGTH_SHORT).show();
+
+
+            }
+        });
+
+        mEditButton = (Button)findViewById(R.id.edit_button); //This is the button that lets you edit the survey
+        mEditButton.setOnClickListener(new View.OnClickListener()  {
+
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(MainActivity.this, EditActivity.class); 
+                startActivity(i); 
+
+
+
+
+
+
+            }
+
+        });
+
+
+        Intent intent = getIntent();
+        String EditQuestion = intent.getStringExtra("sendBack");
+        String YesButtonEdit = intent.getStringExtra("sendBack2");
+        String NoButtonEdit = intent.getStringExtra("sendBack3");
+        TextView mQuestionTextView = (TextView) findViewById(R.id.question_text_view); 
+        Button mYesButton = (Button)findViewById(R.id.yes_button);
+        Button mNoButton = (Button)findViewById(R.id.no_button);
+        mQuestionTextView.setText(EditQuestion);
+        mYesButton.setText(YesButtonEdit);
+        mNoButton.setText(NoButtonEdit);
+
+
+
+
+
+    }
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+        if (id == R.id.action_settings) {
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+}

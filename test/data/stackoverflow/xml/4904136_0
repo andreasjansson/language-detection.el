@@ -1,0 +1,29 @@
+<NewDataSet>
+ <Table>
+   <dnis>Dec 5 Call</dnis>
+   <monthval>12</monthval>
+   <Totalcalls>2</Totalcalls>
+   <AvgDuration>23</AvgDuration>
+   <TotalHangups>34</TotalHangups>
+   <TotalHangupsaftClosedMsg>23</TotalHangupsaftClosedMsg>
+   <TotalCallstoAgent>2</TotalCallstoAgent>
+   <Row>
+     <dnis>Dec 5 Call</dnis>
+     <Week>Dec  5-Dec 11</Week>
+     <Totalcalls>2</Totalcalls>
+     <AvgDuration>23</AvgDuration>
+     <TotalHangups>34</TotalHangups>
+     <TotalHangupsaftClosedMsg>23</TotalHangupsaftClosedMsg>
+     <TotalCallstoAgent>2</TotalCallstoAgent>
+   </Row>
+   <Row>
+     <dnis>Dec 5 Call</dnis>
+     <Week>Dec  5-Dec 11</Week>
+     <Totalcalls>2</Totalcalls>
+     <AvgDuration>23</AvgDuration>
+     <TotalHangups>34</TotalHangups>
+     <TotalHangupsaftClosedMsg>23</TotalHangupsaftClosedMsg>
+     <TotalCallstoAgent>2</TotalCallstoAgent>
+  </Row>
+ </Table>
+</NewDataSet>

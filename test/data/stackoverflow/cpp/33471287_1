@@ -1,0 +1,2 @@
+Cannot convert from 'initializer-list' to 'TestArray<TestPair>'
+No constructor could take the source type, or constructor overload     resolution was ambiguous

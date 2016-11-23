@@ -1,0 +1,20 @@
+FUNCTION ReadValue RETURN Unbounded_String IS
+      ValueChar : Character;
+      Result : Unbounded_String := To_Unbounded_String("NULL");
+   BEGIN
+      Get(ValueChar);
+      Skip_Line;
+
+      WHILE ValueChar /= ';'LOOP
+         Get(ValueChar);
+         IF IsValidNameInput(ValueChar) THEN 
+            Result := Result & ValueChar;
+         ELSE
+            exit;
+         END IF;         
+      END LOOP;
+      ValueIntegerFlag  := CheckValue(Value);
+
+      RETURN Result;
+
+   END ReadValue;

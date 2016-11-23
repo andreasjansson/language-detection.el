@@ -1,0 +1,32 @@
+data =     {
+    apiVersion = "2.1";
+    data =         {
+        items =             (
+                            {
+                accessControl =                     {
+                    autoPlay = allowed;
+                    comment = allowed;
+                    commentVote = allowed;
+                    embed = allowed;
+                    list = allowed;
+                    rate = allowed;
+                    syndicate = allowed;
+                    videoRespond = moderated;
+                };
+                aspectRatio = widescreen;
+                category = Education;
+                commentCount = 10;
+                content =                     {
+                    1 = "rtsp://r4---sn-a5m7zu7s.c.youtube.com/CigLENy73wIaHwl-BISTGI_oVhMYDSANFEgGUgx1c2VyX3VwbG9hZHMM/0/0/0/video.3gp";
+                    5 = "https://www.youtube.com/v/VuiPGJOEBH4?version=3&f=user_uploads&app=youtube_gdata";
+                    6 = "rtsp://r4---sn-a5m7zu7s.c.youtube.com/CigLENy73wIaHwl-BISTGI_oVhMYESARFEgGUgx1c2VyX3VwbG9hZHMM/0/0/0/video.3gp";
+                };
+                description = "Have an awesome day! #DFTBA\n\nSupport me on Patreon : Patreon.com/archetapp\n\nSubscribe to my channel! - http://www.youtube.com/archetapp\n\nCheck out my Website! - http://www.archetapp.com\nCheck me out on Twitter - http://www.twitter.com/archetapp";
+                duration = 437;
+                favoriteCount = 0;
+                id = VuiPGJOEBH4;
+                likeCount = 21;
+                player =                     {
+                    default = "https://www.youtube.com/watch?v=VuiPGJOEBH4&feature=youtube_gdata_player";
+                    mobile = "https://m.youtube.com/details?v=VuiPGJOEBH4";
+                };

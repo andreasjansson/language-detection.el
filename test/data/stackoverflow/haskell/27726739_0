@@ -1,0 +1,5 @@
+windows n xz@(x:xs)
+  | length v < n = []
+  | otherwise = v : windows n xs
+  where
+    v = take n xz

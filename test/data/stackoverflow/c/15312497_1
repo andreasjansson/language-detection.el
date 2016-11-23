@@ -1,0 +1,13 @@
+static int              _connect_IPV4(int socket, struct hostent *host)
+{
+  struct sockaddr_in    addr;
+
+  addr.sin_port = htons(587);
+  addr.sin_family = AF_INET;
+  addr.sin_addr = *(struct in_addr *)host->h_addr;
+  bzero(&addr.sin_zero, 8);
+  if (connect(socket, (struct sockaddr *)&addr, sizeof(struct sockaddr_in)) == -1)
+    printf("%s\n", strerror(errno));
+  else
+    return (socket);
+}

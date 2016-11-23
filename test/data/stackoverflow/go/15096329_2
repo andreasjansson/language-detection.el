@@ -1,0 +1,3 @@
+func (v Vertex) Abs() float64 {
+[...]
+v := Vertex{3, 4}

@@ -1,0 +1,12 @@
+Public Class Class1
+ public Dim xVar as integer = 0
+End Class 
+
+Public Class Class2
+ public Dim xAnotherVar as integer = 0
+End Class 
+
+Public Class SomeOtherClass
+ Dim xObj as Object  = New Class2
+ 'Now i want to check whether the xObj is having xVar or Not?
+End Class

@@ -1,0 +1,3 @@
+<add name="EmployeeContext"
+     connectionString="Server=ASUS- PC\SQLEXPRESS; Database=mvc_db; User Id=sa; password=1234;Integrated Security=True; MultipleActiveResultSets=True;" 
+     providerName="System.Data.SqlClient" />

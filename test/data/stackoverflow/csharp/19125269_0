@@ -1,0 +1,10 @@
+public static CustomizeCourseCompletionWithModuleList GetCustomizeCourseCompletionWithModuleList()
+    {
+        var cmd = new StoredProcedure
+        {
+            CommandText = "CustomizeCourseCompletionWithModuleSelectById",
+            CommandType = System.Data.CommandType.StoredProcedure
+        };
+        cmd.Parameters.Add("@ID", DBNull.Value);
+        return DataPortal.Fetch<CustomizeCourseCompletionWithModuleList>(cmd);
+    }

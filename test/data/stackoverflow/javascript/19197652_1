@@ -1,0 +1,34 @@
+{
+    "name": "SoftwareGrid",
+    "version": "0.5",
+    "icons": { "16": "icons/16.png","48": "icons/48.png", "128": "icons/128.png" },
+    "description": "Shows user cresidentials on Linkedin",
+    "permissions": [
+        "cookies",
+        "tabs",
+        "http://www.linkedin.com/*"
+    ],
+
+    "browser_action": {
+        "default_title": "Show Profile",
+        "default_icon": { "16": "icons/16.png","48": "icons/48.png", "128": "icons/128.png" },
+        "default_popup": "popup.html"
+    },
+
+    "background": {
+        "scripts": ["jquery-1.7.2.min.js","background.js"]
+    }, 
+
+    "content_scripts": [{
+        "matches": ["http://www.linkedin.com/*"],
+        "all_frames": true,
+        "js": ["jquery-1.7.2.min.js", "script.js"],
+        "run_at": "document_end"
+    }],
+
+    "web_accessible_resources": [
+        "icons/i1.png"
+    ],
+
+    "manifest_version": 2
+}

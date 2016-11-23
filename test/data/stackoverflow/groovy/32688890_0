@@ -1,0 +1,10 @@
+java.lang.ClassNotFoundException: groovy.lang.GroovyObject
+org.apache.catalina.loader.WebappClassLoader.loadClass(WebappClassLoader.java:1714)
+org.apache.catalina.loader.WebappClassLoader.loadClass(WebappClassLoader.java:1559)
+java.lang.ClassLoader.defineClass1(Native Method)
+java.lang.ClassLoader.defineClass(ClassLoader.java:800)
+java.security.SecureClassLoader.defineClass(SecureClassLoader.java:142)
+org.apache.catalina.loader.WebappClassLoader.findClassInternal(WebappClassLoader.java:2904)
+org.apache.catalina.loader.WebappClassLoader.findClass(WebappClassLoader.java:1173)
+org.apache.catalina.loader.WebappClassLoader.loadClass(WebappClassLoader.java:1681)
+org.apache.catalina.loader.WebappClassLoader.loadClass(WebappClassLoader.java:1559)...

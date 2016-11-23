@@ -1,0 +1,8 @@
+return Future.forEach(orderLines, (ol) {
+         return fonixFuture()
+             .then((_)=>print(ol))
+             .then((_)=> LineDisplay = new getPurchaseLines())
+             .then((_)=> LineDisplay..getItems())
+             .then((_)=> this.parent.nodes.add(LineDisplay))
+             .then((_)=>print(this.parent.nodes));      
+         });

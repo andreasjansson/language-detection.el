@@ -1,0 +1,5 @@
+SELECT u.name AS _user_name, s.name AS _school_name
+FROM fwg_files AS f
+LEFT JOIN users AS u ON u.id = f.user_id
+LEFT JOIN user_profiles AS up ON up.user_id = u.id
+LEFT JOIN school AS s ON s.id = up.profile_value

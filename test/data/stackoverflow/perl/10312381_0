@@ -1,0 +1,22 @@
+<definition>
+    <attributes>
+        <children>
+            <attributes>
+                <children xsi:type="C_COMPLEX_OBJECT" >
+                    <attributes>
+                        <children>
+                            <attributes>
+                                <children><list><magnitude><lower>100</lower><upper>200</upper></magnitude></list></children>
+                                <children><list><magnitude><lower>200</lower><upper>400</upper></magnitude></list></children>
+                                <children><list><magnitude><lower>400</lower><upper>750</upper></magnitude></list></children>
+                                <children><list><magnitude><lower>250</lower><upper>500</upper></magnitude></list></children>
+                                <children><list><magnitude><lower>350</lower><upper>1000</upper></magnitude></list></children>
+                            </attributes>
+                        </children>
+                    </attributes>
+                </children>
+               <children></children>
+            </attributes>
+        </children>
+    </attributes>
+</definition>

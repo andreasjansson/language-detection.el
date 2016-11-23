@@ -1,0 +1,8 @@
+module('Parent', package.seeall)
+
+port = 1234
+
+function connect() 
+   ngx.say("connecting to "..domain..":"..port.."\n")
+
+end

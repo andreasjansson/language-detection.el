@@ -1,0 +1,9 @@
+-module(webservice).
+-include("../include/yaws_api.hrl").
+-compile(export_all).
+
+http(parse_query,Arg) ->
+    yaws_api:parse_query(Arg);
+
+out(Arg) -> 
+    {html, [http(parse_query,Arg)]}.

@@ -1,0 +1,3 @@
+select table_name 
+  from element_tablenames 
+ where element_id = 10023842

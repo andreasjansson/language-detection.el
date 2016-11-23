@@ -1,0 +1,21 @@
+public void Something()
+{
+    // This works fine
+    if (!File.Exists(fileName))
+    {
+        // This works fine
+        using (StreamWriter w = new StreamWriter(fileName))
+        {
+             w.Write("Test");
+        }
+    }
+
+   // Test to see if there's an issue with this method too...
+   // This is fine, but whether or not File.Exists(fileName) is used, DoSomething(); has the same problem.
+
+   if (File.Exists(fileName))
+   { 
+       DoSomething(); 
+   }
+
+}

@@ -1,0 +1,4 @@
+(funcall (compose '(
+           (lambda (a) (* a 3))
+           (lambda (a) (+ a 2))
+)) 0)

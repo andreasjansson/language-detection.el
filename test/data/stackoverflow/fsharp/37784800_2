@@ -1,0 +1,96 @@
+open FParsec
+
+
+    // Placeholder for state...
+    type UserState = 
+        {
+            dummy: int            
+        }
+        with
+            static member Create() = {dummy = -1}
+
+
+    type Operator =
+        | Plus
+
+    type Expression =
+        | Number of float
+        | Arithmetic of Expression * Operator * Expression   // Composes 2 primatives
+
+    type Statement =
+        | Key of Expression option // Optional expression name
+
+
+// very simple parsers which handles a simple string on one line.
+// White space handling
+let isBlank = fun c -> c = ' ' || c = '\t'
+let ws1 = skipMany1SatisfyL isBlank "whitespace"
+let ws = skipManySatisfy isBlank
+let comment = pstring "#" >>. skipRestOfLine false
+let wsBeforeEOL = skipManySatisfy isBlank >>. optional comment
+
+// Parse a number
+let sNumber = pfloat .>> wsBeforeEOL |>> Number // Test wsExpression ending
+
+// The expression reference
+let expression, expressionRef = createParserForwardedToRef()
+
+let expressionFragment = choice [sNumber] //;sBool;sNull;sString;sIdentifier]
+let bracketedExpressionFragment = between (pstring "(" .>> ws) (pstring ")" .>> ws) expression
+
+// The parser for addition only
+let oppa = new OperatorPrecedenceParser<Expression, unit, UserState>()
+
+let parithmetic = oppa.ExpressionParser
+
+//oppa.TermParser <- (expressionFragment .>> wsBeforeEOL)   <|> (bracketedExpressionFragment .>> wsBeforeEOL)
+oppa.TermParser <- choice[expressionFragment;bracketedExpressionFragment]
+oppa.AddOperator(InfixOperator("+", ws, 1, Associativity.Left, fun x y -> Arithmetic(x, Plus, y)))
+expressionRef := oppa.ExpressionParser
+
+
+// *** HERE: Define the Key, with optional expression, which must have at lease 1 WS,, then followed by wsBeforeEOL, which is multiple blanks and optional comment.
+let eKeyValue = pstringCI "KeyName:" >>. (opt (ws1 >>. expression)) .>> wsBeforeEOL |>> Key
+
+// Define the parser for the whole string...in this case a single line
+let htmlProgramParser = spaces >>. eKeyValue .>> spaces .>> eof
+
+// test harnes on a string
+let parseHtmlProgramString programName str =
+    runParserOnString htmlProgramParser (UserState.Create()) programName str //with
+
+[<EntryPoint>]
+let main argv = 
+    printfn "%A" argv
+
+    let test1 =
+        "  KeyName:    # No Expression but comment"
+        |> parseHtmlProgramString "Test1 - No Expression but comment"
+        |> printfn "Test1 - %A"
+
+    let test2 =
+        "  KeyName:  2+2  # Expression and Comment"
+        |> parseHtmlProgramString "Test2 - 2+2 # Expression and Comment"
+        |> printfn "Test2 - %A"
+
+    let test3 =
+        "  KeyName:  3 + 3  # # Expression and Comment2"
+        |> parseHtmlProgramString "Test3 - 3 + 3 # Expression and Comment2 (Spaces)"
+        |> printfn "Test3 - %A"
+
+    let test4 =
+        "  KeyName:  (3 + 4)  # Bracketed Expression and Comment"
+        |> parseHtmlProgramString "Test4 - (3 + 4) # Bracketed Expression and Comment"
+        |> printfn "Test4 - %A"
+
+    let test5 =
+        "  KeyName:  (4 + 4)  "
+        |> parseHtmlProgramString "Test5 - (4 + 4) # Expression + <no comment>"
+        |> printfn "Test5 - %A"
+
+    let test6 =
+        "  KeyName:"
+        |> parseHtmlProgramString "Test6 - <no expression> <no comment>"
+        |> printfn "Test6 - %A"
+
+    0 // return an integer exit code

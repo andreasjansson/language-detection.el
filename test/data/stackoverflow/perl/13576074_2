@@ -1,0 +1,28 @@
+use strict;
+use warnings;
+
+use Devel::Leak;
+use Test::More;
+BEGIN { use_ok('RefTest') };
+
+sub test_leak (&$;$) {
+    my ($code, $descr, $maxleak) = (@_, 0);
+    my $n1 = Devel::Leak::NoteSV(my $handle);
+    $code->() for 1 .. 1000;
+    my $n2 = Devel::Leak::CheckSV($handle);
+    cmp_ok($n1 + $maxleak, '>=', $n2, $descr);
+}
+
+# OK
+test_leak { my $ref = RefTest->new() or die }
+    'first sv_2mortal(); then newRV_noinc()', 2;
+
+# also OK
+test_leak { my $ref = RefTest->new_leaky({}) or die }
+    'first sv_2mortal(); then newRV_noinc(); pre-init base', 2;
+
+# leaks!
+test_leak { my $ref = RefTest->new_leaky() or die }
+    'first newRV_noinc(); then sv_2mortal()', 2;
+
+done_testing 4;

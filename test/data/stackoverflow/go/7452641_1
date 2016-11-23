@@ -1,0 +1,24 @@
+package main
+
+import (
+    "bufio"
+    "os"
+    "fmt"
+)
+
+const delim = '\n'
+const file = "file"
+
+func main() {
+
+    r := bufio.NewReader() *Reader
+
+    println("enter string:")
+    line, err := r.ReadString(delim)
+    if err != nil {
+        fmt.Println(err)
+        os.Exit(1)
+    }
+    fmt.Println(line)
+
+}

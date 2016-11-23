@@ -1,0 +1,3 @@
+$ ln -s ../Makefile foo/bar/Makefile
+$ make -C foo/bar
+[error]

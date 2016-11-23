@@ -1,0 +1,3 @@
+echo "Running diascope -clean /mnt/videos/video$1.txt..."
+diascope -clean /mnt/videos/video$1.txt > /var/www/html/video/encodeVideo.log
+echo "Removing old deploy dir, and making new one..."

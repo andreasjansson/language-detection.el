@@ -1,0 +1,6 @@
+public ActionResult GetGenre(string genreName)
+{
+   //Need to get the `genreName` from the JavaScript function above.. which is
+   // in turn coming from the selected value of the drop down in the beginning.
+
+}

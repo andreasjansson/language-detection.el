@@ -1,0 +1,47 @@
+protected void pg3button_Click(object sender, EventArgs e)
+{
+    try
+    {
+        ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModal", "$('#myModal').modal();", true);
+        upModal.Update();
+
+        //Create the msg object to be sent
+        MailMessage msg = new MailMessage();
+
+        //Add your email address to the recipients
+        msg.To.Add("test@test.co.uk");
+
+        //Configure the address we are sending the mail from
+        MailAddress address = new MailAddress("test@test.co.uk");
+        msg.From = address;
+
+        //Append their name in the beginning of the subject
+        msg.Subject = "Enquiry";
+
+        msg.Body = Label1.Text + " " + Session["pg1input"].ToString()
+                    + Environment.NewLine.ToString() +
+                    Label2.Text + " " + Session["pg1dd"].ToString()
+                    + Environment.NewLine.ToString() +
+                    Label3.Text + " " + Session["pg2"].ToString();
+
+        //Configure an SmtpClient to send the mail.
+        SmtpClient client = new SmtpClient("smtp.live.com", 587);
+        client.EnableSsl = true; //only enable this if your provider requires it
+
+        //Setup credentials to login to our sender email address ("UserName", "Password")
+        NetworkCredential credentials = new NetworkCredential("test@test.co.uk", "Password10");
+        client.Credentials = credentials;
+
+        //MODAL CODE TO GO HERE
+
+        //Send the msg
+        client.Send(msg);
+
+        Response.Redirect("/Session/pg4.aspx");
+    }
+    catch
+    {
+        //If the message failed at some point, let the user know
+        lblResult.Text = "<div class=\"form-group\">" + "<div class=\"col-xs-12\">" + "There was a problem sending your request. Please try again." + "</div>" + "</div>" + "<div class=\"form-group\">" + "<div class=\"col-xs-12\">" + "If the error persists, please contact us." + "</div>" + "</div>";
+    }
+}

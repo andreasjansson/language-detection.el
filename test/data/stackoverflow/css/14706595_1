@@ -1,0 +1,16 @@
+.container {
+    .list {
+        .selected {
+            background-image : url('highlighted.png');
+        }
+    }
+}
+
+.borderradius .container {
+    .list {
+        .selected {
+            background : yellow;
+            border-radius : 10px;
+        }
+    }
+}

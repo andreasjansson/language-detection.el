@@ -1,0 +1,3 @@
+Unrecognized escape \K passed through at /home/e/Doc/AutoMation line 27.
+Scalar found where operator expected at /home/e/Doc/AutoMation.pl line 27, near "s/\/4947000219/\K(4947000219+)/$1"
+syntax error at /home/e/Doc/AutoMation.pl line 27, near "s/\/4947000219/\K(4947000219+)/$1"

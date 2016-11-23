@@ -1,0 +1,7 @@
+protected type prot_Type is
+     procedure Handler;
+     pragma Attach_Handler(Handler, ...);
+ end;
+
+ --//Attach is made at the creation of the next object:
+ Object : prot_Type;

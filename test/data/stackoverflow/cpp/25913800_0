@@ -1,0 +1,30 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+
+int a = 1000000;
+
+for(int i = 1; i <= a; ++i)
+{
+    int sum = 0;
+    int q; 
+
+    // The biggest proper divisor is half the number itself
+    if(i % 2 == 0) q = i/2;
+    else q = (i+1)/2;
+
+
+    for(int j = 1; j <= q; ++j)
+    {
+        if(i % j == 0) sum += j;
+    }
+
+    //Condition for perfect number
+    if(sum == i) cout << i << " is a perfect number!" << endl;
+}
+
+system("pause");
+
+return 0;
+}

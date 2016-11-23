@@ -1,0 +1,16 @@
+private AppContexts db = new AppContexts();
+private AppContexts dbt = new AppContexts();
+public ActionResult ListPeople()
+{
+    List<PersonAddViewModel> list = new List<PersonAddViewModel>();
+    var people = db.Persons;
+    foreach(Person p in people)
+    {
+        PersonAddViewModel model = new PersonAddViewModel();
+        Address address = dbt.Addresses.SingleOrDefault(a => a.PersonId == p.Id)
+        model.Id = p.Id;
+        model.Name = p.Name;
+        model.Street = address.Street;
+    }
+    return View(list);
+}

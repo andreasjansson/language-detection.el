@@ -1,0 +1,14 @@
+haddock
+  -- keep-temp-files: False
+  -- hoogle: False
+  -- html: False
+  -- html-location:
+  -- executables: False
+  -- tests: False
+  -- benchmarks: False
+  -- all:
+  -- internal: False
+  css: /Users/Rax/Projects/Haskell/Package/mystuff.css
+  hyperlink-source: True
+  -- hscolour-css:
+  -- contents-location:

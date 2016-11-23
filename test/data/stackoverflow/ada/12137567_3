@@ -1,0 +1,32 @@
+with Ada.Float_Text_IO;
+with Ada.Text_IO; use Ada.Text_IO;
+
+with Number_Of_Averages;
+with Conventional_Method_Number_Of_Averages;
+use type Number_Of_Averages.First_Method;
+procedure Test_Number_Of_Averages is
+
+Fs, Time_Duration, NFFT    : Float := 0.0;
+Averages                   : Float := 0.0;
+
+Good_Method : Conventional_Method_Number_Of_Averages.First_Method;
+
+begin
+   Ada.Text_IO.Put("Enter the sampling frequency ");
+   Ada.Float_Text_IO.Get (Item => Fs);
+   Ada.Text_IO.New_Line (1);
+   Ada.Text_IO.Put("Enter the time recorded ");
+   Ada.Float_Text_IO.Get (Item => Time_Duration);
+   Ada.Text_IO.New_Line (1);
+   Ada.Text_IO.Put("Enter the FFT size ");
+   Ada.Float_Text_IO.Get (Item => NFFT);
+   Ada.Text_IO.Put_Line (Ada.Text_IO.Get_Line);
+
+   Ada.Text_IO.New_Line(1);
+   Ada.Text_IO.Put("Number of averages = ");
+   Number_Of_Averages.Count_Averages(Good_Method, Fs, NFFT, Time_Duration);
+
+   Averages := Conventional_Method_Number_Of_Averages.Average_Is(Good_Method);
+   Ada.Float_Text_IO.Put (Item => Averages, Fore => 3, Aft  => 5, Exp  => 0);
+
+end Test_Number_Of_Averages;

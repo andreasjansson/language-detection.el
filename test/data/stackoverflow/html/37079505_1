@@ -1,0 +1,3 @@
+new_string = edittext.getText().toString(); // getting my "@test"`
+new_string = new_string+"<font color='red'>newString</font>";
+edittext.settext(Html.fromHtml(new_string));

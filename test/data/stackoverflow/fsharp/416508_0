@@ -1,0 +1,4 @@
+Type inference has inferred the signature
+    val toleq : float<'u> -> float<'u> -> float<'u> -> bool
+Either define 'toleq' as a simple data term, make it a function, or add a 
+    type constraint to instantiate the type parameters.

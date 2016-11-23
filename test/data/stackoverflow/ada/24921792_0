@@ -1,0 +1,20 @@
+with Ada.Containers; use Ada.Containers;
+with Ada.Containers.Vectors;
+with Ada.Text_IO; use Ada.Text_IO;
+procedure Test is
+  package V_Integer is new Ada.Containers.Vectors(Positive, Integer);
+  use V_Integer;
+  type V_Access is access all Vector;
+  Bar : V_Access;
+begin
+  declare
+  Foo : aliased Vector;
+  begin
+    Bar := Foo'unrestricted_Access;
+    Foo.Append(3);
+    Foo.Append(5);
+    Put_Line("In scope: " & count_type'image(Length(Bar.all)));
+  end;
+  -- Will this reference always exist? Does it need to be freed?
+  Put_Line("Out of scope: " & count_type'image(Length(Bar.all))); 
+end Test;

@@ -1,0 +1,3 @@
+imgs = {readImage (spriteexample1, pos.x, pos.y), readImage(spriteexample2, pos.x,                
+pos.y), readImage(spriteexample3, pos.x, pos.y), readImage(spriteexample4, pos.x,   
+pos.y), readImage(spriteexample5, pos.x, pos.y), readImage(spriteexample6, pos.x, pos.y)}

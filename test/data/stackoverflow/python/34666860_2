@@ -1,0 +1,3 @@
+data_to_pack = [tuple(record) for _, record in df.iterrows()]
+data_array = np.array(data_to_pack, dtype=zip(df.columns, df.dtypes))
+data_bytes = data_array.tostring()

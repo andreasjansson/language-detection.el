@@ -1,0 +1,8 @@
+AVCaptureVideoPreviewLayer *previewLayer = [[AVCaptureVideoPreviewLayer alloc] initWithSession:session];
+[previewLayer setVideoGravity:AVLayerVideoGravityResizeAspectFill];
+CALayer *rootLayer = [self.cameraFeedView layer];
+[rootLayer setMasksToBounds:YES];
+CGRect frame = self.cameraFeedView.frame;
+[previewLayer setFrame:frame];
+previewLayer.frame = rootLayer.bounds;
+[rootLayer insertSublayer:previewLayer atIndex:0];

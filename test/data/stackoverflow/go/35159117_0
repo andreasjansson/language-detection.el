@@ -1,0 +1,53 @@
+package main
+
+import(
+    "os"
+    "os/exec"
+    "flag"
+    log "github.com/golang/glog"
+)
+
+func main(){
+    flag.Parse()
+    tdir := "abc"
+    if err := os.MkdirAll(tdir, 0777); err !=nil{
+        log.Error(err)
+        return
+    }
+    f, err := os.Create(tdir + "/main.go")
+    if err !=nil{
+        log.Error(err)
+        return
+    }
+    if err = f.Chmod(0777); err !=nil{
+        log.Error(err)
+        return
+    }
+    defer f.Close()
+    defer os.Remove(f.Name())
+    if _, err = f.Write([]byte(tpl)); err !=nil{
+        log.Error(err)
+        return
+    }
+    cmd := exec.Command("go", "build", "-o", "edoc")
+    cmd.Path = tdir
+    b, err := cmd.CombinedOutput()
+    if err !=nil{
+        log.Errorf("%s, err %v", b, err)
+        return
+    }
+
+}
+
+var tpl = `package main
+
+import(
+    "fmt"
+    "flag"
+)
+
+func main(){
+    flag.Parse()
+    fmt.Printf("Hello World")
+
+}`

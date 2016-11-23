@@ -1,0 +1,6 @@
+Prelude> import Control.Monad.State
+Prelude Control.Monad.State> :t State
+
+<interactive>:1:1:
+    Not in scope: data constructor `State'
+    Perhaps you meant `StateT' (imported from Control.Monad.State)

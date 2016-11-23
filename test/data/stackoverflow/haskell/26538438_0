@@ -1,0 +1,2 @@
+colFields :: Int -> [[a]] -> [a]
+colFields n c = map (!!  n) c

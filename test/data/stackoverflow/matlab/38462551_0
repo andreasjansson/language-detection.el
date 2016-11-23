@@ -1,0 +1,11 @@
+function [returnA, returnB]=foo(paramA)
+    returnA=ones(1,10).*paramA;
+    returnB=magic(4);
+end
+
+function[]=voo()
+    %typing the return as this
+    [A,B]=foo(5);
+    %gives the same result as
+    [A B]=foo(5);
+end

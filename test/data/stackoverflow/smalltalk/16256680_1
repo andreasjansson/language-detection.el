@@ -1,0 +1,4 @@
+ToDoTest>>tearDown
+    Task tasklist: savedTasks.
+    ToDoProject projectlist: savedProjects.
+    Person peoplelist: savedPeople

@@ -1,0 +1,5 @@
+TAPI = record
+        add  : function (var a, b : double) : double;
+        mult : function (var a, b : double) : double;
+end;
+PAPI = ^TAPI;

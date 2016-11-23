@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        {!! Html::style('bootstrap/css/bootstrap.css') !!}
+        {!! Html::style('bootstrap/css/bootstrap.min.css') !!}
+        <link href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css" media="all" rel="stylesheet" type="text/css" />   
+        <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+        <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+    </head>
+    <body>
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <section class="panel panel-default">
+                <header class="panel-heading">
+                    <input type="text" name="searchname" id="searchname" class="form-control" placeholder="enter name">
+                </header>
+                <div class="panel-body">
+                    <table>
+                        <tr>
+                            <td><input type="text" name="id" id="id" class="form-control" placeholder="ID" ></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td><input type="text" name="name" id="name" class="form-control" placeholder="Name" ></td>
+                        </tr>
+                    </table>
+                </div>
+            </section>
+        </div>
+    </div>
+    </body>
+    <script type="text/javascript">
+        $('#searchname').autocomplete({
+            source: '{!! Url::route('jsonRedirect') !!}',
+            minlength: 1,
+            autofocus: true,
+            select: function(e, ui){
+                alert(ui);
+            }
+        });
+    </script>
+    </html>

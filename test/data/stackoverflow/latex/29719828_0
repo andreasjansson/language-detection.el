@@ -1,0 +1,5 @@
+\AddEverypageHook{
+  \if "New chapter starts at current page." - "Do stuff." 
+  \else "Do other stuff."
+  \fi
+}

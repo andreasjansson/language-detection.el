@@ -1,0 +1,9 @@
+> let dk2 = Array.create 5 0
+let dk2ref = ref dk2;;
+
+val dk2 : int [] = [|0; 0; 0; 0; 0|]
+val dk2ref : int [] ref = {contents = [|0; 0; 0; 0; 0|];}
+
+> !dk2ref.[1]
+
+stdin(3,2): error FS0039: The field, constructor or member 'Item' is not defined

@@ -1,0 +1,15 @@
+BEGIN {
+  BINMODE=3;
+  ORS="";
+  s="000102030405060708ff800f0e0d0c0b0a";
+  # not working on cygwin for values >=0x80:
+  len=length(s);
+  print "">"broken.bin"
+  for(i=1; i<=len; i+=2) {
+    printf("%c", strtonum("0x"substr(s, i, 2)))>>"broken.bin";
+  }
+  #working, but uses external xxd command:
+  print s>"/tmp/xxx";
+  system ("cat /tmp/xxx|xxd -r -p>good.bin");
+  exit;
+}

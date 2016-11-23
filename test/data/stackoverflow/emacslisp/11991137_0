@@ -1,0 +1,11 @@
+;; Open the file and get content
+        (with-temp-buffer
+          ;; file-name is the PNG file name, which is binary data
+          (find-file (expand-file-name file-name current-dir))
+          ;; Setup Confluence request alist
+          (setq confl-req (list 
+                           (cons "fileName" file-name)
+                           (cons "contentType" mime-type)))
+          ;; RPC call
+          (setq confl-reply (cfln-rpc-execute 'confluence1.addAttachment
+                                              page-id confl-req (buffer-substring-no-properties (point-min) (point-max))))

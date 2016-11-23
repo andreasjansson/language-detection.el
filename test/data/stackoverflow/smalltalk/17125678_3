@@ -1,0 +1,3 @@
+st> 1.1 sin
+Object: 1 error: The program attempted to divide a number by zero
+ZeroDivide(Exception)>>signal (ExcHandling.st:254)

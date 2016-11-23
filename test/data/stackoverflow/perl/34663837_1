@@ -1,0 +1,28 @@
+'_protocol' => 'HTTP/1.1',
+'_content' => '',
+'_rc' => '400',
+'_headers' => bless( {
+    'connection' => 'close',
+    'client-response-num' => 1,
+    'date' => 'Thu, 07 Jan 2016 19:17:52 GMT',
+    'client-ssl-cert-issuer' => '/C=US/O=DigiCert Inc/OU=www.digicert.com/CN=DigiCert SHA2 High Assurance Server CA',
+    'client-ssl-cipher' => 'ECDHE-RSA-AES128-SHA',
+    'client-peer' => '66.220.158.81:443',
+    'content-length' => '0',
+    '::std_case' => {
+        'client-date' => 'Client-Date',
+        'client-response-num' => 'Client-Response-Num',
+        'client-ssl-cert-subject' => 'Client-SSL-Cert-Subject',
+        'client-ssl-cert-issuer' => 'Client-SSL-Cert-Issuer',
+        'client-ssl-cipher' => 'Client-SSL-Cipher',
+        'client-peer' => 'Client-Peer',
+        'client-ssl-socket-class' => 'Client-SSL-Socket-Class'
+    },
+    'client-date' => 'Thu, 07 Jan 2016 19:17:52 GMT',
+    'content-type' => 'text/plain',
+    'client-ssl-cert-subject' => '/C=US/ST=CA/L=Menlo Park/O=Instagram LLC/CN=*.instagram.com',
+    'server' => 'proxygen',
+    'client-ssl-socket-class' => 'IO::Socket::SSL'
+}, 'HTTP::Headers' ),
+'_msg' => 'Bad Request',
+}, 'HTTP::Response' );

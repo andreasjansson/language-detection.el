@@ -1,0 +1,475 @@
+import android.app.Activity;
+import android.content.res.Configuration;
+import android.graphics.PixelFormat;
+import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
+import android.util.Log;
+import android.view.Gravity;
+import android.view.SurfaceHolder;
+import android.view.SurfaceView;
+import android.view.View;
+import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
+import android.webkit.WebView;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.SeekBar;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import com.mindtree.gladiuscms.R;
+
+import org.videolan.libvlc.EventHandler;
+import org.videolan.libvlc.IVideoPlayer;
+import org.videolan.libvlc.LibVLC;
+import org.videolan.libvlc.Media;
+import org.videolan.libvlc.MediaList;
+
+import java.lang.ref.WeakReference;
+
+import cordova.plugin.VLCPlugin.util.SystemUiHider;
+import cordova.plugin.VLCPlugin.util.UrlProvider;
+
+
+/**
+ * An example full-screen activity that shows and hides the system UI (i.e.
+ * status bar and navigation/system bar) with user interaction.
+ *
+ * @see SystemUiHider
+ */
+public class FullscreenVlcPlayer extends Activity implements  SurfaceHolder.Callback, IVideoPlayer {
+
+    private  String              urlToStream;
+
+    // Display Surface
+    private LinearLayout        vlcContainer;
+    private SurfaceView         mSurface;
+    private SurfaceHolder       holder;
+
+    // Overlay / Controls
+
+    private FrameLayout         vlcOverlay;
+    private ImageView           vlcButtonPlayPause;
+    private Handler             handlerOverlay;
+    private Runnable            runnableOverlay;
+    private Handler             handlerSeekbar;
+    private Runnable            runnableSeekbar;
+    private SeekBar             vlcSeekbar;
+    private TextView            vlcDuration;
+    private TextView            overlayTitle;
+
+    // media player
+    private LibVLC              libvlc;
+    private int                 mVideoWidth;
+    private int                 mVideoHeight;
+    private final static int    VideoSizeChanged = -1;
+    private UrlProvider urlProvider = new UrlProvider();
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        // Retrieve our url
+       // Bundle b = getIntent().getExtras();
+        UrlProvider urlProvider = UrlProvider.getInstance();
+        urlToStream = urlProvider.getUrl();
+        Log.d("Data url sdfjksdf", urlToStream);
+//        urlToStream = "rtsp://wowzaec2demo.streamlock.net/vod/mp4:BigBuckBunny_115k.mov";// b.getString("url", null);
+
+
+        // HIDE THE ACTION BAR
+//        getActionBar().hide();
+
+        // SETUP THE UI
+        try{
+            getActionBar().hide();
+        setContentView(R.layout.activity_fullscreen_vlc_player);
+            }catch(Exception e){
+            Log.d("TAG", "error");
+        }
+
+        // VLC
+        vlcContainer = (LinearLayout) findViewById(R.id.vlc_container);
+        mSurface = (SurfaceView) findViewById(R.id.vlc_surface);
+
+
+        // OVERLAY / CONTROLS
+        vlcOverlay = (FrameLayout) findViewById(R.id.vlc_overlay);
+        vlcButtonPlayPause = (ImageView) findViewById(R.id.vlc_button_play_pause);
+        vlcSeekbar = (SeekBar) findViewById(R.id.vlc_seekbar);
+        vlcDuration = (TextView) findViewById(R.id.vlc_duration);
+
+        overlayTitle = (TextView) findViewById(R.id.vlc_overlay_title);
+      //  overlayTitle.setText("rtsp://172.22.68.96:21212/Stream-2");
+
+        // AUTOSTART
+        playMovie();
+
+    }
+
+
+    private void showOverlay() {
+        vlcOverlay.setVisibility(View.VISIBLE);
+    }
+
+    private void hideOverlay() {
+        vlcOverlay.setVisibility(View.GONE);
+    }
+
+    private void setupControls() {
+        getActionBar().hide();
+        // PLAY PAUSE
+        vlcButtonPlayPause.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (libvlc.isPlaying()) {
+                    libvlc.pause();
+                   // vlcButtonPlayPause.setImageDrawable(getResources().getDrawable(R.drawable.ic_action_play_over_video));
+                } else {
+                    libvlc.play();
+                   // vlcButtonPlayPause.setImageDrawable(getResources().getDrawable(R.drawable.ic_action_pause_over_video));
+                }
+            }
+        });
+
+        // SEEKBAR
+        handlerSeekbar = new Handler();
+        runnableSeekbar = new Runnable() {
+            @Override
+            public void run() {
+                if (libvlc != null) {
+                    long curTime = libvlc.getTime();
+                    long totalTime = (long) (curTime / libvlc.getPosition());
+                    int minutes = (int) (curTime / (60 * 1000));
+                    int seconds = (int) ((curTime / 1000) % 60);
+                    int endMinutes = (int) (totalTime / (60 * 1000));
+                    int endSeconds = (int) ((totalTime / 1000) % 60);
+                    String duration = String.format("%02d:%02d / %02d:%02d", minutes, seconds, endMinutes, endSeconds);
+                    vlcSeekbar.setProgress((int) (libvlc.getPosition() * 100));
+                    vlcDuration.setText(duration);
+                }
+                handlerSeekbar.postDelayed(runnableSeekbar, 1000);
+            }
+        };
+
+        runnableSeekbar.run();
+        vlcSeekbar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
+                Log.v("NEW POS", "pos is : " + i);
+                //if (i != 0)
+                //    libvlc.setPosition(((float) i / 100.0f));
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        });
+
+        // OVERLAY
+        handlerOverlay = new Handler();
+        runnableOverlay = new Runnable() {
+            @Override
+            public void run() {
+                vlcOverlay.setVisibility(View.GONE);
+                toggleFullscreen(true);
+            }
+        };
+        final long timeToDisappear = 3000;
+        handlerOverlay.postDelayed(runnableOverlay, timeToDisappear);
+        vlcContainer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                vlcOverlay.setVisibility(View.VISIBLE);
+
+                handlerOverlay.removeCallbacks(runnableOverlay);
+                handlerOverlay.postDelayed(runnableOverlay, timeToDisappear);
+            }
+        });
+    }
+
+    public void playMovie() {
+        if (libvlc != null && libvlc.isPlaying())
+            return ;
+        vlcContainer.setVisibility(View.VISIBLE);
+        holder = mSurface.getHolder();
+        holder.addCallback(this);
+        createPlayer(urlToStream);
+    }
+
+
+    private void toggleFullscreen(boolean fullscreen)
+    {
+        WindowManager.LayoutParams attrs = getWindow().getAttributes();
+        if (fullscreen)
+        {
+            attrs.flags |= WindowManager.LayoutParams.FLAG_FULLSCREEN;
+            vlcContainer.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                    | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                    | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                    | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                    | View.SYSTEM_UI_FLAG_FULLSCREEN
+                    | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
+        }
+        else
+        {
+            attrs.flags &= ~WindowManager.LayoutParams.FLAG_FULLSCREEN;
+        }
+        getWindow().setAttributes(attrs);
+    }
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        setSize(mVideoWidth, mVideoHeight);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        //releasePlayer();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        releasePlayer();
+    }
+
+    /**
+     * **********
+     * Surface
+     * ***********
+     */
+
+    public void surfaceCreated(SurfaceHolder holder) {
+    }
+
+    public void surfaceChanged(SurfaceHolder surfaceholder, int format,
+                               int width, int height) {
+        if (libvlc != null)
+            libvlc.attachSurface(surfaceholder.getSurface(), this);
+    }
+
+    public void surfaceDestroyed(SurfaceHolder surfaceholder) {
+    }
+
+    private void setSize(int width, int height) {
+        mVideoWidth = width;
+        mVideoHeight = height;
+        if (mVideoWidth * mVideoHeight <= 1)
+            return;
+
+        // get screen size
+        int w = getWindow().getDecorView().getWidth();
+        int h = getWindow().getDecorView().getHeight();
+
+        // getWindow().getDecorView() doesn't always take orientation into
+        // account, we have to correct the values
+        boolean isPortrait = getResources().getConfiguration().orientation      `**enter code here**`== Configuration.ORIENTATION_PORTRAIT;
+        if (w > h && isPortrait || w < h && !isPortrait) {
+            int i = w;
+            w = h;
+            h = i;
+        }
+
+        float videoAR = (float) mVideoWidth / (float) mVideoHeight;
+        float screenAR = (float) w / (float) h;
+
+        if (screenAR < videoAR)
+            h = (int) (w / videoAR);
+        else
+            w = (int) (h * videoAR);
+
+        // force surface buffer size
+        if (holder != null)
+            holder.setFixedSize(mVideoWidth, mVideoHeight);
+
+        // set display size
+        ViewGroup.LayoutParams lp = mSurface.getLayoutParams();
+        lp.width = w;
+        lp.height = h;
+        mSurface.setLayoutParams(lp);
+        mSurface.invalidate();
+    }
+
+    @Override
+    public void setSurfaceSize(int width, int height, int visible_width,
+                               int visible_height, int sar_num, int sar_den) {
+        Message msg = Message.obtain(mHandler, VideoSizeChanged, width, height);
+        msg.sendToTarget();
+    }
+
+    /**
+     * **********
+     * Player
+     * ***********
+     */
+
+    private void createPlayer(String media) {
+        releasePlayer();
+        setupControls();
+        try {
+            if (media.length() > 0) {
+                Toast toast = Toast.makeText(this, media, Toast.LENGTH_LONG);
+                toast.setGravity(Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL, 0,
+                        0);
+                toast.show();
+            }
+
+            // Create a new media player
+            libvlc = LibVLC.getInstance();
+            libvlc.setHardwareAcceleration(LibVLC.HW_ACCELERATION_FULL);
+            libvlc.eventVideoPlayerActivityCreated(true);
+            libvlc.setSubtitlesEncoding("");
+            libvlc.setAout(LibVLC.AOUT_OPENSLES);
+            libvlc.setTimeStretching(true);
+            libvlc.setChroma("RV32");
+            libvlc.setVerboseMode(true);
+            LibVLC.restart(this);
+            EventHandler.getInstance().addHandler(mHandler);
+            holder.setFormat(PixelFormat.RGBX_8888);
+            holder.setKeepScreenOn(true);
+            MediaList list = libvlc.getMediaList();
+            list.clear();
+            list.add(new Media(libvlc, LibVLC.PathToURI(media)), false);
+            libvlc.playIndex(0);
+        } catch (Exception e) {
+            Toast.makeText(this, "Could not create Vlc Player", Toast.LENGTH_LONG).show();
+        }
+    }
+
+    private void releasePlayer() {
+        if (handlerSeekbar != null && runnableSeekbar != null)
+            handlerSeekbar.removeCallbacks(runnableSeekbar);
+        EventHandler.getInstance().removeHandler(mHandler);
+        if (libvlc == null)
+            return;
+        libvlc.stop();
+        libvlc.detachSurface();
+        holder = null;
+        libvlc.closeAout();
+
+        mVideoWidth = 0;
+        mVideoHeight = 0;
+    }
+
+    /**
+     * **********
+     * Events
+     * ***********
+     */
+
+    private Handler mHandler = new MyHandler(this);
+
+    private static class MyHandler extends Handler {
+        private WeakReference<FullscreenVlcPlayer> mOwner;
+
+        public MyHandler(FullscreenVlcPlayer owner) {
+            mOwner = new WeakReference<FullscreenVlcPlayer>(owner);
+        }
+
+        @Override
+        public void handleMessage(Message msg) {
+            FullscreenVlcPlayer player = mOwner.get();
+
+            // Player events
+            if (msg.what == VideoSizeChanged) {
+                player.setSize(msg.arg1, msg.arg2);
+                return;
+            }
+
+            // Libvlc events
+            Bundle b = msg.getData();
+            switch (b.getInt("event")) {
+                case EventHandler.MediaPlayerEndReached:
+                    player.releasePlayer();
+                    break;
+                case EventHandler.MediaPlayerPlaying:
+                case EventHandler.MediaPlayerPaused:
+                case EventHandler.MediaPlayerStopped:
+                default:
+                    break;
+            }
+        }
+    }
+
+}
+//it use some helper class and 
+xml file attached to this 
+
+cordova plugin 
+package cordova.plugin.VLCPlugin;
+import android.app.Application;
+import android.content.Intent;
+import android.content.res.Resources;
+import android.graphics.Rect;
+import android.widget.FrameLayout;
+
+import com.mindtree.gladiuscms.R;
+
+import org.apache.cordova.CallbackContext;
+import org.apache.cordova.CordovaInterface;
+import org.apache.cordova.CordovaPlugin;
+import org.apache.cordova.CordovaWebView;
+import org.json.JSONArray;
+import org.json.JSONException;
+
+import cordova.plugin.VLCPlugin.util.UrlProvider;
+
+public class VLCPlugin extends CordovaPlugin {
+   UrlProvider urlProvider = new UrlProvider();
+    @Override
+    public void initialize(CordovaInterface cordova, CordovaWebView webView) {
+
+        FrameLayout layout = (FrameLayout) webView.getView().getParent();
+
+
+
+    }
+
+
+    @Override
+    public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
+
+        if(action.equals("play")) {
+            String url = args.getString(0);
+
+            UrlProvider urlProvide = UrlProvider.getInstance();
+            urlProvide.setUrl(url);
+
+
+
+         resources.getIdentifier("R.layout.activity_fullscreen_vlc_player",                   "layout", package_name);
+            cordova.getActivity().runOnUiThread(new Runnable() {
+                public void run() {
+                    Application app = cordova.getActivity().getApplication();
+                    Intent intent = new Intent(app, FullscreenVlcPlayer.class);
+                    cordova.getActivity().startActivity(intent);
+                   }
+        return false;
+    }
+}
+
+now i am cslling this plugin from my controller 
+window.vlcPlugin.onMediaLoad("http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4");}
+
+an my html code is 
+
+<div ng-drag="true" ng-drag-data="video" ng-drag-success="onDragComplete()"></div>
+
+i want to see video in this div 
+<div class="video_player_screen" ng-drop="tru >

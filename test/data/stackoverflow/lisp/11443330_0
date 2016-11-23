@@ -1,0 +1,10 @@
+(define (eps-func p)
+   (let* ((p (lattice->cartesian))
+         (x (vector3-x p))
+         (y (vector3-y p))
+         (z (vector3-z p)))
+        (if (> sin(* 2 pi x y z) 0)
+            (make dielectric
+                    (epsilon 12))
+            (make dielectric
+                    (epsilon 1)))))

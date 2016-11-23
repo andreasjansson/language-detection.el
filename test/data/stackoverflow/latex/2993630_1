@@ -1,0 +1,10 @@
+#!/usr/local/bin/python
+print "Hello World"
+os.system("""
+VAR=even;
+sed -i "s/$VAR/odd/" testfile;
+for i in `cat testfile` ;
+do echo $i; done;
+echo "now the tr command is removing the vowels";
+cat testfile |tr 'aeiou' ' '
+""")

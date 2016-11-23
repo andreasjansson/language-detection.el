@@ -1,0 +1,28 @@
+typedef void (^onTaskCompletion)();  //defining the block
+
+-(void) viewdidLoad
+{
+
+    onTaskCompletion block = ^{
+        // callback into the block };
+
+    [self test1:block];
+
+}
+
+-(void) test1:(onTaskCompletion) block
+{
+
+    //do something   
+    dispatch_async(queue, ^{
+
+    // dispatch async into serial queue & do something
+
+        dispatch_async(dispatch_get_main_queue){
+
+         // calling the block
+
+         block();
+        };
+    }; 
+}

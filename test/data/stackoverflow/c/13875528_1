@@ -1,0 +1,31 @@
+void get_file(char textfilename[], int optnumber) {
+    struct node *nodes;
+    struct track *tracks;
+    struct course *courses;
+    struct entrant *entrants;
+    struct checkpointdata *checkpointdatas;
+    char filename[20]; //Array of char for filename
+    printf("Enter the name of the %s text file(with file extension) :", textfilename);
+    scanf(" %[a-zA-Z._1-9]", &filename);
+    switch (optnumber) {
+        case 1:
+            process_name(filename);
+            break;
+        case 2:
+            process_node(filename, nodes);
+            break;
+        case 3:
+            process_track(filename, tracks);
+            break;
+        case 4:
+            process_course(filename, courses);
+            break;
+        case 5:
+            process_entrant(filename, entrants);
+            break;
+        case 6:
+            process_checkpointdata(filename, checkpointdatas);
+            break;
+    }
+
+}

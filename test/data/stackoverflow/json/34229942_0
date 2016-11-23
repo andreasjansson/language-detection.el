@@ -1,0 +1,3 @@
+var str = '[["first", "last", "XU10060282", "Dept", 000634, "Position", 156689]]';
+    var dataArray = JSON.parse(str);
+    console.log(dataArray);

@@ -1,0 +1,18 @@
+vector<Player *> players; 
+    cout << "Please enter the number of players" << endl;
+    cin >> numOfPlayers;
+    total = amountPlaying(numOfPlayers);
+for(int i = 0; i < total; i++)
+    {
+        temp = members();
+        if (temp == "Warrior" || temp == "warrior")
+            players[i] = new Warrior();
+        if (temp == "Wizard" || temp == "wizard")
+            players[i] = new Wizard();
+        else
+        {
+            cout << " wrong input, try again " <<endl;
+            i--;
+        }
+        cin >> *players[i];
+    }

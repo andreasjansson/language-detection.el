@@ -1,0 +1,25 @@
+byte[] deflatedData = mtext.getByte();
+          try {
+                t.sendResponseHeaders(200,deflatedData.length);
+            } catch (IOException e1) {
+                display(e1);
+                e1.printStackTrace();
+                if(closeafter){
+                    t.close();
+                }
+                return;
+            }
+                DeflaterOutputStream os = new DeflaterOutputStream(t.getResponseBody());
+          try {
+            os.write(deflatedData ,0,deflatedData .length);
+        } catch (IOException e1) {
+            mByte = null;
+            display(e1);
+            if(closeafter){
+                t.close();
+            }
+            return;
+        }
+
+            os.flush();
+            os.close();

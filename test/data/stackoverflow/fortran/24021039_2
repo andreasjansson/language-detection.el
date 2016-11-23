@@ -1,0 +1,26 @@
+program testVectorField
+   use constants_mod
+   use vectorField_mod
+   implicit none
+
+   integer,parameter :: Nx = 150
+   real(dpn),parameter :: x_0 = 0.0
+   real(dpn),parameter :: x_N = 1.0
+   real(dpn),parameter :: dx = (x_N - x_0)/dble(Nx-1)
+   real(dpn),dimension(Nx) :: x = (/(x_0+dble(i)*dx,i=0,Nx-1)/)
+   real(dpn),dimension(Nx) :: f
+   real(dpn),dimension(:),pointer :: fp
+   type(vecField1D) :: f1
+   integer :: i
+
+   do i=1,Nx
+    f(i) = sin(x(i))
+   enddo
+
+   do i=1,10**5
+     call setX(f1,f) ! 
+     f = getX(f1) ! Should I use this? 
+     fp = getX(f1) ! Or this?
+     fp => getX(f1) ! Or even this?
+   enddo
+   end program

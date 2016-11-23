@@ -1,0 +1,45 @@
+addButtonTapped(sender: AnyObject) {
+
+        if (itemName.text != "" && itemDescription.text != "") {
+
+            let newItem = Item()
+            newItem.name = itemName.text!
+            newItem.descrpiton = itemDescription.text
+            newItem.gotten = false
+            newItem.rejected = false
+            newItem.sender = PFUser.currentUser()!.username!
+
+            let query = PFQuery(className: "Group")
+
+            query.whereKey("objectId2", equalTo: PFUser.currentUser()!.objectId!)
+
+            query.findObjectsInBackgroundWithBlock { (objects, error) -> Void in
+                if error == nil && objects != nil{
+                    let obj = (objects as! [PFObject]).first!
+
+                    var items : [Item] = obj.objectForKey("itemList") as! [Item]
+
+                    newItem.group = obj.objectId!
+
+                    items.append(newItem)
+
+                    obj.setObject(items, forKey: "itemList")
+                    obj.save()
+
+                }
+            }
+
+            itemName.resignFirstResponder()
+            itemDescription.resignFirstResponder()
+            bottomConstraint.constant = -140
+            itemName.text = ""
+            itemDescription.text = ""
+
+        }else{
+
+
+
+
+        }
+
+    }

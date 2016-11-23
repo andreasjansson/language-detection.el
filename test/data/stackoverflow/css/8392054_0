@@ -1,0 +1,36 @@
+.nav {
+    width: 950px;
+    float: left;
+    margin: 0 0 1em 0;
+    padding: 0;
+    background-color: #3b3b44;      /*Navigation Active Background*/
+    border-top: 1px solid #ccf;
+    border-bottom: 1px solid #ccf;}
+.nav ol {
+    list-style: none;
+    width: 950px;
+    margin: 0 auto;
+    padding: 0; }
+.nav li {
+    float: left; }
+.nav li a {
+    display: block;
+    padding: 2px 20px;
+    text-decoration: none;
+    font-family: Helvetica, arial, sans-serif;
+    font-size: 16px;
+    font-weight: bold;
+    color: #fff;                  /*Active Text Color*/
+    border-right: 1px solid #ccf; }
+.nav li:first-child a {
+    border-left: 0px solid #ccf; }
+.nav li a:hover {
+    color: #000;                  /*Active Hover Color*/
+    background-color: #8db3ff; }  /*Navigation Hover Background*/
+
+#header {
+    height: 185px;
+    margin-top: 15px;
+    background: url(zitemplateChange.jpg); 
+    border-bottom: 30px solid #cc0; /*showing where I want navigation to position*/
+    }

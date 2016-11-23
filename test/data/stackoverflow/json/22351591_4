@@ -1,0 +1,19 @@
+public class Y
+{
+    public string _$id { get; set; }
+    public double unit_price { get; set; }
+    public int quantity { get; set; }
+}
+
+public class OnlineX
+{
+    public string _$id { get; set; }
+    public int x_id { get; set; }
+    public string date { get; set; }
+    public List<Y> Ys { get; set; }
+}
+
+public class RootObject
+{
+    public List<OnlineX> OnlineXs { get; set; }
+}

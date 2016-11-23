@@ -1,0 +1,14 @@
+list_sum([], 0).
+
+list_sum([Head | Tail], TotalSum) :-
+    list_sum(Tail, Sum1),TotalSum is Head + Sum1.
+
+find_student_avg(Student,Year,Avg):- 
+    findall(X, grades(_,student(id(Student),_,_,_,_,_),year(Year),normal(X)), L),
+    %% not(resit_grades(_,student(id(Student),_,_,_,_,_),_,_)),
+    list_sum(L,Sum), 
+    length(L,N), N>0, 
+    Avg is Sum / N.
+
+find_all_avgs([Head|Tail],Year,L):-
+    find_student_avg(Head,Year,Avg),append(L1,[Head|Avg],L),find_all_avgs(Tail,Year,L2).

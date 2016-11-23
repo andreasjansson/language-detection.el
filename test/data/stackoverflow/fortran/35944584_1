@@ -1,0 +1,3 @@
+IF (myid == 0) THEN
+        ALLOCATE(C(2*nprocs,-2:+2))
+END IF

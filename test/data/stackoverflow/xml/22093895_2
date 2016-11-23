@@ -1,0 +1,29 @@
+<xsl:stylesheet version="1.0"
+xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+<xsl:key name="header" match="//kid" use="gender"/>
+<xsl:template match="//patients/patient">
+        <xsl:value-of select="name"/>
+        <xsl:text xml:space="preserve">
+        </xsl:text>
+        <xsl:value-of select="age"/>
+        <xsl:text xml:space="preserve">
+        </xsl:text>
+        <xsl:text xml:space="preserve">Boys:
+            </xsl:text>
+        <xsl:for-each select="key('header', 'M')">
+            <xsl:value-of select="name"/>
+            <xsl:text xml:space="preserve">
+            </xsl:text>
+        </xsl:for-each>
+        <xsl:text xml:space="preserve">
+        </xsl:text>        
+<xsl:text xml:space="preserve">Girls:
+            </xsl:text>
+        <xsl:for-each select="key('header', 'F')">
+            <xsl:value-of select="name"/>
+            <xsl:text xml:space="preserve">
+            </xsl:text>
+        </xsl:for-each>
+</xsl:template>
+
+</xsl:stylesheet>

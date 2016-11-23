@@ -1,0 +1,19 @@
+private static<T extends IOutgoingCallConfig> Result getCalls(Class<T> entityClass) {
+Check.Argument.isNotNull(entityClass, "entityClass");
+
+List<CallItem> calls = new ArrayList<>();
+
+EntityManager em = JPA.em();
+
+CriteriaBuilder cb = em.getCriteriaBuilder();
+CriteriaQuery<T> cq = cb.createQuery(entityClass);
+Root<T> rootEntry = cq.from(entityClass);
+CriteriaQuery<T> all = cq.select(rootEntry);
+TypedQuery<T> allQuery = em.createQuery(all);
+
+for(T entity: allQuery.getResultList()) {
+   calls.add(new CallItem(entity));
+}
+
+    return jsonSuccess(calls);
+}

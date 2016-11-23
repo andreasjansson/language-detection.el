@@ -1,0 +1,18 @@
+procedure TForm1.TreeView1Click(Sender: TObject);
+var
+  Obj: TMyObject;
+begin
+  if TreeView1.Selected <> nil then
+  begin
+    Obj := TMyObject(TreeView1.Selected.Data);
+
+    if Obj is TChildObject1 then
+    begin
+      Edit1.Text := 'this node is a child1 object';
+    end else
+    if Obj is TChildObject2 then
+    begin
+      Edit1.Text := 'and this node is child 2 object';
+    end;
+  end;
+end;

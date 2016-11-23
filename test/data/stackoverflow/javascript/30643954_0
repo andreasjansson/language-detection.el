@@ -1,0 +1,9 @@
+function success(pos) {
+      $scope.latitud = pos.coords.latitude
+      $scope.longitud =  pos.coords.longitude;
+    }
+
+    function error(err) {
+      alert("El servicio de GPS en tu dispositivo esta desactivado.");
+    };
+    navigator.geolocation.getCurrentPosition(success,error)

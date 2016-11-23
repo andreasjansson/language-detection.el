@@ -1,0 +1,14 @@
+resources :users, only: [:get, :show, :index, :edit, :update], path: '' do 
+    member do
+      get :follow
+      get :unfollow
+      get :followers
+      get :following
+    end
+  end
+
+
+/:id/follow(.:format)              follow_user_path
+/:id/unfollow(.:format)            unfollow_user_path 
+/:id/followers(.:format)           followers_user_path
+/:id/following(.:format)           following_user_path

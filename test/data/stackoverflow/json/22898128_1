@@ -1,0 +1,38 @@
+#import "NSDictionary+events.h"
+
+@implementation NSDictionary (events)
+
+
+
+- (NSString *)eventImage
+{
+    return self[@"event_image"];
+
+}
+
+- (NSString *)eventTitle
+{
+    return self[@"event_title"];
+
+}
+
+- (NSDate *)eventDate
+{
+    //    NSString *dateStr = self[@"date"]; // date = "2013-01-15";
+    return [NSDate date];
+}
+
+- (NSNumber *)eventPrice
+{
+    NSString *cc = self[@"event_price"];
+    NSNumber *n = @([cc intValue]);
+    return n;
+}
+
+- (NSNumber *)eventTicketsTotal{
+    NSString *cc = self[@"event_tickets_total"];
+    NSNumber *n = @([cc intValue]);
+    return n;
+}
+
+@end

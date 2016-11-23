@@ -1,0 +1,2 @@
+>> syms sigma t tau
+>> f=heaviside(t-tau)*(1-exp(-sigma*(t-tau)))

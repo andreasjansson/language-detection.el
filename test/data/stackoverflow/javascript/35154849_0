@@ -1,0 +1,132 @@
+$(document).ready(function(){
+
+    function UserViewModel() {
+
+        //Make the self as 'this' reference
+        var self = this;
+
+       var Domain = "http://example.com";
+
+        //Declare User observables which will be bind with UI
+        self.UserId = ko.observable();
+        self.Name = ko.observable();
+        self.Email = ko.observable();
+        self.Occupation = ko.observable();
+        self.Country = ko.observable();
+        self.RegistrationNumber = ko.observable();
+
+        //Create User object
+        var User = {
+            UserId: self.UserId,
+            Name: self.Name,
+            Email: self.Email,
+            Occupation: self.Occupation,
+            Country: self.Country,
+            RegistrationNumber: self.RegistrationNumber,
+        };
+
+        //Assign knockout observables to User/s objects
+        self.User = ko.observable();  //user
+        self.Users = ko.observableArray(); // list of users
+
+        //onload set status of user
+        UserStatus();
+
+        //Login handler
+        self.login = function () {
+
+            try {
+
+                if (User.Email() != "" && User.RegistrationNumber() != "") {
+
+                    //try logging in
+                    Login();
+
+                } else {
+                    viewModel.UserId("Please login with the correct email and registration number.");
+                }
+            }
+
+            catch (err) {
+                viewModel.UserId("There was an error, please try again.");
+            }
+
+        };
+
+    //Login
+        function Login() {
+
+
+            $.ajax({
+                   url: Domain + '/User/Login',
+                   cache: false,
+                   type: 'POST',
+                   dataType: 'json',
+                   contentType: 'application/json; charset=utf-8',
+                   data: '{"Email":"' + User.Email() + '","RegistrationNumber":"' + User.RegistrationNumber() + '"}',
+                   beforeSend: function () {
+                       // setting a timeout
+                     $('.splash').show();
+
+                   },
+                   success: function (data) {
+                   $('.splash').hide();
+                   if (data != 0) {
+
+                   SetUserVars(data.UserId, data.Name, data.Email, data.Occupation, data.Country, data.RegistrationNumber);
+
+                   viewModel.UserId(ActionToTake());
+                   }
+                   else {
+                   viewModel.UserId("The supplied credentials are invalid, please try again.");
+                   }
+                   },
+                   complete: function () {
+                    //$('.splash').hide(); 
+                   },
+                   }).fail(
+                           function (xhr, textStatus, err) {
+                           console.log(xhr.statusText);
+                           console.log(textStatus);
+                           console.log(err);
+                           viewModel.UserId("There was an error, please try again.");
+                           });
+        }
+
+function UserStatus() {
+
+        if (localStorage.getItem("UserId") === null) {
+
+            //not logged in
+            $("a.menu-status").text("Login").attr("href", "index.html#login-screen");
+
+        }
+        if (localStorage.getItem("UserId") != null) {
+            //logged in
+            $("a.menu-status").text("Logout").attr("href", "index.html#login-screen");
+
+
+
+        }
+
+        //allow user to logout and reset all user storage
+        $("a.menu-status").click(function () {
+
+            //show logged off status
+            $("a.menu-status").text("Login");
+
+            alert('You have logged off, please login if you wish to continue.');
+
+            self.reset();
+
+            //redirect
+
+            window.location.replace("index.html#login-screen");
+            location.reload();
+            viewModel.UserId("You have logged off.");
+
+            ResetUserLocalStorage();
+
+        });
+
+    }

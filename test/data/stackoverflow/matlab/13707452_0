@@ -1,0 +1,5 @@
+baos = java.io.ByteArrayOutputStream;
+
+oos = java.io.ObjectOutputStream(baos);
+
+oos.writeObject(myJavaObject);

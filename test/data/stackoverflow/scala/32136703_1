@@ -1,0 +1,6 @@
+implicit def SeqEquality[T, SEQ[e] <: GenSeq[e]](implicit equality: Equality[T]): Equality[SEQ[T]] = new Equality[SEQ[T]] {
+  override def areEqual(self: SEQ[T], b: Any): Boolean = b match {
+    case other: GenSeq[_] => self.size == other.size && self.zip(other).forall(equality.areEqual _ tupled)
+    case _ => false
+    }
+}

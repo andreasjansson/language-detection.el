@@ -1,0 +1,2 @@
+(defn random-add-lite [] 
+    (list (rand-int 100000)))

@@ -1,0 +1,4 @@
+NSString *fileName = @"image";
+NSString *tempName;
+tempName = [fileName stringByAppendingString:@".png"];
+NSLog(@"TEST  : %@", tempName);

@@ -1,0 +1,30 @@
+import (
+    "fmt"
+    "time"
+
+    "github.com/claudiu/gocron"
+)
+
+func task() {
+    fmt.Println("I am runnning task.", time.Now())
+}
+func vijay() {
+    fmt.Println("I am runnning vijay.", time.Now())
+}
+
+func main() {
+    go test()
+
+    gocron.Start()
+    s := gocron.NewScheduler()
+    gocron.Every(5).Seconds().Do(task)
+    gocron.Every(10).Seconds().Do(vijay)
+
+    <-s.Start()
+
+}
+func test() {
+    time.Sleep(20 * time.Second)
+    gocron.Clear()
+    fmt.Println("All task removed")
+}

@@ -1,0 +1,2 @@
+DoIt
+    ^ (StackInterpreterSimulator new openOn: Smalltalk imageName) test

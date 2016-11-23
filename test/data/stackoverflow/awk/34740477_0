@@ -1,0 +1,23 @@
+Group1
+id        val1     val2
+---------------------------
+idone      2        10
+idone      3        12
+idone      6         9
+idtwo      8         3
+idtwo     14         1
+
+Subtotal  33        35
+
+
+Group2
+id        val1     val2 
+------------------------ 
+idone     2         3
+idone     1         4
+idtwo     3         6
+idtwo     4         7
+
+Subtotal 10        20
+
+Total    43        55

@@ -1,0 +1,7 @@
+public class A{
+   public static final String l;
+
+   public void method(String strTestData){
+     l = strTestData;
+   }
+}

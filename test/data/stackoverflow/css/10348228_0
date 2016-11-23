@@ -1,0 +1,17 @@
+.support-data-text img, .support-data-text select {
+float:left
+}
+/* this is for dropdown list */
+form#saveSupport select {
+    height: 29px;
+    width: 234px;
+    position: absolute;
+}
+
+form#saveSupport input{float: left; width: 243px;}
+
+/* this is for the img we are using for dropdown list */
+form#saveSupport .select_game { background: url(../images/select-status.png) no-repeat;
+   width: 223px; position: absolute; height: 29px; line-height:29px;
+   padding: 0 0 0 10px; color: #333; font-size:12px; overflow: hidden; 
+}

@@ -1,0 +1,10 @@
+<g:each in="${subscriptionRequestInstanceList}" status="i" var="subscriptionRequestInstance">
+    <tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
+        <td>
+            <g:checkBox checked="false" name='subscriptionRequestInstanceCheckBox' value="${subscriptionRequestInstance.id}"/> &nbsp;&nbsp; 
+            <g:link action="show"  id="${subscriptionRequestInstance.id}">${fieldValue(bean: subscriptionRequestInstance, field: "userId")}</g:link>
+        </td>
+        <td>${fieldValue(bean: subscriptionRequestInstance, field: "packageId")}</td>
+        <td><g:formatDate date="${subscriptionRequestInstance.dateCreated}" /></td>
+    </tr>
+</g:each>

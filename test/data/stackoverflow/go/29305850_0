@@ -1,0 +1,15 @@
+var keys []*datastore.Key
+
+for _, id := range ids {
+    keys = append(keys, datastore.NewKey(c, "Category", "", id, nil))
+}
+
+categories := make([]Category, len(keys))
+err := datastore.GetMulti(c, keys, categories)
+if err != nil {
+    return nil, err
+}
+
+for i := 0; i < len(categories); i++ {
+    categories[i].Id = keys[i].IntID()
+}

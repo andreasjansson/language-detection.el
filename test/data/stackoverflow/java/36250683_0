@@ -1,0 +1,5 @@
+$ curl -X POST https://www.strava.com/api/v3/uploads \
+-H "Authorization: Bearer 83ebeabdec09f6670863766f792ead24d61fe3f9" \
+-F activity_type=ride \
+-F file=@temp.gpx \
+-F data_type=gpx

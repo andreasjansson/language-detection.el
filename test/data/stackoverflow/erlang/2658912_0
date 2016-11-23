@@ -1,0 +1,6 @@
+[user@n001 ~]$ erl -rsh ssh -sname n001    
+Eshell V5.7.5  (abort with ^G)
+    (n001@n001)1> slave:start_link("user@n002", n002, "-rsh ssh").
+    bash: erl: command not found
+                                {error,timeout}
+    (n001@n001)2>

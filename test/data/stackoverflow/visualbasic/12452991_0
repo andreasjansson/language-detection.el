@@ -1,0 +1,29 @@
+Structure StdSections
+    'UPGRADE_WARNING: Fixed-length string size must fit in the buffer. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="3C1E4426-0B80-443E-B943-0627CD55D48B"'
+    <VBFixedString(15), System.Runtime.InteropServices.MarshalAs(System.Runtime.InteropServices.UnmanagedType.ByValArray, SizeConst:=15)> Public A() As Char 'BEAM  --- complete beam designation          15
+    'UPGRADE_WARNING: Fixed-length string size must fit in the buffer. Click for more: 'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="3C1E4426-0B80-443E-B943-0627CD55D48B"'
+    <VBFixedString(2), System.Runtime.InteropServices.MarshalAs(System.Runtime.InteropServices.UnmanagedType.ByValArray, SizeConst:=2)> Public B() As Char 'DSG   --- shape  ie "W" or "C"                2
+    Dim C As Single 'DN    --- nominal depth of section            4
+    Dim d As Single 'WGT   --- weight                              4
+    .
+    .
+    .
+End structure
+''Note 'File1'is the existing RAF and holds complete path!
+
+        Dim i,ffr,fLength,lastmembNo as integer
+        sectionFound = False
+        Dim std As new StdSections 
+        fLength = Len(std)
+        If fLength = 0 Then fLength = 168 ' 177
+        ffr = FreeFile()
+        FileOpen(ffr, File1, OpenMode.Random, OpenAccess.Read, OpenShare.LockRead, fLength)
+        lastmembNo = CInt(LOF(ffr)) \ fLength
+
+        For i = 1 To lastmembNo
+            FileGet(ffr, std, i)
+            >>Error 5 (unable to read beyond end of the stream) <<<                  
+            If Trim(memberID) = Trim(std.A) Then
+                    sectionFound = True
+                end if
+        next i

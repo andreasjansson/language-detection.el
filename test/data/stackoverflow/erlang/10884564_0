@@ -1,0 +1,11 @@
+many(X) ->
+case X of
+    [] ->
+        none;
+    [ _One ] ->
+        one;
+    [ _One, _Two ] ->
+        two;
+    [ _One, _Two , _Three | _Tail ] ->
+        many
+end.

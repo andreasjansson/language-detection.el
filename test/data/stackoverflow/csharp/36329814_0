@@ -1,0 +1,9 @@
+using (var importConnection = new OleDbConnection(
+           connectionString: @"Provider=vfpoledb.1;
+           Exclusive=false;
+           data source=C:\Users\Joshua.cameron\Desktop\PCHomesImportTestBlank\PCHomesServer\DATABASE\pchomes.dbc")
+      )
+        using (OleDbCommand CodeChange = new OleDbCommand(
+               @"select NUM        
+                 from SYSTEMNUMBERS; 
+                 select PROPCODE from PROPERTY order by PROPCODE", importConnection))

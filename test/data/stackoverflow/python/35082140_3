@@ -1,0 +1,3 @@
+temp = [temp, temp]
+temp = scaler.transform(temp)
+temp = temp[0]

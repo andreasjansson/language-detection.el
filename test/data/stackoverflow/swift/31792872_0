@@ -1,0 +1,32 @@
+import UIKit
+import AVFoundation
+
+class ViewController: UIViewController {
+
+    var audioPlayer = AVAudioPlayer()
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        var hornSound = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("horn", ofType: "mp3")!)
+
+        AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback, error: nil)
+        AVAudioSession.sharedInstance().setActive(true, error: nil)
+
+        var error:NSError?
+        audioPlayer = AVAudioPlayer(contentsOfURL: hornSound, error: &error)
+        audioPlayer.prepareToPlay()
+    }
+
+    @IBAction func playSound(sender: UIButton) {
+        audioPlayer.pause()
+        audioPlayer.currentTime = 0
+        audioPlayer.play()
+    }
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+
+
+}

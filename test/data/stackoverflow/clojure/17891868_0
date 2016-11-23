@@ -1,0 +1,4 @@
+(defn rt []
+  (let [tns 'my.namespace-test]
+    (use tns :reload-all)
+    (cojure.test/test-ns tns)))

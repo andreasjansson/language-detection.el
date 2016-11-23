@@ -1,0 +1,5 @@
+if(parameter==windows){adress:=D:/logo/}
+
+elseif(parameter=linux){adress:=/media/DATA/logo}
+
+else{error}

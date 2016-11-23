@@ -1,0 +1,10 @@
+procedure TStringGrid.SetValue(Col, Row: Integer; const Value: TValue);
+var
+  C: TColumn;
+begin
+  C := Columns[Col];
+  if Assigned(C) then
+  begin
+    C.UpdateRowCount(RowCount);
+    C.SetCells(Row, Value);
+  end;

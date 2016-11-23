@@ -1,0 +1,5 @@
+val c: Condition[SubSub]=
+  new Condition[Parent] and 
+    new Condition[SubSub] and 
+    new Condition[Sub] and 
+    new Condition[Parent]

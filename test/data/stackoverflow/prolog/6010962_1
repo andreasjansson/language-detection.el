@@ -1,0 +1,34 @@
+Thanks for your answers. I have a question about it. I write
+
+start:- consult('tennis.pl'),
+            see('tennis.pl'),
+            repeat,
+            read(A),
+            A=..List,
+            (A\=end_of_file->
+            (A\=end_of_file,member('attributes',List)->
+            delete(List,'attributes',NewList2);true),
+            (A\=end_of_file,member('data',List)->
+            delete(List,'data',NewList);true),
+            merge(NewList2,NewList,Try),
+            write(Try),nl;true),
+            A=end_of_file,!,
+
+            seen.
+
+
+[outlook=_G40,temperature=_G49,humidity=_G58,wind=_G67,play_tennis=_G76]
+[_G40=sunny,_G49=hot,_G58=high,_G67=weak,_G76=no]
+[_G40=sunny,_G49=hot,_G58=high,_G67=strong,_G76=no]
+[_G40=overcast,_G49=hot,_G58=high,_G67=weak,_G76=yes]
+[_G40=rain,_G49=mild,_G58=high,_G67=weak,_G76=yes]
+[_G40=rain,_G49=cool,_G58=normal,_G67=weak,_G76=yes]
+[_G40=rain,_G49=cool,_G58=normal,_G67=strong,_G76=no]
+[_G40=overcast,_G49=cool,_G58=normal,_G67=strong,_G76=yes]
+[_G40=sunny,_G49=mild,_G58=high,_G67=weak,_G76=no]
+[_G40=sunny,_G49=cool,_G58=normal,_G67=weak,_G76=yes]
+[_G40=rain,_G49=mild,_G58=normal,_G67=weak,_G76=yes]
+[_G40=sunny,_G49=mild,_G58=normal,_G67=strong,_G76=yes]
+[_G40=overcast,_G49=mild,_G58=high,_G67=strong,_G76=yes]
+[_G40=overcast,_G49=hot,_G58=normal,_G67=weak,_G76=yes]
+[_G40=rain,_G49=mild,_G58=high,_G67=strong,_G76=no]

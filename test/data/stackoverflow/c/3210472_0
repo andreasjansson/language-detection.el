@@ -1,0 +1,19 @@
+int size=2;
+char *a0;
+char **allargs;
+short *a1;
+void **args;
+allargs=(char **)malloc(size*sizeof(char *));
+allargs[0]="a";
+allargs[1]="100";
+args=(void **)malloc(size*sizeof(void *));
+
+a0 = malloc(sizeof(char *));
+*a0=(*allargs[0]);
+args[0]=(void *)&a0;
+fprintf(stderr,"assigned %c %c\n",*a0,*((char *)args[0]));
+
+a1 = malloc(sizeof(short *));
+*a1=atoi(allargs[1]);
+args[1]=(void *)&a1;
+fprintf(stderr,"assigned %d %d \n",*a1,*((int *)args[1]));

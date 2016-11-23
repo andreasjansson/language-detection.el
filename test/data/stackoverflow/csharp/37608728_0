@@ -1,0 +1,5 @@
+<tr>
+    <td style="width:140px;height:25%;padding-top:7px;padding-bottom:15px;">
+    <a id="aaab.ClockInCompView.P10" ct="B" st="" href="javascript:void(0);" class="urBtnStd" ocl="return me.h_e(event,window,this,'Button','BUTTONCLICK',{'Id':'aaab.InClockCompView.P10'},'',true);" onkeydown="return me.h_m(event,window,'ur_Button_keypress(SSR.event)');" onclick="return me.h_m(event,window,'ur_Button_click(SSR.event)');" style="width:140px;text-align:center;overflow:visible;width:140px;" he>Clock-In</a>
+    </td>
+</tr>

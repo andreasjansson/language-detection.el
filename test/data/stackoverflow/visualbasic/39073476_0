@@ -1,0 +1,15 @@
+Private Sub Timer1_Tick(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Timer1.Tick
+    ProgressBar1.Value += 1
+    If ProgressBar1.Value =
+    ProgressBar1.Maximum Then
+        Timer1.Stop()
+        ProgressBar1.Value = ProgressBar1.Minimum
+        If Form1.Label4.Text = "Unregistered" Then
+        MsgBox("Exampletext", MsgBoxStyle.Information)
+        Me.Hide()
+    Else
+        MsgBox("Exampletext1", MsgBoxStyle.Information)
+        Hide()
+    End If
+End Sub 
+End Class

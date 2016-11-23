@@ -1,0 +1,21 @@
+def get_pvs(service, profile_id, start_date, end_date, type, data):
+    if type == "url":
+        return service.data().ga().get(
+            ids = 'ga:' + profile_id,
+            start_date = start_date,
+            end_date = end_date, 
+            metrics = 'ga:pageviews', 
+            dimensions = 'ga:pagePath',   
+            filters = 'ga:pageviews!=0',
+            sort = '-ga:pageviews',
+            max_results = '10000').execute()
+    elif type == "author":
+        return service.data().ga().get(
+            ids = 'ga:' + profile_id,
+            start_date = start_date,
+            end_date = end_date, 
+            metrics = 'ga:pageviews', 
+            # Post Author
+            dimensions = 'ga:dimension2',
+            sort = '-ga:pageviews',
+            max_results = '100').execute()

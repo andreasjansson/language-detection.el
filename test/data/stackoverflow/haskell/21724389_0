@@ -1,0 +1,9 @@
+{-# LANGUAGE RankNTypes, ExistentialQuantification, NoMonomorphismRestriction #-}
+class Program repr where
+    ...
+    intro1 :: repr a (a, ())
+    ...
+
+data DynTerm repr = forall x y. (Typeable x, Typeable y) => DynTerm (repr x y)
+
+ghci> DynTerm intro1

@@ -1,0 +1,3 @@
+|a|
+a := Animal new.
+a makeSound: 'bark'

@@ -1,0 +1,4 @@
+UITheme builder
+    newLabelFor: self
+    getLabel: #labelValue
+    getEnabled: nil

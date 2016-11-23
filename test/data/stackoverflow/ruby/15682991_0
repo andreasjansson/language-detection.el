@@ -1,0 +1,26 @@
+csv_file_path = 'db/coned.csv'
+count = 0
+CSV.foreach(csv_file_path) do |row|
+  row = Section.new({
+    :supervisor => row[0],
+    :catagory => row[1],
+    :title => row[2],
+    :description=> row[3],
+    :days => row[4],
+    :start_date => row[5],
+    :end_date => row[6],
+    :start_time => row[7],
+    :end_time => row[8],
+    :course_id => row[9],
+    :room => row[10],
+    :building => row[11],
+    :location => row[12],
+    :tuition => row[13],
+    :lab_fee => row[14],
+    :insurance_fee => row[15],
+    :technology_fee => row[16]
+  })
+  row.save!
+  puts "Added row #{count}"
+  count+=1
+end

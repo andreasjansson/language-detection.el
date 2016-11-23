@@ -1,0 +1,12 @@
+C:\avr_test>make
+avr-gcc.exe (GCC) 4.3.3
+Copyright (C) 2008 Free Software Foundation, Inc.
+This is free software; see the source for copying conditions.  There is NO
+warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+ADA_PROJECT_PATH= avr-gnatmake -XMCU=atmega8 -p -Pbuild.gpr  -XAVRADA_MAIN=led_on avr-gcc -c --RTS=rts/avr4 -gnatec=C:\avr-ada\lib\gnat\gnat.adc -gdwarf-2 -gnatwp -gnatwu gnatn -gnatp -gnatVn -Os -gnatef -fverbose-asm -frename-registers -mmcu=atmega8 gnateDMCU=atmega8 -fdata-sections -ffunction-sections -I- -gnatA C:\avr_test\led_on.adb
+c:\avr_test\led_on.adb:3:06: warning: unit "task_bla" is not referenced
+c:\avr_test\task_bla.ads:3:04: construct not allowed in configurable run-time mode
+c:\avr_test\task_bla.ads:3:04: violation of restriction "no_tasking" at C:\avr-ada\lib    \gnat\gnat.adc:124
+avr-gnatmake: "c:\avr_test\led_on.adb" compilation error
+make: ** [led_on.elf] Erro 4

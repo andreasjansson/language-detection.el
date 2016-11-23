@@ -1,0 +1,3 @@
+./test.sh
+2
+./test.sh[4]: asd: bad number

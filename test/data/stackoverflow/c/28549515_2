@@ -1,0 +1,31 @@
+#ifndef PA03_H
+#define PA03_H 
+
+#include <stdlib.h>
+
+/**
+ * Append the C-string 'src' to the end of the C-string '*dest'.
+ *
+ * strcat_ex(...) will append the C-string 'src' to the end of the string
+ * at '*dest'. The parameter 'n' is the address of a int that specifies how
+ * many characters can safely be stored in '*dest'. 
+ *
+ * If '*dest' is NULL, or if '*dest' is not large enough to contain the result
+ * (that is, the sum of the lengths of *dest, src, and the null byte), then
+ * strcat_ex will:
+ * (1) malloc a new buffer of size 1 + 2 * (strlen(*dest) + strlen(src))
+ * (2) set '*n' to the size of the new buffer
+ * (3) copy '*dest' into the beginning of the new buffer
+ * (4) free the memory '*dest', and then set '*dest' to point to the new buffer
+ * (5) concatenate 'src' onto the end of '*dest'.
+ *
+ * Always returns *dest.
+ *
+ * Why do we need to pass dest as char * *, and n as int *? 
+ * Please see the FAQ for an answer.
+ *
+ * Hint: These <string.h> functions will help: strcat, strcpy, strlen.
+ * Hint: Leak no memory.
+ */
+char * strcat_ex(char * * dest, int * n, const char * src);
+//...

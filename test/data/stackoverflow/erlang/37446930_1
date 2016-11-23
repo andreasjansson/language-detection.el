@@ -1,0 +1,5 @@
+which erl 
+ /usr/local/bin/erl
+
+ ls -al /usr/local/bin/erl
+ lrwxr-xr-x  1 sad  admin  45 May 25 12:00 /usr/local/bin/erl -> /Users/sad/erlang/otp_src_R16B03/bin/erl

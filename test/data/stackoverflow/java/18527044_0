@@ -1,0 +1,16 @@
+08-30 06:55:10.539: E/AndroidRuntime(1308):     at com.Background_fb_twitter.share_text$2.onClick(share_text.java:55)
+08-30 07:05:01.330: E/AndroidRuntime(1680): FATAL EXCEPTION: main
+08-30 07:05:01.330: E/AndroidRuntime(1680): java.lang.NullPointerException
+08-30 07:05:01.330: E/AndroidRuntime(1680):     at com.Background_fb_twitter.share_text.postToWall(share_text.java:75)
+08-30 07:05:01.330: E/AndroidRuntime(1680):     at com.Background_fb_twitter.share_text$2.onClick(share_text.java:55)
+08-30 07:05:01.330: E/AndroidRuntime(1680):     at android.view.View.performClick(View.java:4204)
+08-30 07:05:01.330: E/AndroidRuntime(1680):     at android.view.View$PerformClick.run(View.java:17355)
+08-30 07:05:01.330: E/AndroidRuntime(1680):     at android.os.Handler.handleCallback(Handler.java:725)
+08-30 07:05:01.330: E/AndroidRuntime(1680):     at android.os.Handler.dispatchMessage(Handler.java:92)
+08-30 07:05:01.330: E/AndroidRuntime(1680):     at android.os.Looper.loop(Looper.java:137)
+08-30 07:05:01.330: E/AndroidRuntime(1680):     at android.app.ActivityThread.main(ActivityThread.java:5041)
+08-30 07:05:01.330: E/AndroidRuntime(1680):     at java.lang.reflect.Method.invokeNative(Native Method)
+08-30 07:05:01.330: E/AndroidRuntime(1680):     at java.lang.reflect.Method.invoke(Method.java:511)
+08-30 07:05:01.330: E/AndroidRuntime(1680):     at com.android.internal.os.ZygoteInit$MethodAndArgsCaller.run(ZygoteInit.java:793)
+08-30 07:05:01.330: E/AndroidRuntime(1680):     at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:560)
+08-30 07:05:01.330: E/AndroidRuntime(1680):     at dalvik.system.NativeStart.main(Native Method)

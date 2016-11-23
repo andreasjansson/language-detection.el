@@ -1,0 +1,11 @@
+Function itemArray() As String()
+
+        itemArr(0) = ""
+        itemArr(1) = txtItem.Text
+        itemArr(2) = Form2.cbGondola.SelectedItem
+        itemArr(3) = txtQty.Text
+        itemArr(4) = DateTime.Now
+        itemArr(5) = Form1.txtLoginId.Text
+
+        Return itemArr
+End Function

@@ -1,0 +1,4 @@
+(defrecord FirstOrderState [datum matrix]
+  State
+  ;; implementation goes here ...
+  )

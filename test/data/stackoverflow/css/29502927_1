@@ -1,0 +1,3 @@
+body.page-status .panel.panel-info .client .dot {
+  font-size:10px;
+}

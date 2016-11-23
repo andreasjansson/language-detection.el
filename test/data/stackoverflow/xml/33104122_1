@@ -1,0 +1,33 @@
+<ProgramList> 
+  <Subject>
+    <title>Maths</title>
+    <Students>
+      <Name>Jack</Name>
+      <Name>John</Name>
+    <Students>
+  </Subject>
+
+  <Subject>
+    <title>Science</title>
+    <Students>
+      <Name>John</Name>
+      <Name>Anna</Name>
+    <Students>
+  </Subject>
+
+  <Subject>
+    <title>History</title>
+    <Students>
+      <Name>Anna</Name>
+      <Name>Tana</Name>
+    <Students>
+  </Subject>
+
+  <Subject>
+    <title>Language</title>
+    <Students>
+      <Name>Jack</Name>
+      <Name>Tana</Name>
+    <Students>
+  </Subject> 
+</ProgramList>

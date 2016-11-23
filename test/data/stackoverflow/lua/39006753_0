@@ -1,0 +1,10 @@
+local unicode     = require("unicode")
+local lpeg        = require("lpeg")
+local punctuation = lpeg.Cmt(lpeg.Cs(any * any^-3), function(s,i,a)
+  local match = unicode.utf8.match(a, "^%p")
+  if match == nil
+    return false
+  else
+    return i+#match
+  end
+end)

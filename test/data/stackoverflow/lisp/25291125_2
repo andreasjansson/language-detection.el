@@ -1,0 +1,14 @@
+#lang racket
+(require racket/generator)
+
+(define (subsets x)
+  (generator ()
+   (let recur ([s x])
+     (if (null? s) 
+         (yield '())
+         (for ([e (in-producer (recur (cdr s)))])
+           (yield (cons (car s) e))
+           (yield e))))))
+
+(for/list ([j (in-producer (subsets '(1 2 3)))])
+    (display j))

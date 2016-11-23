@@ -1,0 +1,6 @@
+def downloadIntoMem(address)
+{  // btw, how frickin powerful is Groovy to do this in 3 lines (or less)
+        def out = new ByteArrayOutputStream()
+        out << new URL(address).openStream()
+        out.toByteArray()
+}

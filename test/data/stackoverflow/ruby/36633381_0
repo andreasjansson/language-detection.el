@@ -1,0 +1,3 @@
+a=User.first
+a.invitations.build(event_id: 1, inviter:2)
+a.save

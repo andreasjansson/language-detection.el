@@ -1,0 +1,4 @@
+example1 :-
+    pipe(R,W),
+    write(W,hello),
+    read(R,S). % The program is blocked here.

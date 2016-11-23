@@ -1,0 +1,37 @@
+<SalesOrders xmlns:xsd="http://www.w3.org/2001/XMLSchema-instance" xsd:noNamespaceSchemaLocation="SORTOIDOC.XSD">
+  <Orders>
+    <OrderHeader>
+      <Customer>000016</Customer>
+      <OrderDate>2005-04-19</OrderDate>
+      <SalesForceOrderNumber>ORD-411324</SalesForceOrderNumber>
+    </OrderHeader>
+    <OrderDetails>
+     <StockLine>
+        <StockCode></StockCode>
+        <Comment>EDIORDER-SAVE COMMENTS</comment>
+       </StockLine>
+      <StockLine>
+        <StockCode></StockCode>
+        <Comment>C3 Generic</comment>
+      </StockLine>
+        <StockLine>
+        <StockCode></StockCode>
+        <Comment>LOC 0833</comment>
+
+      </StockLine>
+        <StockLine>
+        <StockCode></StockCode>
+        <Comment>Expected arrival 01/07/2016</comment>
+
+      </StockLine>
+        <StockLine>
+        <StockCode></StockCode>
+        <Comment>OTYPE NE</comment>
+
+      </StockLine>
+
+     <StockLine>
+        <StockCode></StockCode>
+        <Comment>TRKPC 01 GM/00007643020008361321</comment>
+
+      </StockLine>

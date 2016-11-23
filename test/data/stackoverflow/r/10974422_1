@@ -1,0 +1,5 @@
+library(outliers)
+lg=outlier(m, logical=TRUE)
+for(i in 1:length(lg)){
+if(lg[i]==c("TRUE")){ 
+ m[i]=NA }}

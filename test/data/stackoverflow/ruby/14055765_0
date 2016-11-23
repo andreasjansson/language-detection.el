@@ -1,0 +1,37 @@
+class User < ActiveRecord::Base
+      devise :database_authenticatable, :registerable,
+             :recoverable, :rememberable, :trackable, :validatable
+
+      attr_accessible :email, 
+                      :password, 
+                      :password_confirmation,
+                      :remember_me, 
+                      :first_name, 
+                      :last_name, 
+                      :profile_name, 
+                      :full_bio, 
+                      :mini_bio,
+                      :current_password,
+                      :photo,
+                      :profession_id
+
+      attr_accessor :current_password
+
+      validates :first_name, :last_name, :profile_name, presence: true
+
+      validates :profile_name, uniqueness: true,
+                               format: {
+                                  with: /^[a-zA-Z0-9_-]+$/
+                               }
+
+      has_many :posts
+      belongs_to :profession
+
+      has_attached_file :photo,
+                        :default_url => 'default.png'
+
+
+      def full_name
+        first_name + " " + last_name
+      end
+    end

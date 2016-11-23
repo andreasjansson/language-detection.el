@@ -1,0 +1,18 @@
+\newcommand{\graybox}[1]{%
+\noindent\begin{tikzpicture}%
+  \draw node[draw=black,fill=black!10,rounded corners,inner sep=2ex,text width=\mytikzwidth] {%
+  #1
+  };%
+\end{tikzpicture}%
+}%
+
+%% ERROR - verbatim doesn't work. 
+\graybox{%
+\begin{minipage}[b]{\mytikzwidth}
+...
+\begin{verbatim}
+java -cp \$CLOJUREJAR:\$CLASSPATH clojure.lang.Script \$1
+\end{verbatim}
+...
+\end{minipage}
+}

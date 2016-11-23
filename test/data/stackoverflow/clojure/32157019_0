@@ -1,0 +1,7 @@
+; CIDER 0.10.0snapshot (package: 20150820.852) \
+    (Java 1.7.0_51, Clojure 1.7.0, nREPL 0.2.10)
+WARNING: The following required nREPL ops are not supported: 
+apropos classpath complete eldoc format-code format-edn info inspect-pop \
+    inspect-push inspect-refresh macroexpand ns-list ns-vars ns-path refresh \
+    resource stacktrace toggle-trace-var toggle-trace-ns undef
+Please, install (or update) cider-nrepl 0.10.0-SNAPSHOT and restart CIDER

@@ -1,0 +1,5 @@
+def ipcount = params.count
+    for (i = 1; i = ipcount ; i++ ){
+         def systems = new Ip() 
+         systems.inetAddress = params.ip+${i}  <---- How do I create these variable name?
+                 ....

@@ -1,0 +1,10 @@
+ERROR    2012-02-28 16:31:00,167 wsgi.py:205] 
+Traceback (most recent call last):
+  File "/Applications/GoogleAppEngineLauncher.app/Contents/Resources/GoogleAppEngine-        default.bundle/Contents/Resources/google_appengine/google/appengine/runtime/wsgi.py", line     193, in Handle
+    result = handler(self._environ, self._StartResponse)
+  File "/Applications/GoogleAppEngineLauncher.app/Contents/Resources/GoogleAppEngine-default.bundle/Contents/Resources/google_appengine/lib/django_1_2/django/core/handlers/wsgi.py", line 248, in __call__
+    response = self.get_response(request)
+  File "/Applications/GoogleAppEngineLauncher.app/Contents/Resources/GoogleAppEngine-default.bundle/Contents/Resources/google_appengine/lib/django_1_2/django/core/handlers/base.py", line 141, in get_response
+    return self.handle_uncaught_exception(request, resolver, sys.exc_info())
+UnboundLocalError: local variable 'resolver' referenced before assignment
+INFO     2012-02-28 16:31:00,178 dev_appserver.py:2884] "GET /ibi/index.html HTTP/1.1" 500 -

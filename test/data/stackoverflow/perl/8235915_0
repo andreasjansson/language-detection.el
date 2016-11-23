@@ -1,0 +1,30 @@
+1  #!/usr/bin/perl 
+2  
+3  package Person;
+4 
+5  sub new
+6  {
+7     my $class = shift;
+8     my $self = {
+9         _firstName => shift,
+10        _lastName  => shift,
+11        _ssn       => shift,
+12    };
+13    # Print all the values just for clarification.
+14    print "First Name is $self->{_firstName}\n";
+15    print "Last Name is $self->{_lastName}\n";
+16    print "SSN is $self->{_ssn}\n";
+17    bless $self, $class;
+18    return $self;
+19 }
+20 sub setFirstName {
+21    my ( $self, $firstName ) = @_;
+22    $self->{_firstName} = $firstName if defined($firstName);
+23    return $self->{_firstName};
+24 }
+25
+26 sub getFirstName {
+27    my( $self ) = @_;
+28    return $self->{_firstName};
+29 }
+30 1;

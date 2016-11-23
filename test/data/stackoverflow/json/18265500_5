@@ -1,0 +1,47 @@
+-(void)click:(id)sender{
+
+
+ scrollview=[[UIScrollView alloc]initWithFrame:CGRectMake(0,500,320,200)];
+
+        scrollview.showsVerticalScrollIndicator=NO;
+          scrollview.showsHorizontalScrollIndicator=NO;
+
+      scrollview.scrollEnabled=YES;
+
+        int Width = 0;      
+
+     //   Width = Width + 20+(i*74);
+
+
+  for (int i = 0; i<[self.sofas count]; i++ ) {
+            NSLog(@"index %d",i);
+
+
+
+          //  imgView1=[[UIButton alloc]initWithFrame:CGRectMake(20+(i*74), 500, 72, 72)];
+
+            imgView1=[[UIButton alloc]initWithFrame:CGRectMake(20+(i*74), 0, 72, 72)];
+
+            Width = Width + 20+(i*74);
+
+            [imgView1 setTag:i+1];
+
+            [imgView1 addTarget:self action:@selector(dbsofaClicked:) forControlEvents:UIControlEventTouchUpInside];
+
+            [imgView1 setImage:((Mysof *)[self.sofas objectAtIndex:i]).photo forState:UIControlStateNormal];
+
+            [scrollview addSubview:imgView1];
+
+          //  [myScroll addSubview:imgView1];
+
+
+
+        }
+
+        [scrollview setContentSize:CGSizeMake(Width,imgView1.frame.size.height+20)];
+
+        [self.view addSubview:scrollview];
+
+
+
+}

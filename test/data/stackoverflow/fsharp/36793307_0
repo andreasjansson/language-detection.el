@@ -1,0 +1,47 @@
+namespace TypeProviderTest
+
+open Microsoft.FSharp.Core.CompilerServices
+open ProviderImplementation.ProvidedTypes
+open System.Reflection
+open System
+
+[<TypeProvider>]
+type MyTypeProvider(config:TypeProviderConfig) as this = 
+    inherit TypeProviderForNamespaces()
+    let namespaceName="GeneratedNamespace"
+    let assembly = Assembly.LoadFrom(config.RuntimeAssembly)
+
+    //Provides definition, based on type parameters
+    let instantiationFunction typeName (typeParams:obj[]) =
+        match typeParams with
+                | [|:? string as param|] -> 
+                    //Creates an empty non-erased type
+                    let definition = ProvidedTypeDefinition(
+                                        assembly,
+                                        namespaceName,
+                                        typeName,
+                                        Some typedefof<Object>,
+                                        IsErased = false
+                                        )
+
+                    //Creates an empty constructor
+                    let emptyCtor = ProvidedConstructor (parameters = [])
+                    //Provides a call to base constructor 
+                    //(http://stackoverflow.com/questions/22520352/)
+                    //Doesn't seem to help
+                    let objCtor = typedefof<Object>.GetType().GetConstructor([||])
+                    emptyCtor.BaseConstructorCall <- (fun _ -> objCtor,[])
+                    emptyCtor.AddXmlDoc("Empty constructor test")
+
+                    definition.AddMember(emptyCtor)
+                    definition
+                | _ -> failwith "That was not supported"
+
+    let  staticParams = [ProvidedStaticParameter("value",typedefof<string>)] 
+    let t = ProvidedTypeDefinition(assembly,namespaceName,"MyType",Some typedefof<Object>)
+    do t.DefineStaticParameters(staticParams,instantiationFunction)
+
+
+    do this.AddNamespace(namespaceName,[t])
+[<assembly:TypeProviderAssembly>]
+do ()

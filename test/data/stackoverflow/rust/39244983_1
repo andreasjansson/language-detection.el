@@ -1,0 +1,12 @@
+error: mismatched types [E0308]
+    diesel_codegen_syntex::register(&mut registry);
+                                    ^~~~~~~~~~~~~
+help: run `rustc --explain E0308` to see a detailed explanation
+note: expected type `&mut syntex::Registry`
+note:    found type `&mut main::syntex::Registry`
+error: mismatched types [E0308]
+    dotenv_codegen::register(&mut registry);
+                             ^~~~~~~~~~~~~
+help: run `rustc --explain E0308` to see a detailed explanation
+note: expected type `&mut syntex::Registry`
+note:    found type `&mut main::syntex::Registry`

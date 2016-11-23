@@ -1,0 +1,17 @@
+main() {
+  // expect Object type
+  print((new TestObject()).Pass('string').runtimeType);
+  // expect String type
+  print((new TestGeneric()).Pass('string').runtimeType);
+  // both output String type
+}
+
+class TestObject {
+  Object Pass(Object element)
+    => element;
+}
+
+class TestGeneric<T> {
+  T Pass(T element)
+    => element;
+}

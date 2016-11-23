@@ -1,0 +1,6 @@
+?- getSymptoms(L).
+Enter Symptom:
+|: fever.
+Enter Symptom:
+|: stop.
+L = [].

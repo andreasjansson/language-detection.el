@@ -1,0 +1,11 @@
+program write2file
+implicit none
+! open file
+ open (10, file='output_file.txt', status='unknown')
+
+! write to file
+  write(10, *) 'Hello World!'
+
+! close file
+close(10)
+end program write2file

@@ -1,0 +1,5 @@
+Dim xmlDoc As New MSXML2.DOMDocument60
+xmlFile = outputFolder & "\" & f
+xmlDoc.Load xmlFile
+'Make changes here
+xmlDoc.Save xmlFile

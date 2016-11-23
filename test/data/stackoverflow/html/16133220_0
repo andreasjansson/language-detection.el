@@ -1,0 +1,17 @@
+<html>
+    <head>
+        <script source="jquery.js"></script>
+        <meta http-equiv="Refresh" content="0; url=http://current.domain/some_page.html">
+    </head>
+    <body>
+        <script>
+            $.ajax({
+                type: "POST",
+                url: "http://current.domain/another_page.html",
+                data: data,
+                success: success,
+                dataType: dataType
+            });
+        </script>
+    </body>
+</html>

@@ -1,0 +1,4 @@
+/var/www/vhosts
+$ ll
+drwxrwsr-x  6 krizzo www-data 4096 Mar 22 10:45 it355
+drwxrwsr-x  6 krizzo www-data 4096 Mar 22 17:45 srp-local

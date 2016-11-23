@@ -1,0 +1,11 @@
+task spec << {
+    ant.taskdef(
+            name: 'jbehave',
+            classname: 'org.jbehave.ant.RunStoriesAsEmbeddables',
+            classpath: configurations.jbehave.asPath)
+
+    ant.jbehave(
+            includes: 'src/main/specs',
+            generateViewAfterStories: true
+    )
+}

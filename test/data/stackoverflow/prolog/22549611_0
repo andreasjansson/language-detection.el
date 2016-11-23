@@ -1,0 +1,17 @@
+compare_tri( triangle ( point(X1,Y1), point(X2,Y2), H1),
+    triangle( point(X3,Y3), point(X4,Y4), H2)) :-
+    A1 is ((X2-X1)*(X2-X1)),
+    B1 is ((Y2-Y1)*(Y2-Y1)),
+    C1 is (A1+B1),
+    D1 is (sqrt(C1)),
+    S1 is (D1*H1),
+    A2 is ((X4-X3)*(X4-X3)),
+    B2 is ((Y4-Y3)*(Y4-Y3)),
+    C2 is (A2+B2),
+    D2 is (sqrt(C2)),
+    S2 is (D2*H2),
+    (  (S1 < S2)
+    -> (S1 is 2), (S2 is 1)
+    ;  (S2 is 2), (S1 is 1)
+    ),
+    write(S1), write('bigger than '), write(S2).

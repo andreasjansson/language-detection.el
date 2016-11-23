@@ -1,0 +1,10 @@
+#[deriving(Decodable)]
+enum MyValue {
+  MyString(String),
+  MyF64(f64),
+  MyF32(f32),
+  MyI64(i64),
+  MyI32(i32),
+  ...
+  ...
+}

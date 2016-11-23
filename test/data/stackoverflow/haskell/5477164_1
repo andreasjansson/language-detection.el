@@ -1,0 +1,2 @@
+Main> split "foo|bar|java|python"
+["python","java","bar","foo"]

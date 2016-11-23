@@ -1,0 +1,8 @@
+Route::post('api/v1/users/{username}', function($username){
+
+
+   return Response::json(array(
+        'response'=>'succes',
+        'message'=>'User succesfully created'
+    ));
+});

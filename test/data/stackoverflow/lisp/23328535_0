@@ -1,0 +1,22 @@
+(setf *map* '((shore (stars cast reflections on the rippling sea.  
+                            it fills you with a strong but unplaceable emotion.) 
+                     (east forest))
+              (forest (a roof of treetops blots out the sun.  something rustles 
+                         behind you.) 
+                      (west shore) 
+                      (north cliff))
+              (cliff (you nearly stumble into a long and fatal fall into the 
+                          sea far below you.  you feel a strange urge to throw 
+                          yourself off the ledge.  it would probably wisest to 
+                          leave this place.) 
+                     (south forest))))
+
+(defun walk-direction (direction room map)
+  (second (assoc direction (cddr (assoc room map)))))
+
+(defmacro defspel (&rest rest) `(defmacro ,@rest))
+
+(defspel walk-to (direction room map)
+  `(walk-direction ',direction ',room map))
+
+(walk-to east shore \*map\*)

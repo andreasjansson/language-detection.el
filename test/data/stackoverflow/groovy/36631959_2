@@ -1,0 +1,40 @@
+[Pipeline] echo
+Testing instances: [one, two, three]
+[Pipeline] echo
+Processing instance one
+[Pipeline] echo
+Processing instance two
+[Pipeline] echo
+Processing instance three
+[Pipeline] echo
+test_nodes: [tk-one:org.jenkinsci.plugins.workflow.cps.CpsClosure2@3febb2f8, tk-two:org.jenkinsci.plugins.workflow.cps.CpsClosure2@b32d891, tk-three:org.jenkinsci.plugins.workflow.cps.CpsClosure2@37281d55]
+[Pipeline] Execute in parallel : Start
+[Pipeline] [tk-one] parallel { (Branch: tk-one)
+[Pipeline] [tk-two] parallel { (Branch: tk-two)
+[Pipeline] [tk-three] parallel { (Branch: tk-three)
+[Pipeline] [tk-one] Allocate node : Start
+[tk-one] Running on master in /var/lib/jenkins/jobs/cookbook-pipeline-cookbook-site-mstypo3org/workspace
+[Pipeline] [tk-two] Allocate node : Start
+[tk-two] Running on master in /var/lib/jenkins/jobs/cookbook-pipeline-cookbook-site-mstypo3org/workspace@2
+[Pipeline] [tk-three] Allocate node : Start
+[tk-three] Running on master in /var/lib/jenkins/jobs/cookbook-pipeline-cookbook-site-mstypo3org/workspace@3
+[Pipeline] [tk-one] node {
+[Pipeline] [tk-two] node {
+[Pipeline] [tk-three] node {
+[Pipeline] [tk-one] echo
+[tk-one] three
+[Pipeline] } //node
+[Pipeline] [tk-two] echo
+[tk-two] three
+[Pipeline] } //node
+[Pipeline] [tk-three] echo
+[tk-three] three
+[Pipeline] } //node
+[Pipeline] Allocate node : End
+[Pipeline] Allocate node : End
+[Pipeline] Allocate node : End
+[Pipeline] } //parallel
+[Pipeline] } //parallel
+[Pipeline] } //parallel
+[Pipeline] Execute in parallel : End
+[Pipeline] End of Pipeline

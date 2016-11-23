@@ -1,0 +1,2 @@
+val number = 1
+<plain>This is { number } string</plain> text

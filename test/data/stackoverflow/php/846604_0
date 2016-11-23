@@ -1,0 +1,3 @@
+App:Import('Model','Item');
+$item = new Item();
+$item->isOwnedByUser($user_id,$item_id);

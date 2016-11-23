@@ -1,0 +1,7 @@
+for i=1,A:size(1) do
+    for j=1,A:size(2) do
+        for k=1,A:size(3) do
+            A[{i,j,k}] = func(i,j,k)
+        end
+    end
+end

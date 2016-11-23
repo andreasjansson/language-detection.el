@@ -1,0 +1,3 @@
+function kpress(){
+  document.getElementById("editable").innerHTML = document.getElementById("editable").innerHTML.replace("this","that");
+}

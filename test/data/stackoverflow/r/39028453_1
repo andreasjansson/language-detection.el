@@ -1,0 +1,2 @@
+qb2 <- qb %>% mutate_at(grep("^(`?!`Player|Team|`?!`Pos).*$", 
+    colnames(.)),funs(as.numeric))

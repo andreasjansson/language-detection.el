@@ -1,0 +1,19 @@
+use Data::Dumper;    
+my @arr1;
+for $i (0..9)
+{
+    my @arr2;
+    my @arr3;
+    for $j ('A'..'D') {
+        push @arr2, $j;
+        push @arr3, int(rand(100));
+    }
+    push @arr1, [$i, \@arr2, \@arr3]; 
+}
+for $linkarray (@arr1) {
+    #my ($i, @arr2, @arr3) = @$linkarray;   
+    my $i = @$linkarray[0];
+    my @arr2 = @$linkarray[1];
+    my @arr3 = @$linkarray[2];
+    print "i: $i\narr2: " . Dumper(@arr2) . "\narr3: " . Dumper(@arr3) . "\n";
+}

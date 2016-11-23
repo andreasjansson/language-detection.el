@@ -1,0 +1,13 @@
+test <- data.frame(date=seq(as.POSIXct("2012-02-09 00:00:00",tz="CET"),as.POSIXct("2012-02-11 00:00:00",tz="CET"),"hours" ),
+value= runif(49) )
+
+ggplot() + geom_line(data=test, aes(x=as.POSIXct(date), y=value)) +
+theme(text=element_text(size=16),
+legend.text=element_text(size=16), 
+axis.text=element_text(size=16, colour="black"),
+panel.background = element_rect(fill = 'white', colour = 'black'),
+axis.title.y = element_text(size=16, vjust = 0.3), 
+axis.title.x = element_text(size=16, vjust = 0),
+legend.key=element_rect(fill="white")) +
+scale_x_datetime( breaks = date_breaks("1 days"), labels = date_format("%a-%d\n%H:%M", tz="CET"),
+,limits = c(as.POSIXct("2012-02-09 00:00:00 CET"),as.POSIXct("2012-02-11 00:00:00 CET")))

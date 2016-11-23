@@ -1,0 +1,16 @@
+LOffer : TOfferList;
+i : Integer;
+LNode, LSiteNode : TcxTreeListNode;
+
+begin
+LSiteNode := TreeTypes.FocusedNode;
+for i := 0 to FOfferList.Count - 1 do
+begin
+  LOffer := TOfferList(FOfferList.Items[i]);
+  LNode := LSiteNode.AddChild;
+  LNode.Values[1] := Trim(FOfferList.Items[i].InstName  + ' ' + FOfferList.Items[i].SoftName);
+  LNode.Values[2]  := Trim(FOfferList.Items[i].SerialNumber + ' ' + FOfferList.Items[i].ActivateNum);
+  LNode.Values[3]  := Trim(FOfferList.Items[i].OfferNum);
+  LNode.Data := LOffer;
+end;
+end;

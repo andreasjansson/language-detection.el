@@ -1,0 +1,4 @@
+for q = 1, 42 do
+    horizontalwin = index [q] + index [q + 1] + index [q + 2] + index [q + 3]
+    print (horizontalwin)
+end

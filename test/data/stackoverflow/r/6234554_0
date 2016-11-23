@@ -1,0 +1,4 @@
+d <- tempfile()
+dir.create(d)
+setwd(d)
+# now work and sweave and latex etc

@@ -1,0 +1,5 @@
+@IBAction func CropButtonClicked(sender: UIButton)
+    {
+        var DrawingSquareObject : DrawingSquareView = DrawingSquareView(frame:self.view.frame)
+        self.view.addSubview(DrawingSquareObject)
+   }

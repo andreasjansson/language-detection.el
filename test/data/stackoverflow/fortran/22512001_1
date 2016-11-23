@@ -1,0 +1,4 @@
+MYVAR=1
+all:
+    ifort temp.F90 -fpp
+    echo $(MYVAR)

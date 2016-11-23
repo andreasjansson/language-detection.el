@@ -1,0 +1,23 @@
+{
+  "items": [
+    {
+      "has_synonyms": true,
+      "user_id": 1144035,
+      "is_moderator_only": false,
+      "is_required": false,
+      "count": 7054,
+      "name": "sql"
+    },
+    {
+      "has_synonyms": true,
+      "user_id": 1144035,
+      "is_moderator_only": false,
+      "is_required": false,
+      "count": 16,
+      "name": "algorithm"
+    }
+  ],
+  "has_more": true,
+  "quota_max": 10000,
+  "quota_remaining": 9693
+}

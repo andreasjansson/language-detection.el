@@ -1,0 +1,3 @@
+thing = Thing "hello" "there" 5 1
+
+answer = fun (thing^.c) (thing^.a) (thing^.d) (thing^.b)

@@ -1,0 +1,2 @@
+A := TVertex<Integer>.Create();
+  A.Name := 'A';

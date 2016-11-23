@@ -1,0 +1,5 @@
+"Thread 1"
+    b1  start:210 at:210.    "start is the name of the method"
+
+"Thread 2"        
+    b2  start:310 at:210.

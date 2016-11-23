@@ -1,0 +1,6 @@
+receive ->
+    never_match -> %% note: this never to be matched
+        ok 
+    after 1000
+        ok
+end.

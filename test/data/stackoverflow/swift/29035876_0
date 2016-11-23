@@ -1,0 +1,10 @@
+import UIKit
+
+class QuestionTableViewCell: UITableViewCell {
+
+    @IBOutlet var student: UILabel!
+    @IBOutlet var labDesk: UILabel!
+    @IBOutlet var topic: UILabel!
+    @IBOutlet var answers: UILabel!
+
+}

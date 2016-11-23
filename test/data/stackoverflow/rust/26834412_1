@@ -1,0 +1,17 @@
+pub struct Server<'a> {
+    world: World<'a>
+}
+
+pub struct World<'a> {
+    pub chat_rooms: HashMap<&'a str, ChatRoom<'a>>
+}
+
+
+impl<'a> World<'a> {
+    pub fn new() -> World<'a> {
+        let mut rooms = HashMap::new();
+        rooms.insert("General", ChatRoom::new("General"));
+        rooms.insert("Help", ChatRoom::new("Help"));
+        World{chat_rooms: rooms}
+    }
+}

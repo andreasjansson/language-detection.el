@@ -1,0 +1,18 @@
+// Process the file
+/*
+    At this point we are ready to process the valid file. This sample code shows how to save the file. Other tasks
+     could be done such as creating an entry in a database or generating a thumbnail.
+
+    Depending on your server OS and needs you may need to set the Security Permissions on the file after it has
+    been saved.
+*/
+
+$thumb_save = "uploads/thumbs/thumb_" . $_FILES[$upload_name]["tmp_name"];
+create_square_image($_FILES[$upload_name]["tmp_name"],$thumb_save,100);
+
+if (!@move_uploaded_file($_FILES[$upload_name]["tmp_name"], $save_path.$file_name)) {
+    HandleError("File could not be saved.");
+    exit(0);
+}
+
+exit(0);

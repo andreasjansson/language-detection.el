@@ -1,0 +1,96 @@
+$ rustc --emit=ir hello.rs
+$ cat hello.ll
+; ModuleID = 'hello.rs'
+target datalayout = "e-i64:64-f80:128-n8:16:32:64"
+target triple = "x86_64-apple-darwin"
+
+%str_slice = type { i8*, i64 }
+%"struct.core::fmt::Argument<[]>[#3]" = type { %"enum.core::result::Result<[(), core::fmt::FormatError]>[#3]" (%"enum.core::fmt::Void<[]>[#3]"*, %"struct.core::fmt::Formatter<[]>[#3]"*)*, %"enum.core::fmt::Void<[]>[#3]"* }
+%"enum.core::result::Result<[(), core::fmt::FormatError]>[#3]" = type { i8, [0 x i8], [1 x i8] }
+%"struct.core::fmt::Formatter<[]>[#3]" = type { i64, i32, i8, %"enum.core::option::Option<[uint]>[#3]", %"enum.core::option::Option<[uint]>[#3]", { void (i8*)**, i8* }, %"struct.core::slice::Items<[core::fmt::Argument]>[#3]", { %"struct.core::fmt::Argument<[]>[#3]"*, i64 } }
+%"enum.core::option::Option<[uint]>[#3]" = type { i8, [7 x i8], [1 x i64] }
+%"struct.core::slice::Items<[core::fmt::Argument]>[#3]" = type { %"struct.core::fmt::Argument<[]>[#3]"*, %"struct.core::fmt::Argument<[]>[#3]"*, %"struct.core::kinds::marker::ContravariantLifetime<[]>[#3]" }
+%"struct.core::kinds::marker::ContravariantLifetime<[]>[#3]" = type {}
+%"enum.core::fmt::Void<[]>[#3]" = type {}
+%"struct.core::fmt::Arguments<[]>[#3]" = type { { %"enum.core::fmt::rt::Piece<[]>[#3]"*, i64 }, { %"struct.core::fmt::Argument<[]>[#3]"*, i64 } }
+%"enum.core::fmt::rt::Piece<[]>[#3]" = type { i8, [7 x i8], [8 x i64] }
+
+@str1364 = internal constant [12 x i8] c"Hello world!"
+@_ZN4main15__STATIC_FMTSTR20h3b67a4ad8efbb398oaaE = internal unnamed_addr constant { { i8, %str_slice, [48 x i8] } } { { i8, %str_slice, [48 x i8] } { i8 0, %str_slice { i8* getelementptr inbounds ([12 x i8]* @str1364, i32 0, i32 0), i64 12 }, [48 x i8] undef } }
+
+; Function Attrs: uwtable
+define internal void @_ZN4main20he3565cca0bc2f101eaaE() unnamed_addr #0 {
+entry-block:
+  %match = alloca {}
+  %__args_vec = alloca { %"struct.core::fmt::Argument<[]>[#3]"*, i64 }
+  %0 = alloca %"struct.core::fmt::Argument<[]>[#3]", i64 0
+  %__args = alloca %"struct.core::fmt::Arguments<[]>[#3]"
+  %__adjust = alloca { %"enum.core::fmt::rt::Piece<[]>[#3]"*, i64 }
+  %__adjust1 = alloca { %"struct.core::fmt::Argument<[]>[#3]"*, i64 }
+  br label %case_body
+
+case_body:                                        ; preds = %entry-block
+  %1 = getelementptr inbounds { %"struct.core::fmt::Argument<[]>[#3]"*, i64 }* %__args_vec, i32 0, i32 0
+  store %"struct.core::fmt::Argument<[]>[#3]"* %0, %"struct.core::fmt::Argument<[]>[#3]"** %1
+  %2 = getelementptr inbounds { %"struct.core::fmt::Argument<[]>[#3]"*, i64 }* %__args_vec, i32 0, i32 1
+  store i64 0, i64* %2
+  %3 = getelementptr inbounds { %"enum.core::fmt::rt::Piece<[]>[#3]"*, i64 }* %__adjust, i32 0, i32 0
+  store %"enum.core::fmt::rt::Piece<[]>[#3]"* getelementptr inbounds ([1 x %"enum.core::fmt::rt::Piece<[]>[#3]"]* bitcast ({ { i8, %str_slice, [48 x i8] } }* @_ZN4main15__STATIC_FMTSTR20h3b67a4ad8efbb398oaaE to [1 x %"enum.core::fmt::rt::Piece<[]>[#3]"]*), i32 0, i32 0), %"enum.core::fmt::rt::Piece<[]>[#3]"** %3
+  %4 = getelementptr inbounds { %"enum.core::fmt::rt::Piece<[]>[#3]"*, i64 }* %__adjust, i32 0, i32 1
+  store i64 1, i64* %4
+  %5 = getelementptr inbounds { %"struct.core::fmt::Argument<[]>[#3]"*, i64 }* %__args_vec, i32 0, i32 0
+  %6 = load %"struct.core::fmt::Argument<[]>[#3]"** %5
+  %7 = getelementptr inbounds { %"struct.core::fmt::Argument<[]>[#3]"*, i64 }* %__args_vec, i32 0, i32 1
+  %8 = load i64* %7
+  %9 = getelementptr inbounds { %"struct.core::fmt::Argument<[]>[#3]"*, i64 }* %__adjust1, i32 0, i32 0
+  store %"struct.core::fmt::Argument<[]>[#3]"* %6, %"struct.core::fmt::Argument<[]>[#3]"** %9
+  %10 = getelementptr inbounds { %"struct.core::fmt::Argument<[]>[#3]"*, i64 }* %__adjust1, i32 0, i32 1
+  store i64 %8, i64* %10
+  call void @"_ZN3fmt22Arguments$LT$$x27a$GT$3new20h30af698883d0f4c86aaE"(%"struct.core::fmt::Arguments<[]>[#3]"* noalias nocapture sret dereferenceable(32) %__args, { %"enum.core::fmt::rt::Piece<[]>[#3]"*, i64 }* noalias nocapture dereferenceable(16) %__adjust, { %"struct.core::fmt::Argument<[]>[#3]"*, i64 }* noalias nocapture dereferenceable(16) %__adjust1)
+  call void @_ZN2io5stdio12println_args20hecac3fc58fb73442EvmE(%"struct.core::fmt::Arguments<[]>[#3]"* noalias nocapture dereferenceable(32) %__args)
+  br label %join
+
+join:                                             ; preds = %case_body
+  ret void
+}
+
+define i64 @main(i64, i8**) unnamed_addr #1 {
+top:
+  %2 = call i64 @_ZN10lang_start20h7823875e69d425d0BueE(i8* bitcast (void ()* @_ZN4main20he3565cca0bc2f101eaaE to i8*), i64 %0, i8** %1)
+  ret i64 %2
+}
+
+declare i64 @_ZN10lang_start20h7823875e69d425d0BueE(i8*, i64, i8**) unnamed_addr #1
+
+; Function Attrs: inlinehint uwtable
+define internal void @"_ZN3fmt22Arguments$LT$$x27a$GT$3new20h30af698883d0f4c86aaE"(%"struct.core::fmt::Arguments<[]>[#3]"* noalias nocapture sret dereferenceable(32), { %"enum.core::fmt::rt::Piece<[]>[#3]"*, i64 }* noalias nocapture dereferenceable(16), { %"struct.core::fmt::Argument<[]>[#3]"*, i64 }* noalias nocapture dereferenceable(16)) unnamed_addr #2 {
+entry-block:
+  %__adjust = alloca { %"struct.core::fmt::Argument<[]>[#3]"*, i64 }
+  %3 = getelementptr inbounds %"struct.core::fmt::Arguments<[]>[#3]"* %0, i32 0, i32 0
+  %4 = bitcast { %"enum.core::fmt::rt::Piece<[]>[#3]"*, i64 }* %1 to i8*
+  %5 = bitcast { %"enum.core::fmt::rt::Piece<[]>[#3]"*, i64 }* %3 to i8*
+  call void @llvm.memcpy.p0i8.p0i8.i64(i8* %5, i8* %4, i64 16, i32 8, i1 false)
+  %6 = getelementptr inbounds %"struct.core::fmt::Arguments<[]>[#3]"* %0, i32 0, i32 1
+  %7 = getelementptr inbounds { %"struct.core::fmt::Argument<[]>[#3]"*, i64 }* %2, i32 0, i32 0
+  %8 = load %"struct.core::fmt::Argument<[]>[#3]"** %7
+  %9 = getelementptr inbounds { %"struct.core::fmt::Argument<[]>[#3]"*, i64 }* %2, i32 0, i32 1
+  %10 = load i64* %9
+  %11 = getelementptr inbounds { %"struct.core::fmt::Argument<[]>[#3]"*, i64 }* %__adjust, i32 0, i32 0
+  store %"struct.core::fmt::Argument<[]>[#3]"* %8, %"struct.core::fmt::Argument<[]>[#3]"** %11
+  %12 = getelementptr inbounds { %"struct.core::fmt::Argument<[]>[#3]"*, i64 }* %__adjust, i32 0, i32 1
+  store i64 %10, i64* %12
+  %13 = bitcast { %"struct.core::fmt::Argument<[]>[#3]"*, i64 }* %__adjust to i8*
+  %14 = bitcast { %"struct.core::fmt::Argument<[]>[#3]"*, i64 }* %6 to i8*
+  call void @llvm.memcpy.p0i8.p0i8.i64(i8* %14, i8* %13, i64 16, i32 8, i1 false)
+  ret void
+}
+
+; Function Attrs: nounwind
+declare void @llvm.memcpy.p0i8.p0i8.i64(i8* nocapture, i8* nocapture readonly, i64, i32, i1) unnamed_addr #3
+
+declare void @_ZN2io5stdio12println_args20hecac3fc58fb73442EvmE(%"struct.core::fmt::Arguments<[]>[#3]"* noalias nocapture dereferenceable(32)) unnamed_addr #1
+
+attributes #0 = { uwtable "split-stack" }
+attributes #1 = { "split-stack" }
+attributes #2 = { inlinehint uwtable "split-stack" }
+attributes #3 = { nounwind "split-stack" }

@@ -1,0 +1,17 @@
+with Ada.Text_IO;  use Ada.Text_IO;
+
+procedure Test_Sum_Of_Squares is
+   type Integer_Array is array (Integer range <>) of Integer;
+
+   function Sum_Of_Squares (X : Integer_Array) return Integer is
+      Sum : Integer := 0;
+   begin
+      for I in X'Range loop
+         Sum := Sum + X (I) ** 2;
+      end loop;
+      return Sum;
+   end Sum_Of_Squares;
+
+begin
+   Put_Line (Integer'Image (Sum_Of_Squares ((1, 2, 3, 4, 5))));
+   end Test_Sum_Of_Squares;

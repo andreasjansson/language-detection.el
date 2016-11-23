@@ -1,0 +1,7 @@
+(defun set-up-tooltip()
+    ;; search for the text to be highlighted
+    ...
+    (add-text-properties (match-beginning 0)
+                         (match-end 0)
+                         '(mouse-face highlight
+                                      help-echo (get-help-text (match-beginning 0)))

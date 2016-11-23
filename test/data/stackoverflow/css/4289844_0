@@ -1,0 +1,15 @@
+<ul class="widgets">
+
+     <li><h2>Widget title 1</h2>
+          <ul>
+          ....my widget content
+          </ul>
+     </li>
+
+     <li><h2>Custom widget 1</h2>
+          <ul class="tabs">
+          ...this one I want to have padding:0..
+          </ul>
+     </li>
+
+</ul>

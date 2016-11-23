@@ -1,0 +1,42 @@
+function Get_Console_Handle
+  return System.Address
+  is
+  use System;
+  STD_INPUT_HANDLE  : constant Interfaces.C.Unsigned_Long := -10;
+  STD_OUTPUT_HANDLE : constant Interfaces.C.Unsigned_Long := -11;
+  STD_ERROR_HANDLE  : constant Interfaces.C.Unsigned_Long := -12;
+
+  type Shared_Library_Function
+    is access function(
+      Standard_Handle : Interfaces.C.Unsigned_Long)
+      return System.Address;
+    pragma Convention(Stdcall, Shared_Library_Function);
+  function To_Shared_Library_Function
+    is new Ada.Unchecked_Conversion(System.Address, Shared_Library_Function);
+
+  function Load_Library(
+    File_Name : in Interfaces.C.Char_Array)
+    return System.Address;
+  pragma Import(Stdcall, Load_Library, "LoadLibrary", "_LoadLibraryA@4"); 
+
+  function Get_Function_Address(
+    Module        : in System.Address;
+    Function_Name : in Char_Array)
+    return System.Address;
+  pragma Import(stdcall, Get_Function_Address, "GetProcAddress", "_GetProcAddress@8");
+
+  Library : System.Address := Load_Library(To_C("kernel32.dll"));
+  Pointer : System.Address := Get_Function_Address(Library, To_C("GetStdHandle"));
+  begin
+    if Pointer /= System.Null_Address then
+      return To_Shared_Library_Function(Pointer).all(STD_OUTPUT_HANDLE);
+    else
+      return System.Null_Address;
+    end if;
+  end Get_Console_Handle;
+
+--winbase.CloseHandle
+  function Close_Handle(
+    Object_Handle : in System.Address)
+    return Interfaces.C.Int;
+  pragma Import(Stdcall, "CloseHandle");

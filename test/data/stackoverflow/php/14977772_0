@@ -1,0 +1,2 @@
+$my_file = 'my_options.sql';
+$handle = fopen($my_file, 'w') or die('Cannot open file:  '.$my_file);

@@ -1,0 +1,8 @@
+File latexFile = fileChooser.showSaveDialog(window.stage);
+if (latexFile != null) {
+    try {
+        writeContentToFile(content, latexFile);
+    } catch (IOException ex) {
+        Logger.getLogger(DocumentViewPort.class.getName()).log(Level.SEVERE, null, ex);
+    }
+}

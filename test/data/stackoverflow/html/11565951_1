@@ -1,0 +1,33 @@
+function () {
+
+var iFile = iContainer.find( '#Ids2' ).val();  
+
+var DataToSave = {
+
+    'Attachment' : iFile 
+};
+
+var encodedData = $.toJSON(DataToSave);
+
+
+$.ajax({
+    type: 'POST' ,
+    url: '/AttController/Attach' ,
+    data: encodedData,
+    contentType: 'application/json; charset=utf-8' ,
+    success: function (rc) {
+        if (rc.Success) {
+           // more javascript reroutes..business logic
+        }
+        else {
+
+            alert(rc.Message);
+        }
+    },
+    error: function (xhr, ajaxOptions, thrownError) {
+
+        alert( 'Error attaching \n' + xhr.response);
+    }
+ });
+
+ };

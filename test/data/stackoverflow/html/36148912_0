@@ -1,0 +1,3 @@
+{% if content.field_votre_type_the_profil[0] == "test string" %}
+    <p>Hey i found the string</p>
+{% endif %}

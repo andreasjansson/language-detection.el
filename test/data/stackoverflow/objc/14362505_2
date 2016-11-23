@@ -1,0 +1,12 @@
+Client will listen from a Socket in a **thread, and data will come in XML Format**
+In the same thread it will Extract the XML Data and Form a NSMutableDictionary & NSMutableArray 
+
+something like this, 
+
+NSMutableArray  *rootArray = will contain all first level of item, 
+
+each element of rootArray will be of type OutlineViewData class, this will contain any additional info whether they are single element or it can be another group item , 
+
+if at all they are group item again there will be an array and so on.. 
+
+**From listen thread i am calling OutlineView reload data over main thread.**

@@ -1,0 +1,24 @@
+myStream :=   
+(FileStream oldFileNamed: 'big_buck_bunny_480p_surround-fix.avi') .
+bytes := myStream next: myStream size.
+myStream close.
+myStream := nil.
+server distributeMessage: bytes.
+
+testConnect
+| websocket1 receivedFile|
+websocket1 := ZnWebSocket to: 'ws://192.168.1.102:1701/ws-chatroom'.
+testProcess := [ 
+[ 
+| mes |
+mes := [ websocket1 readMessage ]
+    on: ConnectionTimedOut
+    do: [ nil ].
+mes
+    ifNotNil: [ 
+        Transcript
+            show: 'Message received in client';cr .
+            receivedFile := FileStream newFileNamed: 'receivedFile3.avi'. 
+receivedFile nextPutAll: mes.
+receivedFile close.
+             ] ] repeat ] fork

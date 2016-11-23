@@ -1,0 +1,29 @@
+module define_structures
+implicit none
+private
+
+public modelling_params
+
+    type modelling_params
+        real, dimension(:), allocatable :: freqs
+        real, dimension(:), allocatable :: offsets      
+        complex, dimension(:), allocatable :: data
+    end type modelling_params   
+end module define_structures
+
+program main
+
+use define_structures
+    implicit none
+
+    type (modelling_params) :: S
+
+    S%data = [(1,1) ,(2,3), (3,1)]
+    S%freqs = [1, 3, 7]
+    S%offsets = [100, 200, 300]
+    print *,S%data
+    print *,S%freqs
+    print *,S%offsets
+
+
+end program main

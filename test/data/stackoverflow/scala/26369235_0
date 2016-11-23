@@ -1,0 +1,18 @@
+abstract class A  extends TestKit(_system) with WordSpecLike {
+    "backend" must {
+        "do something useful" in {
+            //test useful stuff
+         }
+        "print something pretty" in {
+           //test pretty print
+        }
+    }    
+}
+
+class B extends A {
+
+}
+
+class C extends A {
+
+}

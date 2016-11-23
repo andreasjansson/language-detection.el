@@ -1,0 +1,5 @@
+Dim key As RijndaelManaged = Nothing
+
+Try
+    ' Create a new Rijndael key.
+    key = New RijndaelManaged()

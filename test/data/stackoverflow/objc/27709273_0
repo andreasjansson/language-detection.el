@@ -1,0 +1,27 @@
+@interface Content : NSManagedObject
+
+@property (nonatomic, retain) NSString * contenido;
+@property (nonatomic, retain) NSNumber * index;
+@property (nonatomic, retain) NSString * titulo;
+@property (nonatomic, retain) NSNumber * uploadCloudKit;
+@property (nonatomic, retain) Categories *category;
+
+---
+
+@class Content;
+
+@interface Categories : NSManagedObject
+
+@property (nonatomic, retain) NSString * categoryName;
+@property (nonatomic, retain) NSSet *content;
+@end
+
+
+
+NSEntityDescription *categoryDescription = [ NSEntityDescription entityForName:@"Categories" inManagedObjectContext:moc];
+
+NSFetchRequest *categoRequest = [NSFetchRequest new];
+categoRequest.entity = categoryDescription;
+NSPredicate *categoPredicate = [NSPredicate predicateWithFormat:@"categoryName like %@", category];
+categoRequest.predicate = categoPredicate;
+ NSArray *results = [moc executeFetchRequest:categoRequest error:&error];

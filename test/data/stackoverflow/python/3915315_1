@@ -1,0 +1,3 @@
+class Root(object):
+   _registry = []
+   __metaclass__ = make_subtracker(Root)

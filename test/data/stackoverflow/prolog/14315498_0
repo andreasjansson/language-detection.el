@@ -1,0 +1,13 @@
+$cd plweb-7cd70ce/
+$./run 
+ERROR: plweb-7cd70ce/register.pl:35:
+    source_sink `library(smtp)' does not exist
+Warning: plweb-7cd70ce/register.pl:35:
+    Goal (directive) failed: register:use_module(library(smtp))
+Warning: plweb-7cd70ce/load.pl:50:
+    Using CLP(FD) with bounded arithmetic may yield wrong results.
+ERROR: /home/***/swi-prolog/lib/swipl-6.2.6/library/clp/clpq/store_q.pl:347:
+    evaluable `-1 rdiv _G43862' does not exist
+ERROR: /home/***/swi-prolog/lib/swipl-6.2.6/library/clp/clpq/bv_q.pl:85:
+    Exported procedure store_q:isolate/3 is not defined
+...

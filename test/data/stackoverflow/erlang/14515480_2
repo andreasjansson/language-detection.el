@@ -1,0 +1,9 @@
+(erlide@127.0.0.1)3> test:start().
+Parent (<0.88.0>): started!
+Parent (<0.88.0>): child <0.114.0> spawned. Waiting for 5 seconds
+Child (<0.114.0>): I'm... alive!
+Child (<0.114.0>): still alive...
+Child (<0.114.0>): still alive...
+Parent (<0.88.0>): dies out of boredom
+Child process died together with parent ({'EXIT',<0.88.0>,normal})
+** exception exit: normal

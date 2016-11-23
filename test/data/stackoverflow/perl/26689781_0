@@ -1,0 +1,23 @@
+#!/usr/bin/perl
+use strict;
+use warnings;
+
+use Archive::Tar;
+use File::Spec::Functions qw(catdir);
+
+#checking if tar file contain a txt file, if yes extract it to a folder
+
+my $tarPath    = 'path/to/tarArchive';
+my $tar        = Archive::Tar->new($tarPath);
+my @files      = $tar->list_files;
+my $output_dir = 'C:/output/path';
+foreach my $file (@files) {
+    if ( $file =~ /txt$/ ) {
+        my $extracted_file = catdir( $fileName,   $file );
+        my $extracted_path = catdir( $output_dir, $file );
+        $tar->extract( $extracted_file, $output_dir );
+        print $extracted_file;
+
+    }
+}
+exit 0;

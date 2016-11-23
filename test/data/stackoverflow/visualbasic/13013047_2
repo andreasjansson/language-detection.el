@@ -1,0 +1,25 @@
+Namespace Controls
+    Public Class ManufacturerWarranty
+
+        Private LinqDB As New DataContext(My.Settings.dbConnection)
+        Property tblManufacturers As Table(Of dbManufacturers) = LinqDB.GetTable(Of dbManufacturers)()
+        Property ManufacturerQuery = From m In tblManufacturers Order By m.ManufacturerName
+
+        Public Sub New()
+            InitializeComponent()
+        End Sub
+
+        Private Sub ManufacturerWarranty_Loaded(sender As Object, e As System.Windows.RoutedEventArgs) Handles Me.Loaded
+            Me.DataContext = Me
+        End Sub
+
+        Private Sub TreeView1_MouseDoubleClick(sender As System.Object, e As System.Windows.Input.MouseButtonEventArgs) Handles TreeView1.MouseDoubleClick
+            StackPanel1.DataContext = e.OriginalSource.DataContext
+        End Sub
+
+
+        Private Sub cmdSave_Click(sender As Object, e As System.Windows.RoutedEventArgs) Handles cmdSave.Click
+            LinqDB.SubmitChanges()
+        End Sub
+    End Class
+End Namespace

@@ -1,0 +1,3 @@
+var password string
+fmt.Println("password: ")
+fmt.Scan(&password)

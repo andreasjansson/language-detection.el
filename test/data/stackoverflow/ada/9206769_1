@@ -1,0 +1,2 @@
+val := Intrinsic_Sync_Add_And_Fetch(...);
+if val := 0 then null; end if;

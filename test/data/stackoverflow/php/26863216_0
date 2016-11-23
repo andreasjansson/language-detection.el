@@ -1,0 +1,16 @@
+{
+    'main_index':{
+        'type':[{
+            'name':'john deo',
+            'type':'accountant',
+            'description':'john deo is a great person',
+            'address':'somewhere in the world'
+        },
+        {
+            'name':'calvin kalvin',
+            'type':'designer',
+            'description':'calvin kalvin is john deo's best friend',
+            'address':'somewhere near'
+        }]
+    }
+}

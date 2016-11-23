@@ -1,0 +1,6 @@
+def vertx = Vertx.vertx()
+def router = Router.router(vertx)
+
+router.route().handler(BodyHandler.create())
+// more routes here
+vertx.createHttpServer().requestHandler(router.&accept).listen(8080)

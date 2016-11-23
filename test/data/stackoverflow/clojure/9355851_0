@@ -1,0 +1,3 @@
+(ns tutorial.shell
+(:use clojure.java.shell))
+   (println (:out (sh "ls" )))

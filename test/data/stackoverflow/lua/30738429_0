@@ -1,0 +1,3 @@
+local function equals(func1, func2)
+   -- check them and return true if equal
+end

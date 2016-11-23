@@ -1,0 +1,19 @@
+{ok, Pid} = seestar_session:start_link("localhost", 9042),      
+QryUse = "USE mykeyspace;", 
+case seestar_session:perform(Pid, QryUse, one) of 
+    {ok,_Result} ->         
+        FromJid = From#jid.luser++"@"++From#jid.lserver,            
+        Flag = true,        
+        QueryFinal=lists:concat(["select conversationid,user_id,expert_id,message from message_log 
+        where conv_initiator_id = ","'",FromJid ,"'", " AND flag =",Flag," ORDER BY starttime ASC"," ALLOW FILTERING"]),            
+            case seestar_session:perform(Pid,QueryFinal,one) of 
+                {ok,_RecordList} ->                                  
+                    {rows,_ColumnNames,_Records} = _RecordList,                     
+                    ?INFO_MSG("selecting records from database using userid    ~p",[_Records]),
+                    _Records;   
+                {error,_Error} ->
+                    ?INFO_MSG("Error occured while selecting records from database using userid~p",[_Error])
+            end;                    
+    {error,_Error} ->
+        ?INFO_MSG(" Error occured while executing use query ~p",[_Error])
+end.

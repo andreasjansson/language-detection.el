@@ -1,0 +1,13 @@
+import 'dart:async'
+
+main() {
+    int count = 0;
+    var stopwatch = new Stopwatch();
+    stopwatch.start();
+    new Timer.periodic(new Duration(microseconds:  1000), (Timer t) {
+       count++;
+       if(count == 1000){
+          print(stopwatch.elapsed);
+          stopwatch.stop();
+       }
+});

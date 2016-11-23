@@ -1,0 +1,2 @@
+\cons nil -> 5 `cons` nil
+\(#) nil -> 5 # nil

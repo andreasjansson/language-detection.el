@@ -1,0 +1,23 @@
+-module(mod_auto_muc).
+
+-behavior(gen_mod).
+
+-include("ejabberd.hrl").
+-include("logger.hrl").
+
+-export([start/2, stop/1, on_user_available/1]).
+
+start(Host, _Opts) ->
+    ?INFO_MSG("mod_auto_muc starting on Host: ~p", [Host]),
+    ejabberd_hooks:add(user_available_hook, Host, ?MODULE, on_user_available, 50),
+    ok.
+
+stop(Host) ->
+    ?INFO_MSG("mod_auto_muc stopping on Host: ~p", [Host]),
+    ejabberd_hooks:delete(user_available_hook, Host, ?MODULE, on_user_available, 50),
+    ok.
+
+on_user_available(Jid) ->
+    ConnectedUsers = ejabber_sm:connected_users(),
+    ?INFO_MSG("Connected users ~p", [ConnectedUsers]),
+    ok.

@@ -1,0 +1,30 @@
+class TableViewCell: UITableViewCell {
+
+    let userName = UILabel()
+
+    // I'm assuming the reuseIdentifier below should be the same as the one in TableViewController
+    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: "TVC")
+
+        userName.text = PFUser.currentUser()!.email
+        userName.translatesAutoresizingMaskIntoConstraints = false
+        self.contentView.addSubview(userName)
+        self.contentView.addConstraint(NSLayoutConstraint(item: UserName,
+            attribute: .CenterX,
+            relatedBy: .Equal,
+            toItem: self.contentView,
+            attribute: .CenterX,
+            multiplier: 1,
+            constant: 0))
+        self.contentView.addConstraint(NSLayoutConstraint(item: userName,
+            attribute: .CenterY,
+            relatedBy: .Equal,
+            toItem: self.contentView,
+            attribute: .CenterY,
+            multiplier: 1,
+            constant: 0))
+    }
+
+    required init(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)!
+    }

@@ -1,0 +1,36 @@
+#!/usr/bin/perl
+
+package LinearPDL;
+use Moose;
+
+use PDL::Lite;
+use PDL::IO::Storable;
+
+use MooseX::Storage; 
+with Storage('io' => 'StorableFile');
+
+has 'length' => (is => 'ro', isa => 'Num', required => 1);
+has 'divisions' => (is => 'ro', isa => 'Int', required => 1);
+has 'linear_pdl' => (is => 'ro', isa => 'PDL', lazy => 1, builder => '_build_pdl');
+
+sub _build_pdl {
+  my $self = shift;
+
+  my $pdl = $self->length() / ( $self->divisions() - 1 ) * PDL::Basic::xvals($self->divisions());
+
+  return $pdl;
+}
+
+no Moose;
+__PACKAGE__->meta->make_immutable;
+
+use strict;
+use warnings;
+
+my $linear_pdl = LinearPDL->new('length' => 5, 'divisions' => 10);
+print $linear_pdl->linear_pdl;
+
+$linear_pdl->store('file'); # blows up here!
+
+my $loaded_lpdl = load('file');
+print $loaded_lpdl->linear_pdl;

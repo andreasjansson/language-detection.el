@@ -1,0 +1,11 @@
+manualSet: aSet
+| validatedSet |
+( aSet == nil ) ifTrue: [ manualSet:= nil ] 
+ifFalse: [ 
+    (aSet isMemberOf: Set) ifFalse:[^nil]. 
+    validatedSet:= aSet select:[ :each| (each isMemberOf:Symbol)
+                                    and:(self respondsTo:each)
+                                    and:(self isManual:each in: self) 
+                                    and:((self isManual:each in:super)not)].
+    manualSet:= validatedSet.
+]

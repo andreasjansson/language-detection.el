@@ -1,0 +1,4 @@
+<ns3:Invoice xmlns="http://defaultnamespace.com" xmlns:ns2="http://namespace2.com"
+  xmlns:ns3="http://namespace3.com">
+.........
+</ns3:Invoice>

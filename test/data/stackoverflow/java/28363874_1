@@ -1,0 +1,5 @@
+@Override
+public void onMapReady(GoogleMap map) {
+SupportMapFragment fragment = ( SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.mapFragment);
+// Getting Google Map
+GoogleMap googleMap = fragment.getMap();

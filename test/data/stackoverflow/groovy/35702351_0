@@ -1,0 +1,29 @@
+retrieve_table_count_list = { objParams ->
+
+    aryTables = objParams.table_list
+
+    objDB2DBRS = [:]
+    objDB2DBRS["database_jdbc_url"] = get_config_setting(setting: "DB2DatabaseURL").toString()
+
+    strReturnSQL = ""
+
+    GParsPool.withPool(10) { pool ->
+        currentPool = pool
+        aryTables.eachWithIndexParallel { objTable, intTable ->
+
+            intNumTables = aryTables.size()
+            strTableName = objTable.table_name
+
+            strSQL="select count(*) as \"row_count\" from ${strTableName}"
+
+            aryRowCount = { db_commands(query: strSQL, params: objDB2DBRS) }
+            objFastRowCount = aryRowCount.async()
+            objResultRowCount = objFastRowCount()
+
+            intRowCount = aryRowCount[0]["row_count"]
+
+            strReturnSQL += "update tmp_TableCount set row_count=${intRowCount} where table_name='${strTableName}';\n"
+        }
+    }
+    return strReturnSQL
+}

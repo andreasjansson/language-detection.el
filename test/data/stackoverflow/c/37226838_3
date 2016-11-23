@@ -1,0 +1,9 @@
+UART_SetBaudrate(&UART_0, 9400, 16);
+delay(10000000);
+UART_Transmit(&UART_0, AT, 2);
+UART_SetBaudrate(&UART_0, 2400, 16);
+delay(10000000);
+UART_Transmit(&UART_0, AT, 2);
+UART_SetBaudrate(&UART_0, 4800, 16);
+delay(10000000);
+UART_Transmit(&UART_0, AT, 2);

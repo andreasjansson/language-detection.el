@@ -1,0 +1,7 @@
+for {
+  guy <- guys
+  girl <- girls
+  room <- optRoom
+} yield {
+  s"$guy dances with $girl in $room"
+}

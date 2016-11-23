@@ -1,0 +1,9 @@
+"chartStat": " CHART NOT PREPARED ",
+ "passengers": [{
+     "trainBookingBerth": "RAC9  , 8,GN    ",
+     "trainCurrentStatus": "   CNF  ",
+     "trainPassenger": "Passenger 1"
+  }],
+  "trainBoard": "Kovilpatti",
+  "trainBoardCode": "CVP",
+  "trainDest": "Chennai Egmore",

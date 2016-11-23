@@ -1,0 +1,33 @@
+import { Input, Component, Output, EventEmitter } from '@angular/core';
+import { Event } from '../../shared'
+import { Calendar, Button, Dropdown, SelectItem } from 'primeng/primeng'
+
+@Component({
+  moduleId: module.id,
+  selector: 'appointment-detail',
+  templateUrl: 'appointment-detail.component.html',
+  styleUrls: ['appointment-detail.component.css'],
+  directives: [Calendar, Button, Dropdown]
+})
+export class AppointmentDetailComponent {
+  @Input() event;
+  @Output() submitDetails: EventEmitter<any> = new EventEmitter();
+  appointmentTypes: SelectItem[];
+
+  constructor() {
+    this.event = new Event();
+    this.appointmentTypes = [];
+    this.appointmentTypes.push({label: 'Select type:', value: ''})
+    this.appointmentTypes.push({label: 'Meeting', value: 'Meeting'})
+    this.appointmentTypes.push({label: 'Vacation', value: 'Vacation'})
+    this.appointmentTypes.push({label: 'Other', value: 'Other'})
+  }
+
+  saveEvent() {
+    this.submitDetails.emit({action: 'save', event: this.event});
+  }
+
+  deleteEvent() {
+    this.submitDetails.emit({action: 'delete', event: this.event});
+  }
+}

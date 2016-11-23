@@ -1,0 +1,10 @@
+<div itemscope itemtype="http://data-vocabulary.org/Breadcrumb">
+    <a href="HOME URL" itemprop="url">
+        <span itemprop="title">HOME TITLE</span>
+    </a> > 
+</div>
+<div itemscope itemtype="http://data-vocabulary.org/Breadcrumb">
+    <a href="1ST LEVEL URL" itemprop="url">
+        <span itemprop="title">1ST LEVEL TITLE</span>
+    </a>
+</div>

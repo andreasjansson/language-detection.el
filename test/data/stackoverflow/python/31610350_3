@@ -1,0 +1,2 @@
+<p>{% trans "Not a member?" %} <a href="{% url 'accounts:registration_register' %}">{% trans "Register now!" %}</a>.</p>
+<p>{% trans "Forgot your password?" %} <a href="{% url 'accounts:auth_password_reset' %}">{% trans "Reset it" %}</a>.</p>

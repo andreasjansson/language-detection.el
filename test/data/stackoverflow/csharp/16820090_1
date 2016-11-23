@@ -1,0 +1,32 @@
+public class SummaryViewModel : CareerPlanningFormBase
+{
+    public string StaffName { get; set; }
+
+    public string StaffImageUrl { get; set; }
+
+    public string PredominantRole { get; set; }
+
+    public IList<SummaryResultsMeasuresSectionModel> ResultsMeasuresSections { get; set; }
+}
+
+public class SummaryResultsMeasuresSectionModel
+{
+    public string SectionName { get; set; }
+
+    public string SectionLabelTitle { get; set; }
+
+    public string SectionLabelText { get; set; }
+
+    public IList<SummaryResultsMeasureModel> ResultsMeasures { get; set; }
+}
+
+public class SummaryResultsMeasureModel
+{
+    public string ResultsMeasureName { get; set; }
+
+    public IEnumerable<string> MeasureTypes { get; set; }
+
+    public IList<SummaryResultsMeasureCriterionModel> ResultsMeasureCriteria { get; set; }
+
+    public IEnumerable<SummaryActionPlanModel> ActionPlans { get; set; }
+}

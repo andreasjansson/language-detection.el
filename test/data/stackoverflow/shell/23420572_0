@@ -1,0 +1,3 @@
+Permissions   links  Owner  Group  Size   Date        Time    Directory or file
+-rwxr--r--     1     User1  root    26    2012-04-12  19:51    MyFile.txt
+drwxrwxr-x     3     User2  csstf  4096   2012-03-15  00:12     MyDir

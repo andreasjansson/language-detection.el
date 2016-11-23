@@ -1,0 +1,12 @@
+dragCard: function() {
+    this.$el.draggable({
+      axis: 'x',
+      cursor: "crosshair",
+      containment: ".game-play",
+      scope: '#card',
+      stop: function( event, ui ) {
+        console.log(event.clientX);
+        console.log(event.target).attr('year');
+      }
+    });
+  },

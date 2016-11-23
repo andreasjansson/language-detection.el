@@ -1,0 +1,3 @@
+(pcase (string-to-char (cadar parse))
+  ((pred (and (>= (string-to-char "0")) (<= (string-to-char "5")))) do-something)
+  ...

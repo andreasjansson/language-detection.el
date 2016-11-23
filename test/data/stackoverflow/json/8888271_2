@@ -1,0 +1,40 @@
+import ccSample.Type.Course.Link;
+
+        public class Course {
+
+        public Link links[];
+
+        } 
+
+        public class Link{
+        public String href;
+        public String rel;
+        public String title;
+        public String getHref() {
+        return href;
+        }
+       public void setHref(String href) {
+       this.href = href;
+        }
+        public String getRel() {
+        return rel;
+        }
+        public void setRel(String rel) {
+        this.rel = rel;
+        }
+        public String getTitle() {
+        return title;
+        }
+        public void setTitle(String title) {
+        this.title = title;
+        }
+
+        }
+
+
+
+
+
+         but I am just getting a null courses object and do not know what I am missing,     any suggestions corrections are welcome!
+
+    Thank you very much :)

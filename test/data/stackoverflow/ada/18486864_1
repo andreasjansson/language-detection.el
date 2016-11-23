@@ -1,0 +1,3 @@
+gcc-4.6 -c -g -gnatg -ggdb -I- -gnatA /home/sid/tmp/device.adb
+device.ads:93:20: enumeration value for "No_Action" not ordered
+gnatmake: "/home/sid/tmp/device.adb" compilation error

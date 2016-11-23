@@ -1,0 +1,69 @@
+sandesh@sandesh-H87M-D3H:~/Downloads/tutorials-master/2_supervised$ luajit doall.lua 
+    ==> processing options
+    ==> executing all
+    ==> downloading dataset
+    ==> using regular, full training data
+    ==> loading dataset
+    ==> preprocessing data
+    ==> preprocessing data: colorspace RGB -> YUV
+    ==> preprocessing data: normalize each feature (channel) globally
+    ==> preprocessing data: normalize all three channels locally
+    ==> verify statistics
+    training data, y-channel, mean: 0.00067706172257129
+    training data, y-channel, standard deviation: 0.39473240322794
+    test data, y-channel, mean: -0.0010822884348063
+    test data, y-channel, standard deviation: 0.38091408093043
+    training data, u-channel, mean: -0.0048219975630079
+    training data, u-channel, standard deviation: 0.29768662619471
+    test data, u-channel, mean: -0.0030795217110624
+    test data, u-channel, standard deviation: 0.22289780235542
+    training data, v-channel, mean: 0.0036312269637064
+    training data, v-channel, standard deviation: 0.25405592463897
+    test data, v-channel, mean: 0.0033847450016769
+    test data, v-channel, standard deviation: 0.20362829592977
+    ==> visualizing data
+    ==> define parameters
+    ==> construct model
+    ==> here is the model:
+    nn.Sequential {
+      [input -> (1) -> (2) -> (3) -> (4) -> (5) -> (6) -> (7) -> (8) -> (9) -> (10) -> (11) -> (12) -> output]
+      (1): nn.SpatialConvolutionMM(3 -> 64, 5x5)
+      (2): nn.Tanh
+      (3): nn.Sequential {
+        [input -> (1) -> (2) -> (3) -> (4) -> output]
+        (1): nn.Square
+        (2): nn.SpatialAveragePooling(2,2,2,2)
+        (3): nn.MulConstant
+        (4): nn.Sqrt
+      }
+      (4): nn.SpatialSubtractiveNormalization
+      (5): nn.SpatialConvolutionMM(64 -> 64, 5x5)
+      (6): nn.Tanh
+      (7): nn.Sequential {
+        [input -> (1) -> (2) -> (3) -> (4) -> output]
+        (1): nn.Square
+        (2): nn.SpatialAveragePooling(2,2,2,2)
+        (3): nn.MulConstant
+        (4): nn.Sqrt
+      }
+      (8): nn.SpatialSubtractiveNormalization
+      (9): nn.Reshape(1600)
+      (10): nn.Linear(1600 -> 128)
+      (11): nn.Tanh
+      (12): nn.Linear(128 -> 10)
+    }
+    ==> define loss
+    ==> here is the loss function:
+    nn.ClassNLLCriterion
+    ==> defining some tools
+    luajit: /home/sandesh/torch/install/share/lua/5.1/sys/init.lua:38: attempt to index local 'f' (a nil value)
+    stack traceback:
+        /home/sandesh/torch/install/share/lua/5.1/sys/init.lua:38: in function 'execute'
+        /home/sandesh/torch/install/share/lua/5.1/sys/init.lua:71: in function 'uname'
+        /home/sandesh/torch/install/share/lua/5.1/optim/Logger.lua:38: in function '__init'
+        /home/sandesh/torch/install/share/lua/5.1/torch/init.lua:91: in function 
+        [C]: in function 'Logger'
+        4_train.lua:60: in main chunk
+        [C]: in function 'dofile'
+        doall.lua:70: in main chunk
+        [C]: at 0x00406670

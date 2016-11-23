@@ -1,0 +1,23 @@
+with Text_IO;
+use Text_IO;
+
+procedure imp3ada is
+
+package Int_IO is new Text_IO.Integer_IO(Integer);
+use Int_IO;
+
+inputFile: File_Type;
+i: integer:=0;
+fileSize: Integer:=0;
+fileCurrentPosition: Integer:=0;
+
+begin
+    open(inputFile, In_File, "test.cfg");
+        while not End_of_File(inputFile) loop
+        fileCurrentPosition:=fileCurrentPosition+1;
+        end loop;
+    fileSize:=fileCurrentPosition;
+    Int_IO.put(fileCurrentPosition);
+    Int_IO.put(fileSize);
+    close(inputFile);
+end imp3ada;

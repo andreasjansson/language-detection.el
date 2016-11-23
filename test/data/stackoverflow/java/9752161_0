@@ -1,0 +1,15 @@
+int getNombre()
+ {
+   nbre = (int)(Math.random()*336529);
+   return nbre ;
+ }
+
+public String FindWord () throws IOException{
+   String word = null;
+   int nbr= getNombre();
+   InputStreamReader reader = null;
+   LineNumberReader lnr = null;
+   reader = new InputStreamReader(new FileInputStream("../image/ListeMot.txt"));
+   lnr = new LineNumberReader(reader);
+   word = lnr.readLine(nbr);
+}

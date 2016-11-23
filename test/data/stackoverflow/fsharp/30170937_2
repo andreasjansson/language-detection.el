@@ -1,0 +1,8 @@
+Solution 'Haskell99'
+        Project 'Problem1'
+            Program.fs
+        Project 'Problem2'
+            Program.fs
+        ...
+        Project 'Problem99'
+            Program.fs

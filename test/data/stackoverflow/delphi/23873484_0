@@ -1,0 +1,2 @@
+#define SDK_API __declspec(dllimport)
+SDK_API   BOOL   WINAPI SetSourceYUVJ420(HANDLE Display, BYTE **YUV420P, int *LineSize, int srcWidth, int srcHeight);

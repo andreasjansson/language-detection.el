@@ -1,0 +1,6 @@
+cd project_directory
+git init
+git add .
+git commit -m "your_commit_message"
+git remote add origin https://github.com/[your_user_name]/[repo_name]
+git push origin master

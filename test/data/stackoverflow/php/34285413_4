@@ -1,0 +1,41 @@
+/**
+ * Creates a new Student entity.
+ *
+ */
+public function createAction(Request $request)
+{
+    $entity = new Student();
+    $form = $this->createCreateForm($entity);
+    $form->handleRequest($request);
+
+    if ($form->isValid()) {
+
+    $responsible1 = $em->getRepository('BackendBundle:Parents')->findResponsible($entity->getResponsible1()->getNid());
+    $responsible2 = $em->getRepository('BackendBundle:Parents')->findResponsible($entity->getResponsible2()->getNid());
+
+   if($responsible1){
+         $entity->setResponsible1($responsible1->getId()); 
+   }
+   if($responsible2){
+         $entity->setResponsible2($responsible2->getId()); 
+   }
+   $entity->getResponsible1()->setUsername($entity->getResponsible1()->getNid());
+   $entity->getResponsible2()->setUsername($entity->getResponsible2()->getNid());
+
+   $entity->getResponsible1()->setPassword($entity->getResponsible1()->getNid());
+   $entity->getResponsible2()->setPassword($entity->getResponsible2()->getNid());
+
+
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($entity);
+        $em->flush();
+
+
+        return $this->redirect($this->generateUrl('student_show', array('id' => $entity->getId())));
+    }
+
+    return $this->render('BackendBundle:Student:new.html.twig', array(
+        'entity' => $entity,
+        'form'   => $form->createView(),
+    ));
+}

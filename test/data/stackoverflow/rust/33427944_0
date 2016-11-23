@@ -1,0 +1,11 @@
+pub type KeyType i32;
+pub enum StatusType { Locked, Unlocked } 
+
+pub struct Entry {
+  key: KeyType,
+  status: StatusType
+}
+
+pub struct Manager<'a> {
+    map: HashMap<KeyType, &'a mut Entry>
+}

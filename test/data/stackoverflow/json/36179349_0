@@ -1,0 +1,23 @@
+{
+"CityCode": 142,
+"CityName": "Yavatmal",
+"State": {
+"StateCode": 21,
+"StateName": "Maharashtra",
+"CountryCode": 1,
+"Country": {
+  "CountryCode": 1,
+  "CountryName": "India",
+  "IsdCode": "+91"
+}
+},
+"Country": {
+"CountryCode": 1,
+"CountryName": "India",
+"IsdCode": "+91"
+},
+"GPlaceId": "ChIJ3U60i8zo0zsR4L7sQeqtd0g",
+"Latitude": 20.388794,
+"Longitude": 78.120407,
+"ActiveStatus": 1
+}

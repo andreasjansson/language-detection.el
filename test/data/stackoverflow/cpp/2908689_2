@@ -1,0 +1,29 @@
+template < typename T >
+struct default_policy;
+
+template < typename T, template < typename > class Policy = default_policy >
+struct test : Policy<test<T,Policy>>
+{};
+
+template < typename PolicyBased >
+struct fetch_t;
+
+template < typename PolicyBased, typename T > struct default_policy_base;
+
+template < typename PolicyBased >
+struct default_policy : default_policy_base<PolicyBased, typename fetch_t<PolicyBased>::type> {};
+
+template < typename T, template < typename > class Policy >
+struct fetch_t< test<T,Policy> > { typedef T type; };
+
+template < typename PolicyBased, typename T >
+struct default_policy_base
+{
+  void f() {}
+};
+
+template < typename PolicyBased >
+struct default_policy_base<PolicyBased,int>
+{
+  void f(int) {}
+};

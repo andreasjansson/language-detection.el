@@ -1,0 +1,7 @@
+void F(Integer ret,Integer a,Integer b,Integer c,Integer d) {
+    Integer tmp1,tmp2;
+
+    plus(tmp1,a,b);     
+    plus(tmp2,c,d);     
+    times(ret,tmp1,tmp2); 
+}

@@ -1,0 +1,13 @@
+public function run()
+    {
+        require APPLICATION_PATH . 
+                '/../library/Symfony/Component/EventDispatcher/EventDispatcher.php';
+        $dispatcher = new \Symfony\Component\EventDispatcher\EventDispatcher();
+
+        $dispatcher->dispatch("bootstrap.prerun", null);
+
+        parent::run();
+
+        $dispatcher->dispatch("bootstrap.postrun", null);
+
+    }

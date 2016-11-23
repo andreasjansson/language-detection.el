@@ -1,0 +1,43 @@
+{
+{-# OPTIONS_GHC -fno-warn-incomplete-patterns -fno-warn-overlapping-patterns #-}
+module Parser where
+import Lexer
+
+}
+
+%name pExpr Exp 
+%name pTerm Term 
+
+%tokentype {L Token}
+%error { parseError }
+
+%token
+      int             { L { getPos = _,unPos = Tok_Int $$ } }
+      '+'             { L { getPos = _,unPos = Tok_Plus } }
+
+%%
+Exp :: {L Expr} 
+Exp  : Exp '+' Term           { L { getPos =  getPos $1 , unPos = EAdd (unPos $1) (unPos $3) } }
+     | Term                   { $1 }
+
+Term :: {L Expr}
+Term : int                   { L {getPos =  getPos $1, unPos =  EInt (unPos $1) } } 
+
+{
+
+data Expr =  EAdd Expr Expr 
+            | EInt Int 
+            deriving (Eq,Show)
+
+
+returnM :: a -> Err a
+returnM = return
+
+thenM :: Err a -> (a -> Err b) -> Err b
+thenM = (>>=)
+
+
+parseError :: [L Token] -> a
+parseError _ = error "Parse error"
+
+}

@@ -1,0 +1,21 @@
+(ns demo.core
+  (:require-macros [cljs.core.async.macros :refer [go]])
+  (:require [goog.events :as events]
+            [cljs.core.async :as async :refer [>! <! put! chan]]
+            [om.core :as om :include-macros true]
+            [om.dom :as dom :include-macros true]
+            [goog.events.EventType :as EventType]
+            [clojure.string :as string]))
+
+(defn layout
+  [app owner]
+  (reify
+    om/IRender
+    (render [_]
+      (dom/div {:id "some-id"} "Pumpkin"))))
+
+(defn main []
+  (om/root
+    layout
+    {}
+    {:target (. js/document (getElementById "app"))}))

@@ -1,0 +1,25 @@
+nine@nine-laptop:~/.emacs.d/configfile$ cat blocks/orgmode.el 
+;; Org mode
+(add-to-list 'load-path "~/.emacs.d/plugins/org-mode/lisp/")
+
+;; odt-support
+(require 'ox-odt)
+
+;(require 'org-mode)
+(add-to-list 'auto-mode-alist '("\\.org\\'" . org-mode))
+(add-hook 'org-mode-hook 'turn-on-font-lock) ; not needed when global-font-lock-mode is on
+(setq org-agenda-files (list "~/Dokument/org/arbete.org"
+                 "~/Dokument/org/calendar.org"))
+(setq org-startup-indented t)
+
+;; Default ODF style
+;(setq org-export-odt-styles-file "~/.emacs.d/org-mode-odtconv/predikan-style.xml")
+
+;(setq org-default-notes-file (concat org-directory "/anteckningar.org"))
+(global-set-key "\C-cl" 'org-store-link)
+(global-set-key "\C-cc" 'org-capture)
+(global-set-key "\C-ca" 'org-agenda)
+(global-set-key "\C-cb" 'org-iswitchb)
+;; Automatic Org mode pull and push
+;(add-hook 'after-init-hook 'org-mobile-pull)
+;(add-hook 'kill-emacs-hook 'org-mobile-push)

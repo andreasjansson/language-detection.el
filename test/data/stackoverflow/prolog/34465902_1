@@ -1,0 +1,11 @@
+init_lights(Lights) :-
+    gen_lights([light(0, 0, off)], Lights).
+
+gen_lights(Lights, AllLights) :-
+    [Light|_] = Lights,
+    next_light(Light, NextLight),
+    add_light(Lights, NextLight, AllLights).
+
+add_light(Lights, done, Lights).
+add_light(Lights, NextLight, AllLights) :-
+    gen_lights([NextLight|Lights], AllLights).

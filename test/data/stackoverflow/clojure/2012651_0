@@ -1,0 +1,3 @@
+(def x 1)
+(def y 2.2)
+(def plus-one (fn [x] (+ x 1)))

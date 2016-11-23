@@ -1,0 +1,22 @@
+override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    // #warning Incomplete implementation, return the number of sections
+    return 1
+}
+
+override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    // #warning Incomplete implementation, return the number of rows
+
+    //return data.count
+    return TableData.count
+}
+
+
+override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as UITableViewCell
+
+    // Configure the cell...
+  //  cell.textLabel?.text = TableData[indexPath.row]
+    cell.textLabel?.textColor = UIColor.redColor()
+    cell.backgroundColor? = UIColor.blueColor()
+    return cell
+}

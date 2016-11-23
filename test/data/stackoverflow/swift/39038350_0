@@ -1,0 +1,8 @@
+var hex_string:String =  String(format: "%2X",pwd_dec)
+    //pwd_dec is 35778
+    print("String hex is ..\(hex_string)")
+    //String hex is ..8BC23
+    var hex_value =  UInt8(hex_string, radix: 16)
+    print("Sting2hex is ...\(hex_value)")
+    I got hex_value is nil
+    `

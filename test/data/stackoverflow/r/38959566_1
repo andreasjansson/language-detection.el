@@ -1,0 +1,2 @@
+test <- data.frame(date=seq(as.POSIXct("2012-02-09 00:59:00",tz="CET"),as.POSIXct("2012-02-11 00:59:00",tz="CET"),"hours" ),
+value= runif(49) )

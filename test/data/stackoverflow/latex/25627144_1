@@ -1,0 +1,13 @@
+\begin{frame}{First Frame}
+
+Some stuff
+
+\appendix
+
+\end{frame}
+
+\begin{frame}{Appendix Frame}
+
+More stuff
+
+\end{frame}

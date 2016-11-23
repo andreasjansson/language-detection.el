@@ -1,0 +1,55 @@
+{-# LANGUAGE TupleSections, NoImplicitPrelude #-}
+import Prelude (($), const, uncurry)
+
+-- In the red corner, we have arrows, from the land of * -> * -> *
+import Control.Category
+import Control.Arrow hiding (Kleisli)
+
+-- In the blue corner, we have applicative functors and monads,
+-- the pride of * -> *
+import Control.Applicative
+import Control.Monad
+
+-- Recall the well-known result that every monad yields an ArrowApply:
+newtype Kleisli m a b = Kleisli{ runKleisli :: a -> m b}
+
+instance (Monad m) => Category (Kleisli m) where
+    id = Kleisli return
+    Kleisli g . Kleisli f = Kleisli $ g <=< f
+
+instance (Monad m) => Arrow (Kleisli m) where
+    arr = Kleisli . (return .)
+    first (Kleisli f) = Kleisli $ \(x, y) -> liftM (,y) (f x)
+
+instance (Monad m) => ArrowApply (Kleisli m) where
+    app = Kleisli $ \(Kleisli f, x) -> f x
+
+-- Every arrow arr can be turned into an applicative functor
+-- for any choice of origin o
+newtype Arrplicative arr o a = Arrplicative{ runArrplicative :: arr o a }
+
+instance (Arrow arr) => Functor (Arrplicative arr o) where
+    fmap f = Arrplicative . (arr f .) . runArrplicative
+
+instance (Arrow arr) => Applicative (Arrplicative arr o) where
+    pure = Arrplicative . arr . const
+
+    Arrplicative af <*> Arrplicative ax = Arrplicative $
+        arr (uncurry ($)) . (af &&& ax)
+
+-- Arrplicatives over ArrowApply are monads, even
+instance (ArrowApply arr) => Monad (Arrplicative arr o) where
+    return = pure
+    Arrplicative ax >>= f =
+        Arrplicative $ (ax >>> arr (runArrplicative . f)) &&& id >>> app
+
+-- Every applicative functor f can be turned into an arrow??
+newtype Applicarrow f a b = Applicarrow{ runApplicarrow :: f (a -> b) }
+
+instance (Applicative f) => Category (Applicarrow f) where
+    id = Applicarrow $ pure id
+    Applicarrow g . Applicarrow f = Applicarrow $ (.) <$> g <*> f
+
+instance (Applicative f) => Arrow (Applicarrow f) where
+    arr = Applicarrow . pure
+    first (Applicarrow f) = Applicarrow $ first <$> f

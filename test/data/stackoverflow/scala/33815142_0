@@ -1,0 +1,9 @@
+package org.eclipse.swt;
+import org.eclipse.swt.internal.*;
+
+public class SWT {
+    public static final int None = 0;
+    // ...
+    public static final int MouseDown = 3;
+    // ...
+}

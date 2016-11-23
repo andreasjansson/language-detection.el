@@ -1,0 +1,5 @@
+type(c_ptr) :: cptr
+real, pointer, dimension(:,:) :: A
+...
+cptr = my_alloc(...)
+call c_f_pointer(cptr,A,[x1-x0+1,y1-y0+1])

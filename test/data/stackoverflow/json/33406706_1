@@ -1,0 +1,3 @@
+SharedPreferences sp = getApplicationContext().getSharedPreferences("Sharedprefs",Context.MODE_PRIVATE);
+String userid = sp.getString("userid","");
+String otp = sp.getString("opt", "");

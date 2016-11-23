@@ -1,0 +1,47 @@
+// Loads the company from the database with the given id.
+func LoadCompany(id int) (Company, error) {
+    db := tools.OpenDB()
+    defer db.Close()
+    stmt, err := db.Prepare("SELECT * FROM companies WHERE id = ?")
+    if err != nil {
+        log.Panic(err)
+    }   
+    var c Company 
+    err = stmt.QueryRow(id).Scan(&c.id, &c.FullName, &c.Name, &c.History, &c.Overview, &c.Est, &c.Phone, &c.Website, &c.Email)
+    if err != nil {
+        return Company{}, err 
+    }   
+    return c, nil 
+}
+
+// Loads the staff from the database with the given id.
+func LoadStaff(id int) (Staff, error) {
+    db := tools.OpenDB()
+    defer db.Close()
+    stmt, err := db.Prepare("SELECT * FROM staff WHERE id = ?")
+    if err != nil {
+        log.Panic(err)
+    }
+    var s Staff
+    err = stmt.QueryRow(id).Scan(&s.id, &s.FullName, &s.Name, &s.Email, &s.Joined, &s.Left, &s.History, &s.Phone, &s.Position)
+    if err != nil {
+        return Staff{}, err
+    }
+    return s, nil
+}
+
+// Loads the project from the database with the given id.
+func LoadProject(id int) (Project, error) {
+    db := tools.OpenDB()
+    defer db.Close()
+    stmt, err := db.Prepare("SELECT * FROM projects WHERE id = ?")
+    if err != nil {
+        log.Panic(err)
+    }
+    var p Project
+    err = stmt.QueryRow(id).Scan(&p.id, &p.Title, &p.Overview, &p.Value, &p.Started, &p.Finished, &p.Client, &p.Architect, &p.Status)
+    if err != nil {
+        return Project{}, err
+    }
+    return p, nil
+}

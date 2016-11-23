@@ -1,0 +1,27 @@
+{
+  "aggs": {
+    "filter_agg": {
+      "filter": {
+        ...
+      },
+      "aggs": {
+        "nested_agg": {
+          "nested": {
+            "path": "myProperty"
+          },
+          "aggs": {
+            "sibling_agg_1": {
+              ...
+            },
+            "sibling_agg_2": {
+              ...
+            },
+            "sibling_agg_3": {
+              ...
+            }
+          }
+        }
+      }
+    }
+  }
+}

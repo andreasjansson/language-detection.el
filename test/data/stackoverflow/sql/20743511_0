@@ -1,0 +1,3 @@
+declare @account_id integer = null
+declare @house_id integer = 8
+exec bills_supp_main '01.10.2013', '01.11.2013', @account_id, @house_id

@@ -1,0 +1,215 @@
+function ValidateOnderzoeksRechter() {
+    var or1, or2, or3, totaalOR;
+    var blnReturn = true;
+    or1 = $('#fOnderzoeksrechter_1').attr('value');
+    or2 = $('#fOnderzoeksrechter_2').attr('value');
+    or3 = $('#fOnderzoeksrechter_3').attr('value');
+
+    if ((or1.length == 2)) {
+        // ok
+        setColor('fOnderzoeksrechter_1',true);
+    } else {
+        // NOT OK
+        setColor('fOnderzoeksrechter_1',false);
+        blnReturn = false;
+    }
+
+    if ((or2.length <= 7) && (or2.length >= 1)) {
+        // ok
+        setColor('fOnderzoeksrechter_2',true);
+    } else {
+        // NOT OK
+        setColor('fOnderzoeksrechter_2',false);
+        blnReturn = false;
+    }
+
+    if ((or3.length == 2)) {
+        // ok
+        setColor('fOnderzoeksrechter_3',true);
+    } else {
+        // NOT OK
+        setColor('fOnderzoeksrechter_3',false);
+        blnReturn = false;
+    }
+
+    $('#fOnderzoeksrechter_1').val((or1.toUpperCase()));
+    $('#fOnderzoeksrechter_2').val((or2.toUpperCase()));
+    $('#fOnderzoeksrechter_3').val((or3.toUpperCase()));
+
+    if (blnReturn) {
+        //$('#message').html('Gelieve de rode vakjes te corrigeren.');
+    }
+
+    return blnReturn;
+}
+
+function ValidateParketNr() {
+    var parket1, parket2, parket3, parket4, parket5, totaalParket;
+    parket1 = $('#fParket1').attr('value');
+    parket2 = $('#fParket2').attr('value');
+    parket3 = $('#fParket3').attr('value');
+    parket4 = $('#fParket4').attr('value');
+    parket5 = $('#fParket5').attr('value');
+
+
+
+    var blnReturn;
+    blnReturn = true;
+    if ((parket1.length == 2)) {
+        // ok
+        setColor('fParket1',true);
+    } else {
+        // NOT OK
+        setColor('fParket1',false);
+        blnReturn = false;
+    }
+    if ((parket2.length == 2)) {
+        // ok
+        setColor('fParket2',true);
+    } else {
+        // NOT OK
+        setColor('fParket2',false);
+        blnReturn = false;
+    }
+    if ((parket3.length == 2)) {
+        // ok
+        setColor('fParket3',true);
+    } else {
+        // NOT OK
+        setColor('fParket3',false);
+        blnReturn = false;
+    }
+    if (IsNumeric(parket4) && (parket4.length) <= 7 && (parket4.length) >= 1) {
+        // ok
+        setColor('fParket4',true);
+    } else {
+        // NOT OK
+        setColor('fParket4',false);
+        blnReturn = false;
+    }
+    if (IsNumeric(parket5) && (parket5.length) == 2) {
+        // ok
+        setColor('fParket5',true);
+    } else {
+        // NOT OK
+        setColor('fParket5',false);
+        blnReturn = false;
+    }
+
+
+
+    $('#fParket1').val((parket1.toUpperCase()));
+    $('#fParket2').val((parket2.toUpperCase()));
+    $('#fParket3').val((parket3.toUpperCase()));
+
+    if (blnReturn) {
+        //$('#message').html('Gelieve de rode vakjes te corrigeren.');
+    }
+
+    return blnReturn;
+}
+
+function IsNumeric(sText)
+{
+    if (sText != null) {
+
+       var ValidChars = "0123456789.";
+       var IsNumber=true;
+       var Char;
+       for (i = 0; i < sText.length && IsNumber == true; i++) 
+          { 
+          Char = sText.charAt(i); 
+          if (ValidChars.indexOf(Char) == -1) 
+             {
+             IsNumber = false;
+             }
+          }
+        return IsNumber;
+    } else {
+        return false;
+    }
+
+
+}
+
+function setColor(naam ,blnOK) {
+    if(blnOK) {
+        $('#' + naam).css('background-color', '#00ff00');
+
+    } else {
+        $('#' + naam).css('background-color', '#ff0000');
+    }
+}
+
+function ValidateForm() {
+
+    var blnResult;
+    blnResult = true;
+    if(!orIsLeeg()) {
+
+        blnResult = ValidateOnderzoeksRechter();
+    }
+    if (!ParketIsLeeg()) {
+        blnResult = ValidateParketNr();
+    }
+
+
+    blnResult = ValideerRestVanFormulier();
+    return blnResult;
+}
+
+function XOR(b1, b2) {
+    return (!b1 && b2) || (b1 && !b2);
+}
+
+function orIsLeeg() {
+    var ISLEEG;
+    ISLEEG = true;
+    for (var x = 0; x < 3; x++){
+        if ($('#fOnderzoeksrechter_' + (x + 1)).val != '') {
+            ISLEEG = false;
+        }
+    }   
+    return ISLEEG;
+}
+
+function ParketIsLeeg() {
+    var ISLEEG;
+    ISLEEG = true;
+    for (var x = 0; x < 5; x++){
+        if ($('#fParket' + (x + 1)).val != '') {
+            ISLEEG = false;
+        }
+    }   
+    return ISLEEG;
+}
+
+function ValideerRestVanFormulier() {
+    var ret, value;
+    ret = true;
+    ret = ValideerCijfer('fAantalMaatregelen');
+    ret = ValideerCijfer('fAantalOnderzoeken');
+    ret = ValideerCijfer('fAantalBetrokkenVerdachten');
+    ret = ValideerCijfer('fAantalNuttig');
+
+
+    for (var x = 0; x < AANTAL_VAKJES ; x++){
+        ret = ValideerCijfer('fFeitAantal' + x);
+    }
+
+    return ret;
+}
+
+function ValideerCijfer(veld) {
+    try {
+        if (IsNumeric($("#"  + veld).val()) && ($("#"  + veld).val() != '')) {
+            setColor(veld, true);
+            return true;
+        } else {
+            setColor(veld, false);
+            return false;   
+        }
+    } catch (ex) {
+        alert(ex);
+    }
+}

@@ -1,0 +1,25 @@
+var
+  bfile:    TFileStream;
+  hdevi:    TFileStream;
+  bbuff:    array[0..511] of byte;
+  hbuff:    array[0..87039] of byte;
+  curr:     string;
+  i:        integer;
+begin
+  curr:=GetCurrentDir;
+  hdevi := TFileStream.Create(PChar(deviceno), fmOpenReadWrite);
+  try
+    bfile := TFileStream.Create(PChar(curr+'\bfile'), fmOpenReadWrite);
+    try
+      hdevi.ReadBuffer(hbuff[0],length(hbuff));
+      bfile.ReadBuffer(bbuff[0],length(bbuff));
+      hdevi.WriteBuffer(bbuff[0],length(bbuff));
+      //for i:=0 to length(bbuff)-1 do
+      //ShowMessage(IntToHex(hbuff[i],2)+'-'+IntToHex(bbuff[i],2));
+    finally
+      bfile.Free;
+    end
+  finally
+    hdevi.Free;
+  end;
+end;

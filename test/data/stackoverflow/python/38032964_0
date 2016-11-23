@@ -1,0 +1,9 @@
+class MainTable(tables.Table):
+    id = tables.Column()
+    Client = tables.Column(attrs={'td': {
+        'data-name': 'Client',
+        'data-type': 'text',
+        'data-pk': lambda record: record.pk,     
+        'data-url': 'path/to/url',
+        'data-placeholder': 'New Client',
+        'data-title': 'New Client' }})

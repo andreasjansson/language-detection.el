@@ -1,0 +1,3 @@
+with open("sample.json", "r") as fp:
+    json_dict = json.load(fp)
+json_string = json.dumps(json_dict)

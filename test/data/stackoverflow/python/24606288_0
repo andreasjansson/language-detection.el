@@ -1,0 +1,26 @@
+import sys
+import os
+import time
+
+
+def clock():
+  Minutes = 0
+  Hours = 1
+
+while True:
+    Minutes += 1
+
+    if Minutes == 60:
+        Minutes = 0
+        Hours = 2
+
+        if Hours == 12:
+            Hours = 1
+            Minutes = 0
+            break    
+
+            ReadLine = ("\t{0:>2} : {1:>2}\r").format(Hours, Minutes)
+            sys.stdout.write(ReadLine)
+            sys.stdout.flush()
+            time.sleep(60)
+            clock()

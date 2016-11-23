@@ -1,0 +1,14 @@
+tell application "BibDesk (original)"
+    set thePublications to selection of document 1
+    repeat with thePub in thePublications
+        tell thePub
+            if value of field "Pages" is not "" then
+                set the_pages to value of field "Pages"
+                set quoted_pages to "\"" & the_pages & "\"" as string
+                set the_script to "/usr/bin/python /Users/Januz/Downloads/sanitize_BibDesk_pages.py -p " & quoted form of quoted_pages
+                set a to do shell script the_script
+                set value of field "Pages" to a
+            end if
+        end tell
+    end repeat
+end tell

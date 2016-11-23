@@ -1,0 +1,19 @@
+public void MediaPlayer_PlayStateChange(object sender, AxWMPLib._WMPOCXEvents_PlayStateChangeEvent e)
+{
+ switch (axWindowsMediaPlayer1.playState)
+ {
+   case WMPLib.WMPPlayState.wmppsReady:                                     
+    axWindowsMediaPlayer1.BeginInvoke(new Action(change_song));
+    break;
+    case WMPLib.WMPPlayState.wmppsStopped:
+     axWindowsMediaPlayer1.BeginInvoke(new Action(change_song));
+     break;
+     default:
+     break;
+}
+}
+
+void change_song()
+{
+  axWindowsMediaPlayer1.URL = p[listBox1.SelectedIndex + 1];
+}

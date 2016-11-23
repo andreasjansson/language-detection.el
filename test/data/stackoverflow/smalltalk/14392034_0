@@ -1,0 +1,13 @@
+| message sender recipients |
+  message := 'From: Me <myemail@gmail.com>
+  To: You <otheremail@gmail.com>
+   Subject: Simple Mail from pharo
+
+    This is a test mail'.
+  sender := 'myemail@gmail.com'.
+  recipients := #('your@gmail.com').
+SMTPClient
+deliverMailFrom: sender
+to: recipients
+text: message
+usingServer: 'smtp.gmail.com'

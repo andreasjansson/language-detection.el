@@ -1,0 +1,24 @@
+calculate(){  
+  awk -F, '  
+  BEGIN{printf "Your GPA is : "}  
+  numerator = 0.0;  
+  denominator = 0.0;  
+  /^CSC/{  
+    if($4=1) {  
+         if($5=="A"){  
+            numerator+=(4.0*$3);  
+            denominator+=$3;  
+         } else if ($5 == "B"){  
+            numerator+=(3.0*$3);  
+            denominator+=$3;  
+         } else if ($5 == "C"){  
+            numerator+=(2.0*$3);  
+                denominator+=$3;  
+         } else {  
+           ;   
+        }  
+     }  
+   }  
+   END{print(numerator/denominator)}  
+  ' my_course.txt  
+}

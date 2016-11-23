@@ -1,0 +1,34 @@
+use WWW::Mechanize::Timed;
+use HTTP::Cookies;
+use Try::Tiny;
+
+my $ua = WWW::Mechanize::Timed->new(
+autocheck => 0#turning off autocheck becuase any get errors will be fatal need to check ourselves
+);
+
+my $cookies = HTTP::Cookies->new(
+autosave => 1
+);
+
+$ua->cookie_jar($cookies);
+
+$ua->agent_alias("Windows IE 6");
+
+try{
+local $SIG{ALRM} = sub { die "alarm\n" };
+alarm 60;
+$ua->get('https://secure.site.com'); #secure site that timed out
+alarm 0;
+} catch {
+die $_ unless $_ eq "alarm\n";
+print "page timed out after 60 seconds!\n";
+exit;
+};
+
+my $total_time = sprintf '%.3f', ($ua->client_elapsed_time);
+
+unless($ua->success){
+print "Error: " . $ua->status;
+exit;
+}
+...

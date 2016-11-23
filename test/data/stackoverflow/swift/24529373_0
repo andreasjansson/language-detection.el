@@ -1,0 +1,25 @@
+@IBOutlet var myTableView: UITableView
+func keyboardWasShown (notification: NSNotification)
+{
+    println("keyboard was shown")
+    var info = notification.userInfo
+    var keyboardSize = info.objectForKey(UIKeyboardFrameBeginUserInfoKey).CGRectValue().size
+
+    myTableView.contentInset = UIEdgeInsetsMake(0, 0, keyboardSize.height, 0)
+    myTableView.scrollIndicatorInsets = myTableView.contentInset
+}
+
+func keyboardWillBeHidden (notification: NSNotification)
+{
+    println("keyboard will be hidden")
+    myTableView.contentInset = UIEdgeInsetsZero
+    myTableView.scrollIndicatorInsets = UIEdgeInsetsZero
+}
+  override func viewDidLoad() {
+
+    super.viewDidLoad()
+
+    NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWasShown:", name: UIKeyboardDidShowNotification, object: nil)
+    NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillBeHidden:", name: UIKeyboardWillHideNotification, object: nil)
+
+}

@@ -1,0 +1,24 @@
+1. pattern ^testfil matching 92/93
+
+        Exception : 
+        corrupttestfile100.ext
+
+  2. pattern ^testfile matching 82/93
+
+        Exception :
+        corrupttestfile100.ext
+        testfil0000.ext
+        testfil0001.ext
+        testfil0002.ext
+        testfil0003.ext
+        testfil0004.ext
+        testfil0005.ext
+        testfil0006.ext
+        testfil0007.ext
+        testfil0008.ext
+        testfil0009.ext
+
+ 3. Increment pattern breaks [70-79]
+ 4. Increment pattern 3 digits 92/93
+ 5. Increment pattern 4 digits 10/93
+ 6. Extension exception : ext2 1/93

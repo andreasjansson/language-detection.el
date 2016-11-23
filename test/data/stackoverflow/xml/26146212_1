@@ -1,0 +1,11 @@
+<xsl:function name="my:parse">
+    <xsl:param name="input"/>
+        <xsl:analyze-string select="$input" regex="world">
+            <xsl:matching-substring>
+                <match><xsl:copy-of select="."/></match>
+            </xsl:matching-substring>
+            <xsl:non-matching-substring>
+                <xsl:copy-of select="."/>
+            </xsl:non-matching-substring>
+        </xsl:analyze-string>
+</xsl:function>

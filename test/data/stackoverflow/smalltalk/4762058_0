@@ -1,0 +1,19 @@
+replaceMessage: 'fibonacci' 
+       onClass: 'funFunctions' 
+          with: 'returnsPredictableNumbersWithoutCalculatingThem'.
+
+self runTestSet1.
+
+restoreMessage: 'fibonacci' 
+       onClass: 'funFunctions'.
+
+self runFollowUpSet1. "Depends on state set by Set1"
+
+replaceMessage: 'fibonacci' 
+       onClass: 'funFunctions' 
+          with: 'returnsPredictableNumbersWithoutCalculatingThemPart2'.
+
+self runFollowUpSet2. "Depends on state set by followupset1"
+
+restoreMessage: 'fibonacci' 
+       onClass: 'funFunctions'.

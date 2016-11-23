@@ -1,0 +1,9 @@
+//Products border motion
+jQuery(".products-two").mouseenter(
+    function(){
+        jQuery(this).stop(true,true).animate({borderColor: '#999999'},400);
+    }).mouseleave(
+    function(){
+        jQuery(this).stop(true,true).animate({borderColor: '#E6E6E6'}, 800);
+    }
+    );

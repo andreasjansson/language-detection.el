@@ -1,0 +1,11 @@
+-- adding rectangle in the background
+rect_upperBackground = display.newRect( 0, 0, 320, 175 )
+rect_upperBackground:setFillColor( 49,49,49 )
+rect_upperBackground:toBack( )
+
+rect_middleBackground = display.newRect( 0, 175, 320, 2 )
+rect_middleBackground:setFillColor( 0,0,0 )
+rect_middleBackground:toBack( )
+
+rect_background = display.newRect( 0, 0, 320, 480 )
+rect_background:toBack( )

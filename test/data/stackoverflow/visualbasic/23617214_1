@@ -1,0 +1,7 @@
+Sub New()
+
+    For number As Int32 = 1 To 16
+
+        LimoLijst.Add(trycast("_Limo" + (CType(number, String)), Limo)
+    Next
+End Sub

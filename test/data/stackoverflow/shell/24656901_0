@@ -1,0 +1,7 @@
+#/bin/bash
+for x in "*.foo*; do
+ x=${x%.foo}
+ if [ -e "$x.bar" ]; then
+ ./script "$x.foo" "$x.bar"
+ fi
+done

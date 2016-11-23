@@ -1,0 +1,2 @@
+add(Login, Pass, Role) ->
+  gen_server:call(?SERVER, {add, Login, Pass, Role}).

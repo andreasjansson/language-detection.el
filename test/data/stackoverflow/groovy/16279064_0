@@ -1,0 +1,13 @@
+class Foo {
+    Bar bar
+    Com com    
+}
+
+class Bar {
+    String name    
+}
+
+
+class Com {
+    String title    
+}

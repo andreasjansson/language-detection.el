@@ -1,0 +1,28 @@
+\documentclass[10pt,twocolumn]{article}
+\usepackage{multicol}
+
+\begin{document}
+
+\begin{multicols}{2}
+\title{Article Title}
+\author{
+    First Last\\
+    Department\\
+    school\\
+    email@edu
+  \and
+    First Last\\
+    ...
+}
+\date{}
+\maketitle
+\end{multicols}
+
+\begin{abstract}
+...
+\end{abstract}
+
+\section{Introduction}
+...
+
+\end{document}

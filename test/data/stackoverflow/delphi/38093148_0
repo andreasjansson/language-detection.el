@@ -1,0 +1,5 @@
+{Header Table}
+SetStyleHuruf(FCanvas, fsBold, 12, clWhite, 'Maiandra GD');
+Brush.Color := color;
+Rectangle(cx+50, cy-50, cx+370, cy - 30);
+TextOut(round(cx + 215), cy-50, Name);`

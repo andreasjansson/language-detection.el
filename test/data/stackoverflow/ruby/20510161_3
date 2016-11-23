@@ -1,0 +1,2 @@
+<% @newlocalscribble = @localfeed.scribbles.new %>
+<%=render :partial => 'newlocalscribble.html.erb', :locals => {:newlocalscribble => @newlocalscribble, :localfeed => @localfeed}%>

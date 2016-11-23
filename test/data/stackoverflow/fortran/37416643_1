@@ -1,0 +1,43 @@
+MODULE distribution
+IMPLICIT NONE
+CONTAINS
+
+! I define here the chi^2 function****
+real*8 function CHISQUARED(rc, V0, d, alpha, gamma, chi, a, b, n, ndata, nconst)
+
+integer i, n, ndata, nconst
+real*8 rc, V0, d
+real*8 alpha, gamma, chi, a, b, s
+real*8, DIMENSION(ndata,3) :: X
+open(unit=1, file="data.txt")
+
+s=0.0d0
+do i=1, ndata
+Read(1,*)  X(i,:)
+    s=s+((X(i,2)-VELOCITYPROFILE(X(i,1), rc, V0, d, alpha, gamma, chi, a, b, n))/(X(i,3)))**2.0d0
+end do
+
+CHISQUARED=s/(ndata-nconst)
+
+end function CHISQUARED
+
+
+!****Here I define the model function
+real*8 function VELOCITYPROFILE(r, rc, V0, d, alpha, gamma, chi, a, b, n)
+
+integer i, n
+real*8 r, rc, V0, d, alpha, gamma, chi, a, b, z
+
+if (rc < 0.0d0 .OR. d < 0.0d0 .OR. a <0.0d0 .OR. b <0.0d0 .OR. alpha < 0.0d0 .OR. gamma <0.0d0 .OR. chi < 0.0d0 .OR. n<1 ) then
+    VELOCITYPROFILE=0.0d0
+    return
+    else
+z=0.0d0
+do i=0,n
+    z=z+((V0*((r/rc)**(1.5d0))*(1+a+r/rc)**(-gamma*(2*n+0.5d0)))/((a+(r/rc)**alpha)**(chi/2.0d0)))*(((b+r/rc)**gamma)/d)**i
+end do
+
+VELOCITYPROFILE=z
+end if
+end function VELOCITYPROFILE
+END MODULE distribution

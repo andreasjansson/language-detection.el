@@ -1,0 +1,9 @@
+class MegaButton extends ButtonElement  {
+static final tag = 'mega-button';
+factory MegaButton()=>new Element.tag('button', tag);  
+   MegaButton.created() : super.created() { 
+       var shadow = this.createShadowRoot();
+       shadow.text='save';
+  }
+}
+ document.registerElement(MegaButton.tag, MegaButton);

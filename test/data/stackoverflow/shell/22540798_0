@@ -1,0 +1,4 @@
+function omake {(
+  cd $SOURCE_ROOT;
+  make $@;
+)}

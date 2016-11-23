@@ -1,0 +1,9 @@
+type Location is record
+      Id : Positive;
+      X : Float;
+      Y : Float;
+   end record;
+   type Location_Acess is access all Location; 
+   type Route is array (Positive range<>) of Location_Acess; 
+   type Route_Acess is access all Route;
+   type Population is array (Positive range<>) of Route_Acess;

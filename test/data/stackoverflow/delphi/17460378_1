@@ -1,0 +1,2 @@
+Combined_Strings = Common_Strings + Extra_Strings;
+  Combined_Strings = (Common_Strings, Extra_Strings);

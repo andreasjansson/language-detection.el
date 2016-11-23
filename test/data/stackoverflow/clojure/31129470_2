@@ -1,0 +1,2 @@
+> boot build
+ > java -jar target/vidiot-0.1.0.jar

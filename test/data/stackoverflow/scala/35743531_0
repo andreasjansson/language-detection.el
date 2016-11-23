@@ -1,0 +1,4 @@
+{"serialNo":"1","name":"Rahul"}
+{"serialNo":"2","name":"Rakshith"}
+
+case class Student(serialNo:Int,name:String)

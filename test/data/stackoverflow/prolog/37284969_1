@@ -1,0 +1,7 @@
+| ?- assert_all.
+yes
+| ?- cost(Id,Cost).
+Id = 1,
+Cost = 20 ? ;
+no
+| ?

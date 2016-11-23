@@ -1,0 +1,31 @@
+def contact(request):
+  RECAPTCHA_PRIVATE_KEY = '******************'
+  captcha_error = ''
+  if request.method == 'POST':
+    form = ContactForm(request.POST)
+    captcha_response = captcha.submit(request.POST.get("recaptcha_challenge_field", None),
+                      request.POST.get("recaptcha_response_field", None),
+                      RECAPTCHA_PRIVATE_KEY,
+                      request.META.get("REMOTE_ADDR", None))
+
+    if not captcha_response.is_valid:
+      captcha_error = "&error=%s" % captcha_response.error_code
+    elif form.is_valid():
+      name = form.cleaned_data['name'],
+      sender = form.cleaned_data['sender'],
+      subject = form.cleaned_data['subject'],
+      message = form.cleaned_data['message']
+
+      recipients = ['email@email.com']
+      try:
+        send_mail(subject, message, sender, recipients)
+      except BadHeaderError:
+        pass
+
+      flash_message = 'Thank you for contacting us. We will get back to you shortly.'
+
+      return render_to_response('pages/contact.html', {
+        'form': form,
+        'captcha_error': captcha_error,
+        'message': flash_message
+      })

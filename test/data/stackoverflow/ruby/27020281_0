@@ -1,0 +1,5 @@
+class RenameSomeAttributes < ActiveRecord::Migration
+  def change
+    rename_column :some_tables, :old_name, :new_name
+  end
+end

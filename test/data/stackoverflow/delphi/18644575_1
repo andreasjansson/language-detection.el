@@ -1,0 +1,4 @@
+Scheduler: MyIdSchedulerOfThreadPool
+MaxThreads = 0
+PoolSize = 0
+ThreqdPriority = tpNormal

@@ -1,0 +1,13 @@
+class ShowSerializer(serializers.ModelSerializer):
+    artists = ArtistSerializer(many=True)
+    venue = VenueSerializer()
+
+    class Meta:
+        model = Show
+
+
+class GuestSerializer(serializers.ModelSerializer):
+    show = serializers.RelatedField()
+
+    class Meta:
+        model = Guest

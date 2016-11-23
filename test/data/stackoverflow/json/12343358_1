@@ -1,0 +1,20 @@
+$file = "tweets.txt";
+if (@file_exists($file) and @filemtime($file)>=strtotime("-10 minutes")) {
+    $contents = wp_remote_get($file);
+    $tweets = json_decode($contents['body']);
+} else {
+    $tweets = wp_remote_get("http://api.twitter.com/1/statuses/user_timeline.json?screen_name=jack&include_rts=true");
+    $fh = fopen($file, 'w');
+    fwrite($fh, $tweets);
+    fclose($fh);
+    $tweets = json_decode($contents['body']);
+}
+$i = 0;
+foreach($tweets as $tweet) {
+    $tweetText = preg_replace('#\b(([\w-]+://?|www[.])[^\s()<>]+(?:\([\w\d]+\)|([^[:punct:]\s]|/)))#','<a href="$1">$1</a>', $tweet->text);
+    $tweetText = preg_replace('/(^|\s)@([a-z0-9_]+)/i','$1<a href="http://www.twitter.com/$2">@$2</a>', $tweetText);
+    $tweetText .= " - " . date('G:i F jS',strtotime($tweet->created_at));
+    echo '<p>'.$tweetText.'</p>';
+    ++$i;
+    if ($i==3) {break;}
+}

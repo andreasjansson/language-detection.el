@@ -1,0 +1,19 @@
+SELECT e.attr_id, e.sku, a.value
+
+FROM product_attr AS e, product_attr_text AS a
+
+WHERE e.attr_id = a.attr_id
+AND value
+IN (
+    SELECT value
+    FROM product_attr_text 
+    WHERE attribute_id = (
+        SELECT attribute_id
+        FROM eav_attr 
+        WHERE attribute_code = 'similar_prod_id' 
+    ) 
+    AND value != ''
+
+    GROUP BY value
+    HAVING (COUNT( value ) > 1 )
+)

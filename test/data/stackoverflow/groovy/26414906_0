@@ -1,0 +1,7 @@
+org.springframework.beans.factory.NoSuchBeanDefinitionException: No bean named 'sessionFactory_production' is defined
+    at grails.plugin.databasemigration.MigrationUtils.findSessionFactory(MigrationUtils.groovy:142)
+    at grails.plugin.databasemigration.MigrationUtils.getDatabase(MigrationUtils.groovy:105)
+    at _DatabaseMigrationCommon_groovy$_run_closure2_closure11.doCall(_DatabaseMigrationCommon_groovy:52)
+    at grails.plugin.databasemigration.MigrationUtils.executeInSession(MigrationUtils.groovy:133)
+    at _DatabaseMigrationCommon_groovy$_run_closure2.doCall(_DatabaseMigrationCommon_groovy:51)
+    at DbmUpdate$_run_closure1.doCall(DbmUpdate:25)

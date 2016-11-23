@@ -1,0 +1,88 @@
+import UIKit
+
+class ViewController: UIViewController {
+
+let sceneCount = 4
+var button = UIButton.buttonWithType(UIButtonType.System) as! UIButton
+var buttons: [UIButton] = [UIButton]()
+
+
+func makeLayout(){
+
+    //Make the content view
+    let view1 = UIScrollView()
+    view1.setTranslatesAutoresizingMaskIntoConstraints(false)
+    view1.backgroundColor = UIColor.redColor()
+
+    //Make the scroll view
+    let view2 = UIScrollView()
+    view2.setTranslatesAutoresizingMaskIntoConstraints(false)
+    view2.backgroundColor = UIColor(red: 0.75, green: 0.75, blue: 0.1, alpha: 1.0)
+
+    view.addSubview(view1)
+    view2.addSubview(view1)
+
+    //Create the buttons
+    for i in 0...(sceneCount-1) {
+        button.setTranslatesAutoresizingMaskIntoConstraints(false)
+        button.addTarget(self, action: Selector("scene\(i)Pressed"), forControlEvents: UIControlEvents.TouchUpInside)
+        button.setBackgroundImage(UIImage(named: "Scene\(i+1)"), forState: UIControlState.Normal)
+        button.sizeThatFits(CGSizeMake(40, 40))
+
+        buttons.append(button)
+        view1.addSubview(button)
+
+    }
+
+    //set horizontal spacing between the buttons
+    for i in 1...(sceneCount-2) {
+        var button1 = UIButton.buttonWithType(UIButtonType.System) as! UIButton
+        var button2 = UIButton.buttonWithType(UIButtonType.System) as! UIButton
+        button1 = buttons[i - 1]
+        button2 = buttons[i]
+        var dictionary1 = [String: UIButton]()
+        dictionary1.updateValue(button1, forKey: "scene1")
+        dictionary1.updateValue(button2, forKey: "scene2")
+
+        view1.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:[scene1]-[scene2]", options: NSLayoutFormatOptions(0), metrics: nil, views: dictionary1) as [AnyObject])
+    }
+
+    //set vertical spacing for all buttons
+    for i in 0...(sceneCount-1) {
+        var button1 = UIButton.buttonWithType(UIButtonType.System) as! UIButton
+        button1 = buttons[i]
+        var dictionary2 = [String: UIButton]()
+        dictionary2.updateValue(button1, forKey: "button1")
+
+        view1.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-0-[button1]-0-|", options: NSLayoutFormatOptions(0), metrics: nil, views: dictionary2) as [AnyObject])
+    }
+
+    //set horizontal distance to container for first button
+    if sceneCount > 0 {
+        var buttonFirst: UIButton = buttons[0]
+        var dictionary3 = [String: UIButton]()
+        dictionary3.updateValue(buttonFirst, forKey: "buttonFirst")
+        view1.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[buttonFirst]", options: NSLayoutFormatOptions(0), metrics: nil, views: dictionary3) as [AnyObject])
+    }
+
+    //set horizontal distance to container for last button
+    if sceneCount > 0 {
+        var buttonLast: UIButton = buttons[sceneCount-1]
+        var dictionary4 = [String: UIButton]()
+        dictionary4.updateValue(buttonLast, forKey: "buttonLast")
+        view1.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:[buttonLast]-0-|", options: NSLayoutFormatOptions(0), metrics: nil, views: dictionary4) as [AnyObject])
+    }
+
+}
+
+override func viewDidLoad() {
+    super.viewDidLoad()
+    makeLayout()
+}
+
+
+override func didReceiveMemoryWarning() {
+    super.didReceiveMemoryWarning()
+}
+
+}

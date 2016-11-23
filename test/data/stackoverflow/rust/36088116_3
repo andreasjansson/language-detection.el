@@ -1,0 +1,15 @@
+fn load_input<'a>() -> io::Result<Input<'a>> {
+    Ok(try!(Input::from_arg(env::args().skip(1).next())))
+}
+
+fn main() {
+    let mut input = match load_input() {
+        Ok(input) => input,
+        Err(error) => panic!("Failed: {}", error),
+    };
+
+
+    for line in input.lines() {
+        /* do stuff */
+    }
+}

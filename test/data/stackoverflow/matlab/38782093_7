@@ -1,0 +1,5 @@
+[coeff, ~, ~, ~, ~, mu] = pca(X_train);
+K=12;
+U = coeff(:,1:K)
+U_fingerprint = sumabs(U(:))
+% U_fingerprint = 190.8430

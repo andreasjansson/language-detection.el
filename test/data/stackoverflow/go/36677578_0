@@ -1,0 +1,33 @@
+package main
+
+import (
+    "os"
+    "text/template"
+)
+
+type a struct {
+    Title string
+    Items []items
+}
+
+type items struct {
+    Title string
+    Body  string
+}
+
+const templ = `{{.Title}}{{range .Items}}
+{{.Title}}  {{.Body}}{{end}}
+`
+
+func main() {
+    data := a{
+        Title: "title1",
+        Items: []items{
+            {"item1", "body1"},
+            {"item2", "body2"},
+            {"verylongitem3", "body3"}},
+    }
+    t := template.New("test")
+    t, _ = t.Parse(templ)
+    t.Execute(os.Stdout, data)
+}

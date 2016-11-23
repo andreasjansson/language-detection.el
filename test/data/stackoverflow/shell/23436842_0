@@ -1,0 +1,3 @@
+Eg: grep 'a\|b\|c' file.txt
+output : a
+         b

@@ -1,0 +1,3 @@
+library(riverplot)
+
+plot(riverplot.example())

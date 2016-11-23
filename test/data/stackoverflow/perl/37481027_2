@@ -1,0 +1,5 @@
+reference on the callerHASH(0x2df8528)
+reference on module -> Module1=HASH(0x16a3f60)
+h on module -> $VAR1 = bless( {}, 'Module1' );
+$VAR2 = '
+';

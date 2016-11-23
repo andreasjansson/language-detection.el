@@ -1,0 +1,31 @@
+- (id)initWithFrame:(CGRect)frame
+{
+self = [super initWithFrame:frame];
+if (self) {
+
+    NSLog(@"[TouchEvent_View initWithFrame] sent!");
+
+    // Initialization code
+
+    //-----------------------
+    //Touch event declaration
+
+    //Single tap
+    UITapGestureRecognizer * singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(SingleTap_Handler)];
+
+    singleTap.numberOfTapsRequired = 1;
+    singleTap.numberOfTouchesRequired = 1;
+    //singleTap.delegate = self;
+
+    [self addGestureRecognizer:singleTap];
+
+}
+return self;
+}
+
+
+-(void) SingleTap_Handler :(UITapGestureRecognizer *)GR
+{
+    NSLog(@"Hi! You just touched the screen!");
+
+}

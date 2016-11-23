@@ -1,0 +1,7 @@
+local runtime = 0
+local function getDeltaTime()
+   local temp = system.getTimer()  
+   local dt = (temp-runtime) / (1000/200)
+   runtime = temp
+   return dt
+end

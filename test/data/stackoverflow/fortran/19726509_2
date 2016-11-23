@@ -1,0 +1,28 @@
+program main
+
+   use mpi
+
+   implicit none
+
+   integer, parameter :: rsp = selected_real_kind(16)
+   integer :: err
+   integer :: rank
+
+   real(rsp) :: real_var
+
+   call MPI_Init(err)
+   call MPI_Comm_rank(MPI_COMM_WORLD,rank,err)
+
+   if (rank.eq.0) then
+      real_var = 1.123456789012345
+      call MPI_Send(real_var,1,MPI_DOUBLE_PRECISION,1,5,MPI_COMM_WORLD,err)
+   else
+      call MPI_Recv(real_var,1,MPI_DOUBLE_PRECISION,0,5,MPI_COMM_WORLD,&
+         MPI_STATUS_IGNORE,err)
+   end if
+
+   print *, rank, real_var
+
+   call MPI_Finalize(err)
+
+end program main

@@ -1,0 +1,11 @@
+MySvc.MyServiceClient c = new MySvc.MyServiceClient();
+
+// The following code does not work
+MySvc.Foo req = new MySvc.Foo();
+req.Id = 5;
+req.Birthdate = DateTiem.Now;
+req.Name = "John";
+c.Get(req);
+
+//I should pass the parameters like the following since the signature here be different
+c.Get(5, DateTime.Now, "John");

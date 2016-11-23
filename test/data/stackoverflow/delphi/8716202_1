@@ -1,0 +1,4 @@
+type Tb = class(tobject)
+   public
+       a:Ta;
+end;

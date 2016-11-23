@@ -1,0 +1,21 @@
+array_size = (/20/)
+   array_subsize =(/10/)
+   array_start = (/5/)
+
+   CALL MPI_TYPE_CREATE_SUBARRAY(1,array_size,array_subsize,array_start,MPI_ORDER_FORTRAN,MPI_METVARS,newtype,ierr)
+   CALL MPI_TYPE_COMMIT(newtype,ierr)
+
+   array_size = (/20/)
+   array_subsize =(/10/)
+   array_start = (/0/)
+
+   CALL MPI_TYPE_CREATE_SUBARRAY(1,array_size,array_subsize,array_start,MPI_ORDER_FORTRAN,MPI_METVARS,newtype2,ierr)
+   CALL MPI_TYPE_COMMIT(newtype2,ierr)
+
+  if(rank .EQ. 0)then
+     CALL MPI_SEND(metvars,1,newtype,1,19,MPI_COMM_WORLD,ierr)
+  endif
+
+  if(rank .eq. 1)then
+     CALL MPI_RECV(newmetvars,1,newtype2,0,19,MPI_COMM_WORLD,MPI_STATUS_IGNORE,ierr)
+  endif

@@ -1,0 +1,31 @@
+class TodosController < ApplicationController
+
+  before_filter :authenticate_user!
+  before_filter :assign_house_from_invite!
+  before_filter :ensure_house!
+
+  def index
+    @todo = Todo.new user: current_user
+    @todos = current_user.house.todos
+  end
+
+  def create
+    @todo = Todo.new(todo_params.merge(user: current_user, house: current_user.house))
+    @todo.save
+  end
+
+  protected
+
+  def todo_params
+    params.require(:todo).permit(:task, :vote)
+  end
+
+  def assign_house_from_invite!
+
+  end
+
+  def ensure_house!
+    redirect_to new_house_path if current_user.house.nil?
+  end
+
+end

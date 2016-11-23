@@ -1,0 +1,37 @@
+Each sample counts as 0.01 seconds.
+  %   cumulative   self              self     total
+ time   seconds   seconds    calls  Ts/call  Ts/call  name
+ 61.29      9.28     9.28                             pi_calcPiItem
+ 15.85     11.68     2.40                             pi_calcPiBlock
+ 11.96     13.49     1.81                             _mcount_private
+  9.45     14.92     1.43                             __fentry__
+  1.45     15.14     0.22                             pow
+  0.00     15.14     0.00 600000000     0.00     0.00  main
+
+                        Call graph
+
+
+granularity: each sample hit covers 4 byte(s) for 0.07% of 15.14 seconds
+
+index % time    self  children    called     name
+                                                 <spontaneous>
+[1]     61.3    9.28    0.00                 pi_calcPiItem [1]
+-----------------------------------------------
+                                                 <spontaneous>
+[2]     15.9    2.40    0.00                 pi_calcPiBlock [2]
+                0.00    0.00 600000000/600000000     main [6]
+-----------------------------------------------
+                                                 <spontaneous>
+[3]     12.0    1.81    0.00                 _mcount_private [3]
+-----------------------------------------------
+                                                 <spontaneous>
+[4]      9.4    1.43    0.00                 __fentry__ [4]
+-----------------------------------------------
+                                                 <spontaneous>
+[5]      1.5    0.22    0.00                 pow [5]
+-----------------------------------------------
+                                   6             main [6]
+                0.00    0.00 600000000/600000000     pi_calcPiBlock [2]
+[6]      0.0    0.00    0.00 600000000+6       main [6]
+                                   6             main [6]
+-----------------------------------------------

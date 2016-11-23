@@ -1,0 +1,6 @@
+type ClockType = | In | Out
+let ClockMap index offset = 
+    match index with
+    | index when index + offset % 2 = 0 -> In
+    | _ -> Out
+ let MapIt offset = [0 .. 23] |> List.map offset

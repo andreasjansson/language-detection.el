@@ -1,0 +1,3 @@
+(def m1 (java.util.HashMap.))
+(def m2 (java.util.LinkedHashMap.))
+(def m3 {})

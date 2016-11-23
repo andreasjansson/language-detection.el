@@ -1,0 +1,12 @@
+import Foundation
+
+struct localData {
+var date: String!
+var latt: NSNumber!
+var lattDelta: NSNumber!
+var locality: String!
+var longi: NSNumber!
+var longiDelta: NSNumber!
+var name: String!
+var note: String!
+}

@@ -1,0 +1,2 @@
+org.codehaus.groovy.runtime.typehandling.GroovyCastException: Cannot cast object 'c' with class 'java.lang.String' to class 'groovy.lang.MetaClass'
+at Script1.run(Script1.groovy:8)

@@ -1,0 +1,28 @@
+@CustomTag('notice-list')
+class NoticeList extends PolymerElement {
+  NoticeList.created() : super.created() {
+  }
+
+  @published List<Notice> notices;
+}
+
+@CustomTag('notice-element')
+class NoticeElement extends PolymerElement {
+  NoticeElement.created() : super.created() {
+  }
+
+  @published Notice notice;
+
+  void delete(Event e, var detail, Node target) {
+    Datamanager.removeNotice(notice);
+    Controller.updateListe();
+  }
+
+  void change(Event e, var detail, Node target) {
+    Controller.updateActiveElement(notice);
+  }
+
+  void setNotice(Notice n)  {
+    notice = n;
+  }  
+}

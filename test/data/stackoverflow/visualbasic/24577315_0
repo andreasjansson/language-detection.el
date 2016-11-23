@@ -1,0 +1,17 @@
+If possible = "not possible" Then 'If grid is full
+        'Check whether something can be done at all
+        For x = 0 To 5
+            For y = 0 To 5
+                copyarray(x, y) = bigarray(x, y)
+            Next
+        Next
+
+        Dim movementarray() As String = {"up", "down", "left", "right"}
+        For i = 0 To 3
+            direction = movementarray(i)
+            moveblocks()
+        Next
+        If copyarray = bigarray Then
+            'This throws an error
+        End If
+End If

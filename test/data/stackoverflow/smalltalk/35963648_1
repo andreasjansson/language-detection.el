@@ -1,0 +1,5 @@
+imaDecode: number
+| n |
+n _ number.
+n >= 128 ifTrue: [n _ n - 256].
+^ (n) * 16

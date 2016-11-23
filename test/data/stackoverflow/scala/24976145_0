@@ -1,0 +1,6 @@
+val inputStream = ...
+try {
+    doStuff(inputStream)
+} finally {
+    inputStream.close()
+}

@@ -1,0 +1,6 @@
+func (company *Company) Populate(names []string) {
+    for i := 1; i <= 15; i++ {
+        company.employees[i] = Person{names[i - 1], [...]}
+        company.employees[i].Initialize()
+    }
+}

@@ -1,0 +1,11 @@
+procedure TMainForm.btn1Click(Sender: TObject);
+var
+  lHTTP: TIdHTTP;
+begin
+  lHTTP := TIdHTTP.Create(nil);
+  try
+    mmo1.Text := lHTTP.Get('http://guessit.io/guess?filename=House.of.Cards.2013.S02E03.1080p.NF.WEBRip.DD5.1.x264-NTb.mkv');
+  finally
+    lHTTP.Free;
+  end;
+end;

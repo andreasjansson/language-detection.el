@@ -1,0 +1,3 @@
+pegs := Matrix
+            new: n
+            tabulate: [:i :j | self newCellAt: i at: j]

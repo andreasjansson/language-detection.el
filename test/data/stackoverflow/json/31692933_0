@@ -1,0 +1,2 @@
+FATAL flags parsing error : unknown command line flag 'write_dispostion'
+RUN 'bq.py help' to get help.

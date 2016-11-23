@@ -1,0 +1,25 @@
+program perm_field
+
+
+implicit double precision(a-h,o-z)
+parameter (pi=3.14159)
+
+allocatable :: perm(:),alog_perm_all(:),u(:),xi(:),&
+               perm_zone(:),alog_perm(:)
+integer :: seed(2)
+external    dgemm
+
+open(unit=1,file='input.dat')
+open(unit=3,file='random_log_perm.dat',access='append')
+open(unit=31,file='random_log_perm_initial.dat',access='append')
+open(unit=4,file='isim.dat')
+open(unit=7,file='random_log_perm_updated.dat')
+open(unit=5,file='kalman_index.dat')
+open(unit=6,file='nsim.dat')
+open(unit=8,file='perm_zone.dat')
+open(unit=111,file='perm.dat')
+
+read(4,*) isim
+   seed(1)=isim;
+   call random_seed(put=seed(1:2))
+   call random_number(u)

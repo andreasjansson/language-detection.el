@@ -1,0 +1,5 @@
+filetype plugin indent on
+syntax on
+set backspace=indent,eol,start
+autocmd Filetype python setlocal expandtab tabstop=4 shiftwidth=4
+set ww=<,>,[,]

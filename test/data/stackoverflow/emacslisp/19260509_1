@@ -1,0 +1,3 @@
+(defun my-save-some-data ()
+  (with-output-to-file my-data-save-file
+                       (prin1 my-data)))

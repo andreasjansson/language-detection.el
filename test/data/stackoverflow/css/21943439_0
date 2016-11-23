@@ -1,0 +1,3 @@
+$("#divDialog").dialog({
+    modal: true
+});

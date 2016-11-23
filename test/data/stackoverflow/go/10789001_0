@@ -1,0 +1,11 @@
+// Each team's statistics:
+type StatLine map[StatID]float64
+
+// The whole league:
+map[TeamID]StatLine
+
+// And I want to score that whole league with:
+func score(s map[TeamID]StatLine) map[TeamID]int
+
+// Only, is't also handy to score individual players:
+func score(s map[PlayerID]StatLine) map[PlayerID]int

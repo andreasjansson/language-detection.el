@@ -1,0 +1,5 @@
+beans = {
+
+    def instance = Class.forName(grailsApplication.config.foo.bar)
+    exampleService(instance)
+}

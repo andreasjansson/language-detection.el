@@ -1,0 +1,6 @@
+protected override void OnPreRender(EventArgs e)
+        {
+
+            ((HiddenField)this.FindControl("DocumentLibraryListingHiddenWebPartProperties")).Value = DocumentLibraryListing.DocumentLibraryListing.Exclusions;
+
+        }

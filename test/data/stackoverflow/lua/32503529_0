@@ -1,0 +1,4 @@
+local function touchListener(e)
+    print("removeLine")
+    print("Name: " .. e.target.name)
+end

@@ -1,0 +1,9 @@
+var strArr0 *[10]string = new([10]string)
+
+    var strArr1 = new([10]string)
+
+    var strArr2 = make([]string,10)
+
+    var strArr3 [10]string
+
+    strArr4 := make([]string,10)

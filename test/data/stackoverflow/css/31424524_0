@@ -1,0 +1,6 @@
+#main > div{
+   color: red;
+}
+#child{
+  color: blue;/*won't override*/
+}

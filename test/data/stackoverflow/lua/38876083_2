@@ -1,0 +1,14 @@
+share/lua/5.1/nn/MSECriterion.lua:13: attempt to call field 'new' (a nil value)
+stack traceback:
+...y/torch/distro/install/share/lua/5.1/nn/MSECriterion.lua:13: in function 'f'
+[string "local f = function() return crit:forward(g:fo..."]:1: in main chunk
+[C]: in function 'xpcall'
+...ology/torch/distro/install/share/lua/5.1/itorch/main.lua:209: in function <...ology/torch/distro/install/share/lua/5.1/itorch/main.lua:173>
+...ology/torch/distro/install/share/lua/5.1/lzmq/poller.lua:75: in function 'poll'
+...gy/torch/distro/install/share/lua/5.1/lzmq/impl/loop.lua:307: in function 'poll'
+...gy/torch/distro/install/share/lua/5.1/lzmq/impl/loop.lua:325: in function 'sleep_ex'
+...gy/torch/distro/install/share/lua/5.1/lzmq/impl/loop.lua:370: in function 'start'
+...ology/torch/distro/install/share/lua/5.1/itorch/main.lua:381: in main chunk
+[C]: in function 'require'
+(command line):1: in main chunk
+[C]: at 0x00406670

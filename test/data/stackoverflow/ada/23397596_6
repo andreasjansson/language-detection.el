@@ -1,0 +1,38 @@
+configure:2351: $? = 0
+configure:2340:  /Users/ardnew/cross/src/gcc-4.8.1-obj/./gcc/xgcc -B/Users/ardnew/cross/src/gcc-4.8.1-obj/./gcc/ -B/Users/ardnew/cross/arm-none-eabi/bin/ -B/Users/ardnew/cross/arm-none-eabi/lib/ -isystem /Users/ardnew/cross/arm-none-eabi/include -isystem /Users/ardnew/cross/arm-none-eabi/sys-include    -v >&5
+COLLECT_LTO_WRAPPER=/Users/ardnew/cross/src/gcc-4.8.1-obj/./gcc/lto-wrapper
+Target: arm-none-eabi
+Configured with: /Users/ardnew/cross/src/gcc-4.8.1/configure --target=arm-none-eabi --prefix=/Users/ardnew/cross --with-cpu=cortex-a8 --enable-languages=c,ada --disable-multilib --enable-interwork --disable-threads --disable-shared --disable-nls --disable-lto --disable-libssp --disable-decimal-float --disable-libgomp --disable-libmudflap
+configure:2351: $? = 0
+xgcc: error: unrecognized command line option '-qversion'
+xgcc: fatal error: no input files
+compilation terminated.
+configure:2351: $? = 1
+configure:2371: checking for C compiler default output file name
+configure:2393:  /Users/ardnew/cross/src/gcc-4.8.1-obj/./gcc/xgcc -B/Users/ardnew/cross/src/gcc-4.8.1-obj/./gcc/ -B/Users/ardnew/cross/arm-none-eabi/bin/ -B/Users/ardnew/cross/arm-none-eabi/lib/ -isystem /Users/ardnew/cross/arm-none-eabi/include -isystem /Users/ardnew/cross/arm-none-eabi/sys-include    -g -O2   conftest.c  >&5
+/Users/ardnew/cross/arm-none-eabi/bin/ld: cannot find crt0.o: No such file or directory
+/Users/ardnew/cross/arm-none-eabi/bin/ld: cannot find -lg
+/Users/ardnew/cross/arm-none-eabi/bin/ld: cannot find -lc
+collect2: error: ld returned 1 exit status
+configure:2397: $? = 1
+configure:2434: result:
+configure: failed program was:
+| /* confdefs.h */
+| #define PACKAGE_NAME ""
+| #define PACKAGE_TARNAME ""
+| #define PACKAGE_VERSION ""
+| #define PACKAGE_STRING ""
+| #define PACKAGE_BUGREPORT ""
+| #define PACKAGE_URL ""
+| /* end confdefs.h.  */
+|
+| int
+| main ()
+| {
+|
+|   ;
+|   return 0;
+| }
+configure:2440: error: in `/Users/ardnew/cross/src/gcc-4.8.1-obj/arm-none-eabi/libada':
+configure:2444: error: C compiler cannot create executables
+See `config.log' for more details.

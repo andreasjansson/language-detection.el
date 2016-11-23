@@ -1,0 +1,5 @@
+let rec calculate efValues formula = 
+match formula with
+    | Number n -> [...] 
+    | Operator (kind, lFormula, rFormula) -> [...]
+    | [...]

@@ -1,0 +1,18 @@
+require "Cocos2d"
+require "Cocos2dConstants"
+
+local Square = class("Square",function()
+    return cc.Scene:create()
+end)
+
+function Square.create()
+    local square = Square.new()
+
+    return square
+end
+function Square:ctor()
+    self.visibleSize = cc.Director:getInstance():getVisibleSize()
+    self.x = cc.Director:getInstance():getVisibleOrigin().x
+    self.y = cc.Director:getInstance():getVisibleOrigin().y
+    self.schedulerID = nil
+end

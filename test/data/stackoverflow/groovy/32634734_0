@@ -1,0 +1,7 @@
+interface IPayment {
+  String getReceiver()
+  String getContactPhone()
+  String getContactEmail()
+  String getUserIp()
+  ...
+}

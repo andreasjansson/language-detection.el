@@ -1,0 +1,11 @@
+(defadvice kill-buffer (around show-diff-rephrase-question activate compile)
+  "Prompt when a buffer is about to be killed."
+  (case (read-char-choice
+         "(s/k/q)? "
+         (append "sSKkQq" nil))
+    ((?s ?S)
+     ad-do-it)
+    ((?k ?K)
+     ad-do-it)
+    ((?q ?Q) nil))
+  ad-do-it)

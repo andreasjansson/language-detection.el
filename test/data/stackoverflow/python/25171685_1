@@ -1,0 +1,6 @@
+import math
+>>> def old_round(n):
+        return math.floor(n + 0.5)
+
+>>> old_round(4.5)
+5

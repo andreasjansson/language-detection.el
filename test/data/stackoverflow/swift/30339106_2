@@ -1,0 +1,16 @@
+override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath, object: PFObject!) -> PFTableViewCell? {
+
+    println("cellForRowAtIndexPath 1")
+
+    super.tableView.cellForRowAtIndexPath(indexPath)
+
+    //let myCell = tableView.dequeueReusableCellWithIdentifier("tableViewCell", forIndexPath: indexPath) as! TableViewCell
+    let myCell = tableView.dequeueReusableCellWithIdentifier("tableViewCell") as! TableViewCell
+
+    println("cellForRowAtIndexPath 2") //This line DOES NOT PRINT
+
+...insert more random code here...
+
+return myCell 
+
+}

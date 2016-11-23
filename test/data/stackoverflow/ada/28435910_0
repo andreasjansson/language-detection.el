@@ -1,0 +1,4 @@
+GPIOA : GPIO_Register with
+   Volatile,
+   Address => System'To_Address (GPIOA_Base);
+   pragma Import (Ada, GPIOA);

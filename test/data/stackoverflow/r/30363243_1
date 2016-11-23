@@ -1,0 +1,11 @@
+dput(df2)
+structure(list(MON1_12 = c(1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 
+1L), WEEK1_53 = c(1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L), AGENT_ID = structure(c(3L, 
+4L, 7L, 8L, 1L, 6L, 5L, 9L, 2L, 10L), .Label = c("A129", "A360", 
+"A407", "B891", "D197", "L145", "L722", "O518", "T443", "W764"
+), class = "factor"), CallsHandled = c(1L, 4L, 2L, 14L, 1L, 2L, 
+5L, 1L, 1L, 3L), QUEUE = structure(c(1L, 4L, 2L, 4L, 1L, 3L, 
+3L, 5L, 5L, 4L), .Label = c("CLAIMS", "CONTENT", "CREDIT_CARD", 
+"DEDUCT_BILL", "HCREFORM"), class = "factor")), .Names = c("MON1_12", 
+"WEEK1_53", "AGENT_ID", "CallsHandled", "QUEUE"), class = "data.frame", row.names = c(NA, 
+-10L))

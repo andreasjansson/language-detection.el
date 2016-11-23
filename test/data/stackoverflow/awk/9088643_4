@@ -1,0 +1,24 @@
+#!/usr/bin/awk -f
+
+{ sub(/\r$/,"") }
+
+/^BEGIN_DATA_FORMAT/{
+        getline
+            for (i=1;i<=NF;i++) 
+                    if ($i~/LAB/) a[i]=$i
+                }
+
+
+/^BEGIN_DATA$/,/^END_DATA$/{
+             s="";
+             if (NF<2) next; else 
+                for (j in a)
+            s=s?s"\t"$j:$j
+            print s 
+                        }
+
+    { 
+        OFS = "\t"
+        $4="(Untitled "FNR-1")"
+        print $4 
+    }

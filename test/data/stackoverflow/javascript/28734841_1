@@ -1,0 +1,7 @@
+<script id="projects_tmp" type="text/template">
+        <div class='small-6 medium-3 large-2 columns left thumb {{{genre}}}' data-id='{{{id}}}'>
+            <div class='project'><figure><img src='{{{largePic}}}' alt='' />
+            <figcaption class='caption'><span>{{genre}}</span></figcaption class='caption'></figure></div>
+           </div>
+        </div>
+    </script>

@@ -1,0 +1,3 @@
+relative(X,Y) :-  ancestor(X,Y).
+relative(X,Y) :-  ancestor(Y,X).
+relative(X,Y) :-  X\==Y, ancestor(Z,X), ancestor(Z,Y).

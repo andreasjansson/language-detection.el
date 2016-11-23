@@ -1,0 +1,40 @@
+object Global extends GlobalSettings {
+
+  // TODO use cake pattern injection?
+  val searchService: SearchService = StampleApplication.get.searchService
+  val breadcrumbService: BreadcrumbService = StampleApplication.get.breadcrumbService
+
+  override def onStart(app: Application) {
+    Logger.info("Application has started")
+    startElasticSearchIndexationScheduling
+    startBreadcrumbUpdaterJob
+  }
+
+  override def onStop(app: Application) {
+    Logger.info("Application shutdown...")
+  }
+
+
+
+  // TODO externaliser delais des jobs dans la conf play?
+
+  def startElasticSearchIndexationScheduling = {
+    Akka.system.scheduler.schedule(30 seconds , 30 seconds) {
+      Logger.info("Indexation job triggered")
+      searchService.indexUnindexedStamples
+      searchService.indexUnindexedUsers
+    }
+  }
+
+  def startBreadcrumbUpdaterJob = {
+    Akka.system.scheduler.schedule(30 seconds, 30 seconds) {
+      Logger.info("Breadcrumb updated job triggered")
+      breadcrumbService.updateChildsBreadcrumbForFlaggedCategories
+      Logger.info("Breadcrumb updated (with recursion!) job triggered")
+      breadcrumbService.recompteAllFlaggedWithRecursion
+    }
+  }
+
+
+
+}

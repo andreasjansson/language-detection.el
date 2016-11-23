@@ -1,0 +1,8 @@
+|newMsg tempMsg|
+"removes the 'ZZ' from '$100xxxxxxZZ'  "
+tempMsg := replyWithCheckSum copyFrom: 2 to: (replyWithCheckSum size -2).
+
+"CODE TO REMOVE THE '$' AND STORE INTO newMsg"
+
+"compares the 'ZZ' to the checksum calculated from newMsg"
+^(self calcCheckSum: newMsg) = (self getCheckSumFromReply: replyWithCheckSum)

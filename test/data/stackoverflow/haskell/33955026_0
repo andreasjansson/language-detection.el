@@ -1,0 +1,5 @@
+main = do {
+    getLine <- getContents;
+    let result = show (foo getLine);
+    putStrLn (foo result);
+}

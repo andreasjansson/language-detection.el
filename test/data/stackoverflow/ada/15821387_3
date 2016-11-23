@@ -1,0 +1,5 @@
+// Service to receive data
+HRESULT PutParam([in] Parameter_Type Param, [in] VARIANT *Value);
+
+//Service to send requested data
+HRESULT GetParam([in] Parameter_Type Param, [out, retval] VARIANT *Value);

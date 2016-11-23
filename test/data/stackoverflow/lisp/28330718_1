@@ -1,0 +1,2 @@
+(define (filter func lst)
+  (countNumber (filter lst)))

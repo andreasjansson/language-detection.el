@@ -1,0 +1,12 @@
+<schema targetNamespace="uri:unique/v1.0"
+xmlns:tns="uri:unique/v1.0"
+xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+elementFormDefault="qualified">
+    <xsd:complexType name="AddressType">
+        <xsd:sequence>
+           <xsd:element name="AddressLine1" type="xsd:string"/>
+           <xsd:element name="AddressLine1" type="xsd:string"/>
+           <any minOccurs="0" maxOccurs="unbounded" namespace="##other" processContents="lax" />
+        </xsd:sequence>
+    </xsd:complexType>
+</schema>

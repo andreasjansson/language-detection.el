@@ -1,0 +1,12 @@
+#!/usr/bin/perl
+use HTTP::Request::Common qw(POST);
+use LWP::UserAgent;
+$ua = LWP::UserAgent->new;
+$PARAM = "<HealthCheck>" ;
+
+my $req = (POST '[http://host_name:8080/service]' ["xmlString" => $PARAM]);
+$request = $ua->request($req); 
+$content = $request->content; 
+
+print $content; 
+exit;

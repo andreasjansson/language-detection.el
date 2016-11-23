@@ -1,0 +1,9 @@
+{
+  "user": {
+    "linters": {
+      "csslint": {
+        "ids": /* WHAT TO PUT HERE? */
+      }
+    }
+  }
+}

@@ -1,0 +1,6 @@
+public function actionUpload()
+{
+    Yii::import('ext.phpexcelreader.JPhpExcelReader');
+    $data=new JPhpExcelReader(Yii::app()->getBasePath().'/import/example.xls');
+    echo $data->dump(true,true);
+}

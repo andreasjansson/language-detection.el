@@ -1,0 +1,11 @@
+mainContent.getSettings().setJavaScriptEnabled(true);
+            WebSettings webSettings = mainContent.getSettings();
+            webSettings.setJavaScriptEnabled(true);
+            webSettings.setBuiltInZoomControls(true);
+            mainContent.requestFocusFromTouch();
+            mainContent.setWebViewClient(new WebViewClient());
+            mainContent.setWebChromeClient(new WebChromeClient());
+            mainContent.loadUrl("file:///android_asset/"+filename.get(position));
+       Typeface font = Typeface.createFromAsset(getAssets(), "myfont.ttf"); 
+            webSettings.setFixedFontFamily(font);
+            webSettings.setDefaultFontSize(20);

@@ -1,0 +1,28 @@
+#!usr/bin/perl    #test1.pl
+use strict;
+use warnings;
+
+out $db_name;   #global variable to be used in another script
+
+fun();
+
+sub fun
+{
+$db_name = 'xxyy';
+}
+
+
+
+
+#!usr/bin/perl    #test2.pl
+require 'test1.pl';    #require is used to include the perl script like we use "use" for importing packages
+my $database = $db_name;    #global variable from previous script
+use strict;
+use warnings;
+
+testing();
+
+sub testing
+{
+print "$database\n";
+}

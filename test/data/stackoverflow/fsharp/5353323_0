@@ -1,0 +1,4 @@
+onClick =
+   let storage = IsolatedStorageSettings.ApplicationSettings
+   let x = storage.Item key
+   storage.Add(key, "Some Value")

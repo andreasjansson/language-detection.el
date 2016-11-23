@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+<xsl:output method="xml" version="1.0" encoding="UTF-8" omit-xml-declaration="no" indent="yes"/>
+<xsl:preserve-space elements="*"/>
+<xsl:template match="InputShipmentSchedule">
+    <xsl:call-template name="CreateShipmentScheduleXmlns"/>
+</xsl:template>
+
+<xsl:template name="CreateShipmentScheduleXmlns">
+    <xsl:element name="Output_Data">
+        <xsl:element name="ShipmentSchedule">
+                <xsl:call-template name="part_detail_template">
+                    <xsl:with-param name="currentPartLine" select="DataArea/ShipmentSchedule/ShipmentScheduleLine"/>
+                    <xsl:with-param name="nextPartLine" select="DataArea/ShipmentSchedule/ShipmentScheduleLine/following-sibling::ShipmentScheduleLine"/>
+                </xsl:call-template>                
+        </xsl:element>  <!-- ShipmentSchedule tag end -->
+    </xsl:element>  <!-- Output_Data tag end -->
+</xsl:template> <!-- CreateShipmentScheduleXmlns template end -->
+
+<xsl:template name="part_detail_template">
+    <xsl:param name="currentPartLine"/>
+    <xsl:param name="nextPartLine"/>
+    <xsl:element name="Part_Detail">  <!-- Part_Detail tag start -->
+        <xsl:variable name="part_no" select="$currentPartLine/ManufacturingItem/ItemID/ID"/>
+        <xsl:element name="part_no">
+            <xsl:attribute name="value">
+                <xsl:value-of select="$part_no"/>
+            </xsl:attribute>
+        </xsl:element>
+    </xsl:element>  <!-- Part_Detail tag end -->
+    <xsl:variable name="currentItem" select="$currentPartLine/ManufacturingItem/ItemID/ID"/>
+    <xsl:variable name="nextItem" select="$nextPartLine/ManufacturingItem/ItemID/ID"/>
+    <xsl:choose>            
+        <xsl:when test="$nextPartLine and $nextItem != $currentItem">
+            <xsl:call-template name="part_detail_template">
+                <xsl:with-param name="currentPartLine" select="$nextPartLine"/>
+                <xsl:with-param name="nextPartLine" select="$nextPartLine/following-sibling::ShipmentScheduleLine"/>
+            </xsl:call-template>
+        </xsl:when>
+    </xsl:choose>
+</xsl:template>  <!-- part_detail_template tag end -->                                        
+</xsl:stylesheet>

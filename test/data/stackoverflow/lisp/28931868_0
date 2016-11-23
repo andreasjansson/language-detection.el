@@ -1,0 +1,5 @@
+(define fn.str "(lambda (x) (displayln x)")
+(define fn.callable (string->lambda fn.str))
+; and then 2 next lines should be valid
+(fn.callable 123)
+(apply fn.callable '(321))

@@ -1,0 +1,12 @@
+YamlTapeLoader : inside loadTape
+YamlTapeLoader : inside loadTape filename -name: kar
+YamlTapeLoader : inside loadTape filename -file: /Users/Shared/AATest/Record/kar.yaml
+YamlTapeLoader : inside file.isFile() : true
+YamlTape : inside readFrom reader.size() = java.io.LineNumberReader@34189cab YamlTape: class co.freeside.betamax.tape.yaml.YamlTape
+YamlTape : inside getYaml 
+YamlTape : representer = co.freeside.betamax.tape.yaml.TapeRepresenter@201a503f
+YamlTape : constructor = org.yaml.snakeyaml.constructor.Constructor@16e7eec9
+YamlTape : dumperOption = org.yaml.snakeyaml.DumperOptions@39d7af3
+YamlTape : after readfrom
+YamlTapeLoader : inside readFrom : java.io.LineNumberReader@34189cab
+YamlTapeLoader : tape : null

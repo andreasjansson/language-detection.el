@@ -1,0 +1,16 @@
+- (void)viewDidLoad
+{
+    NSString *jsonString = [[NSString alloc] initWithContentsOfFile:@"feedback.json"];
+    NSData *jsonData = [jsonString dataUsingEncoding:NSUTF8StringEncoding];
+    NSError *error = nil;
+    NSDictionary *dataItems = [[CJSONDeserializer deserializer] deserializeAsDictionary:jsonData error:&error];
+    NSArray *catchArray = [dataItems objectForKey:@"FeedBack"];
+    for (NSDictionary *tempDictionary in catchArray) {
+        NSString *tempString = [tempDictionary objectForKey:@"Survey fields"];
+        [array addObject:tempString];
+    }
+    NSLog(@"total items:%d",[array count]);
+    NSLog(@"error : %@", [error localizedDescription]);
+
+    [super viewDidLoad];
+}

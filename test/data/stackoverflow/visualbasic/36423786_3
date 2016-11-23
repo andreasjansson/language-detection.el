@@ -1,0 +1,10 @@
+Public Sub InitSerial()
+    SP_TestCom = New SerialPort
+    SP_TestCom.PortName = "COM26"
+    SP_TestCom.ReadTimeout = 20
+    SP_TestCom.BaudRate = 19200
+    SP_TestCom.DataBits = 8
+    SP_TestCom.StopBits = StopBits.One
+    SP_TestCom.Parity = Parity.None
+    SP_TestCom.ReceivedBytesThreshold = 10
+End Sub

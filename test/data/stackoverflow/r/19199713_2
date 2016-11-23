@@ -1,0 +1,12 @@
+> mod1
+Linear mixed model fit by REML ['lmerMod']
+Formula: auc ~ decod + (1 | subj) 
+REML criterion at convergence: -213.3884 
+Random effects:
+ Groups   Name        Std.Dev.
+ subj     (Intercept) 0.04187 
+ Residual             0.11087 
+Number of obs: 155, groups: subj, 6
+Fixed Effects:
+(Intercept)       decod2       decod3       decod4  
+     0.9798      -0.1141      -0.3599      -0.3090

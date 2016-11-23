@@ -1,0 +1,2 @@
+let a: Vec<f64> = vec![-3.0, 0.2, 1.4];
+*a.iter().max_by_key(|n| n.abs()).unwrap()

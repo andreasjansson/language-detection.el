@@ -1,0 +1,4 @@
+void test() {
+    ImageElement img = new ImageElement(src: 'img.png');
+    context.drawImage(img, 0, 0);
+  }

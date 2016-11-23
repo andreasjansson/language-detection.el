@@ -1,0 +1,11 @@
+Dim ie as InternetExplorer
+Set ie = New InternetExplorer
+ie.Visible = True
+
+ie.navigate "redacted"
+
+Do While ie.READYSTATE <> READYSTATE_COMPLETE
+DoEvents
+Loop
+
+ie.getElementById("dateselect").Value = Format(DateSerial(Year(Date), Month(Date) - 1, 1), "YYYY MMM")

@@ -1,0 +1,9 @@
+for (int i = 0; i < [[self.view subviews] count]; i++) {
+        if ([[self.view.subviews objectAtIndex:i] class] == [UIButton class]) {
+            NSLog(@"Tags : %i", [[self.view.subviews objectAtIndex:i] tag]);
+            if (buttonTag == [[self.view.subviews objectAtIndex:i] tag]) {
+
+                [[self.view.subviews objectAtIndex:i] setBackgroundColor:[UIColor redColor]];
+            }
+        }
+    }

@@ -1,0 +1,68 @@
+Imports System.Net
+Imports System.Web
+Imports System.Runtime.Serialization
+Imports System.Runtime.Serialization.Json
+Imports System.Web.Script.Serialization
+
+Namespace Utilities.Apis
+    Public NotInheritable Class GoogleGeolocate
+
+
+        Private Const googleUrl As String = "http://maps.googleapis.com/maps/api/geocode/json?address={0}&sensor=false"
+        Private Sub New()
+        End Sub
+
+        Public Shared Function GetLatLon(ByVal address As String) As String
+            ''# This is just here to prevent "placeholder" data from being submitted.
+            If address = "6789 university drive" Then
+                Return Nothing
+            End If
+
+            address = HttpUtility.UrlEncode(address)
+
+            Dim url = String.Format(googleUrl, address)
+
+            Dim request = DirectCast(HttpWebRequest.Create(url), HttpWebRequest)
+            request.Headers.Add(HttpRequestHeader.AcceptEncoding, "gzip,deflate")
+            request.AutomaticDecompression = DecompressionMethods.GZip Or DecompressionMethods.Deflate
+            Dim serializer As New DataContractJsonSerializer(GetType(GoogleResponse))
+            Dim res = DirectCast(serializer.ReadObject(request.GetResponse().GetResponseStream()), GoogleResponse)
+
+            Dim resources As GoogleResponse.Result = res.results(0)
+            Dim point = resources.geometry.location.lat
+            Dim latlon As New GeolocationLatLon
+            With latlon
+                .latitude = resources.geometry.location.lat
+                .longitude = resources.geometry.location.lng
+            End With
+
+            Dim jsonSerializer = New JavaScriptSerializer
+
+            Return jsonSerializer.Serialize(latlon)
+        End Function
+    End Class
+
+    <DataContract()>
+    Public Class GoogleResponse
+        <DataMember()>
+        Public Property results() As Result()
+        <DataContract()>
+        Public Class Result
+            <DataMember()>
+            Public Property geometry As m_Geometry
+            <DataContract()>
+            Public Class m_Geometry
+                <DataMember()>
+                Public Property location As m_location
+                <DataContract()>
+                Public Class m_location
+                    <DataMember()>
+                    Public Property lat As String
+                    <DataMember()>
+                    Public Property lng As String
+                End Class
+            End Class
+        End Class
+
+    End Class
+End Namespace

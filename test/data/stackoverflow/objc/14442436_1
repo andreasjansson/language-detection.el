@@ -1,0 +1,39 @@
+-(IBAction)Login:(id)sender{
+
+
+
+
+    Array = [[NSMutableArray alloc] initWithCapacity:5];
+
+
+    myhomeVC = [[FirstViewController alloc] initWithNibName:@"FirstViewController" bundle:nil];
+    homeNavBar=[[UINavigationController alloc]initWithRootViewController:myhomeVC];
+    homeNavBar.tabBarItem.title=@"First";
+
+
+
+    groupVC = [[SecondViewController alloc] initWithNibName:@"SecondViewController" bundle:nil];
+    groupNavBar=[[UINavigationController alloc]initWithRootViewController:groupVC];
+    groupNavBar.tabBarItem.title=@"Second";
+
+    uploadVC = [[ThirdViewController alloc] initWithNibName:@"ThirdViewController" bundle:nil];
+    uploadNavBar=[[UINavigationController alloc]initWithRootViewController:uploadVC];
+    uploadNavBar.tabBarItem.title=@"Third";
+
+
+    [Array addObject:homeNavBar];
+    [Array addObject:groupNavBar];
+    [Array addObject:uploadNavBar];
+
+
+    appDelegate.tabBarController.viewControllers = localViewControllersArray;
+
+    [self.parentViewController.view setHidden:YES];
+
+
+
+     appDelegate.window.rootViewController = appDelegate.tabBarController;
+
+
+     }
+     }

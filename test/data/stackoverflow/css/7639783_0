@@ -1,0 +1,6 @@
+<div class="menuContainer">
+        <asp:Menu ID="_menu" runat="server" EnableTheming="true" DataSourceID="_siteMap" CssClass="menuClass" IncludeStyleBlock="false" 
+            Orientation="Horizontal" StaticBottomSeparatorImageUrl="../images/menuSepImage.jpg" OnMenuItemDataBound="_menu_OnDataBound">
+        </asp:Menu>
+        <asp:SiteMapDataSource ID="_siteMap" runat="server" ShowStartingNode="false" />
+    </div>

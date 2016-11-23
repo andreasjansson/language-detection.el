@@ -1,0 +1,4 @@
+<div class="rating-total" data-id="#{@post.id}" data-score= "#{@avg_score || 0}"></div>
+<div class="total-score">
+  <%= @avg_score ? @avg_score.round(1) : 0 %>
+</div>

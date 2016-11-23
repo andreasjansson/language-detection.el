@@ -1,0 +1,8 @@
+let post = async { 
+   ....
+   return X }
+try
+    let response = post |> Async.StartChild
+    logger.Info(response.ToString())
+with 
+| ex -> logger.Error(ex, "Exception: " + ex.Message)

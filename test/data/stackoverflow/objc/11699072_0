@@ -1,0 +1,6 @@
+dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0);
+    for(int INDEX = 0; INDEX < 5; INDEX++) {
+        dispatch_async(queue, ^{
+            /*some code*/        
+        }); 
+    }

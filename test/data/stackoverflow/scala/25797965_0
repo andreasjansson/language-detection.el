@@ -1,0 +1,10 @@
+val server = system.actorOf(Props(new LegacyTCPServer), name = "my-tcp-server")
+
+implicit val bindingTimeout = Timeout(1.second)
+import system.dispatcher // execution context for the future
+
+val boundFuture = IO(Tcp) ? Tcp.Bind(server, endpoint)
+
+boundFuture.onSuccess { case Tcp.Bound(address) =>
+  println("Fantastic! We have a connection: " + address)
+}

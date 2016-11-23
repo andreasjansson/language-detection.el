@@ -1,0 +1,73 @@
+%% start of file `template_en.tex'.
+%% Copyright 2006-1008 Xavier Danaux (xdanaux@gmail.com).
+%
+% This work may be distributed and/or modified under the
+% conditions of the LaTeX Project Public License version 1.3c,
+% available at http://www.latex-project.org/lppl/.
+
+
+\documentclass[10pt,letterpaper]{moderncv}
+\usepackage{helvet}
+
+% moderncv themes
+\moderncvtheme[blue]{casual}                 % optional argument are 'blue' (default), 'orange', 'red', 'green', 'grey' and 'roman' (for roman fonts, instead of sans serif fonts)
+%\moderncvtheme[blue]{classic}                % idem
+
+% character encoding
+\usepackage[utf8]{inputenc}                   % replace by the encoding you are using
+
+% adjust the page margins
+\usepackage[scale=0.86]{geometry}
+%\setlength{\hintscolumnwidth}{3cm}						% if you want to change the width of the column with the dates
+%\AtBeginDocument{\setlength{\maketitlenamewidth}{6cm}}  % only for the classic theme, if you want to change the width of your name placeholder (to leave more space for your address details
+\AtBeginDocument{\recomputelengths}                     % required when changes are made to page layout lengths
+
+% personal data
+\firstname{\textbf{ROGER}}
+\familyname{\textbf{~QUE}}
+\address{623 Halcyon Meadow Drive}{Cary, North Carolina 27519--7701}
+\phone{+1~919~491~1194}
+\email{query@unc.edu}
+\extrainfo{http://www.unc.edu/\textasciitilde alerante/}
+
+\nopagenumbers{}                             % uncomment to suppress automatic page numbering for CVs longer than one page
+
+
+%----------------------------------------------------------------------------------
+%            content
+%----------------------------------------------------------------------------------
+\begin{document}
+\maketitle
+
+\section{Education}
+\cventry{2008--2012}{B.S., Computer Science}{University of North Carolina at Chapel Hill}{Chapel Hill, NC}{}{Expected graduation: May 2012.  Cumulative grade point average as of spring 2011: 3.783.}
+
+\section{Professional experience}
+\cventry{2009--2011}{Research Assistant}{Department of Computer Science, UNC--CH}{Chapel Hill, NC}{}{Game development for Hark the Sound, a Web site of audio-based activities for blind or visually-impaired children, in JavaScript (with Dojo framework), HTML, and Python.  More information: \texttt{http://harkthesound.org/}.}
+\cventry{2010}{Intern}{SAS Institute}{Cary, NC}{}{Internal development for the Metaverse content management system, built on Java (with Hibernate and Spring frameworks) and XSLT. Database reporting and maintenance with PHP and MySQL.}
+\cventry{2008, 2009}{Intern}{IBM Software Group}{Research Triangle Park, NC}{}{Demonstration software for Project Blue Spruce, a Web-based real-time collaborative application framework built on JavaScript, Python, and XMPP.  More information: \texttt{https://github.com/opencoweb/coweb}, \texttt{http://www-01.ibm.com/software/ebusiness/jstart/bluespruce/}.\newline{}Rewrite of in-house Web vacation planning software with JavaServer Pages, XHTML, and CSS.}
+
+\section{Scholarships}
+\cventry{2010--2011}{Charles H. Dunham Scholarship}{SAS Institute}{Cary, NC}{}{}
+\cventry{2008--2012}{University Trademark Scholarship}{University of North Carolina at Chapel Hill}{}{}{}
+\cventry{2008--2012}{National Merit Scholarship}{National Merit Scholarship Corporation}{}{}{}
+
+\section{Awards}
+\cventry{2009}{Meritorious Winner}{Mathematical Contest in Modeling}{COMAP}{}{With Robert Pan and Matt Hernandez.\newline{}More information: \texttt{http://www.comap.com/undergraduate/contests/mcm/}.}
+
+\section{Computing skills}
+\cvcomputer{Systems}{Windows, Mac OS X, Linux/Unix}{Administration}{Apache, OpenSSH, MySQL, XMPP}
+\cvcomputer{Programming}{Java, PHP\newline{}Python (with Django and Twisted frameworks)}{Web}{HTML5/XHTML, CSS, JavaScript\newline{}CMSes incl. WordPress and Movable Type}
+
+\section{Languages}
+\cvlanguage{English}{Native}{}
+\cvlanguage{Chinese}{Native}{Mandarin dialect}
+\cvlanguage{Japanese}{Intermediate}{Second-year reading, writing, speaking, and listening}
+
+\section{Other interests}
+\cvline{}{\small I enjoy graphic design and photography in my free time.}
+
+\end{document}
+
+
+%% end of file `template_en.tex'.

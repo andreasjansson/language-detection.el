@@ -1,0 +1,2 @@
+integral(@(x) [x,1]*[x;1],0,1)
+integral(@(x) dot([x;1],[x,1]),0,1)

@@ -1,0 +1,16 @@
+void main() {
+  List someList = [1,2,3];
+  try {
+    for (var x in someList) {
+      try {
+        for (var z in x) {
+
+        }
+      } catch(e) {
+        throw new Exception('inside');
+      }
+    }
+  } catch(e) {
+    throw new Exception('outside');
+  }
+}

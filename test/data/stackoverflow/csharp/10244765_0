@@ -1,0 +1,13 @@
+var list = new List<ListCreaditInBankView>();
+var banktemp = m_banksRepository.Banks;
+foreach (Bank bank in banktemp)
+{
+    var bankbranchtemp = m_banksRepository.BankBranches.Where(x => x.BankId == bank.Id);
+    foreach (BankBranch bankBranch in bankbranchtemp)
+    {
+        var creditortemp = m_creditorsRepository.Creditors.Where(x => x.BankBranchId == bankBranch.Id);
+        list.Add(new ListCreaditInBankView(){Bank = bank, Creditors = creditortemp});
+
+    }
+
+}

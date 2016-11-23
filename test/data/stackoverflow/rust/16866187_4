@@ -1,0 +1,5 @@
+$ gcc --version
+gcc (Ubuntu/Linaro 4.6.3-1ubuntu5) 4.6.3
+$ rustc --version
+rustc 0.6 (dba9337 2013-05-10 05:52:48 -0700)
+host: i686-unknown-linux-gnu

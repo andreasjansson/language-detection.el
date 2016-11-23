@@ -1,0 +1,7 @@
+<security:http auto-config="true">
+    <security:form-login .../>
+    <security:logout .../>
+
+    <security:intercept-url pattern="/admin/**" access="ROLE_ADMIN" requires-channel="https" />
+    <security:intercept-url pattern="/**" access="ROLE_ADMIN,ROLE_USER" requires-channel="https" />
+</security:http>

@@ -1,0 +1,2 @@
+negative(X) :- ask(X, no).
+ask(X, no) :- write(X), write('? '), read(no).

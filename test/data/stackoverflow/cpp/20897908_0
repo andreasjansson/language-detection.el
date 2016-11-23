@@ -1,0 +1,26 @@
+class line{
+   public:
+    double x1;
+    double y1;
+    double x2;
+    double y2;
+}
+class vertex{
+  public:
+    double x;
+    double y;
+    double z;
+}; 
+class triangle{
+    vertex a;
+    vertex b;
+    vertex c;
+  public:
+    line *intersection(double z_axis){
+        line *l = new line;
+
+        //intersection code here
+
+        return l;
+    }
+};

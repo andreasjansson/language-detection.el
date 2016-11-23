@@ -1,0 +1,23 @@
+distance(london,newyork,3.2).
+distance(london,capetown,5.8).
+distance(london,rome,0.8).
+distance(london,panama,4.5).
+distance(panama,sydney,7.7).
+distance(newyork,sanfrancisco,2.5).
+distance(newyork,panama,1.9).
+distance(sanfrancisco,sydney,6.2).
+distance(sanfrancisco,tokyo,4.5).
+distance(tokyo,calcutta,2.5).
+distance(tokyo,sydney,4.1).
+distance(sydney,calcutta,4.4).
+distance(sydney,capetown,6.0).
+distance(capetowm,rome,5.1).
+distance(calcutta,cairo,2.2).
+distance(cairo,rome,0.9).
+
+connected(X,Y,Distance):-
+   distance(X,Y,Distance).
+connected(X,Y,Distance):-
+   distance(X,Z,NewDistance),
+   connected(Z,Y,NewDistance),
+   Distance is Distance+NewDistance.

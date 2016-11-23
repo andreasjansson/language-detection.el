@@ -1,0 +1,25 @@
+def main_game():
+    import pygame
+    import math
+    from time import *
+
+    pygame.init()
+
+    displayWidth = 268
+    displayHeight = 552
+
+    cyan = (0,255,255)
+    red = (255,0,0)
+    dark_red = (150,0,0)
+    black = (0,0,0)
+    grey = (200,200,200)
+    dark_cyan = (0,230,230)
+
+    my_rect = pygame.Rect([100,100,100,100])
+
+    gameDisplay = pygame.display.set_mode((displayWidth,displayHeight))
+    pygame.display.set_caption('Test')
+
+    pygame.display.update()
+
+    gameExit = False

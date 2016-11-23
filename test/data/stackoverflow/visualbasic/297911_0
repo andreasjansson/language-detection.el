@@ -1,0 +1,4 @@
+Private Sub PrintDocument1_PrintPage(ByVal sender As Object, ByVal e As System.Drawing.Printing.PrintPageEventArgs) Handles PrintDocument1.PrintPage    
+        e.Graphics.DrawString("My text", f_en, Brushes.Black, 410, 942)
+        ...
+End Sub

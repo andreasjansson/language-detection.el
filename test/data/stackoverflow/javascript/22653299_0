@@ -1,0 +1,68 @@
+function addressAutoPopulate() {
+var street1 = Xrm.Page.getAttribute("ags_addressprojectline1").getValue();
+var street2 = Xrm.Page.getAttribute("ags_addressprojectline2").getValue();
+var city = Xrm.Page.getAttribute("ags_addressprojectcity").getValue();
+var zip = Xrm.Page.getAttribute("ags_addressprojectpostalcode").getValue();
+var state = Xrm.Page.getAttribute("ags_addressprojectstate").getValue();
+var country = Xrm.Page.getAttribute("ags_addressprojectcountry").getValue();
+
+    if ( street1 == null && city == null && zip == null && state == null && country == null) {
+
+
+                            var companyID = Xrm.Page.getAttribute("parentcustomerid").getValue()[0].id;
+                            var serverUrl = Xrm.Page.context.getServerUrl(); 
+                            req.open("GET", serverUrl + "/xrmservices/2011/OrganizationData.svc/AccountSet?"
+                            + "$select="
+                                            + "Address1_City,"
+                                            + "Address1_Line1,"
+                                            + "Address1_Line2,"
+                                            + "Address1_PostalCode,"
+                                            + "Address1_StateOrProvince,"
+                                            + "Address1_Country,"
+                            + "&$filter=AccountId eq guid'" + companyID + "' and StateCode/Value eq 0", false);
+                            req.setRequestHeader("Accept", "application/json");
+                            req.setRequestHeader("Content-Type", "application/json; charset=utf-8");
+                            req.send();
+                            if (req.readyState == 4 && req.status == 200) {
+                                            var _data = JSON.parse(req.responseText).d;
+                                            if(_data.results[0] != null) {
+                                                            coData = _data.results[0];
+                                                            var addrCity = coData.Address1_City;
+                                                            var addrLine1 = coData.Address1_Line1;
+                                                            var addrLine2 = coData.Address1_Line2;
+                                                            var addrZip = coData.Address1_PostalCode;
+                                                            var addrState = coData.Address1_StateOrProvince;
+                                                            var addrCountry = coData.Address1_Country;
+                                                            var phoneNum = coData.Telephone1;
+
+                                                            if(addrCity == null) {
+                                                                            addrCity = "";
+                                                            }
+                                                            if(addrLine1 == null) {
+                                                                            addrLine1 = "";
+                                                            }
+                                                            if(addrLine2 == null) {
+                                                                            addrLine2 = "";
+                                                            }
+                                                            if(addrZip == null) {
+                                                                            addrZip = "";
+                                                            }
+                                                            if(addrState == null) {
+                                                                            addrState = "";
+                                                            }
+                                                            if(addrCountry == null) {
+                                                                            addrCountry = "";
+                                                            }
+
+                                                            Xrm.Page.getAttribute("address1_city").setValue(addrCity);
+                                                            Xrm.Page.getAttribute("address1_line1").setValue(addrLine1);
+                                                            Xrm.Page.getAttribute("address1_line2").setValue(addrLine2);
+                                                            Xrm.Page.getAttribute("address1_postalcode").setValue(addrZip);
+                                                            Xrm.Page.getAttribute("address1_stateorprovince").setValue(addrState);
+                                                            Xrm.Page.getAttribute("address1_country").setValue(addrCountry);
+                                                            Xrm.Page.getAttribute("telephone1").setValue(phoneNum);
+
+                                            } else {
+                                                            alert("Error: " + req.responseText);
+                                            }
+                            } else {

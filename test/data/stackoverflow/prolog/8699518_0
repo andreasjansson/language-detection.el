@@ -1,0 +1,37 @@
+parent(chester,irvin).
+parent(chester,clarence).
+parent(chester,mildred).
+parent(irvin,ron).
+parent(irvin,ken).
+parent(clarence,shirley).
+parent(clarence,sharon).
+parent(clarence,charlie).
+parent(mildred,mary).
+
+
+male(chester).
+female(mildred).
+male(irvin).
+female(shirley).
+male(clarence).
+female(sharon).
+male(ron).
+female(mary).
+male(ken).
+male(charlie).
+
+
+
+father(X,Y) :- parent(X,Y), male(X).
+
+mother(X,Y) :- parent(X,Y), female(X).
+
+grandparent(X,Y) :- parent(X,Z), parent(Z,Y).
+
+paternalgrandfather(X,Y) :- father(X,Z), father(Z,Y).
+
+sibling(X,Y) :- parent(Z,X), parent(Z,Y).
+
+brothers(X,Y) :- sibling(X,Y),male(X),male(Y), \+ (X=Y).
+
+samegeneration(x,y) :- HERE I DONT KNOW WHAT TO DO

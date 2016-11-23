@@ -1,0 +1,4 @@
+; in: alternatevariables (d c)
+;     (B A)
+; caught warning:
+;   undefined variable: a

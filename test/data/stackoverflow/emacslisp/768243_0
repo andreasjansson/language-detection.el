@@ -1,0 +1,8 @@
+(defun swap-strings (a b)
+  "Replace all occurances of a with b and vice versa"
+  (interactive "*sFirst Swap Word: \nsSecond Swap Word: ")
+  (save-excursion
+    (while (re-search-forward (concat a "\\|" b) nil t)
+      (if (equal (match-string 0) a)
+      (replace-match b)
+    (replace-match a)))))

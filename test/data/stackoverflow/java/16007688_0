@@ -1,0 +1,7 @@
+package cs;
+
+public interface Iterator<E> {
+    public void init() ;
+    public boolean hasNext();
+    public E next();
+}

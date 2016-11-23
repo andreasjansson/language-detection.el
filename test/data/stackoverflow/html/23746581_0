@@ -1,0 +1,13 @@
+<ul>
+     <li><a href="#top"  class="scroller nav-active">PLAY</a></li>
+     <li><a href="#top1" class="scroller">PRACTICE</a></li>
+     <li><a href="#top2" class="scroller">LEARN</a></li>
+     <li><a href="#top3" class="scroller">DINE</a></li>
+     <li><a href="#top4" class="scroller">JOIN</a></li>
+     <li><a href="#top5" class="scroller">ABOUT</a></li>
+ </ul>
+
+ $('.nav, .section2_blog2_right, .logo').localScroll({
+            offset: {left: 0, top: -50},
+            duration: 2000
+        });

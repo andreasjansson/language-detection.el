@@ -1,0 +1,5 @@
+#!/bin/sh 
+java -cp "../lib/*":"../src":$CLASSPATH clojure.main -e "
+(use '[my-lib my-sub-1])
+(convert *command-line-args*)
+"

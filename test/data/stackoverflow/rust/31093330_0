@@ -1,0 +1,13 @@
+struct InteriorPointer {
+  element: Box<u32>,
+  element_ptr: *const u32,
+}
+
+fn mk_interior_pointer() -> InteriorPointer {
+  let mut result = InteriorPointer{
+    element: Box::new(1u32),
+    element_ptr: std::ptr::null(),
+  };
+  result.element_ptr = &*result.element as *const u32;
+  result
+}

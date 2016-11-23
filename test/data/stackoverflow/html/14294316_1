@@ -1,0 +1,8 @@
+Element info1 = doc.select("table").get(7); //this works
+    Elements td = info1.select("td");
+    String telefono="";
+    String email="";    
+Element tdtel=info1.select("td").get(1);
+telefono = "Tel. :" + tdtel.text(); //this works
+Element tdmail=info1.select("td").get(3);
+Element linkmail =tdmail.select("a[href]").first(); //error here

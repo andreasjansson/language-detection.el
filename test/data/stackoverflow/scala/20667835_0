@@ -1,0 +1,20 @@
+package models  
+
+import javax.persistence._  
+import scala.reflect._  
+import com.avaje.ebean.annotation._  
+import com.avaje.ebean._  
+import java.util.logging._  
+
+
+@Entity  
+@Table{val name="client"}  
+class Client {  
+
+  @Id   
+  var id:Int = 0  
+
+  @Column{val name="name"}  
+  var name:String = null    
+
+}

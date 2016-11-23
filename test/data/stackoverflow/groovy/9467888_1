@@ -1,0 +1,16 @@
+(function() {
+                      jQuery(function() {
+                        return $(window).scroll(function() {
+                          var url;
+                          url = $('.pagination .nextLink').attr('href');
+                          if (url && $(window).scrollTop() > $(document).height() - $(window).height() - 50) {
+                            $('.pagination').show();
+                            $('.pagination').text('Fetching more data please wait...');
+                            return $.get(url, function(data) {
+                              $('#scrolling').append(data);
+                              return $('.pagination').hide();
+                            });
+                          }
+                        });
+                      });
+                    }).call(this);

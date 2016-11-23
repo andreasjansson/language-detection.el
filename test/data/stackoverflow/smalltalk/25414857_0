@@ -1,0 +1,3 @@
+someRoassalObject
+  if: [ :point | point date dayOfMonth = 1 ]
+  label: [ :point | point date mmddyyyy ]

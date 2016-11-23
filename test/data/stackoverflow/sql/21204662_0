@@ -1,0 +1,44 @@
+--Table1
+
+    create table sql_students(
+    stu_studentid int not null primary key,
+    stu_name varchar(100) not null,
+    stu_regnnumber bigint unique not null
+    )
+
+--Rows inserted to Table1
+
+insert into sql_students (stu_studentid,stu_name,stu_regnnumber) values (1,'John',194300)
+insert into sql_students (stu_studentid,stu_name,stu_regnnumber) values (2,'Joy',959595)
+insert into sql_students (stu_studentid,stu_name,stu_regnnumber) values (3,'Lucy',474848)
+
+--Table2
+
+create table sql_exam(
+exa_examid bigint not null primary key,
+exa_name varchar(100) not null,
+exa_maxmark decimal(5,2) not null,
+exa_minmarkreqdforpass decimal(5,2) not null,
+exa_examscheduletime datetime not null
+)
+
+--Rows inserted into Table2
+
+insert into sql_exam(exa_examid,exa_name,exa_maxmark,exa_minmarkreqdforpass,exa_examscheduletime) values (1,'Maths',100,40,'2012-10-10 10:00')
+insert into sql_exam(exa_examid,exa_name,exa_maxmark,exa_minmarkreqdforpass,exa_examscheduletime) values (2,'English',75,35,'2012-10-11 10:00')
+
+--Table3
+
+create table sql_studentmarks(
+stm_studentid int foreign key references sql_students(stu_studentid),
+stm_examid bigint foreign key references sql_exam(exa_examid),
+stm_mark decimal(5,2)
+)
+
+--Rows inserted into Table3
+insert into sql_studentmarks(stm_studentid,stm_examid,stm_mark) values (1,1,80)
+insert into sql_studentmarks(stm_studentid,stm_examid,stm_mark) values (2,1,90)
+insert into sql_studentmarks(stm_studentid,stm_examid,stm_mark) values (3,1,40)
+insert into sql_studentmarks(stm_studentid,stm_examid,stm_mark) values (1,2,70)
+insert into sql_studentmarks(stm_studentid,stm_examid,stm_mark) values (2,2,60)
+insert into sql_studentmarks(stm_studentid,stm_examid,stm_mark) values (3,2,17)

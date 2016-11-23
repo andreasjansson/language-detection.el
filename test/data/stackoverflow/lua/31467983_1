@@ -1,0 +1,2 @@
+love.graphics.line(mid - diff, 0, mid - diff, wheight)
+  love.graphics.line(mid + diff, 0, mid + diff, wheight)

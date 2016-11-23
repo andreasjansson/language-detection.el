@@ -1,0 +1,12 @@
+inheritsFrom: aClass [
+"Returns true if aClass is a superclass of the receiver"
+
+<category: 'testing the class hierarchy'>
+| sc |
+aClass isNil ifTrue: [^true].
+
+sc := self.
+[sc := sc superclass.
+sc isNil] whileFalse: [sc == aClass ifTrue: [^true]].
+^false
+]

@@ -1,0 +1,12 @@
+PROGRAM sol_kernel2
+
+IMPLICIT NONE
+
+INTEGER, PARAMETER :: jpi=5,jpj=5
+REAL, DIMENSION(jpi,jpj) :: sshn  
+PRINT *,jpi,jpj
+
+sshn(10,10) = 150.0
+PRINT *,sshn(10,10)
+
+END PROGRAM sol_kernel2

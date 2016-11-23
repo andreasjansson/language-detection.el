@@ -1,0 +1,5 @@
+MyNativeClass::MyNativeClass()
+    : bi_(BigInteger::Zero)
+{
+    //...
+}

@@ -1,0 +1,10 @@
+elif userInput in command:
+    print("Okay, Initializing new command.\n\n")
+    command1 = raw_input("Which command would you like to add?\nKeyword\nLater Versions\n ").lower()
+    if command1 == 'keyword':
+        print('You selected keyword, to exit press enter')
+        command2 = raw_input("Which Keyword would you like to edit? ")
+        if command2 == 'calc':
+            command3 = raw_input("Which Keyword would you like to add? ")
+            calc.append(command3)
+            print(calc)

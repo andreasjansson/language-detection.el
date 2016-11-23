@@ -1,0 +1,20 @@
+handle_cast({updateTorrentDownloadState, Time}, State) ->
+% fetch the counter for the speed calculation and queue length
+RunningCounter  = dict:fetch(runningCounter, State),
+% Fetch the Torrents download queue
+TorrentDownloadQueue = dict:fetch(torrentDownloadQueue, State),
+io:format("The fetched queue is  ~p~n", [dict:fetch(torrentDownloadQueue, State)]),
+% Add the item to the queue (main torrent upload queue)
+TorrentDownloadQueue2 = queue:in(Time, TorrentDownloadQueue),
+% Get the lenght of the downloadQueue
+TorrentDownloadQueueLength = queue:len(TorrentDownloadQueue2),
+% If the queue is larger than the running counter remove item 
+if
+    TorrentDownloadQueueLength >= RunningCounter ->
+        % Remove item from the queue
+        TorrentDownloadQueue3 = queue:drop(TorrentDownloadQueue2),
+        update_torrent_download(TorrentDownloadQueue3, State);
+
+    TorrentDownloadQueueLength < RunningCounter ->
+        update_torrent_download(TorrentDownloadQueue2, State)
+    end;

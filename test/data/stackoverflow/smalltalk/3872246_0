@@ -1,0 +1,4 @@
+ifTrue: aBlock (... elseIf: aBoolean then: aSecondBlock ...) else: aLastBlock
+
+vArgList pairsDo: [:x :y| x ifTrue:[^ (y value)] ].
+^ aLastBlock

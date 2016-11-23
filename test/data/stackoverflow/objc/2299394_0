@@ -1,0 +1,33 @@
+- (void) awakeFromNib
+{
+NSLog(@"hi");
+[sheetController setParentWindow:[NSApp mainWindow]];
+BashScript *script = [[BashScript alloc] init];
+if (![script loadScriptFromLocation:[self retrieveScriptLocation]])
+{
+    NSLog(@"Error loading script.");
+}
+else {
+    [advancedEditor setString:[script getScript]];
+}
+}
+
+
+- (NSString*) retrieveScriptLocation
+{
+NSUserDefaults *preferences = [[NSUserDefaults standardUserDefaults] retain];
+NSString *location = [preferences stringForKey:@"scriptLocation"];
+if (location != nil)
+{
+    return location;
+}
+else
+{
+    return [self askForScript];
+}
+}
+
+- (NSString*) askForScript
+{
+[sheetController openSheet:nil];
+}

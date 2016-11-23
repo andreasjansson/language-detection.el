@@ -1,0 +1,25 @@
+Sub GetDataFromADO()
+
+    'Declare variables'
+        Set objMyConn = New ADODB.Connection
+        Set objMyCmd = New ADODB.Command
+        Set objMyRecordset = New ADODB.Recordset
+
+    'Open Connection'
+        objMyConn.ConnectionString = "Provider=SQLOLEDB;Data Source=localhost;User ID=abc;Password=abc;"
+        objMyConn.Open
+
+    'Set and Excecute SQL Command'
+        Set objMyCmd.ActiveConnection = objMyConn
+        objMyCmd.CommandText = "select * from myTable"
+        objMyCmd.CommandType = adCmdText
+        objMyCmd.Execute
+
+    'Open Recordset'
+        Set objMyRecordset.ActiveConnection = objMyConn
+        objMyRecordset.Open objMyCmd
+
+    'Copy Data to Excel'
+        ActiveSheet.Range("A1").CopyFromRecordset (objMyRecordset)
+
+End Sub

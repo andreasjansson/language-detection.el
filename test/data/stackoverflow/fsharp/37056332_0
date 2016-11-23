@@ -1,0 +1,14 @@
+use db = new dbml.MobileDataContext(connectionString)
+query {
+   for rows in db.Item do
+   where (
+            (orgid1   = "0" || rows.OrgId1 = orgid1) 
+         )
+   select rows
+} |> (fun s ->
+         if Seq.isEmpty s then
+             [||]
+         else
+              s 
+              |> Seq.skip offset |> Seq.take (int chunk) 
+              |>  Seq.map sql.Record2Item |> Seq.toArray)

@@ -1,0 +1,9 @@
+val headerChunk = process1.chunk[String](5).map(_.reduce(_ + _))
+
+val headerChunkAndRest: Process1[String, String] =
+  headerChunk.take(1) ++ process1.id
+
+io.linesR(Files.newInputStream(Paths.get("testdata/fahrenheit.txt")))
+  .pipe(headerChunkAndRest)
+  .to(io.stdOutLines)
+  .run.run
