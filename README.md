@@ -15,7 +15,7 @@ Emacs Lisp library that automatically detects the programming language in a buff
 
 ## Model performance
 
-Comparison of this model to a few existing systems on three different datasets:
+Language classification accuracy of this model compared to a few existing systems on three different datasets:
 
 <table>
   <thead>
