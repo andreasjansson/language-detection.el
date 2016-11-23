@@ -1,0 +1,6 @@
+myfunction.m 
+
+   function output = myfunction(input)
+   load(input);
+   n = size(surface.vertices);
+  ....

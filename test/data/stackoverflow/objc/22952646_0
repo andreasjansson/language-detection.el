@@ -1,0 +1,4 @@
+UISwitch *switchView = [[UISwitch alloc]initWithFrame:CGRectZero];
+cell.accessoryView = switchView;
+[switchView setOn:NO animated:NO];
+[switchView setTag:indexPath.row];

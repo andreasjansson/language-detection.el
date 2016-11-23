@@ -1,0 +1,18 @@
+use ClassCellularAutomata
+use ClassRule
+use ClassRandomPathfinder
+implicit none
+
+class(random_pathfinder), allocatable :: pf
+class(cell_autom), allocatable :: ma
+integer, parameter :: width = 30
+integer, parameter :: T_steps = 3
+integer, parameter :: step_dist = 4
+double precision, parameter :: goal_score = 0.90
+
+allocate(ma, source = moore_autom(width, width, T_steps))
+call ma%rule%generate_random()
+call ma%random_seed_field()
+
+allocate(pf, source = random_pathfinder(ma, step_dist, goal_score))
+call pf%run_pathfinder()

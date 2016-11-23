@@ -1,0 +1,3 @@
+type works is digits 6 range 0.0 .. 42.0
+type also_works is new works range (0.0 + works'small) .. 42.0
+type broken is new works range 0.0 .. (42.0 - works'small)

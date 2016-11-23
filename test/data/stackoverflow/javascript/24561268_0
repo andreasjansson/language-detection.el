@@ -1,0 +1,5 @@
+function applyFunctionToDivs(function1, function2, function3) {
+    $('#div1').function1();
+    $('#div2').function2();
+    $('#div3').function3();
+ };

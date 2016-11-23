@@ -1,0 +1,14 @@
+Dim body = wdDoc.MainDocumentPart.Document.Body
+Dim paras = body.Elements(Of DocumentFormat.OpenXml.Wordprocessing.Paragraph)()
+Dim txtOfDoc = body.Elements(Of DocumentFormat.OpenXml.Wordprocessing.Text)()
+
+For Each para In paras
+    For Each run In para.Elements(Of DocumentFormat.OpenXml.Wordprocessing.Run)()
+        For Each test In run.Elements(Of DocumentFormat.OpenXml.Wordprocessing.Text)()
+            If (test.Text.Contains(stringToReplace)) Then
+                test.Text = test.Text.Replace(stringToReplace, "newString")
+                Exit For
+            End If
+        Next
+    Next
+Next

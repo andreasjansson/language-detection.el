@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<faces-config xmlns="http://java.sun.com/xml/ns/javaee" 
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xsi:schemaLocation="http://java.sun.com/xml/ns/javaee 
+  http://java.sun.com/xml/ns/javaee/web-facesconfig_2_0.xsd"
+ version="2.0">
+
+ <managed-bean>
+<managed-bean-name>messageHandler</managed-bean-name>
+<managed-bean-class>
+  pck.SimpleController
+</managed-bean-class>
+<managed-bean-scope>session</managed-bean-scope>
+</managed-bean>
+
+<navigation-rule>
+<from-view-id>*</from-view-id>
+<!--     <navigation-case>
+  <from-outcome>too-short</from-outcome>
+  <to-view-id>/error-message.xhtml</to-view-id>
+ </navigation-case> -->
+<navigation-case>
+  <from-outcome>page1</from-outcome>
+  <to-view-id>/result-page-1.xhtml</to-view-id>
+</navigation-case>
+<navigation-case>
+  <from-outcome>page2</from-outcome>
+  <to-view-id>/result-page-2.xhtml</to-view-id>
+</navigation-case>
+<navigation-case>
+  <from-outcome>page3</from-outcome>
+  <to-view-id>/result-page-3.xhtml</to-view-id>
+</navigation-case>
+</navigation-rule>
+ <navigation-rule>
+<from-view-id>*</from-view-id>
+  <navigation-case>
+ <from-outcome>too-short</from-outcome>    
+  <to-view-id>/error-message.xhtml</to-view-id>
+</navigation-case>
+</faces-config>

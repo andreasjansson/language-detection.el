@@ -1,0 +1,8 @@
+prob15 = dir(fullfile('C:\Users\Bo Sun\Documents\MATLAB\prob15'),'.xls');
+  global A B
+  A=zeros(141,length(prob15));
+  B=zeros(141,length(prob15));
+  for i=1:length(prob15)
+      A(:,i) = xlsread(prob15(i).name,'A:A');
+      B(:,i) = xlsread(prob15(i).name,'B:B');
+  end

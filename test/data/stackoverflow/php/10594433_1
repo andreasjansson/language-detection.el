@@ -1,0 +1,14 @@
+Warning: ftp_get(): Error opening tmp/InviteFriend2.php in /var/www/vhosts/virtualphoneline.com/httpdocs/includes/ftp.class.php on line 120
+
+
+
+
+Warning: fopen(tmp/InviteFriend2.php): failed to open stream: Permission denied in /var/www/vhosts/virtualphoneline.com/httpdocs/includes/clone.php on line 228
+
+
+
+Warning: fwrite() expects parameter 1 to be resource, boolean given in /var/www/vhosts/virtualphoneline.com/httpdocs/includes/clone.php on line 229
+
+
+
+Warning: fclose() expects parameter 1 to be resource, boolean given in /var/www/vhosts/virtualphoneline.com/httpdocs/includes/clone.php on line 230

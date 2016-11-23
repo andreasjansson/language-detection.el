@@ -1,0 +1,2 @@
+implicit def exString(x : String) : HideString.type#T = x
+implicit def highString[F[_]](x : F[String]) : F[HideString.type#T] = x

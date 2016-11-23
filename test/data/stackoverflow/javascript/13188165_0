@@ -1,0 +1,9 @@
+Object [object Object] has no method 'button' 
+
+<button id="bt">Button with icon only</button>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#bt").button();
+    });
+</script>

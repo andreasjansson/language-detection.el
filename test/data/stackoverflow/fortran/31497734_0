@@ -1,0 +1,14 @@
+program test
+
+implicit none
+real, dimension(2,2) :: testA, testB, testC
+
+testA = 1
+testB = 1
+testC = 0  ! I don't think I need this line, but it shouldn't matter
+
+call gemm(testA, testB, testC)
+
+write(*,*) testC
+
+end program test

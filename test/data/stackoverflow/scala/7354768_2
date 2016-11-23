@@ -1,0 +1,8 @@
+if (currentKitteh.isDefined) {
+  if (file on the disk already exists) {
+    bring up a dialog box asking for confirmation
+    if (user confirms)
+       << execute method on currentKitteh >>
+  }
+}
+else bring up warning dialog

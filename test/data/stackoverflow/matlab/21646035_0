@@ -1,0 +1,10 @@
+s = 0;
+
+for k = 1:sizeTestData
+    p = testData(k);
+    q = p - testDataMean;
+    r = q^2;
+    s = s + r;
+    s/5;
+
+end

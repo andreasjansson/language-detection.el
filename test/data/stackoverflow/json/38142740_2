@@ -1,0 +1,2 @@
+System.InvalidOperationException: Failed to convert '["ignore1", "ignore2"]' 
+to type 'System.Collections.Generic.List`1[System.String]

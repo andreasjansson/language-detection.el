@@ -1,0 +1,33 @@
+function LoginViewModel() {
+    var self = this;
+
+    self.Username = ko.observable().extend({ required: { message: "Nom d'utilisateur est obligatoire" } });
+    self.Password = ko.observable().extend({ required: { message: 'Mot de passe est obligatoire' } });
+    self.ErrorMessage = ko.observable();
+    self.enableButton = ko.computed(function () {
+        var errors = ko.utils.unwrapObservable(ko.validation.group(self));
+        return (errors.length == 0);
+    });
+
+    self.onLogin = function () {
+        var credentials = ko.toJSON({
+            Username: self.Username(),
+            Password: self.Password()
+        });
+        $.ajax({
+            url: "/Account/Login",
+            type: "post",
+            contentType: 'application/json',
+            data: credentials,
+            success: function (data) {
+                if (data && data.result == "success") {
+                    self.ErrorMessage("");
+                    window.location = data.targetUrl;
+                }
+                else if (data && data.result == "failure") {
+                    self.ErrorMessage(data.errorMessage);
+                }
+            }
+        });
+    }
+};

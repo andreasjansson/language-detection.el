@@ -1,0 +1,11 @@
+Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+    lblCountdown.TextAlign = ContentAlignment.TopCenter
+    lblCountdown.Font = New Font(lblCountdown.Font.Name, lblCountdown.Font.Size + 10, lblCountdown.Font.Style)
+
+    radFirstRunContinue.Checked = False
+    radFirstRunContinue.Visible = False
+
+    For Each picBox As PictureBox In tlpButtonTableLayout.Controls
+        AddHandler picBox.Click, AddressOf Me.PictureBox_click
+    Next
+End Sub

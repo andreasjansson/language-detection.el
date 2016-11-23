@@ -1,0 +1,3 @@
+public void Foo<T>(T t) where T : IInterfaceA, IInterfaceB
+{
+}

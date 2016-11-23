@@ -1,0 +1,8 @@
+assembly_level         assembly_tree           description      uniq_id
+0                      zero level               "zero level"    d9s64
+1                       level one assembly      "level one"     c9633
+2                        level two assembly     "level two"     11197
+3                         level three assembly  "level three"   e271f
+4                          level four assembly  "level four"    552da
+4                          level four assembly  "level four"    4568a
+3                         level three assembly  "level three"   b72bd

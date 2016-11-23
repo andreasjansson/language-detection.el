@@ -1,0 +1,54 @@
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions{
+
+[super application:application didFinishLaunchingWithOptions:launchOptions];
+
+
+self.unityVC = [self getRootController];
+
+UIButton *button =[UIButton buttonWithType:UIButtonTypeCustom];
+[button setBackgroundColor:[UIColor colorWithRed:108.0/255 green:106.0/255 blue:55.0/255 alpha:1]];
+[button setTitle:@"DONE" forState:UIControlStateNormal];
+//    [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+[button setFrame:frame];
+[button addTarget:self action:@selector(Fn_RemoveUnity) forControlEvents:UIControlEventTouchUpInside];
+[_rootView addSubview:button];
+[_rootView bringSubviewToFront:button];
+
+
+//Default ViewController Code
+//--------------------------------------------------------
+//    self.window =  [UIApplication sharedApplication].keyWindow;
+
+self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+// Override point for customization after application launch.
+
+    [self Fn_AddMainScreen];
+
+[self.window makeKeyAndVisible];
+//--------------------------------------------------------
+
+    return YES;
+ }
+
+ - (void)playUnity
+ {
+
+    [self unityPause:NO];
+ }
+
+ - (void)pauseUnity
+ {
+    [self unityPause:YES];
+
+ }
+
+ -(void) Fn_AddUnity{
+    [window setHidden:YES];
+    [self playUnity];
+ }
+
+ -(void) Fn_RemoveUnity{
+    [self pauseUnity];
+    [window setHidden:NO];
+    [self Fn_AddMainScreen];
+ }

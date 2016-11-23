@@ -1,0 +1,5 @@
+@GET
+   @Produces("application/json")
+   @Consumes("application/json")
+   @Path("/test")
+   public Response modifyJson(JSONObject input);

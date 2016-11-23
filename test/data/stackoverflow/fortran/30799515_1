@@ -1,0 +1,12 @@
+program fblas_example
+    implicit none
+    real(8), allocatable :: a(:,:)
+    allocate(a(200,200))
+    a = 1
+    call dgemm('n','n',100,100,100,1d0,a,200,a(1:100,101:200),200,0d0,a(101:200,1:100),200)
+    write(*,*) a(101,1)
+end program
+
+$ gfortran -o fblas_example{,.f90} -lblas
+$ ./fblas_example
+*** Error in `./fblas_example': double free or corruption (out): 0x00000000011351c0 ***

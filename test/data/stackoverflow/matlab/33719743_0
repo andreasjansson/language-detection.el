@@ -1,0 +1,7 @@
+figure;
+contourf(ZZ1,YZ1,EH);
+
+hold all;
+
+line([0 0],[0 0],[0 1]);
+view(25,20);

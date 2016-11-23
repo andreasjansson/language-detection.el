@@ -1,0 +1,8 @@
+public function p_tree2 (){
+    $data = Array();
+    $data['username'] = $_POST['username'];
+    $data['tree_name'] = $_POST['tree_name'];
+
+    echo print_r($data);    // result: both $data['username'] and $data['tree_name'] equal ""
+
+}

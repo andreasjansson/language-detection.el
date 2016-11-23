@@ -1,0 +1,15 @@
+let threads = 300000;
+let requests = 1;
+
+for _x in 0..threads {
+    println!("{}", _x);
+    let request_clone = request.clone();
+
+    let handle = thread::spawn(move || {
+        for _y in 0..requests {
+            request_clone.lock().unwrap().push((request::Request::new(request::Request::create_request())));
+        }
+    });
+
+    child_threads.push(handle);
+}

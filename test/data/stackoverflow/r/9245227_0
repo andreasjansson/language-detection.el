@@ -1,0 +1,2 @@
+comps <- decompose.graph(G,min.vertices=2)
+communities <- lapply(comps,walktrap.community)

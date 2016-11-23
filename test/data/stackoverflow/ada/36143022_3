@@ -1,0 +1,10 @@
+procedure Set_Bit (Bit : Bit_Number) is
+begin
+   declare
+      B : Bits_1 := (others => False);
+   begin
+      B (Bit) := True;
+      Register_1 := B;
+   end;
+   ... ad nauseam
+end Set_Bit;

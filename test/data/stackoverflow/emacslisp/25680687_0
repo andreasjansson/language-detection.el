@@ -1,0 +1,8 @@
+(setq sql-connection-alist
+      '((local
+         (sql-product 'mysql)
+         (sql-server "localhost")
+         (sql-user "user")
+         (sql-password "")
+         (sql-database "")
+         (sql-port 3306))))

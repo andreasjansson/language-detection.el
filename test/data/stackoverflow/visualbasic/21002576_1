@@ -1,0 +1,40 @@
+Public Class SampleSeat_vb
+
+Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+
+    Try
+        Dim flag As Integer = 0
+        Dim i As Integer = 0
+        While i < Application.OpenForms.Count And flag = 0
+            If Application.OpenForms(i).Name = "Cinema1Seats" Then
+                flag = 1
+            End If
+            i += 1
+        End While
+        If flag Then
+            Application.OpenForms("Cinema1Seats").BringToFront()
+        Else
+            Dim str As New Cinema1Seats
+            str.Show()
+            Dim we As String = str.getseat
+            MsgBox("You selected : " + we)
+        End If
+
+    Catch ex As Exception
+        MsgBox(ex.Message)
+    End Try
+
+
+
+
+
+End Sub
+
+Private Sub SampleSeat_vb_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
+End Sub
+
+Private Sub TextBox1_TextChanged(sender As Object, e As EventArgs) Handles TextBox1.TextChanged
+
+End Sub
+End Class

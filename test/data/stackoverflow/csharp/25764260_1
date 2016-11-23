@@ -1,0 +1,21 @@
+if (String.IsNullOrEmpty(UsernameLogin)) {
+                ModelState.AddModelError("UsernameLogin", Strings.Error_NoLoginUsernameEntered);
+            }
+            if (String.IsNullOrEmpty(PasswordLogin)) {
+                ModelState.AddModelError("PasswordLogin", Strings.Error_NoLoginPasswordEntered);
+            }
+            if (!Membership.ValidateUser(UsernameLogin, PasswordLogin)) {
+                ModelState.AddModelError("UsernameLogin", Strings.Error_LoginFailed);
+            }
+
+
+            if (!ModelState.IsValid) {
+                return View(new UserLoginModel() { Title = String.Format(Strings.Site_Title, Strings.UserLogin_Title) });
+            }
+
+            FormsAuthentication.SetAuthCookie(UsernameLogin, true);
+
+            // we know this code is run and I am being redirected to the return url
+            if (!String.IsNullOrEmpty(ReturnUrl)) {
+                return Redirect(ReturnUrl);
+            }

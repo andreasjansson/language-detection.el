@@ -1,0 +1,7 @@
+#!/usr/bin/perl
+use warnings;
+use strict;
+
+my $filespec = "/var/www/grammer/lecture12.mp4";
+my $relative = $1 if $filespec =~ m{/var/www(.*)};
+print $relative;

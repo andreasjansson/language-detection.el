@@ -1,0 +1,21 @@
+{
+  "error": {
+    "root_cause": [
+      {
+        "type": "remote_transport_exception",
+        "reason": "[ESMasterNode][127.0.0.1:9300][indices:data/write/update[s]]"
+      }
+    ],
+    "type": "illegal_argument_exception",
+    "reason": "failed to execute script",
+    "caused_by": {
+      "type": "script_exception",
+      "reason": "failed to run inline script [if (ctx._source.containsKey(\"productoption\")) {ctx._source.productoption= [product];} else {ctx._source.productoption= [product];}] using lang [groovy]",
+      "caused_by": {
+        "type": "missing_property_exception",
+        "reason": "No such property: product for class: 3b2894bb604d8fb601b627ert64e3fde8242f1b2"
+      }
+    }
+  },
+  "status": 400
+}

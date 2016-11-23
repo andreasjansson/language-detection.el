@@ -1,0 +1,10 @@
+{:user
+    {
+    :java-cmd "C:\\Program Files\\Java\\jdk1.8.0_25\\bin\\java.exe"
+    :plugins [
+      [cider/cider-nrepl "0.8.1"]
+      [incanter "1.9.0"]
+      [hiccup "1.0.5"]
+    ]
+   }
+ }

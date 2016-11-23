@@ -1,0 +1,11 @@
+(gdb) p cmd
+$9 = "(subcmds.LogQuery)0xf840052b60"
+
+(gdb) p $dtype(cmd)
+$2 = (struct cmds.Add *) 0xf840034210
+
+(gdb) p cmd->Globs
+A syntax error in expression, near `>Globs'.
+
+(gdb) p cmd.Globs
+There is no member named Globs.

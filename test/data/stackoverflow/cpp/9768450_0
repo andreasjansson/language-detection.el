@@ -1,0 +1,16 @@
+#include<iostream>
+using namespace std;
+
+template<int N> void table(int i) {   // <-- Line 4
+    table<N-1>(i);
+    cout << i << " * " << N << " = " << i * N << endl;
+}
+
+template<1> void table(int i) {       // <-- Line 9
+    cout << i << " * " << 1 << " = " << i * 1 << endl;
+}
+
+int main() {
+
+    table<10> (5);                    // <-- Line 15
+}

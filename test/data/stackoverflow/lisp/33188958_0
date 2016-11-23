@@ -1,0 +1,2 @@
+(decode-character #(195 164 195 173 99 195 176) :start 0)
+=> #\LATIN_SMALL_LETTER_A_WITH_DIAERESIS

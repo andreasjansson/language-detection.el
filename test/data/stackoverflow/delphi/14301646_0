@@ -1,0 +1,4 @@
+if Button = nbDelete then  
+  //check if not OK then
+
+Button := nbCancel;

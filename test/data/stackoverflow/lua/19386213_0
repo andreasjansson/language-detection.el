@@ -1,0 +1,9 @@
+function points(num)
+    tmr = timer.performWithDelay(1000, points, 0)
+    num = 5
+    score = 2
+    score = score + num
+    scoreTxt.text = "score: " .. score
+    scoreTxt:setReferencePoint(display.TopLeftReferencePoint)
+    scoreTxt.x = screenLeft + 15
+end

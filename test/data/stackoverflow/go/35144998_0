@@ -1,0 +1,19 @@
+func myfunction(site) []byte {
+        resp, err := client.Get(site) // client is because Im tunneling thing on a proxy TOR and had to create some helpers.. but this is working ok.
+
+        return resp
+}
+
+func magic(staff) string {
+        // do things and create websiteurl with staff and onther contants
+        site := myfunction(website)
+        contents, err := html.Parse(site.Body)
+        //....
+        //....
+        return  result
+}
+
+main() {
+
+        //... stuff happens :)
+}

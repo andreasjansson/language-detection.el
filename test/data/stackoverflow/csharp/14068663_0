@@ -1,0 +1,12 @@
+class MyProjectRepo : IMyProjects
+{
+    public int NumberOfUser()
+    {
+        return new context().User.Count();
+    }
+
+    public string HelloWorld()
+    {
+        return "Hello World!";
+    }
+}

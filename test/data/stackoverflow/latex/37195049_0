@@ -1,0 +1,6 @@
+\documentclass[12pt]{article}
+\usepackage{attachfile}
+
+\begin{document}
+ \attachfile{avatar.bmp}
+\end{document}

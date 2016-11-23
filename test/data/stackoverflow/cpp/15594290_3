@@ -1,0 +1,6 @@
+Fraction task( Fraction& X, const Fraction& Y )
+    {
+      Fraction Z;
+      Z = Fraction( 5, 2 ); // Line 7
+      return 1; // Line 8
+    }

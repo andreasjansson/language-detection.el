@@ -1,0 +1,2 @@
+Scanner x = new Scanner(System.in);
+Object a = x.next();

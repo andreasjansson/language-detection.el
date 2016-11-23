@@ -1,0 +1,46 @@
+Stacktrace (most recent call last):
+
+      File "django/core/handlers/base.py", line 111, in get_response
+        response = wrapped_callback(request, *callback_args, **callback_kwargs)
+      File "django/views/decorators/csrf.py", line 57, in wrapped_view
+        return view_func(*args, **kwargs)
+      File "django/views/generic/base.py", line 69, in view
+        return self.dispatch(request, *args, **kwargs)
+      File "rest_framework/views.py", line 452, in dispatch
+        response = self.handle_exception(exc)
+      File "rest_framework/views.py", line 449, in dispatch
+        response = handler(request, *args, **kwargs)
+      File "accounts/api/views.py", line 132, in post
+        send_mail_task.delay('email/contact_seller.html', context, [profile.user.email, ])
+      File "celery/app/task.py", line 453, in delay
+        return self.apply_async(args, kwargs)
+      File "celery/app/task.py", line 555, in apply_async
+        **dict(self._get_exec_options(), **options)
+      File "celery/app/base.py", line 355, in send_task
+        reply_to=reply_to or self.oid, **options
+      File "celery/app/amqp.py", line 305, in publish_task
+        **kwargs
+      File "kombu/messaging.py", line 168, in publish
+        routing_key, mandatory, immediate, exchange, declare)
+      File "kombu/connection.py", line 457, in _ensured
+        interval_max)
+      File "kombu/connection.py", line 369, in ensure_connection
+        interval_start, interval_step, interval_max, callback)
+      File "kombu/utils/__init__.py", line 243, in retry_over_time
+        return fun(*args, **kwargs)
+      File "kombu/connection.py", line 237, in connect
+        return self.connection
+      File "kombu/connection.py", line 741, in connection
+        self._connection = self._establish_connection()
+      File "kombu/connection.py", line 696, in _establish_connection
+        conn = self.transport.establish_connection()
+      File "kombu/transport/pyamqp.py", line 112, in establish_connection
+        conn = self.Connection(**opts)
+      File "amqp/connection.py", line 165, in __init__
+        self.transport = self.Transport(host, connect_timeout, ssl)
+      File "amqp/connection.py", line 186, in Transport
+        return create_transport(host, connect_timeout, ssl)
+      File "amqp/transport.py", line 299, in create_transport
+        return TCPTransport(host, connect_timeout)
+      File "amqp/transport.py", line 95, in __init__
+        raise socket.error(last_err)

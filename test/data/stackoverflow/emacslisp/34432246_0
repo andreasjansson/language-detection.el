@@ -1,0 +1,2 @@
+(require 'json)
+(setq config (json-read-from-string (read-file "config.json")))

@@ -1,0 +1,6 @@
+select code,description, quantity*each as Total
+from orderiteminfo oi, orderinfo o, invoiceinfo i
+where oi.orderid = o.orderid
+and o.invoiceid = i.invoiceid
+and i.invdate between '2015-01-01' and '2015-02-01'
+group by oi.code, description, quantity, each

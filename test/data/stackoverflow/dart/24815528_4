@@ -1,0 +1,17 @@
+import 'dart:html';
+
+void main() {
+  smoothScrollingOffset = -45;
+  querySelectorAll('.nav-list a').onClick.listen(smoothScrolling);
+}
+
+int smoothScrollingOffset = 0;
+
+void smoothScrolling(MouseEvent click) {
+  click.preventDefault();
+  String link = click.target.toString();
+  String anchor = link.substring( link.indexOf('#') );
+  int targetPosition = querySelector('$anchor').offsetTop;
+
+  window.scrollTo( 0 , targetPosition + smoothScrollingOffset );
+}

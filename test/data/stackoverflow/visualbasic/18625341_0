@@ -1,0 +1,19 @@
+While Me.Height > 650 And (FontSize = -1 Or FontSize > 5)
+
+        If FontSize < 3 Then 'hack
+            FontSize = 12
+        Else
+            FontSize -= 1
+        End If
+
+        'I hoped this would just resize everything (label, TableLayoutPanel, Form)
+        lblText.Font = New System.Drawing.Font("Microsoft Sans Serif", FontSize)
+
+        'Then tried to force it to resize
+        TableLayoutPanel1.PerformLayout()
+
+        Me.Refresh()   'Maybe unnecessary
+        Me.PerformAutoScale()   'Necessary?
+        Me.Size = New Size(558, 200)  'Feeble attempt to force a resize
+
+    End While

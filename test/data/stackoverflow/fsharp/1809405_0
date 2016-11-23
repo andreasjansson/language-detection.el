@@ -1,0 +1,167 @@
+open System
+
+type TreeState<'a,'b> = //'
+  | TreeNew of 'a
+  | TreeDeleted of 'b
+  | TreeBoth of 'a * 'b
+
+type TreeNodeType = TreeFolder | TreeFile | TreeSection
+
+type ITree =
+  abstract NodeType: TreeNodeType
+  abstract Path: string
+      with get, set
+
+type ITreeProvider<'a when 'a :> ITree> = //'
+  abstract Children : 'a -> 'a seq
+  abstract StateForPath : string -> 'a
+
+type ITreeWriterProvider<'a when 'a :> ITree> = //'
+  inherit ITreeProvider<'a> //'
+  abstract Create: ITree -> 'a //'
+  // In the real implementation, this supports:
+  // abstract AddChild : 'a -> unit
+  // abstract ModifyChild : 'a -> unit
+  // abstract DeleteChild : 'a -> unit
+  // abstract Commit : unit -> unit
+
+/// Comparison varies on two types and takes a provider for the first and a writer provider for the second.
+/// Then it synchronizes them. The sync code is added later because some of it is dependent on the concrete types.
+type TreeComparison<'a,'b when 'a :> ITree and 'b :> ITree> =
+  {
+    State: TreeState<'a,'b> //'
+    ATree: ITreeProvider<'a> //'
+    BTree: ITreeWriterProvider<'b> //'
+  }
+
+  static member Create(
+                        atree: ITreeProvider<'a>,
+                        apath: string,
+                        btree: ITreeWriterProvider<'b>,
+                        bpath: string) =
+      { 
+        State = TreeBoth (atree.StateForPath apath, btree.StateForPath bpath)
+        ATree = atree
+        BTree = btree
+      }
+
+  member tree.CreateSubtree<'c when 'c :> ITree>
+    (atree: ITreeProvider<'c>, apath: string, bpath: string)
+      : TreeComparison<'c,'b> = //'
+        TreeComparison.Create(atree, apath, tree.BTree, bpath)
+
+/// Some hyper-simplified state types: imagine each is for a different kind of heirarchal database structure or filesystem
+type T( data, path: string ) = class
+  let mutable path = path
+  let rand = (new Random()).NextDouble
+  member x.Data = data
+  // In the real implementations, these would fetch the child nodes for this state instance
+  member x.Children() = Seq.empty<T>
+
+  interface ITree with
+    member tree.NodeType = 
+      if rand() > 0.5 then TreeFolder
+      else TreeFile
+    member tree.Path
+      with get() = path
+      and set v = path <- v
+end
+
+type U(data, path: string) = class
+  inherit T(data, path)
+  member x.Children() = Seq.empty<U>
+end
+
+type V(data, path: string) = class
+  inherit T(data, path)
+  member x.Children() = Seq.empty<V>
+  interface ITree with
+    member tree.NodeType = TreeSection
+end
+
+
+// Now some classes to spin up and query for those state types [gross simplification makes these look pretty stupid]
+type TProvider() = class
+  interface ITreeProvider<T> with
+    member this.Children x = x.Children()
+    member this.StateForPath path = 
+      new T("documentum", path)
+end
+
+type UProvider() = class
+  interface ITreeProvider<U> with
+    member this.Children x = x.Children()
+    member this.StateForPath path = 
+      new U("solr", path)
+  interface ITreeWriterProvider<U> with
+    member this.Create t =
+      new U("whee", t.Path)
+end
+
+type VProvider(startTree: ITree, data: string) = class
+  interface ITreeProvider<V> with
+    member this.Children x = x.Children()
+    member this.StateForPath path = 
+      new V(data, path)
+end
+
+
+type TreeComparison<'a,'b when 'a :> ITree and 'b :> ITree> with
+  member x.UpdateState (a:'a option) (b:'b option) = 
+      { x with State = match a, b with
+                        | None, None -> failwith "No state found in either A and B"
+                        | Some a, None -> TreeNew a
+                        | None, Some b -> TreeDeleted b
+                        | Some a, Some b -> TreeBoth(a,b) }
+
+  member x.ACurrent = match x.State with TreeNew a | TreeBoth (a,_) -> Some a | _ -> None
+  member x.BCurrent = match x.State with TreeDeleted b | TreeBoth (_,b) -> Some b | _ -> None
+
+  member x.CreateBFromA = 
+    match x.ACurrent with
+      | Some a -> x.BTree.Create a
+      | _ -> failwith "Cannot create B from null A node"
+
+  member x.Compare() =
+    // Actual implementation does a bunch of mumbo-jumbo to compare with a custom IComparable wrapper
+    //if not (x.ACurrent.Value = x.BCurrent.Value) then
+      x.SyncStep()
+    // And then some stuff to move the right way in the tree
+
+
+  member internal tree.UpdateRenditions (source: ITree) (target: ITree) =
+    let vp = new VProvider(source, source.Path) :> ITreeProvider<V>
+    let docTree = tree.CreateSubtree(vp, source.Path, target.Path)
+    docTree.Compare()
+
+  member internal tree.UpdateITree (source: ITree) (target: ITree) =
+    if not (source.NodeType = target.NodeType) then failwith "Nodes are incompatible types"
+    if not (target.Path = source.Path) then target.Path <- source.Path
+    if source.NodeType = TreeFile then tree.UpdateRenditions source target
+
+  member internal tree.SyncStep() =
+    match tree.State with
+    | TreeNew a     -> 
+        let target = tree.CreateBFromA
+        tree.UpdateITree a target
+        //tree.BTree.AddChild target
+    | TreeBoth(a,b) ->
+        let target = b
+        tree.UpdateITree a target
+        //tree.BTree.ModifyChild target
+    | TreeDeleted b -> 
+        ()
+        //tree.BTree.DeleteChild b
+
+  member t.Sync() =
+    t.Compare()
+    //t.BTree.Commit()
+
+
+// Now I want to synchronize between a tree of type T and a tree of type U
+
+let pt = new TProvider()
+let ut = new UProvider()
+
+let c = TreeComparison.Create(pt, "/start", ut , "/path")
+c.Sync()

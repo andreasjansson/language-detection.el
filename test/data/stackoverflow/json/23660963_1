@@ -1,0 +1,71 @@
+- (IBAction)registerClicked:(id)sender {
+NSInteger success = 0;
+@try {
+
+        NSString *post =[[NSString alloc] initWithFormat:@"nick=%@&pass_field=%@&email=%@&type_account=%ld",[self.txtUsername text],
+                         [self.txtPassword text],
+                         [self.txtEmail text],
+                         (long)[self.userType selectedSegmentIndex]];
+        NSLog(@"PostData: %@",post);
+
+        NSURL *url=[NSURL URLWithString:@"http://api.samplewebsite.ca/user-register/?format=json"];
+
+        NSData *postData = [post dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
+
+        NSString *postLength = [NSString stringWithFormat:@"%lu", (unsigned long)[postData length]];
+
+        NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+        [request setURL:url];
+        [request setHTTPMethod:@"POST"];
+        [request setValue:postLength forHTTPHeaderField:@"Content-Length"];
+        [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+        [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
+        [request setHTTPBody:postData];
+
+        //[NSURLRequest setAllowsAnyHTTPSCertificate:YES forHost:[url host]];
+
+        NSError *error = [[NSError alloc] init];
+        NSHTTPURLResponse *response = nil;
+        NSData *urlData=[NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
+
+        NSLog(@"Response code: %ld", (long)[response statusCode]);
+
+        NSString *responseData = [[NSString alloc]initWithData:urlData encoding:NSUTF8StringEncoding];
+        NSLog(@"Response ==> %@", responseData);
+
+        if ([response statusCode] == 201)
+        {
+            NSString *responseData = [[NSString alloc]initWithData:urlData encoding:NSUTF8StringEncoding];
+            NSLog(@"Response ==> %@", responseData);
+
+            NSError *error = nil;
+            NSDictionary *jsonData = [NSJSONSerialization
+                                      JSONObjectWithData:urlData
+                                      options:NSJSONReadingMutableContainers
+                                      error:&error];
+
+            success = [jsonData[@"success"] integerValue];
+            NSLog(@"Success: %ld",(long)success);
+
+
+                NSLog(@"Login SUCCESS");
+
+                NSString *error_msg = (NSString *) jsonData[@"error_message"];
+
+                [self alertStatus:error_msg :@"Your Account has been created, Now login" :0];
+                [self performSegueWithIdentifier:@"login" sender:self];
+
+
+
+        } else {
+
+            [self alertStatus:@"Connection Failed" :@"Registration Failed, Please check empty or invalid fields!" :0];
+        }
+
+}
+    @catch (NSException * e) {
+        NSLog(@"Exception: %@", e);
+        [self alertStatus:@"Sign in Failed." :@"Error!" :0];
+    }
+
+}

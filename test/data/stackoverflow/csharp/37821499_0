@@ -1,0 +1,20 @@
+Graphics G = e.Graphics;
+ GraphicsPath gp = new GraphicsPath();
+ foreach (var line in tockeKoordinate)
+ {
+     gp.AddLine((float)(line.startX), (float)(line.startY),
+                (float)(line.endX),   (float)(line.endY));
+     gp.CloseFigure();
+ }
+ var rect = gp.GetBounds();
+ var scale = Math.Min(1f * (int)(panel1.ClientSize.Width)  / rect.Width,
+                      1f * (int)(panel1.ClientSize.Height) / rect.Height);
+
+ using (Pen pen = new Pen(Color.DarkGreen, 0.0001f))
+ {
+     G.SmoothingMode = SmoothingMode.AntiAlias;
+     G.Clear(Color.White);
+     G.ScaleTransform(scale, scale);
+     G.TranslateTransform(-rect.X, -rect.Y);
+     G.DrawPath(pen, gp);
+ }

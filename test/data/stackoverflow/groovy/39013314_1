@@ -1,0 +1,5 @@
+def to = "example1@example.com, example2@example.com"
+def cc = "example3@example.com"
+def bcc = "example4@example.com"
+def subject: "Example"
+def body = "This is an example."

@@ -1,0 +1,25 @@
+SELECT     Production.WorksOrderOperations.WorksOrderNumber,
+           MIN(Production.WorksOrderOperations.OperationNumber) AS Expr1, 
+           Production.Resources.ResourceCode,
+           Production.Resources.ResourceDescription,
+           Production.WorksOrderExcel_ExcelExport_View.PartNumber,
+           Production.WorksOrderOperations.PlannedQuantity,
+           Production.WorksOrderOperations.PlannedSetTime, 
+           Production.WorksOrderOperations.PlannedRunTime
+FROM       Production.WorksOrderOperations
+INNER JOIN Production.Resources
+           ON Production.WorksOrderOperations.ResourceID = Production.Resources.ResourceID
+INNER JOIN Production.WorksOrderExcel_ExcelExport_View
+           ON Production.WorksOrderOperations.WorksOrderNumber = Production.WorksOrderExcel_ExcelExport_View.WorksOrderNumber
+WHERE      Production.WorksOrderOperations.WorksOrderNumber IN
+             ( SELECT   WorksOrderNumber
+               FROM     Production.WorksOrderExcel_ExcelExport_View AS WorksOrderExcel_ExcelExport_View_1
+               WHERE    (WorksOrderSuffixStatus = 'Proposed'))
+           AND Production.Resources.ResourceCode IN ('1303', '1604')
+GROUP BY   Production.WorksOrderOperations.WorksOrderNumber,
+           Production.Resources.ResourceCode,
+           Production.Resources.ResourceDescription,
+           Production.WorksOrderExcel_ExcelExport_View.PartNumber,
+           Production.WorksOrderOperations.PlannedQuantity,
+           Production.WorksOrderOperations.PlannedSetTime,
+           Production.WorksOrderOperations.PlannedRunTime

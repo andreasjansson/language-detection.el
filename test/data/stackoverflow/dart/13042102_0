@@ -1,0 +1,2 @@
+var el = query('#search_results_tbody');
+el.empty();

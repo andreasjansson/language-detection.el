@@ -1,0 +1,15 @@
+#!/usr/bin/perl -w
+use Carp;
+use strict;
+use warnings;
+
+# here get the parameters idsid
+my $IdsId=$ARGV[0];
+
+
+#excecute the commands here
+
+my $user=`su -l $IdsId`;
+my @finalresult=`vncserver -randr      1024x768,800x600,1024x768,1152x824,1280x1024,1280x800,1440x900,1400x1050,1600x1200,1920x1200`;
+
+print "@finalresult";

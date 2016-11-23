@@ -1,0 +1,11 @@
+printing dr vars           0
+dr_blocks =  1  1  1  1  1  9
+dr_offsets = 0  4  8  12 16 24
+dr_types =   7  7  7  7  7  17
+dr_dtype =   73
+
+printing dh vars 0
+dr_blocks =  1  1  1  9  81
+dr_offsets = 0  4  8  16 88
+dr_types =   7  7  7  17 17
+dr_dtype =   74

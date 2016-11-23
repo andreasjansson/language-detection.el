@@ -1,0 +1,9 @@
+class DeviseMailer < Devise::Mailer
+  helper :application
+
+  def reset_password_instructions(record, token, opts={})
+    email = [{ email: record.email }]
+    params = { from: { name: "Email", email: "noreply@email.com" }, subject: t('forgot_password_mail.subject'), to: email, render: { view: 'devise/mailer/reset_password_instructions', locals: { token: token, user: record.first_name }}}
+    MandrillApi.new.send(params)
+  end
+end

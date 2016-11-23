@@ -1,0 +1,2 @@
+$myFred = makeAFredUsingAssoc();
+return $myFred['naem']; // notice teh typo here

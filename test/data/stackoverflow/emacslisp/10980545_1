@@ -1,0 +1,28 @@
+;; - -  - -  - -  - -  - -
+;;
+;;  Emacs JDE
+;;
+
+(setq load-path
+       (nconc '(
+                "/pkg/jde/2.1.4"
+                )
+                load-path))
+(require 'jde)
+;;  - -  - -  - -  - -  - -
+
+;;  - -  - -  - -  - -  - -
+;;
+;;   Make possible to compile from inside emacs
+;;   using control-c -m
+;;
+
+(global-set-key "\C-cm" 'compile)
+
+(setq load-path (cons "/src/lang/sictus/sicstus3.5" load-path))
+(autoload 'run-prolog "prolog"
+"Start a Prolog sub-process." t)
+(autoload 'prolog-mode "prolog"
+"Major mode for editing prolog programs" t)(autoload 'prolog-menu-hook-function
+"prolog-menu" t)
+(add-hook 'prolog-mode-hook 'prolog-menu-hook-function)

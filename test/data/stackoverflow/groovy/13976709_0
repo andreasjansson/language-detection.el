@@ -1,0 +1,20 @@
+// Set up jqlQueryParser object
+jqlQueryParser = ComponentManager.getComponentInstanceOfType(JqlQueryParser.class) as JqlQueryParser
+// Form the JQL query
+query = jqlQueryParser.parseQuery('<my_jql_query>')
+// Set up SearchService object used to query Jira
+searchService = componentManager.getSearchService()
+// Run the query to get all issues with Article number that match input 
+results = searchService.search(componentManager.getJiraAuthenticationContext().getUser(), query, PagerFilter.getUnlimitedFilter())
+// Throw a FATAL level log statement because we should never have more than one case associated with a given KB article
+if (results.getIssues().size() > 1) {
+    for (r in results.getIssues()) {
+        log.fatal('Custom field has more than one Jira ssue associated with it. ' + r.getKey() + ' is one of the offending issues')
+    }
+    return "?????"
+}
+
+// Create link from new Improvement to parent issue
+for (r in results) {
+    IssueLinkManager.createIssueLink(issue.getId(), r.getId(), 10201, 1, getJiraAuthenticationContext().getUser())
+}

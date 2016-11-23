@@ -1,0 +1,8 @@
+return thing
+         .map(...)
+         .toList()
+         .sort(...)
+         .fold(...)
+         .sort(...)
+         .expand(...)
+         .toList();

@@ -1,0 +1,10 @@
+\newcommand{\mylabel}[1]{%
+    \@ifundefined{c@#1}{%
+     \newcounter{#1}%
+     \setcounter{#1}{0}%
+    }{}%
+    \ifthenelse{\value{#1} > 0}{}{%
+     \label{#1}%
+     \addtocounter{#1}{1}%
+    }%
+}

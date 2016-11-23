@@ -1,0 +1,16 @@
+pygame.init()
+screen = pygame.display.set_mode((400, 300))
+pygame.display.set_caption('Hello World!')
+screen.fill((250, 250, 250))
+x = 10
+y = 10
+pygame.draw.rect(screen, (0,0,0), (x,y, 100,100))
+while True: # main game loop
+     for event in pygame.event.get():
+         if event.type == QUIT:
+             pygame.quit()
+             sys.exit()
+         if event.type == MOUSEBUTTONDOWN: 
+             if event.type == MOUSEMOTION: # This does not work
+                 print 'test'
+     pygame.display.update()

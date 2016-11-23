@@ -1,0 +1,5 @@
+notify := rw.(http.CloseNotifier).CloseNotify()
+go func() {
+        <-notify
+        brk.closingClients <- cl.session.Value
+}

@@ -1,0 +1,131 @@
+Program Main
+           Implicit real*8 (A-H,O-Z)
+           common ome,eps
+           duepi=8*datan(1.d0)
+           ome=sqrt(2.d0)
+
+           T_per=duepi/ome
+
+
+           eps=0.81
+           N_step=100
+
+           x0=0.4   
+           y0=0
+           px0=1.0  
+           py0=0
+
+           x=x0
+           y=y0
+           px=px0
+           py=py0
+
+
+           dt=T_per/N_step
+
+           E0=H(x,y,px,py)
+
+           k_max=100*N_step
+
+           k=0
+           t=0
+           errh=0
+
+c---------
+c integration loop  
+c--------
+           do k=1,k_max
+           call sym4(x,y,px,py,dt)
+           E= H(x,y,px,py)
+           errh=abs(E-E0)
+           t=k*dt
+           if(mod(k,N_step).eq.0) then
+           xex=x0*cos(t)+px0*sin(t)
+           pxex=-x0*sin(t)+px0*cos(t)
+           yex=y0*cos(t)+py0*sin(t)
+           pyex=-y0*sin(t)+py0*cos(t)
+           err=sqrt((x-xex)**2+(p-pex)**2+(y-yex)**2+(py-pyex)**2)
+           endif 
+           enddo
+
+
+
+           do k=1,k_max
+           call sym4(x,y,px,py,-dt)
+           E= H(x,y,px,py)
+           errh=abs(E-E0)
+           t=t-dt
+           if(mod(k,N_step).eq.0) then
+           xex=cos(t)+sin(t)
+           pex=-sin(t)+cos(t)
+           err=sqrt( (x-xex)**2+(p-pex)**2) 
+           endif 
+           enddo
+
+c--------
+c if i put the OPEN-WRITE command here i have the last value of the two do cycle but i
+c whant to write EVERY last values for every different initial conditions WITHOUT
+c  OVER-WRITE the file.   
+c--------
+
+           OPEN(unit=11, file="prova0.txt")
+           write(11,'(I3,8g15.6)') k, x0, px0, errh 
+
+           end
+
+
+           subroutine  f(x,y,fx,fy)
+           Implicit real*8 (A-H,O-Z)
+           common ome,eps
+
+           fx=-x*(1+eps*cos(ome*y))             
+           fy= eps* ome*sin(ome*y)*x*x/2.d0    
+
+
+           return
+           end
+
+           real*8 function H(x,y,px,py)
+           Implicit real*8 (A-H,O-Z)
+           common ome,eps
+
+           h=px*px/2.d0+ py +(1+eps*cos(ome*y))*x*x/2 
+
+           return
+           end
+
+
+           subroutine sym2(x,y,px,py,dt)
+           Implicit real*8 (A-H,O-Z)
+
+           call f(x,y,fx,fy)
+
+
+           xnew= x+ px*dt +    fx*dt**2/2.d0
+
+           ynew= y+ dt                        
+
+           call f(xnew,ynew,fxnew,fynew) 
+           pxnew= px+ dt*(fx+fxnew )/2.d0
+           pynew= py+ dt*(fy+fynew )/2.d0
+
+           x=xnew
+           y=ynew
+           px=pxnew
+           py=pynew
+
+           end
+
+
+           subroutine sym4(x,y,px,py,dt)
+           Implicit real*8 (A-H,O-Z)
+           sq2=2**(1.d0/3.d0)
+           alpha= 1.d0/(2-sq2)
+           beta= sq2/(2-sq2)
+           dt1= dt*alpha
+           dt2=-dt*beta
+           call sym2(x,y,px,py,dt1)
+           call sym2(x,y,px,py,dt2)
+           call sym2(x,y,px,py,dt1)
+           return
+           end

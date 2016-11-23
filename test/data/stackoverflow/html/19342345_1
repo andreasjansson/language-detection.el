@@ -1,0 +1,33 @@
+[AcceptVerbs(HttpVerbs.Post)]
+public ActionResult SaveOrder() {
+  var form = ControllerContext.HttpContext.Request.Form;
+  var orderDetails = new List<OrderDetails>();
+  var order = new Order();
+  OrderDetails row = null;
+  bool inheader = true;
+  foreach (var key in form.AllKeys)
+    {
+    if (key == "_rowdelimiter")
+      {
+        if (row != null)
+          orderDetails.Add(row);
+          row = new OrderDetails();
+          inheader = false;
+          continue;
+          }
+        if (inheader)
+         {
+          SetValue( order, key, HttpUtility.HtmlDecode(form[key]) );
+          continue;
+          }
+       SetValue( row, key, HttpUtility.HtmlDecode(form[key]) );
+   }
+  orderDetails.Add(row);
+  EntityManager.SaveOrder( order, orderDetails );
+  return ContentResult() {Content="Order saved" } ;
+}
+
+static void SetValue( object entity, string propertyName, string propertyValue ) {
+  PropertyInfo p = entity.GetType().GetProperty(propertyName);
+  p.SetValue(this, propertyValue, null);
+  }

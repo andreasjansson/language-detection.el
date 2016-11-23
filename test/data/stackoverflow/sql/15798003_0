@@ -1,0 +1,15 @@
+SELECT 
+    PersonID, 
+    PatientID, 
+    ModalityID, 
+    ReportID, 
+    FirstName, 
+    LastName, 
+    HomePhone, 
+    WorkPhone,
+    LastPrintDate, 
+    CONVERT(VARCHAR(10), SignedDate, 101) AS SignedDate 
+FROM 
+    mqsa.dbo.vw_mq_LayLetterAlerts_Derived 
+WHERE (ModalityID = 4) 
+    AND (GETDATE() >= DATEADD(day, 334, LastPrintDate))

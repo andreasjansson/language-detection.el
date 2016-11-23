@@ -1,0 +1,23 @@
+Dim query1 = _
+            From G In Games _
+            Where G.Field(Of Integer)("SystemID") = System _
+            Join F In Files On _
+            G.Field(Of String)("PrimaryFilename") Equals F.Field(Of String)("Name") _
+            Select New With {
+                .gid = G.Field(Of Integer)("ID"),
+                .ggamename = G.Field(Of String)("GameName"),
+                .gprimaryfilename = G.Field(Of String)("PrimaryFilename"),
+                .gsafegamename = G.Field(Of String)("SafeGameName")}
+
+dim  query2 = _
+           From G In Games _
+           Where G.Field(Of Integer)("SystemID") = System _
+           Join F In Files On _
+           G.Field(Of String)("SafeGameName") Equals F.Field(Of String)("Name") _
+            Select New With {
+            .gid = G.Field(Of Integer)("ID"),
+            .ggamename = G.Field(Of String)("GameName"),
+            .gprimaryfilename = G.Field(Of String)("PrimaryFilename"),
+            .gsafegamename = G.Field(Of String)("SafeGameName")}
+
+Dim query = query1.Union(query2)

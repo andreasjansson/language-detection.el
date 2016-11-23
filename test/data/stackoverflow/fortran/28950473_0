@@ -1,0 +1,9 @@
+module test
+  private
+  protected :: a
+  integer :: a = 0
+end module test
+  use test
+  implicit none
+  print*, a
+end program

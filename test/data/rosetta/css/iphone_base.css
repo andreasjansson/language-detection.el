@@ -1,0 +1,105 @@
+FORM { margin: 0; }
+IMG, TABLE { border: 0; }
+A { color: #213F9A; }
+A:link { color: #213F9A; }
+A:visited { color: #213F9A; }
+SPAN.whiteButtonDim { color: #FFF; }
+
+#wuLogo { text-align: center; margin-top: 5px; }
+#radarImage { border-top: 1px solid #D9D9D9; border-right: 1px solid #C5CCD3; border-bottom: 1px solid #C5CCD3; border-left: 1px solid #D9D9D9; margin-top: 10px; }
+#camImage { border-top: 1px solid #D9D9D9; border-right: 1px solid #C5CCD3; border-bottom: 1px solid #C5CCD3; border-left: 1px solid #D9D9D9; margin-top: 10px; width: 278px; }
+#current { vertical-align: middle; font-size: 20px; text-align: center; }
+#summary { text-align: left; padding: 10px; }
+#today { padding: 3px; text-align: center; background-color: #F5F5F5; border-top: 1px solid #CCC; border-bottom: 1px solid #CCC; margin: 10px 0 5px 0; }
+#blogEntry IMG { width: 100%; }
+.adBox { margin: 0 auto; margin-bottom: 10px; text-align: center; width: 300px; max-height: 100px; overflow: hidden; }
+.adBox IMG { max-width: 300px; }
+
+#wunderRadio { width: 300px; height: 50px; margin: 0 auto 10px auto; }
+#wunderRadio A { display: block; width: 300px; height: 50px; background: url(http://icons.wxug.com/i/misc/itunes-bg_300x50.png) no-repeat; padding: 4px; text-decoration: none; }
+#wunderRadio A .headline { font-size: 11px; color: #F00; width: 170px; }
+#wunderRadio A .subhead { font-size: 11px; color: #333; width: 170px; }
+
+.b { font-weight: bold; }
+.nb { font-weight: normal; }
+.red { color: #F00; }
+.blue { color: #00F; }
+.green { color: #080; }
+.subG { background-color: #F5F5F5; border-bottom: 1px solid #CCC; padding: 2px; }
+.taC { text-align: center; }
+.taR { text-align: right; }
+.taL { text-align: left; }
+.vaB { vertical-align: bottom; }
+.vaT { vertical-align: top; }
+.vaT TD { vertical-align: top; }
+.half { width: 50%; }
+.full { width: 100%; }
+.hide, .none { display: none; }
+.nobr { white-space: nowrap; }
+.p0 { padding: 0; }
+.p5 { padding: 5px; }
+.p10 { padding: 10px; }
+.tm10 { margin-top: 10px; }
+.bm10 { margin-bottom: 10px; }
+.mainG { color: #4C566C; font-family: Helvetica, sans-serif; font-size: 17px; font-weight: bold; margin: 10px 0 5px 15px; text-shadow: #000; }
+.center { margin: 0 auto 0 auto; }
+.padLeft { text-align: left; padding: 0 10px 0 10px; }
+.updateObs { margin: 9px; font-size: 14px; text-align: center; }
+.toggle A { text-decoration: none; }
+.grayButton { color: #FFF; }
+.foreWarn { color: #F00; text-align: center; margin-top: 5px; }
+.condIcon { border-top: 1px solid #D9D9D9; border-right: 1px solid #C5CCD3; border-bottom: 1px solid #C5CCD3; border-left: 1px solid #D9D9D9; }
+.barMenu { text-align: center; margin: 10px 0 5px 0; background: url(/graphics/iphone/toolbar.png) #6d84a2 repeat-x; }
+.barMenu A.button { color: #FFF; }
+.barMenu SPAN.button { color: #FF0; }
+
+.zoomMenu { text-align: center; margin: 10px auto 5px auto; }
+.zoomMenu A.whiteButton { color: #213F9A; margin: 0 5px; width: 43px; }
+.zoomMenu A.whiteButtonDim { color: #FFF; margin: 0 5px; width: 43px; }
+
+.contentTable { width: 100%; text-align: left; }
+.contentTable THEAD TR TH { background-color: #E6EEEE; border: 1px solid #FFF; padding: 4px; white-space: nowrap; }
+.contentTable TBODY TR TD { border-bottom: 1px solid #999; }
+.contentTable TBODY TR TD.placeTitle { padding: 10px; width: 100%; }
+.contentTable TBODY TR TD.placeConds { padding: 10px; white-space: nowrap; }
+.contentTable TBODY TR TD.placeAlert { padding: 0; white-space: nowrap; }
+.contentTable TBODY TR.noRow TD { border-bottom: 0; }
+.contentTable TBODY TR TD.noRow { border-bottom: 0; }
+.contentTable TBODY TR.extRow { display: none; }
+
+.dataTable { width: 100%; text-align: left; }
+.dataTable THEAD TR TH { background-color: #E6EEEE; border: 1px solid #FFF; padding: 4px; }
+.dataTable TBODY TR TD { padding: 10px; border-bottom: 1px solid #999; }
+.dataTable TBODY TR TD.subHead { padding: 4px; font-weight: bold; background-color: #F5F5F5; }
+.dataTable TBODY TR.noRow TD { border-bottom: 0; }
+.dataTable TBODY TR.noPadB TD { padding-bottom: 0; }
+
+.hourlyTable { width: 100%; text-align: left; }
+.hourlyTable THEAD TR TH { background-color: #E6EEEE; border: 1px solid #FFF; padding: 4px; }
+.hourlyTable TBODY TR TD { padding: 10px 3px; border-bottom: 1px solid #999; vertical-align: bottom; }
+.hourlyTable TBODY TR TD IMG { width: 50px; height: 50px; }
+
+.warningBox { padding: 3px; text-align: center; background-color: #FFEB9B; border-top: 1px solid #F00; border-bottom: 1px solid #F00; margin-top: 8px; }
+.warningBox A { color: #213F9A; }
+
+.tropicLinks LABEL { font-weight: normal; }
+
+.row LABEL { white-space: nowrap; overflow: hidden; }
+
+#resultsTable { margin-top: 10px; width: 100%; text-align: left; }
+#resultsTable THEAD TR TH { background-color: #E6EEEE; border: 1px solid #FFF; padding: 4px 18px 4px 4px; white-space: nowrap; }
+#resultsTable THEAD TR TH { background-image: url(http://icons.wxug.com/i/misc/bg.gif); background-repeat: no-repeat; background-position: center right; cursor: pointer; }
+#resultsTable THEAD TR .headerSortDown, #resultsTable THEAD TR .headerSortUp { background-color: #8DBDD8; }
+#resultsTable THEAD TR .headerSortDown { background-image: url(http://icons.wxug.com/i/misc/asc.gif); }
+#resultsTable THEAD TR .headerSortUp { background-image: url(http://icons.wxug.com/i/misc/desc.gif); }
+#resultsTable TBODY TR TD { color: #000; padding: 10px 4px; background-color: #FFF; vertical-align: middle; border-bottom: 1px solid #CCC; }
+#resultsTable TBODY TR.alt TD { background-color:#FFF; }
+
+#adBox { display: block; }
+
+.ui-autocomplete { background-color: #FFF; width: 215px !important; border-right: 2px solid #DDD; border-bottom: 2px solid #DDD; border-left: 2px solid #DDD; -webkit-border-bottom-right-radius: 5px; -webkit-border-bottom-left-radius: 5px; -moz-border-radius-bottomright: 5px; -moz-border-radius-bottomleft: 5px; margin: 0; padding: 0; list-style-type: none; position: absolute; cursor: default; }
+.ui-autocomplete-loading { background: #FFF url(http://icons.wxug.com/i/loading-coda-small.gif) right no-repeat !important; }
+.ui-autocomplete-term { font-weight: bold; }
+.ui-autocomplete .ui-menu-item { padding: 3px; list-style-type: none; }
+.ui-autocomplete .ui-menu-item A { display: block; font-size: 12px; }
+.ui-autocomplete .ui-menu-item A.ui-state-hover { background-color: #CDD9FF; }

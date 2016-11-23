@@ -1,0 +1,26 @@
+if (Objective = 0) then
+     --  Initial Tower is not Connected to Final Tower yet
+     if not (NList.isConnectedTo (InitialTower, FinalTower)) then
+        --  Add Main Tower to List of Main Towers
+        if (IndexInitial = -1) then
+           NumberTowers := NumberTowers + 1;
+           IndexInitial := NumberTowers;
+           TowerList (NumberTowers) := InitialTower;
+        end if;
+        --  Add Connection to Main Tower
+        NList.addNode (FinalTower, IndexInitial, TowerList);
+        InitialTower.NumbLink := InitialTower.NumbLink + 1;
+     end if;
+  elsif (Objective = 1) then
+     --  Invalid Query / Tower was never created
+     if (IndexInitial = -1) or else (IndexFinal = -1) then
+        Text_IO.Put ("- ");
+        Text_IO.Put (SU.To_String (Input1));
+        Text_IO.Put (" => ");
+        Text_IO.Put (SU.To_String (Input2));
+        Text_IO.New_Line; 
+     elseif (NList.isConnectedTo (InitialTower, FinalTower)) then
+           Text_IO.Put ("+ ");   
+     end if;
+
+  end if;

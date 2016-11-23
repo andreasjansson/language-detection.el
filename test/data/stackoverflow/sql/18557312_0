@@ -1,0 +1,6 @@
+SELECT 
+    empname,
+    empaddress,
+    empDeptid  
+FROM 
+    empiD=3

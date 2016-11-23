@@ -1,0 +1,16 @@
+var message="<SOAP:Envelope xmlns:SOAP=\"http://schemas.xmlsoap.org/soap/envelope/\">
+<SOAP:Body>
+<m:EDI  
+ID=\"ConfigurationName={f0dc2db2-0431-4c31-ba8b-053a33f3899f}\" 
+Frequency =\"8\" xmlns:m\"http://www.foo/schemas/\">
+<Totes><Tote   
+    a=\"\" 
+    b=\"123\" 
+    c=\"Stati\" 
+    d=\"T8b52830b-fe69-4\" 
+    e=\"M0056122648\" 
+    f=\"Route\" 
+    g=\"\" 
+    h=\"1/1/0001 12:00:00 AM\" />
+</Totes>
+</m:EDI></SOAP:Body></SOAP:Envelope>";

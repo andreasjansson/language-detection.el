@@ -1,0 +1,6 @@
+@observable ContaPagar contaPagar;
+@observable StringToDateTime asDateTime = new StringToDateTime();
+
+ApisContaPagar.created() : super.created() {
+    contaPagar.contaPagarParcelas = toObservable(new List()..add(new ContaPagarParcela()));   
+}

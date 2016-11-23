@@ -1,0 +1,11 @@
+import 'package:http/http.dart' as http;
+import 'package:http/src/response.dart';
+
+void main() {
+    String json = getSomeJSONString();
+    http.post(url, body: json, encoding: Encoding.getByName("UTF-8")).then(onResponse);
+}
+
+void onResponse(Response response) {
+    // Do something
+}

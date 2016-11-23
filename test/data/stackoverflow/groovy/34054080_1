@@ -1,0 +1,6 @@
+void process (Foo obj){
+obj.getBarList().each {
+Bar bar ->
+bar = doSomeStuff(bar)
+}
+}

@@ -1,0 +1,34 @@
+HttpPost httppost=new HttpPost("http://www.hds.utc.fr/memorae/pr/api/swars/note");
+
+         try {
+             // JSON data:
+            jsonA.put("index", "datjsonArray");//datjsonArray
+
+                jsonA.put("sharingspace","datjsonArray1" );//datjsonArray1
+                jsonA.put("content", "test");
+                jsonA.put("title", "test");
+                jsonA.put("aurhor", "amc2:userAPIConcept53a07a9a1758d");
+                jsonA.put("distributor","datjsonArray2 ");//datjsonArray2
+                jsonA.put("date", "dat");
+                jsonA.put("type", "note"); 
+
+
+             String json = jsonA.toString();
+
+
+
+             StringEntity se = new StringEntity(json);  
+             se.setContentType(new BasicHeader(HTTP.CONTENT_TYPE, "application/json"));
+             Log.i("se", ""+se);
+             httppost.setEntity(se);
+             HttpClient httpclient = new DefaultHttpClient();
+             HttpResponse response = httpclient.execute(httppost);
+
+             if(response!=null){
+                 InputStream in = response.getEntity().getContent(); 
+             }
+
+         } catch(Exception e) {
+             e.printStackTrace();
+             Log.i("Error", "Cannot Estabilish Connection");
+         }

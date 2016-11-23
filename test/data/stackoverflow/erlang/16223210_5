@@ -1,0 +1,27 @@
+-module(example).
+
+-include_lib("eunit/include/eunit.hrl").
+
+generator_test_() ->
+    {setup, fun setup/0, fun cleanup/1,
+        {inorder,
+            fun() -> some_test1() end
+        }
+    }.
+
+some_test1() ->
+    begin
+        X = 3,
+        Y = 4,
+        %%% This is a test set/deep list as it
+        %%% contains two tests.
+        [?_assertEqual(X, Y),
+        ?_assertEqual(ok, ok)]
+    end.
+
+setup() ->
+    erlang:display("---SETUP CALLED---"),
+    "setup".
+
+cleanup(_) ->
+    ok.

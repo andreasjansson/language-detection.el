@@ -1,0 +1,109 @@
+package controllers
+
+import (
+    "RESTMONGOMVC/models"
+    "encoding/json"
+    "log"
+    "net/http"
+    "time"
+
+    "github.com/gorilla/mux"
+
+    "gopkg.in/mgo.v2"
+    "gopkg.in/mgo.v2/bson"
+)
+
+var (
+    session    *mgo.Session
+    collection *mgo.Collection
+    err        error
+)
+
+type (
+    // UserController represents the controller for operating on the User resource
+    NoteController struct {
+        session *mgo.Session
+    }
+)
+
+// NewUserController provides a reference to a UserController with provided mongo session
+func NewNoteController(s *mgo.Session) *NoteController {
+    return &NoteController{s}
+}
+func (uc NoteController) GetNotes(w http.ResponseWriter, r *http.Request) {
+    var notes []models.Note
+    iter := collection.Find(nil).Iter()
+    result := models.Note{}
+    for iter.Next(&result) {
+        notes = append(notes, result)
+    }
+    w.Header().Set("Content-Type", "application/json")
+    j, err := json.Marshal(models.NotesResource{Notes: notes})
+    if err != nil {
+        panic(err)
+    }
+    w.Write(j)
+}
+
+func (uc NoteController) CreateNote(w http.ResponseWriter, r *http.Request) {
+    var noteResource models.NoteResource
+
+    err := json.NewDecoder(r.Body).Decode(&noteResource)
+    if err != nil {
+        panic(err)
+    }
+    note := noteResource.Note
+    //get a new Id
+    obj_id := bson.NewObjectId()
+    note.Id = obj_id
+    note.CreatedOn = time.Now()
+    //Insert into document collection
+    err = collection.Insert(&note)
+    if err != nil {
+        panic(err)
+    } else {
+        log.Printf("Inserted New Record with Title :%s", note.Title)
+    }
+    j, err := json.Marshal(models.NoteResource{Note: note})
+    if err != nil {
+        panic(err)
+    }
+    w.Header().Set("Content-Type", "application/json")
+    w.Write(j)
+}
+
+func (uc NoteController) UpdateNote(w http.ResponseWriter, r *http.Request) {
+    var err error
+    //get id from incoming url
+    vars := mux.Vars(r)
+    id := bson.ObjectIdHex(vars["id"])
+    //decode the incoming Note into json
+    var noteResource models.NoteResource
+    err = json.NewDecoder(r.Body).Decode(&noteResource)
+    if err != nil {
+        panic(err)
+    }
+    //partial update on mongodb
+    err = collection.Update(bson.M{"_id": id},
+        bson.M{"$set": bson.M{
+            "title":      noteResource.Note.Title,
+            "decription": noteResource.Note.Description,
+        }})
+    if err == nil {
+        log.Printf("Updated Note : %s", id, noteResource.Note.Title)
+    } else {
+        panic(err)
+    }
+    w.WriteHeader(http.StatusNoContent)
+}
+func (uc NoteController) DeleteNote(w http.ResponseWriter, r *http.Request) {
+    var err error
+    vars := mux.Vars(r)
+    id := vars["id"]
+    //Remove from database
+    err = collection.Remove(bson.M{"_id": bson.ObjectIdHex(id)})
+    if err != nil {
+        log.Printf("Could not find the Note %s to delete", id)
+    }
+    w.WriteHeader(http.StatusNoContent)
+}

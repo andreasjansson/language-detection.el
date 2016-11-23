@@ -1,0 +1,2 @@
+ax = 'aa+bb+cc+dd';
+middle_part = regexp(ax, '\+(\w+)\+','tokens');

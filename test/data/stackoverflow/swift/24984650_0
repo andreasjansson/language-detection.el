@@ -1,0 +1,20 @@
+override func tableView(tableView: UITableView!, heightForRowAtIndexPath indexPath: NSIndexPath!) -> CGFloat {
+
+    var cell = tableView!.dequeueReusableCellWithIdentifier(kCellIdentifier) as GroupFeedCell
+
+    // Configure the cell
+    if let frc = self.fetchedResultsController {
+        let feed = frc.objectAtIndexPath(indexPath) as GroupFeed
+        cell.titleLabel.text = feed.name
+        if let message = feed.message {
+            cell.bodyLabel.text = message
+        }
+    }
+
+    // Layout the cell
+    cell.layoutIfNeeded()
+
+    // Get the height
+    var height : CGFloat = cell.contentView.systemLayoutSizeFittingSize(UILayoutFittingCompressedSize).height
+    return height
+}

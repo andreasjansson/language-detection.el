@@ -1,0 +1,8 @@
+library(raster)
+# First we create an example raster stack with two layers
+a <- matrix(rep(dnorm(1:100, 50, sd = 25)),
+            nrow = 100, ncol = 100, byrow = TRUE)
+env <- stack(raster(a * dnorm(1:100, 50, sd = 25) * 10000),
+             raster(a * 1:100))
+names(env) <- c("variable1", "variable2")
+plot(env)

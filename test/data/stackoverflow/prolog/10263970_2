@@ -1,0 +1,8 @@
+/* the op is op in operation(op, x, x) */
+conversions(Op, In, Steps) :-
+  operation(Op, In, Out); /* no conversions necessary */
+  conversion(C1, O1, O2),/* switch the incoming/outgoing to */
+  conversion(C2, O2, O3), /* match successive conversions */
+  conversion(C3, O3, O4), /* A->B, B->C, C->D */
+
+  /* adding the matches C1-C3 to steps */

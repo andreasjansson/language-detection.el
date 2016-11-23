@@ -1,0 +1,6 @@
+groupCommand.zones.each { zone -> 
+    zone.segments.each { segment ->
+        //Would like to get LinkedHashMap here also
+        //but get JSONArray
+    }
+}

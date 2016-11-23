@@ -1,0 +1,37 @@
+use strict;
+use WWW::Curl::Easy;
+use HTML::TreeBuilder;
+my $cookie_file ='/tmp/pcook';
+my $curl = new WWW::Curl::Easy;
+my $response_body;
+my $charset = 'utf-8';
+$DocOffline::charset = undef;
+$curl->setopt (CURLOPT_URL, 'http://www.breitbart.com/article.php?id=D9G7CR5O0&show_article=1');
+$curl->setopt ( CURLOPT_USERAGENT, 'Mozilla/5.0 (Windows; U; Windows NT 6.1; en-US) AppleWebKit/533.9 (KHTML, like Gecko) Chrome/6.0.400.0 Safari/533.9');
+$curl->setopt ( CURLOPT_HEADER, 0);
+$curl->setopt ( CURLOPT_FOLLOWLOCATION, 1);
+$curl->setopt ( CURLOPT_AUTOREFERER, 1);
+$curl->setopt ( CURLOPT_SSL_VERIFYPEER, 0);
+$curl->setopt ( CURLOPT_COOKIEFILE, $cookie_file);
+$curl->setopt ( CURLOPT_COOKIEJAR, $cookie_file);
+$curl->setopt ( CURLOPT_HEADERFUNCTION, \&headerCallback );
+open (my $fileb, ">", \$response_body);
+$curl->setopt(CURLOPT_WRITEDATA,$fileb);
+my $retcode = $curl->perform;
+if ($retcode == 0) {
+    my $dom_tree = HTML::TreeBuilder->new();
+    $dom_tree->ignore_elements(qw(script style));
+    $dom_tree->utf8_mode(1);
+    $dom_tree->parse($response_body);
+    $dom_tree->eof();
+    print $dom_tree->as_HTML('<>&', ' ', {});
+}
+sub headerCallback {
+my($data, $pointer) = @_;
+$data =~ m/Content-Type:\s*.*;\s*charset=(.*)/;
+if ($1) {
+    $charset =  $1;
+    $charset =~ s/[^a-zA-Z0-9_\-]*//g;
+}
+return length($data);
+}

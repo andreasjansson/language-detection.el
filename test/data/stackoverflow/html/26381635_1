@@ -1,0 +1,7 @@
+$Table = @( ('OU', 'Logon scripts incorrect', 'Name incorrect', 'No description'), 
+             ('\\Domain\NLD Users','2','6','2' ),
+             ('\\Domain\FRA Users','5','7','0' ),
+             ('\\Domain\BEL Users','6','1','1' ),
+             ('TOTAL USERS: 2048','13','14','3' )
+)    
+$Table | ConvertTo-Html -As Table -Fragment

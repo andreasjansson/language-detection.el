@@ -1,0 +1,9 @@
+$('.post-image').click(function(){
+        urlPath = $(this).attr('href');
+        if (History.pushState({ action: 'show_popup' } , 'POST TITLE', urlPath)) {
+            alert('pizza')
+        }
+        var State = History.getState();
+        return false;
+    });
+})(window);`

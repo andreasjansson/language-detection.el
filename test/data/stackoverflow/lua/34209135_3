@@ -1,0 +1,14 @@
+function fct(startX, maxX, y, increment)
+    for x=startX,maxX,160 do
+        check=getColor(x,y)
+        if check == 0 then
+        return(x)
+        end
+    tap(x,y)
+    end
+end
+
+v = true
+repeat
+fct(80,560,500) until
+v == false

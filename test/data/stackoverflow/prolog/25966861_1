@@ -1,0 +1,5 @@
+length(L,N), tree_eq1(L,X).
+  % infinite set of lists to explore if N is unknown
+
+tree_eq1(L,X), length(L,N)
+  % infinite set of trees to explore if X is unknown

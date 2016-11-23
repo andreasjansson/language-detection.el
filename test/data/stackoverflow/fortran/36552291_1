@@ -1,0 +1,14 @@
+C this module file name is aa_module.f
+
+      MODULE AA
+
+      IMPLICIT NONE
+      INCLUDE 'global.par'
+
+      REAL    NODES   (3, MAXNODES)
+      REAL    NODES2  (3, MAXNODES)
+      INTEGER EL1     (12, MAXELEMS)
+      INTEGER EL2     (12, MAXELEMS)
+C     and so on, many more arrays based around MAXNODES & MAXELEMS
+
+      END MODULE AA

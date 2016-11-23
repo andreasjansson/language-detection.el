@@ -1,0 +1,7 @@
+/*! \fn QLinkedList<T> QLinkedList::operator+(const QLinkedList<T> &other) const
+
+    Returns a list that contains all the items in this list followed
+    by all the items in the \a other list.
+
+    \sa operator+=()
+*/

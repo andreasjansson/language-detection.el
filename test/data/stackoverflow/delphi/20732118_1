@@ -1,0 +1,2 @@
+FCurrentPath, FParentDir: string;
+procedure GoToDirectory(const Dir: string);

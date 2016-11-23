@@ -1,0 +1,6 @@
+def method1():
+  def inner_method1():
+    print("Hello")
+
+  inner_method1()
+  inner_method1()

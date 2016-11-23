@@ -1,0 +1,14 @@
+string path = System.IO.Path.GetFullPath(excelFileName);
+string query = @"SELECT * FROM [" + textBox2.Text + "$]";
+OleDbConnection conn = new OleDbConnection();
+conn.ConnectionString = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + ofd.FileName + ";Extended Properties= \"Excel 12.0 Xml;HDR=YES;IMEX=1\";";
+OleDbDataAdapter adapter = new OleDbDataAdapter(query, conn);
+DataSet dataSet = new DataSet();
+adapter.Fill(dataSet);
+DataTable dtExcel = new DataTable();
+adapter.Fill(dtExcel);
+//string strcon = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\\DB.accdb;Persist Security Info=False;";
+string strcon = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\\DB.accdb;Persist Security Info=False;";Security=True;Connect Timeout=30;MultipleActiveResultSets=True;User Instance=True";
+OleDbConnection conexao = new OleDbConnection(strcon);
+conexao.Open();
+...snip

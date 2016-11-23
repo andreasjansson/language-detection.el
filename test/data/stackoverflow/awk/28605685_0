@@ -1,0 +1,6 @@
+ID,Name,Value1,Value2,Value3
+1,"AAA","DEF",1,2
+1,"AAA","GGG",7,9
+2,"BBB","DEF",1,2
+2,"BBB","DEF",9,0
+3,"CCC","AAA",1,1

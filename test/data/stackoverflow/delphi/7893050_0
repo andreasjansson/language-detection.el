@@ -1,0 +1,7 @@
+procedure TRefreshScreenRefreshScreen.Process(const Session: IDispatch);
+begin
+
+  CodeSite.Send( csmLevel1, '(Session as SessionClass).Cashier.Name', (Session as SessionClass).Cashier.Name );
+  CodeSite.Send( csmLevel1, '(Session as SessionClass).Cashier.Number', (Session as SessionClass).Cashier.Number );
+
+end;

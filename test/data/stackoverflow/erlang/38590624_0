@@ -1,0 +1,3 @@
+timeit_acc(T, start, F) -> timeit_acc({os:timestamp(), T}, finish, F);
+timeit_acc({T1, T2}, finish, F) -> element(T1, 2) - element(T2, 2).
+timeit(F) -> timeit_acc(os:timestamp(), start, F).

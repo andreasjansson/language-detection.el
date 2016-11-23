@@ -1,0 +1,66 @@
+func playit(sender: UIButton!){
+if let nowPlaying = musicPlayer.nowPlayingItem{
+let title = nowPlaying[MPMediaItemPropertyTitle] as? String
+let artist = nowPlaying[MPMediaItemPropertyTitle] as? String
+
+println(title! + artist!)
+
+
+    let query = PFQuery(className: "Songs")
+    query.whereKey("SongName", equalTo: title!)
+    query.findObjectsInBackgroundWithBlock {
+        (objects: [AnyObject]?, error: NSError?) -> Void in
+        if error == nil {
+            // The find succeeded.
+            println("Successfully retrieved \(objects!.count) song(s).")
+            // Do something with the found objects
+            if let objects = objects as? [PFObject] {
+                for object in objects {
+                    println(object.objectId)
+                    let playButtonrow = sender.tag
+                    let object = object as PFObject
+                    let parseAudio = object.valueForKey("SongFile") as! PFFile
+                    let audioPath: String = parseAudio.url!
+                    let urlParse: NSURL = NSURL(string: audioPath)!
+
+
+
+                    player = AVPlayer(URL: urlParse)
+                    println(player)
+                    player.volume = 1.0
+                    player.play()
+                    if (player.rate > 0) && (player.error == nil) {
+                        // player is playing
+                        println("Playing")
+                    } else {
+                        println("Not Playing")
+                    }
+                }
+            }
+        } else {
+            // Log details of the failure
+            println("Error: \(error!) \(error!.userInfo!)")
+        }
+
+    }
+
+}
+}
+ func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+
+let cell: UITableViewCell = self.table.dequeueReusableCellWithIdentifier("cell") as! UITableViewCell
+var play: Play
+
+
+play = add[indexPath.row]
+let playButton : UIButton = UIButton.buttonWithType(UIButtonType.Custom) as! UIButton
+playButton.tag = indexPath.row
+let imageret = "playbutton"
+playButton.setImage(UIImage(named: imageret), forState: .Normal)
+playButton.frame = CGRectMake(236, 20, 100, 100)
+playButton.addTarget(self,action: "playit:", forControlEvents: UIControlEvents.TouchUpInside)
+
+for view: UIView in cell.contentView.subviews as! Array<UIView> {
+    view.removeFromSuperview()
+}
+cell.contentView.addSubview(playButton)

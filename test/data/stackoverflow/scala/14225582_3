@@ -1,0 +1,21 @@
+trait Foo[S <: Sys] {
+  val s: S
+  def id: s.Id
+  def dispose()(implicit tx: s.Tx) {
+    id.dispose()
+  }
+}
+
+trait Bar[S <: Sys] {
+  val s: S
+  def id: s.Id
+  def foo: Foo[S]
+  def dispose()(implicit tx: s.Tx) {
+    foo.dispose()
+    id.dispose()
+  }
+}
+
+<console>:27: error: could not find implicit value for parameter tx: _106.s.Tx
+               foo.dispose()
+                          ^

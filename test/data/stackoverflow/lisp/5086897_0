@@ -1,0 +1,9 @@
+(define search (lambda (n x)
+                 (let ( (i 0)))
+                   (if (empty? x)
+                    -1
+                    (if (equal? n (car x))
+                        0
+                     (let ((index (+ i 1)) (tail (cdr x))))
+                     (if (equal? n (search (n tail)))                       
+                       index)))))

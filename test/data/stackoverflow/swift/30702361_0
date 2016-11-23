@@ -1,0 +1,9 @@
+func register(requestObj: AnyObject, completion: (result: Int) -> ()){
+        Cycle.post("someURL",
+            requestObject: requestObj,
+            requestProcessors: [JSONProcessor()],
+            completionHandler: {(cycle, error) in
+                var status = cycle.response.statusCode!
+                completion(result: status)
+        })
+}

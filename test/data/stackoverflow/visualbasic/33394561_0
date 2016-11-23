@@ -1,0 +1,18 @@
+'Check if the file has any broken records
+        Dim reader As StreamReader = New StreamReader(fileDirectory)
+        Dim fileLine As String
+        Dim stopCheck As Boolean = False
+
+        Do While reader.Peek() > -1
+            fileLine = reader.ReadLine()
+
+           'If the line is not start with eCW| then it is a broken record
+            If Not fileLine.StartsWith("eCW|") Then
+                stopCheck = True
+                Exit Do
+            End If
+        Loop
+
+        reader.Close()
+
+        If stopCheck Then

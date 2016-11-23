@@ -1,0 +1,76 @@
+#include <functional>
+#include <utility>
+#include <sys/time.h>
+#include <signal.h>
+#include <time.h>
+#include <string.h>
+
+
+template<typename F>
+class Timer
+{
+    public:
+        struct sigaction SignalAction;
+        struct sigevent signalEvent;
+        struct itimerval   timer_ms;
+        timer_t timerID;
+
+        Timer(F callback, int milliseconds) : onTimeout(std::move(callback)) 
+        {
+            timer_ms.it_value.tv_sec    = milliseconds / 1000;
+            timer_ms.it_value.tv_usec   = ( milliseconds % 1000 ) / 1000;
+            timer_ms.it_interval.tv_sec = milliseconds / 1000;
+            timer_ms.it_interval.tv_usec = ( milliseconds % 1000 ) / 1000;
+
+            // Clear the sa_mask
+            sigemptyset(&this->SignalAction.sa_mask);
+            // set the SA_SIGINFO flag to use the extended signal-handler function
+            this->SignalAction.sa_flags = SA_SIGINFO;
+
+            // Define sigaction method
+            // This function will be called by the signal
+            this->SignalAction.sa_sigaction = Timer::alarmFunction;         
+
+            // Define sigEvent
+            // This information will be forwarded to the signal-handler function
+            memset(&this->signalEvent, 0, sizeof(this->signalEvent));
+            // With the SIGEV_SIGNAL flag we say that there is sigev_value
+            this->signalEvent.sigev_notify = SIGEV_SIGNAL;
+            // Now it's possible to give a pointer to the object
+            this->signalEvent.sigev_value.sival_ptr = (void*) this;
+            // Declare this signal as Alarm Signal
+            this->signalEvent.sigev_signo = SIGALRM;
+
+            // Install the Timer
+            timer_create(CLOCK_REALTIME, &this->signalEvent, &this->timerID);
+            sigaction(SIGALRM, &this->SignalAction, NULL);
+        }
+
+        void start()
+        {
+            // start the timer
+            //timer_settime(this->timerID, 0, &this->timerSpecs, NULL);
+            setitimer(ITIMER_REAL, &timer_ms, NULL);
+            return;
+        }
+
+
+        static void alarmFunction(int sigNumb, siginfo_t *si, void *uc)
+        {
+            // get the pointer out of the siginfo structure and asign it to a new pointer variable
+            Timer *ptrTimer = reinterpret_cast<Timer *> (si->si_value.sival_ptr);
+            // call the member function
+            ptrTimer->onTimeout();
+        }
+
+
+    private:
+        F onTimeout;
+};
+
+
+template<typename F>
+Timer<F> CreateTimer(int milliseconds, F callback)
+{
+    return Timer<F>(callback, milliseconds);
+}

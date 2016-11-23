@@ -1,0 +1,6 @@
+stat = DftiCreateDescriptor( desc_handle, DFTI_DOUBLE, DFTI_REAL, 1,256)
+stat = DftiSetValue(desc_handle, DFTI_CONJUGATE_EVEN_STORAGE, DFTI_COMPLEX_COMPLEX)
+
+stat = DftiSetValue(desc_handle, DFTI_PLACEMENT, DFTI_NOT_INPLACE)
+
+stat = DftiComputeBackward(desc_handle, X_in, M_out)

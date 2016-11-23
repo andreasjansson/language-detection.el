@@ -1,0 +1,14 @@
+$ jar tf lib/hiccup-1.0.0-beta1.jar 
+META-INF/MANIFEST.MF
+META-INF/maven/hiccup/hiccup/pom.xml
+META-INF/maven/hiccup/hiccup/pom.properties
+project.clj
+hiccup/compiler.clj
+hiccup/core.clj
+hiccup/def.clj
+hiccup/element.clj
+hiccup/form.clj
+hiccup/middleware.clj
+hiccup/page.clj
+hiccup/util.clj
+$

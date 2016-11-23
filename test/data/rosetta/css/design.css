@@ -1,0 +1,1152 @@
+/* ====================================================================================================================== */
+/* camendesign.com · cc-by3 © kroc camen · HTML5, no DIVs/SPANs, no IDs and no classes
+   ====================================================================================================================== */
+/* a note on browser support and how to follow this stylesheet:
+   CSS3 media queries are used to cleanly divide support for desktop browsers and iPhone, however there’s no real good
+   fallback for browsers that don’t support media queries. since there’s a number of CSS3 features used only available in
+   Firefox 3.5+ and Safari 4, I’ve decided to present browsers without media query support a lo-fi design, and the media
+   queries then build in the structure, colour and effects for supporting browsers
+   
+   a grid is used throughout, the site is 980px wide divided in 20px wide blocks. every line is 19px or a multiple thereof
+   19px is used because it also happens to be 5mm on a standard printout, meaning you can print this site on lined paper!
+   
+   kroccamen@gmail.com
+   ---------------------------------------------------------------------------------------------------------------------- */
+header, nav, footer, section,	/* blockify some HTML5 elements for browsers without a specific HTML5 parser */
+ aside, article, figure,
+ figcaption			{display: block;}
+
+@font-face 			/* the creative-commons logos are done using embedded fonts */
+				{font-family: "CC Icons";
+				 src: url("fonts/cc-icons.svgz#cc") format("svg"),
+				      url("fonts/cc-icons.ttf")     format("truetype");}
+
+/* these selection declarations have to be separate
+   no text-shadow: <twitter.com/miketaylr/status/12228805301> */
+::-moz-selection		{background-color: #aab; color: #eee; text-shadow: none;}
+::selection 			{background-color: #aab; color: #eee; text-shadow: none;}
+
+/* ---------------------------------------------------------------------------------------------------------------------- */
+/* this first section is shared between printers and browsers and defines very generic typographical and structural layout
+   suitable for all devices */
+html, body			{margin: 0 auto; text-align: justify;
+ 				 font: normal 12px/19px Verdana, sans-serif;}
+body				{/* force a scrollbar on the right for short pages. when clicking the next / previous
+				    article links the centre shifts about depending on page length and this is undesired */
+				 overflow-y: scroll;}
+
+p				{margin: 0 0 19px;}
+p+p, p+aside+p			{text-indent: 20px;}
+
+ul, ol				{margin: 0 0 19px; padding: 0;}
+ul ul, ol ol, ul ol, ol ul	{margin-left: 20px;}
+
+dl				{margin-bottom: 38px;}
+dt				{font-weight: bold;}
+dd				{margin: 0 0 19px 40px;}
+dt+dt				{/* when a definiton term `<dt>` is given without a definition `<dd>`,
+				    then space the two adjacent terms */
+				 margin-top: 19px;}
+
+a img				{border: none;}
+
+video,				/* non-inline images in articles: */
+ article>img, section>img,	/* (ReMarkable will not wrap an `<img>` in `<p>` if it’s the only element on the line) */
+      dd>img,      li>img	{display: block; margin: 0 auto 19px;}
+
+/* work around a centering bug in Gecko 1.9.0 ~ Firefox 3.0, Camino 2
+   said block images above just won’t center without some coercing */
+article				{text-align: center;}
+article>*			{text-align: justify;}
+section				{text-align: center;}
+section>*			{text-align: justify;}
+
+/* --- inline ----------------------------------------------------------------------------------------------------------- */
+abbr				{border: none;}
+dfn				{font-style: normal;}
+
+sup				{vertical-align: text-top;}	/* `<sup>` extends the line-height, don’t do this */
+sub				{vertical-align: baseline;}	/* and `<sub>` too */
+
+small				{vertical-align: top; font: 12px/19px Georgia, serif;}
+
+/* --- monospace -------------------------------------------------------------------------------------------------------- */
+samp, code			{/* `<samp>` does not align correctly with the baseline and increases line-height
+	 			    also, monospace fonts look too large in large text like title / quotes… */
+				 font-size: 75%; line-height: 0;}
+samp, code, pre			{font-family: Menlo, Monaco, Consolas, monospace;}
+section samp, section code,	/* …but too small in normal text */
+ figure samp,  figure code	{font-size: 90%;}
+
+pre				{margin-bottom: 19px; padding: 18px 0; border: 1px dotted #666;
+				 font-size: 75%; white-space: pre-wrap;}
+pre code			{font-size: 100%;}
+
+/* --- quotes ----------------------------------------------------------------------------------------------------------- */
+q				{font-style: italic;}
+
+blockquote			{position: relative; margin: 19px 40px 0px;
+				 font: 16px/19px Baskerville, Georgia, serif; color: #666;}
+blockquote:before,		/* large quotes, top and bottom */
+ blockquote:after		{display: block; height: 38px; overflow: hidden;
+				 font: 72px/76px "Baskerville Old Face", Georgia, serif;}
+blockquote:before		{content: "\201C"; margin-left: -40px; margin-bottom: -40px; line-height: 64px;}
+blockquote:after		{content: "\201D"; float: right; margin-top: -45px; margin-right: -40px;
+				 /* compatibility with Firefox 3.0 / Camino 2: */
+				 padding-left: 10px; margin-left: 100%;}
+
+blockquote>p+p			{text-indent: 0;}
+blockquote>cite			{display: block; margin-bottom: 19px; font-size: 13px;}
+blockquote>cite:last-child	{text-align: right;}
+
+/* --- typographical flourishes ----------------------------------------------------------------------------------------- */
+ins				{text-decoration: none;}
+ins:before			{content: "[";}
+ins:after			{content: "]";}
+
+/* drop cap */
+article>section:first-of-type
+ >p:first-of-type:first-letter,
+ hr+p:first-letter		{display: block; float: left; padding: 8px 2px 0 0;
+				 font: 40px/24px Baskerville, "Times New Roman", serif;}
+
+/* plush “et cetera” */
+/* Mac: try for a combined ‘e’ and ‘t’ style, Windows: try match Palatino’s style. “Constantia” is a Vista font */
+abbr[title="et cetera"]		{font-family: "Hoefler Text", Palatino, Constantia, "Palatino Linotype", cursive;
+				 font-style: italic; font-size: 1.2em; line-height: 0;}
+
+/* book like `<hr />` “thematic break”, i.e. “---------- ◆ ----------” */
+hr				{margin: 0 20% 55px; padding: 19px 0; line-height: 38px;
+				 border: none; border-bottom: 1px solid black; text-align: center;
+				 color: inherit; background-color: inherit;}
+hr:before			{content: "\25C6"; display: inline-block; float: left; position: relative; left: -8px;
+				 margin: 0 50%; padding: 0 4px; background-color: inherit; cursor: default;}
+section, figure			{/* required to get the diamond to inherit a background */
+				 background-color: white;}
+
+
+/* === headings ========================================================================================================= */
+h1				{font: 26px/38px "Century Gothic", sans-serif;
+				 /* this prevents an insane WebKit bug that makes H1s disappear when navigating */
+				 display: block !important;}
+h1, h2, h3, h4			{margin: 0 0 19px 0; text-align: left;}
+h2, h3				{/* use padding-top for headers so that clicking a bookmark link (`#id`) spaces the
+ 				    header from the top of the browser window */
+				 padding-top: 19px;}
+h2				{font: normal small-caps 19px/38px Georgia, serif; letter-spacing: 1px;}
+h4, h5, h6			{text-decoration: underline;}
+
+h1:empty			{/* don’t display the title if none given (semantically “untitled”) */
+				 display: none;}
+
+				/* title for link / poem pages */
+article>h1			{padding-top: 19px; margin-bottom: 19px;}
+article>h1+a			{display: block !important; margin-bottom: 19px; margin-top: -19px;}
+
+article>header+figure		/* the distinctive header in the photo / art categories */
+ >figcaption			{font: 26px/38px "Marker Felt", "Lucida Handwriting", cursive; text-align: center;}
+
+/* --- table of contents ------------------------------------------------------------------------------------------------ */
+/* use an `<ol>` as the very first element in the blog entry to generate an auto numbered table of contents,
+   numbers will be added to all the headings that have IDs */
+
+section>h1+ol, section>h1+ol ol	{margin-right: 0; list-style-type: none; font-family: Georgia,serif; 
+				 counter-reset: toc h2 h3;}
+section>h1+ol li:before		{/* add the numbering. `counters` is recursive,giving us “1.1”, “1.1.1” etc. */
+				 counter-increment: toc; content: counters(toc, ".") ". ";}
+
+section>h1+ol a			{text-decoration: none; color: inherit;}
+section>h1+ol a:hover		{text-decoration: underline;}
+
+/* on the right for articles */
+section>h1+ol			{float: right; margin-left: 20px; padding-left: 19px; border-left: 1px dotted #333;}
+
+/* --- heading auto-numbering ------------------------------------------------------------------------------------------- */
+/* shunt the first numbered heading below the TOC */
+section>h1+ol~h2[id]		{clear: right;}
+
+section>h2[id]			{counter-reset: h3;}
+section>h1+ol~h2[id]:before	{counter-increment: h2; content: counter(h2) ". ";}
+section>h1+ol~h3[id]:before	{counter-increment: h3; content: counter(h2) "." counter(h3) ". ";}
+
+
+/* === white space ====================================================================================================== */
+/* some typographical / vertical space adjustments for prettiness */
+
+/* if an image is first in an article, increase the space below,
+   e.g. <camendesign.com/code/uth7_floaty-abbrs> */
+section>h1+img			{margin-bottom: 38px;}
+
+/* don’t double-space with headings */
+h1+h2, h2+h3, hr+h2, hr+h3,
+ dl+h2, dl+h3, img+h2, img+h3	{padding-top: 0;}
+
+/* odd spacing cases with `<hr />` */
+dl+hr				{margin-top: -19px;}
+
+/* nowhere else to put this really…
+   minimise space in figures, the figure frame is already there */
+article>header+figure>figcaption:first-child:not(:empty)
+				{margin: 0 0 19px 0 !important;}
+article>header+figure>figcaption:last-child:not(:empty)
+				{margin: 19px 0 0 0;}
+
+/* when using more than one section, space between them */
+article>section:not(:last-child){margin-bottom: 20px;}
+
+
+/* ====================================================================================================================== */
+/* / / printing / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / */
+/* ====================================================================================================================== */
+/* strictly printer-only overrides and features since much of the default style is allowed as fallback to el-cheapo
+   browsers that don’t support CSS3 media queries */
+/* ---------------------------------------------------------------------------------------------------------------------- */
+/* CSS printing is basically a joke. support has languised for 10 years, nobody cares about it, and we can’t even begin to
+   attain parity with real print like footnotes, endnotes, table of contents—with real page numbers &c.
+   Microsoft, Mozilla, Google, Opera—you all suck for this and you should be ashamed */
+@media print {
+
+/* stuff not needed in the printout, basically anything that isn’t content */
+header, footer			{display: none;}
+
+/* avoid a header right at the bottom of the page */
+h2, h3, h4			{page-break-after: avoid;}
+
+/* add the URL after a hyperlink */
+a				{text-decoration: none; color: inherit;}
+a:not([href^="#"]):before	{content: "<"; font: 90% Georgia, sans-serif; color: #666;}
+a:not([href^="#"]):after	{content: " " attr(href) ">"; font: 90% Georgia, sans-serif; color: #666;
+				 /* allow the long URLs to break anywhere */
+				 word-wrap: break-word; white-space: pre;}
+a[href^="/"]:after		{/* prefix relative URLs with absolute location  */
+				 content: " http://camendesign.com" attr(href) ">";}
+figure a:before, 		/* don’t do this on the photo / art images */
+ figure a:after			{content: "";}
+
+/* the long hyperlink URLs wreak havoc with justified text */
+article>*, section>*		{text-align: left;}
+
+/* don’t split images over pages, duh
+   very little browser support for this */
+img				{page-break-inside: avoid;}
+
+
+
+}
+/* ====================================================================================================================== */
+/* / / all browsers (lo-fi) / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / */
+/* ====================================================================================================================== */
+/* these are visual styles shared by all browsers (including iPhone), but primarily designed to enhance the default
+   raw style into a basic, but usable interface for browsers that do not support full CSS3 media queries (Firefox 3.0) */
+@media screen, projection {
+
+html				{width: 980px; padding-top: 19px;}
+body				{width: 720px; margin: 0 0 0 120px;}
+
+img				{/* style the alt text, so if an image fails or is slow to load, at least this looks good */
+				 font-size: 11px; color: #888;}
+
+pre				{margin-left: -40px; margin-right: -40px; padding-left: 40px;
+				 background-color: #eee;}
+dd pre, dd li pre,
+ blockquote>pre			{margin-left: -80px; padding-left: 80px;}
+blockquote>pre			{margin-right: -80px;}
+section>h1+pre			{margin-top: -19px;}
+
+/* display the bookmark anchor after a heading */
+h2[id]:hover:after,		/* due to a 10-year-old bug (!) in Gecko, you can’t select this text */
+ h3[id]:hover:after		{display: inline; content: " #" attr(id); color: #888; font-variant: normal;}
+
+/* clicking a link to a footnote, highlights that item */
+dt[id]:target, li[id]:target	{color: #c72; text-shadow: #ddd 0 -1px 0, white 0 1px 0;}
+
+/* --- fixed-footer ----------------------------------------------------------------------------------------------------- */
+/* the site uses a simple (yet very complex to decipher) fixed-footer (the area with the view-source links and search)
+   the footer appears at the bottom of the window if the content is short, but after the content if it’s longer
+   this is done by first forcing the body to stretch to the screen height (not default behaviour) and then forcing the
+   `<article>` to be at least screen height too. switching to a box-model that doesn’t include the padding, we can then
+   exclude the height of the footer from ‘100%’ so that it sits at the bottom of the window */
+html, body			{height: 100%;
+				 -webkit-box-sizing: border-box;
+				    -moz-box-sizing: border-box;
+				         box-sizing: border-box;}
+
+/* the lo-fi style doesn’t use a float for the cite, so the extra margin everybody else uses is not required */
+blockquote			{margin-bottom: 19px;}
+
+/* === all : links ====================================================================================================== */
+/* the link underline is not a typographical emphasis, it is a functional designation
+   due to the hyperlink, the typographical underline has died out, and that’s a bad thing */
+a				{text-decoration: none;}
+a:hover				{text-decoration: underline;}
+
+/* direct links to files will be preceeded by a file-type icon,
+   (ReMarkable automatically inserts the mime-types for links to file types it knows) */
+a[type]:before			{content: ""; display: inline-block; width: 16px; height: 16px; margin-right: 4px;
+				 text-indent: 0; line-height: 13px; vertical-align: text-top;
+				 /* document16.png: */ background: url("data:image/png;base64,\
+				 iVBORw0KGgoAAAANSUhEUgAAAAwAAAAQCAMAAAAVv241AAAAflBMVEUAMjEAOTcAOTcAOjhBdnZNd3dEeXlSf39Tf3\
+				 9MgIBOgoJPg4NRhoZSh4dTiIhajIxikJBnkpKrr6/5+/v8/v76/f39/v74+/v1+vrw+Pjs9vbl8vLc6enz+fnr9fXp\
+				 9PTm8/P2+vrj8fHi8PDg7u7e7Ozv9/f0+vrIy8u8w8NRIu5QAAAAE3RSTlNwh4aDdTVxNzdubWxqaGE5TmL1wJWMoQ\
+				 AAAIxJREFUeF4tytcWgjAURNERAoqCCje10Iv6/z9oCMzbXmfwrs9dswx1u1nrnPvWtwyVsP28eP8TzxcqbbZ+Wn3T\
+				 NAylCr8uyM8l7qI1xvTz6t0DhdA6aJiWoUDOVVS32DyAorpuy8GISI17MwzsI0nE1gYQJxmbDhilPHTglGJI5T7OuV\
+				 ApkCbJJS7BH93rD5yVA4MPAAAAAElFTkSuQmCC") no-repeat 3px center;}
+
+/* the file type icons:		Fugue © Yusuke Kamiyamane cc-by3 <pinvoke.com>*/
+a[type$="/plain"]:before	{/* txt16.png: */background: url("data:image/png;base64,\
+				 iVBORw0KGgoAAAANSUhEUgAAAAwAAAAQCAMAAAAVv241AAAAsVBMVEUAMjEAOTcAOTcAOjhBdnZNd3dEeXlHfHxSf3\
+				 9Tf39MgIBOgoJRhoZSh4dajIxikJBnkpKvuLj9/v75/f34/Pz2+/vz+vrm9PTb7Ou8zMzw+Pju+Pj8/v7h8fHg8PDg\
+				 8O/7/v7Z6urY6unX6ejS4+PO4ODM3t7D1NTC1NPA0tG/0NC9zs3y+vnj8vLK3NzJ29rH2dnE1dXp9fXf7+/d7u3W5+\
+				 fd7e3c7e3o9fXB0tK2wcFvnUtFAAAAEnRSTlNwh4aDdTVxcDc3bm1qaDlOYvkoG/NAAAAApklEQVR4Xi3KV3bCMBSE\
+				 4RtbBmIDkdXl3ju9Jdn/wrCA/+07M/CDP60cB7AIQyl3UuOtAxse/MZ3lf9z/G1wDu4X5fs+gjUf9L6Pr6rcrcGjKs\
+				 +L8/yUHrh0qMdR6+MgXVhE14dSRVne5HJG9zdv+0MXLgCxS/p4bQIBmtqq7evm1BiwOElSLkTADdpTdaBsYpMBISRj\
+				 2SwENjFFUUSpDWBb1tc7eAIgJBLlQokGtgAAAABJRU5ErkJggg==") no-repeat 3px center;}
+a[type$="/png"]:before,
+ a[type$="/jpeg"]:before,
+ a[type$="/gif"]:before		{/* png16.png: */ background: url("data:image/png;base64,\
+				 iVBORw0KGgoAAAANSUhEUgAAABAAAAAMCAMAAABcOc2zAAAA2FBMVEUAODcAOTgAPTwDZW09dHQ/dXRCd3ZEeHhIfH\
+				 tLgIBOg4NPhIRSh4dUiYlWjI5WjpQ8mf49mfw8mf70+/3l8/2bx+iUweVChL33/P7g7/za7PzZ6/y83//B3vy+3v6y\
+				 1fihyuzx+f3v+PyOveCGuN5+s9p1rNhyqdZinc5bl8pPjsNEhb1Chb3n9PwAY2zT6Pz9/v/D3v7C3v3j8f1nodH7/v\
+				 +63P3e7vyw0/Xs9/z8/v/W6fwAY2mmze76/f7r9vy42fy32Pu11vno9fwBZGzI4f+pz/AoVFWqliLMAAAAE3RSTlN2\
+				 eYb3d3dycG1qaGdkYWNq/vv94hlKGwAAAKBJREFUeF5VwtdygkAYQOFfXAwkiMA2eu/N3k1v7/9GjjNeyHcOTFV1du\
+				 v+FNTFgArKQtMMQ9f0PGdfwUmBl22espCxMGSflnN6BvktOSxX/tn/2P3axJRBwm2T2La1d8iaRFiCp+gy/k+pN7e7\
+				 79jEExDff/q+bZuqLDLqxSIgi/OmLouUvQaue0SAOs55XW3yLKX0jyAQcPfgKAAIA6MrU9AWjjlIjBgAAAAASUVORK\
+				 5CYII=") no-repeat 0 center;}
+a[type$="/zip"]:before		{/* zip16.png: */ background: url("data:image/png;base64,\
+				 iVBORw0KGgoAAAANSUhEUgAAAAwAAAAQCAMAAAAVv241AAAAq1BMVEUCHR0AHx9FenoANDMAOTcAODcANTMAOTcAOT\
+				 hBdnZDeHhNeHgAMTBHe3tSfn5Lf39Uf39NgYFQhIRSh4dTh4dUiIhhjo5pkpJulJSoqampqqrv9/eIiIj5/Pz4+/v0\
+				 +vry+fn9/v7o9PTe6urIycn6/f38/v7n8/Pl8fH3+/v2+/vFx8fu9/fr9fXd5+fR1dTJysrz+vri7++8wsKwsLDg7O\
+				 yrq6uqqqrx+fn9YvJ3AAAAG3RSTlObjnB1h4aHhYN0cjdwbzlsPGtnYV5bSmFr+/26i/tIAAAApElEQVR4Xh3J13qC\
+				 QBBA4ZGQREQhilh2ZmuhW0uS938yF87d/x3Y7YtDNIv2ZZamsPX/A+uP9bXIAjo07kL24csf2PgB+zNZ9mRJACpn6G\
+				 5tXcDa35Rj1Lxss4bcS/lnyTTW5BBVnezpF093swrgQjpCPA0LSFrdOpIK8ZZAIjXnPQk1gXPtiEupRrRa80liQjia\
+				 ixFzrSdVXsxhGYfg6/szjj/eBGgVNurEtdYAAAAASUVORK5CYII=") no-repeat 3px center;}
+a[type="/pdf"]:before		{/* pdf16.png: */ background: url("data:image/png;base64,\
+				 iVBORw0KGgoAAAANSUhEUgAAAA4AAAAQCAMAAAARSr4IAAAA51BMVEW2AAC6AAC9AADYAADlAADwAAAAAAC3KzkAOT\
+				 gAOjgAOzoISEUbWVcgXls/ZmQuaGczbGs3b245cXBEe3pNfn1Ifn1MgoFPhIRSh4f9/v7w+Pju+Pjn9PTe7OzweH34\
+				 AADxAADUAAD6/f33/PyxsK/1+/vtAAX+///7/v7q9vbMAADJAADGAADr9/eur67gpqj5/f3OGSzqAQ7rAQrtAAbp9v\
+				 XwAAL0+vr1AADj8PDi7+/RAADt+Pfh4eHV09Po9fX2/Pzi5eXrmp3pjI/zAADshIfvfoLSAADl8vLz+vrKAADY0dHY\
+				 y8z7r/NvAAAAGXRSTlP4+/364fsA/IiCfIB7ej12dHNybVRraGVkwhc2CQAAAL5JREFUeF41ztdWwlAQQNHhikHBAB\
+				 rU3FrSG71Xe/f/v8dxLThv++2A4/T8Y23HQfppzPu5EAc01GdJoo2xLzJK/Taca+zfMhpEV2BetaaTBCnl5h6M0eO9\
+				 Wlm7lvLzDs5WRqnfxnQhNlLcgjVqP/yZvy9Evs49+LBPz2pWfRO2e+AeFMV2W5RVSTjbfd1AHSpCSK32xhmLr/GqS+\
+				 koC8PlksVdZCc9+bGDdEf06NBFtlKMZjQLghayeXlxqvkHSr0bYebzVBYAAAAASUVORK5CYII=")
+				 no-repeat 0 center;}
+a[type$="-php"]:before		{/* todo */}
+a[type$="/css"]:before		{/* todo */}
+
+
+/* === all :  header ==================================================================================================== */
+/* the site header, containing the logo, category links and next /prev buttons:
+   it might look like a footer, but the content is header stuff and it’s a header in the HTML; where it appears on screen
+   and how it looks is not relevant to its semantic meaning and that’s why CSS is so good */
+
+/* some definitions that _are_ shared across all browsers, including the good ones */
+body>header			{font: 13px/19px "Euphemia UCAS", "Trebuchet MS", sans-serif;}
+body>header h1 a		{display: block; padding: 19px 20px; text-indent: -9999px;}
+body>header ul			{list-style-type: none;}
+body>header ul+ul+ul		{display: block; font-size: 11px;}
+body>header a[rel=next],
+ body>header a[rel=previous]	{display: block; width: 120px; text-align: right;}
+
+/* lo-fi header:
+   the definitions here are for browsers that don’t support CSS3 media queries, and we layout a low-tech header
+   see the desktop section further down for the proper layout (which is why this is so compact and uncommented) */
+/* ---------------------------------------------------------------------------------------------------------------------- */
+body>header			{position: relative; margin: 0 -140px 0 -120px; border-bottom: 1px solid black;}
+body>header h1			{position: absolute;}
+body>header h1 a		{width: 65px; height: 26px;
+				 /* cameneye-ink(c)kroccamen.png: */ background: url("data:image/png;base64,\
+				 iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAMAAACdt4HsAAABUFBMVEUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA\
+				 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA\
+				 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA\
+				 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA\
+				 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA\
+				 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAkPYu0AAAAb3RSTlMAAQIDBAUGCAsMDhARFBYZ\
+				 HB4hIiUoKi0uMDY6PD5BQ0VJTlFUVldZXF9hZWhpbG5yd4OFjY+SlpqdnqCjpqmtsrW4u73Aw8XHycvNz9HT1NbY2d\
+				 vc3eDj5Obn6uzt7u/w8fLz9PX29/j5+vv8/f4K7rMJAAACuElEQVR42qXV7VcSQRQH4N8Kgm0YIoKoIUmSiokQiogJ\
+				 mGKQgqVRWOTLipZie///bx3Es87O7Lp25vnIHC537ssAZ0NqKDIxl+xbmJwIqW78h2ih2mhrmk73Olq7Uc7Nh1U483\
+				 oBX4Ws6O3aWtyHx7jHlnfWXEBSIxvXe9lxBTb8c6Vj/XJlAHAtaWSrlXkOKyPpRpdIz3gBhwi3mxCpc/W7kh2MAI4R\
+				 yuC5Zndu+nVKGx8tX5OdHDi+bIf6jgIPk7BOdhZhNr51axU7UCNrv2Pm9BOHxtHlNBjTxzZtCMLAVWtXBUNZ1cnKpp\
+				 ud+WW22tkBsMItstB9zXZv7Q97FIeJktNJdOBnv98VLseKXRFDTNOV1YlVV/nhbpKgFVb4+hmqQ/xylcU5zsCQ4Kd1\
+				 QwGnQLzKwyZFm+QYIEuc8xnjLFglXk0FJ0lmes5jNKBIgnaYTyFFZttGC5VMlwT6PMyU92RSDzkMWXEQJuo+sX68ch\
+				 rz86gCVvgXMbS3ipCAmIJ9Db8lXXx7RJcJMNwlevA1xj6gDbJRZ9dhjMmzMqlwqdnIM5dI/zUyywfAKulEzpcIHlCf\
+				 /nHWw63pEfHEu7pWqe9kZRi82JdHItzfNnreb20xyr5T4kssqtwV0r9/9+vFqAeWfOlP12RjpxdhsVfBnzMe2PLFN1\
+				 tkbcsHTJ32no+40795uWV1lZME4Ckz+2nPPTpbO+ucXmh97UZ9r5hPvewlnudeCFvB7cNE5F5IVZ8pzFuwjqd4EeDz\
+				 NMY1BQnxG+rGISGikRaBhPEzyQDDnyUDqPuSAdxlyQDIU2cKMlJEC5DxRqckZEycSQZQdymjQMYGFSBjqEp5SE5SSj\
+				 IDySJ6K7Jd2JMcJKV4MQW5bZJcJn/zQi5A7EpyG7NES5BRICoNSgZo+iEhQ/R9VOo9+FB/B0v/AOIoJdD5O1eAAAAA\
+				 AElFTkSuQmCC") no-repeat 20px 0;}
+body>header nav			{padding: 0 0 38px 120px;}
+body>header ul, body>header li	{float: left; margin: 0;}
+body>header li			{padding-right: 10px;}
+body>header ul+ul		{position: absolute; margin-left: 140px;}
+body>header ul+ul+ul		{position: static; float: none; clear: left; margin-left: 140px;}
+body>header a[rel=next],	/* ‘next / previous article’ links */
+ body>header a[rel=previous]	{position: absolute; top: 19px; right: 0; padding: 0 20px 19px; text-align: right;}
+body>header a[rel=next]		{top: -19px; padding: 19px 20px 0; text-align: left;}
+
+
+/* === all : article ==================================================================================================== */
+article				{padding: 18px 19px 19px; border: 1px dotted #333; border-width: 0 1px;}
+
+/* text and everything gets indented so that blockquotes, figures and block images can overhang nicely */
+article>*			{margin-left: 20px; margin-right: 20px;}
+
+/* the article meta information in the column to the left */
+article>header			{float: left; width: 120px; margin-left: -140px;
+				 font: 12px/19px "Euphemia UCAS", "Trebuchet MS", sans-serif;}
+article>header>*		{display: block; padding: 18px 20px 19px 0; margin: 0;
+				 border-top: 1px dotted #333;}
+article>header>:first-child	/* dotted line between blocks (excluding above the first item) */
+				{border-top: none !important; padding-top: 0 !important;}
+
+/* --- meta: time ------------------------------------------------------------------------------------------------------- */
+article>header time		{font: 26px/38px "Century Gothic", sans-serif; text-transform: uppercase; text-align: right;}
+article>header time sup		{display: block; font-size: 12px; line-height: 19px;}
+article>header time sup abbr	{/* not all browsers / platforms render a hair-space >:[ */
+				 padding-left: 1px;}
+
+/* --- meta: tags ------------------------------------------------------------------------------------------------------- */
+article>header li		{display: block; height: 19px; text-align: right; line-height: 17px;}
+article>header li a:after	{display: inline-block; width: 10px; margin-left: 10px; text-align: center;
+				 content: "\2022"; font-family: Verdana, sans-serif;}
+article>header ul		/* first tag is the type, the permalink */
+ >li:first-child a:after	{content: "\2605"; font-size: 11px;}
+
+/* --- meta: licence ---------------------------------------------------------------------------------------------------- */
+article>header small		{font: inherit; text-align: center;}
+
+article>header small		/* large copyright sign */
+ abbr[title="copyright"]	{display: block; padding-top: 15px;
+				 font: 138px/100px Trebuchet, sans-serif;}
+
+article>header small		/* creative-commons logos */
+ a[rel~=license]		{display: block; width: 100px; height: 114px; text-indent: -9999px;
+				 background: url("icons/cc.png") no-repeat;}
+
+/* --- meta: enclosure -------------------------------------------------------------------------------------------------- */
+/* this inherits from the link decs higher up that add an icon to the left of `a[type]` */
+
+/* file name, size */
+article>header>a		{display: block; text-align: center; word-wrap: break-word; font-size: 11px;}
+article>header>a+a		{padding-top: 0; border-top: none;}
+article>header>a>em		{display: block; font-size: 10px;}
+
+/* large file icon positioning */
+header>a[type]:before		{content: ""; display: block; width: 128px; height: 128px; margin: 0 -14px;
+				 background: url("icons/document.png") no-repeat;}
+
+/* the large enclosure icons:	MINIUMº  © RAD.E8 DESIGN <rad-e8.com>
+ 				DOCUNIUM © Cyril Seillet <rimshotdesign.com> */
+header>a[type$="/plain"]:before	{background-image: url("icons/txt.png");}
+header>a[type$="/png"]:before	{background-image: url("icons/png.png");}
+header>a[type$="/jpeg"]:before	{background-image: url("icons/jpg.png");}
+header>a[type$="/zip"]:before	{background-image: url("icons/zip.png");}
+header>a[type$="-php"]:before	{background-image: url("icons/php.png");}
+header>a[type$="/css"]:before	{background-image: url("icons/css.png");}
+header>a[type$="/pdf"]:before	{background-image: url("icons/pdf.png");}
+header>a[type$="/mpeg"]:before	{background-image: url("icons/mp3.png");}
+
+/* === all : section ==================================================================================================== */
+/* `<section>` is used on this site as the piece of paper in the middle for blog-like content */
+
+section>header			{margin-bottom: 19px; text-align: right; color: #888;}
+section>header+h2		{padding-top: 0;}
+
+section h1			{margin: 0 -40px 19px; padding: 19px 40px;}
+
+/* side text that appears outside of the paper in the right hand column */
+aside				{position: absolute; width: 120px; margin-left: 700px; font-size: 10px; text-align: left;}
+aside>p				{text-indent: 0;}
+dd aside			{margin-left: 660px;}
+
+/* block images in articles */
+video,
+ section>img:not([width="640"]),
+      li>img:not([width="640"]),
+      dd>img:not([width="600"])	{border-width: 19px 20px; border-style: solid; border-color: #eee;
+				 background-color: #eee;}
+video				{border: none;}
+
+
+/* === all : figure ===================================================================================================== */
+/* the picture frame for photo / art sections. whilst I prefer `<legend>` in `<figure>` the spec changed due to the severe
+   issues with `<legend>` in current browsers
+*/
+figure, article>img		{display: inline-block; max-width: 640px; margin: 0 auto; padding: 18px 19px;
+				 background-color: #eee;}
+figure img			{/* block images have a bottom margin which is already provided by figure ^ */
+				 display: block; margin-bottom: 0 !important; border: none !important;
+				 -webkit-box-shadow: none !important;
+				    -moz-box-shadow: none !important;
+				         box-shadow: none !important;}
+figure:not(:last-child),	/* don’t add an unessecary line between a figure and the footer */
+ article>img:not(:last-child)	{margin-bottom: 19px;}
+
+figure				{margin-left: -20px; margin-right: -20px;}
+
+article>header+figure>figcaption{color: black; text-shadow: white 0 1px 0;}
+figure a[type]:before		{/* remove the file type icon added to all links with a `type` attribute */
+				 content: ""; display: none;}
+
+/* the figure’s legend (one line shared across two) */
+figcaption:not(:empty)		{margin-top: 8px; margin-bottom: -8px; text-align: right; color: #888;
+				 font-family: Georgia; font-weight: normal; font-style: italic;}
+figcaption a			{color: inherit; text-decoration: underline;}
+figcaption a:hover		{color: #666;}
+
+
+/* === all : footer ===================================================================================================== */
+/* the fixed-footer, at the bottom of the content, containing view-source links and search */
+
+body>footer			{display: table; width: 720px; height: 38px; padding: 56px 120px 0;
+				 margin-left: -120px; border-top: 1px solid black; font-size: 11px;}
+body>footer>*			{display: table-cell;}
+body>footer>a			{text-align: right;}
+body>footer>nav			{text-align: center;}
+body>footer>nav>a		{margin: 0 5px; text-transform: lowercase;}
+body>footer>form		{text-align: left;}
+body>footer>nav:first-child	{display: table-caption; margin-bottom: -57px; padding: 19px 0;
+				 text-align: center;}
+
+/* --- search box ------------------------------------------------------------------------------------------------------- */
+/* `<input type="search">` is weird. Apple were the first to implement it in Safari; it inserts a rounded typical Mac-like
+   search control. Safari ignores a background image, and some browsers leave out the background colour entirely (Chrome) */
+footer input[type=search]	{display: inline-block; width: 130px; margin: 0; padding: 4px 10px 3px 20px;
+				 border: none; -moz-border-radius: 10px; -moz-box-shadow: inset 0 1px 2px rgba(0,0,0,.7);
+				 font: 11px "Lucida Grande", sans-serif;
+				 /* search.png: */ background: #ddd url("data:image/png;base64,\
+				 iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAMAAABhq6zVAAAARVBMVEUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA\
+				 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADc6ur3AAAAF3RSTlMAAQIDBAUGFyI6SFFv\
+				 goWQkpSfoKGio4AL660AAABaSURBVHheXY1HEoAgFEMD+GmforT7H1VYoI5vlzIJQC7kHJzGhLgtCmsBuH6ytXwVR0\
+				 CYnhTEIwggNwtA2JrpK/61PdD98Uz3kQz2qU8jLiUVkVImjoiNMLHeotgFJ/aIIRcAAAAASUVORK5CYII=")
+				 no-repeat 5px 5px;}
+footer input[type=search]:focus	{/* replicate the glow around the focused textbox */
+				 -webkit-box-shadow: 0 0 3px 3px -webkit-focus-ring-color;
+				    -moz-box-shadow: 0 0 3px 3px -moz-mac-focusring, inset 0 1px 2px rgba(0,0,0,.7);
+				 background-color: #eee;}
+
+/* submit button inside the search field */
+footer input[type=submit]	{display: none; width: 19px; height: 19px; cursor: pointer;
+				 margin: 0 0 0 -23px; padding: 0; border: none; text-indent: -9999px;
+				 /* go.png: */ background: url("data:image/png;base64,\
+				 iVBORw0KGgoAAAANSUhEUgAAAA0AAAANCAMAAABFNRROAAAASFBMVEUAAAA9HgBBIAD9cAD/dAP/dQX/dQX/dQX/dA\
+				 X/dAX/dAX/dgX/dgX/fAr/ewn/fQv+gA7ksn35jyX////03sf+/v7lsnv23sa7baTDAAAADXRSTlMAGCFdkJ/2+fr7\
+				 /NLbqJDi2wAAAGlJREFUeF5VTtsWgzAIYxaqs02ousv//+nAHR8ML4QQiASKtWe3IolJZzBq1imYOnGCGmuVzmNLuh\
+				 SxQfr3/UnRpIEeNFU2WTgA7K9jH6zSgeEMzcF++bbTlzeB/8213P9dWcBVH3LP+QN9IAb/TXCVCgAAAABJRU5ErkJg\
+				 gg==") no-repeat 0 4px;}
+
+/* hover / focus effects */
+input[type=submit]:hover,  input[type=search]:focus+input,
+ input[type=submit]:focus, input[type=search]:hover+input
+				{display: inline-block;}
+input[type=submit]:hover,  input[type=submit]:focus
+				{/* gos.png: */ background: url("data:image/png;base64,\
+				 iVBORw0KGgoAAAANSUhEUgAAAA0AAAANCAMAAABFNRROAAAAVFBMVEUAAAA+FQDwTgDwTgDwTgDtTgDqTwDwUADwUQ\
+				 DwUQDwUQDwUQDgUQDvUgDvUwDvUwDvUgDvVQDvVADw8O/tVQDt3Mzt28rt28ngo2vv7+7v7uzt3c3pZ0kxAAAAEXRS\
+				 TlMAIeTg1q6N9fv6+fZh/P3+/fUbhzIAAABkSURBVHheVY5HFoAwCERJlFjShNi9/z0FyyKzAP6jDYgCNp3FACrjPC\
+				 WK5J0RcoleZSdjfiY6dsUYAL3k7VTMCE2kH3MLI8+KV5EwgH16S5Ee23dv/fbqm/U/9dIzSz2Jl9rnDfeTCF6HAK3W\
+				 AAAAAElFTkSuQmCC") no-repeat 0 4px;}
+
+/* === all : directory ================================================================================================== */
+body>ol				{padding-bottom: 120px;}
+body>ol>li			{display: inline-block; width: 140px; height: 180px;
+				 text-align: center; vertical-align: top;}
+
+body>ol>li>a			{text-decoration: none !important; word-wrap: break-word;
+				 background: none !important;}
+
+body>ol>li>a>img		{display: block;}
+body>ol>li>a:not([type]):before,
+ body>ol>li>a[type]:before	{content: ""; display: inline-block; margin-right: 0;
+				 text-indent: 0; line-height: 13px; vertical-align: top; background: none;}
+/*
+body>ol>li>a:not([type]):before,
+ body>ol>li>a[type]:before	{content: ""; display: inline-block; width: 140px; height: 140px; margin-right: 0;
+				 text-indent: 0; line-height: 13px; vertical-align: top;
+				 background: url("icons/document.png") no-repeat center center;}
+*/
+/* the large file-type icons:	MINIUMº, MINIUM² © RAD.E8 DESIGN <rad-e8.com>
+ 				DOCUNIUM © Cyril Seillet <rimshotdesign.com> */
+/*body>ol>li>a:not([type]):before		{background-image: url("icons/folder.png");}
+body>ol>li:first-child>a:not([type]):before
+					{background-image: url("icons/parent.png");}
+body>ol>li>a[type$="/html"]:before	{background-image: url("icons/html.png");}
+body>ol>li>a[type$="/plain"]:before	{background-image: url("icons/txt.png");}
+body>ol>li>a[type$="/remarkable"]:before{background-image: url("icons/rem.png");}
+body>ol>li>a[type$="/png"]:before	{background-image: url("icons/png.png");}
+body>ol>li>a[type$="/jpeg"]:before	{background-image: url("icons/jpg.png");}
+body>ol>li>a[type$="/zip"]:before	{background-image: url("icons/zip.png");}
+body>ol>li>a[type$="-php"]:before	{background-image: url("icons/php.png");}
+body>ol>li>a[type$="/css"]:before	{background-image: url("icons/css.png");}
+body>ol>li>a[type$="/javascript"]:before{background-image: url("icons/js.png");}
+body>ol>li>a[type$="/x-sh"]:before	{background-image: url("icons/sh.png");}
+body>ol>li>a[type$="/pdf"]:before	{background-image: url("icons/pdf.png");}
+body>ol>li>a[type$="/mpeg"]:before	{background-image: url("icons/mp3.png");}
+body>ol>li>a[type$="/ogg"]:before	{background-image: url("icons/ogg.png");}
+body>ol>li>a[type$="/ttf"]:before,
+ body>ol>li>a[type$="/otf"]:before,
+ body>ol>li>a[type$="/x-woff"]:before	{background-image: url("icons/font.png");}*/
+
+}
+/* ====================================================================================================================== */
+/* / / desktop browsers / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / */
+/* ====================================================================================================================== */
+/* this is the main design used by desktop web-browsers (mainly Firefox 3.5+, Safari 4 / Chrome 3+), excludes the iPhone
+   these styles are in additon to (and sometimes override) the ones above in the all-browser’s lo-fi secton */
+@media screen and (min-device-width: 480px) {
+
+html				{/* adjustment for the fixed-footer
+				    (excludes this much from the 100% height of the article) */
+				 padding-bottom: 171px;
+				 /* the ‘shadow’ on the background coming from the fixed header at the bottom of the screen
+				    a real shadow, whilst better simply kills the CPU so we replicate with a CSS gradient */
+				 background: -webkit-gradient(linear,0 100%,0 0,color-stop(.4,#b4691e),color-stop(1,#c72))
+				             fixed no-repeat 0 100%;
+				 background: -moz-linear-gradient(bottom,#b4691e 40%,#c72)
+				             fixed no-repeat 0 100%;
+				 -moz-background-size: 100% 240px;
+				      background-size: 100% 240px;
+				 /* fix for Firefox 3.5 which doesn’t support the gradient */
+				 background-color: #c72;}
+
+body, aside			{/* orange areas have an engraved text effect*/
+				 color: #431; text-shadow: #b61 0 -1px 0, rgba(255,255,255,.2) 0 1px 0;}
+
+/* abbr underlines: when you hover over a paragraph of text, underline abbreviations that have descriptions
+   ---------------------------------------------------------------------------------------------------------------------- */
+/* abbreviations are mostly for screen readers / Google’s benefit and litering the page with dotted underlines is ugly.
+   instead, what I do is only show the dotted underline when you mouse over the containing paragraph of text. unfortunately
+   this is not easy to do as there are a variety of elements that would class as a block of text, and the abbreviation could
+   appear at varying depths; inside a hyperlink or cite or within list items which may or may not contain paragrahs */
+
+/* begin with the basics; abbreviations in items that do not contain other nested blocks */
+p:hover abbr[title], dt:hover abbr[title],
+/* for the following we are covering two particulars: abbreviations directly within the element, i.e. `dd>abbr`, but also
+   abbreviations that fall within non-block elements such as hyperlinks or cites &c., i.e. `dd>em>abbr`; we have to use
+   `:not(…)` to prevent highlighting all abbreviations at all levels within nested blocks, e.g. `dd:hover>ul>li>p>abbr` */
+ dd:hover   >abbr[title], dd:hover   >:not(p):not(dl):not(ul):not(ol):not(blockquote) abbr[title],
+ li:hover   >abbr[title], li:hover   >:not(p):not(dl):not(ul):not(ol):not(blockquote) abbr[title],
+/* generally speaking, bullet lists that do not contain paragraphs for each item are short and tightly spaced;
+   for simplicity, hovering over these kinds of lists will highlight all of the abbreviations in the list */
+ ul:hover>li>abbr[title], ul:hover>li>:not(p):not(dl):not(ul):not(ol):not(blockquote) abbr[title],
+ ol:hover>li>abbr[title], ol:hover>li>:not(p):not(dl):not(ul):not(ol):not(blockquote) abbr[title],
+/* --- and again, for `<dfn>`! */
+ p:hover dfn[title], dt:hover dfn[title],
+ dd:hover   >dfn[title], dd:hover   >:not(p):not(dl):not(ul):not(ol):not(blockquote) dfn[title],
+ li:hover   >dfn[title], li:hover   >:not(p):not(dl):not(ul):not(ol):not(blockquote) dfn[title],
+ ul:hover>li>dfn[title], ul:hover>li>:not(p):not(dl):not(ul):not(ol):not(blockquote) dfn[title],
+ ol:hover>li>dfn[title], ol:hover>li>:not(p):not(dl):not(ul):not(ol):not(blockquote) dfn[title]
+				{border-bottom: 1px dotted #666; cursor: help;}
+
+
+/* floaty abbrreviations: <camendesign.com/code/uth7_floaty-abbrs>
+   ---------------------------------------------------------------------------------------------------------------------- */
+/* for some reason this doesn’t select at all in WebKit! */
+
+section abbr[title]:hover,	/* the abbreviation itself: */
+ figure abbr[title]:hover	{display: inline-block; position: relative; margin: -2px -6px; padding: 1px 5px;
+				 border: 1px solid #aab !important; /* dotted underline previals otherwise */
+				         border-radius: 0 12px 12px 0;
+				    -moz-border-radius: 0 12px 12px 0;
+				    -moz-box-shadow: 0 2px 0 rgba(0,0,0,.4);
+				         box-shadow: 0 2px 0 rgba(0,0,0,.4);
+				 color: #334; text-indent: 0; line-height: inherit; vertical-align: top;
+				 background-color: #aab;}
+
+section abbr[title]:hover:before,/* abbreviation description: */
+ figure abbr[title]:hover:before{content: attr(title); position: absolute; display: block;
+				 top: -1px; right: 100%; height: 100%; padding: 0 5px 0 7px;
+				 border: 1px solid #ccd;
+				         border-radius: 12px 0 0 12px;
+				    -moz-border-radius: 12px 0 0 12px;
+				    -moz-box-shadow: 0 2px 0 rgba(0,0,0,.4);
+				         box-shadow: 0 2px 0 rgba(0,0,0,.4);
+				 color: #667; white-space: nowrap;
+				 background-color: #ccd;}
+
+/* === desktop : links ================================================================================================== */
+/* the reason this is all very complicated is that we specifically work around the white `<section>`/`<figure>` areas so
+   that the native link colours are used there as provided by the browser / chosen by the user */
+
+/* links in the orange areas: */
+header a,       footer a,       aside a,       article>a,       article>:not(section):not(figure) a
+				{color: #431;}
+header a:hover, footer a:hover, aside a:hover, article>a:hover, article>:not(section):not(figure) a:hover,
+header a:focus, footer a:focus, aside a:focus, article>a:focus, article>:not(section):not(figure) a:focus,
+ a[rel~=tag]			{color: #eee !important; text-shadow: #431 1px 1px 0;}
+
+/* links that remain underlined */
+footer a, aside a, article>a, article>:not(section):not(figure):not(header) a
+				{text-decoration: underline;}
+
+/* do not underline these links */
+header a:hover, header a:focus	{text-decoration: none;}
+
+/* links in blockquotes within the orange area */
+article>blockquote a,
+ article>header+blockquote a	{text-shadow: #b61 0 -1px 0, #d94 0 1px 0;}
+
+/* link icons
+   ---------------------------------------------------------------------------------------------------------------------- */
+/* links to external sites */
+a:not([type])[rel~=external],
+ a[href*="mailto:"]		{text-indent: 0; /* external.png: */ background: url("data:image/png;base64,\
+				 iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKBAMAAAB/HNKOAAAALVBMVEUAAAD////+/v6ezPpbjrIyicIAadYAZukAZu\
+				 4AZvUAZvsAZs0AZswAZcsAZcmXfdS2AAAAAXRSTlMAQObYZgAAAElJREFUeF4VxKENgDAQQNFvUK25BEXOMUHrimUB\
+				 EgRbsAeSERpQN8uNwDDkzMPMgC7jFh6E7fzo+3wr71UXZUjPqpCnEoqE7v4Dv7MOC059M/cAAAAASUVORK5CYII=")
+				 no-repeat 4px 5px;}
+
+/* hide favicon image when not hovering on the link (whilst keeping the image on standby) */
+a[rel~=external]:not([type]):not(:hover),
+ a[href*="mailto:"]:not(:hover)	{background-image: none;}
+
+/* when you hover over the link, jut the favicon over the left side */
+a[rel~=external]:not([type]):hover,
+ a[href^="mailto:"]:hover 	{margin-left: -20px; padding-left: 20px; background-color: #eee;}
+
+/* adjust for background color for jutted-out icon when in the orange areas */
+article>:not(section):not(figure) a[rel~=external]:not([type]):hover,
+ article>a[rel~=external]:not([type]):hover, aside a[rel~=external]:not([type]):hover
+				{display: inline-block; background-color: #c72;}
+
+/* don’t jut out an icon for links in the large blockquotes in orange areas,
+   and the e-mail link in the footer */
+article>blockquote a[rel~=external]:not([type]):hover, footer a[href*="mailto:"]
+				{margin-left: 0; padding-left: 0 !important; padding-bottom: 0;
+				 background: none !important;}
+
+a[href*="mailto:"]:hover	{/* mailto.png: */ background: url("data:image/png;base64,\
+				 iVBORw0KGgoAAAANSUhEUgAAABAAAAAMCAMAAABcOc2zAAAAulBMVEUKKioJLS0KLS0KLS06Xl46Xl47YGBBZ2dBZ2\
+				 dCaGhTfHxTfHxUfHxUfHxTfX34/Pzn8PDf6+ve6+vb6eny+Pju9fXt9PTs8/Pp8fH7/f3l7+/l7u7j7e33+/v0+vrd\
+				 6urz+fnY5+fY5ubV4+PQ39/N3d3K2trG1tbA0NC4x8eosrKora3g6+v5/f3o8PDx+Pjc6urE1NTC0tLv9va8y8vr8v\
+				 K3xsa1xMSwv7+tubmsuLirtrbq8fHX5eW68cc2AAAAD3RSTlN5hoaEdnVzbGppX2JjZ1Qgka+hAAAAkElEQVR4Xk3I\
+				 1w6CQBQE0KuwKIhso/de7b3+/29JohLOw2RmQFOWYxosGssZmI0Cqnex/9u+nlWQHe/mBTjEAe4LlkFex/RB9R69U7\
+				 0/ZqFhpM/U/EY8BykmxD+0edbWq81rKwGyXF7yvOsKXu78IwLkvqskYmURsaRKCAKR1xn/yWpfBGHPyICdBABhMjKF\
+				 D2NPEY5J+DUjAAAAAElFTkSuQmCC") no-repeat 0 3px;}
+
+/* www-speech-bubbles: cc-by kroc camen: */
+/* todo: google, mozilla/getfirefox/bugzilla, apple, bbc, archive.org, tinyurl, itms: */
+a[href*="osnews.com"]:hover,
+ a[href*="osne.ws"]:hover	{/* osnews.png: */ background: url("data:image/png;base64,\
+				 iVBORw0KGgoAAAANSUhEUgAAABAAAAAOCAMAAAAR8Wy4AAAA/FBMVEUAAAAAAAAAAAAAAAAAAAAAAACfzxipwmF9qw\
+				 B4owB3ogB1nwBfggCsw2fx8fGJuQGIuACHtwCCsQCArwB/rgDq6up8qgB7pwB4pADI0a2i0SB2oQDz8/NkiQBggwBi\
+				 gwWdzhNdfwBXdwBVdABTcQAfHx/e3t7d3tyGtgBznQBtlQCEtABjhwBihgBhhQBnhgthhADAy6ObzBCWyAumyUNsfy\
+				 7m5uaxwnxUcgCu3ycgICCg0B3n5+dnjADt7e2nzjeDswDj4+Pd3dtlhQjZ29N/rQDQ2LyTxQhhggPN1rZ5pQBcfgBd\
+				 fgFaewCx4yiuwnSx4iqLuwLf39+g0Bv1WwzBAAAABnRSTlMAAQQVGBxQUxz7AAAAwElEQVR4XkXORW4FMRBFUXfA3M\
+				 zMn5khzIz730vcgyR38qQjlVTguHj9qzwCAHD49tvHjAuIt5qmDcpyKGYbCxhkn8YEnUUo1/UsbWCuPiuKLEdR0rl/\
+				 EDBR8aNyjjuL1Z3e5y8pSEzDRv16Z8n2hUmqAzCyblcorOsuOjGtQhIn2PEvl+PTpe1jnDR/uC68+lq/t1qQubwBzy\
+				 NwetOefqeO10D+RAndB8H+2qIkF7DphYyxLmNUbCFAKqv/DgH4Ab98HDGSccfRAAAAAElFTkSuQmCC")
+				 no-repeat 0 center;}
+a[href*="daringfireball."]:hover{/* df.png: */ background: url("data:image/png;base64,\
+				 iVBORw0KGgoAAAANSUhEUgAAABAAAAAOCAMAAAAR8Wy4AAAA+VBMVEUAAAAAAAAAAAAAAAAAAAApLjIqLzM/Rk1BSE\
+				 9AR05GTlZCSlJCSVHW3uVDS1NIUFhBSFDO1dxARk6GjZU/RUw0OkAyOD0vNTorLzNFTlVqcXkzOT5UXGNOVV1MVFvS\
+				 2eDEy9KxuL+vt72rsrmWnaXU3OOBiJB/ho5yeYE+RUzFzNNja3JhaHAxNzwwNjtYYGcuMzgtMjcsMTYrMDVXXmWVna\
+				 WUnKSSmqJTW2JSWWBRWF8+RUs9REs9REo6QEbU3ePK0NhHT1dQV1+Pl5+NlZ03PUPS2uHJ0NcyOT7c4uipsLhFTVVs\
+				 dHugqK+dpKxBSVDe5OkrMDRaYWl4fBdQAAAAB3RSTlMAAQQPHPv9EqNjqAAAALdJREFUeF49jcWOA0EMBR100zBPmJ\
+				 k5y8z4/x+z7j2kLNWhZOlBfh6dWOSyAOH79o64J21GUwAIPEtja3mBDulNIoT9IYUQ6X/4fTNNc/Z9q61Dyaokrtt+\
+				 8dC1jkH0AKG5fzWujA7dZxXjLJSkkr3rx1pt2JdqnqFZWzG2cxyny5gKgQJnfFAftp8aF4w/6+AjjltlnDUriPpjgj\
+				 6uOenrwP0JheXl2YnzBYXM8qdYjIlVHBfyAH9qcxhpOYIp5AAAAABJRU5ErkJggg==") no-repeat 0 center;}
+a[href*="wikipedia."]:hover	{/* wikipedia.png: */ background: url("data:image/png;base64,\
+				 iVBORw0KGgoAAAANSUhEUgAAABAAAAAOCAMAAAAR8Wy4AAABC1BMVEUAAAAAAAAAAAAAAAAAAAAAAAASAAD+/v78/P\
+				 zd4d/Z2dnIysmvs7SusbP6+vrs7OvY29vT1NTNzMbh4t/f4uDT3t+srKmpqqmjo6KioqGUk5Nog6sND0RvfaQETH3V\
+				 1dZpfaTZ2trU1NXu7u2KnbCampqYmJiiiXGvs7avgkXo6OOgfmGhflzW3NylpaSdnZyZnKn9/f339/fNzcuTkpCUkY\
+				 yfi3fq6eWsq6ioqKampqSngFapgE+fg22yv8fa2dWsusPl5d/n5+GocSOYUAOff2WXpLGlpKPZ2NTZ19KfoqnX1tOW\
+				 TQEETHz29vaRSQAEQXwIKGsKElCenp1EAQRIAAE2AAAzAAAcAACbWufvAAAAB3RSTlMAAgQJExnvJfHpwQAAAMBJRE\
+				 FUeF49j4VqRTEMQPtm9euuz93d5u4u//8lS2HsJCnhkECK9t+Dfhj2w7sguK7tIYQ8PMLkL7Q1iCYZ/6M1QYgJ55QD\
+				 8DwJEMvNT/Hwq9hIqucvrpqQlYeYtLL5Ce66+ioSSC6sxL35eKxYqd4uRTtInp0+x+2LTO8c6XS4Cyu23XgTl99XaY\
+				 /aUt3hOLefibs9qFLqeCB8wzhuxcR67bES85VgjGFsQEKjRJ2b5n05z1WZAxCF2lQRKWbwuV8msRlunt4S8gAAAABJ\
+				 RU5ErkJggg==") no-repeat 0 center;}
+a[href*="youtube."]:hover	{/* youtube.png: */ background: url("data:image/png;base64,\
+				 iVBORw0KGgoAAAANSUhEUgAAABAAAAAOCAMAAAAR8Wy4AAAA2FBMVEUAAAAAAAAAAAABAACOBQeRBgiWBgiYBgjz8/\
+				 O0s7PNqqvjCQ7cBw3c2trq6urf3t7s7Oy2tbX19fX4+Pilo6NYS0zfJirx8fHiCA3w8PDbBw2xBwr8/PyrBgmrpKSm\
+				 o6Pc2dmioaGgnZ2em5udl5fc2NjOeHq1tLSjBgmdk5PjDBCfkJC2srL6+vrl5eXeCA3czMzayMnfCA3QeHrd29vZBw\
+				 329vbadnhoYGFZWVnc1dXCMzfGMjbc09PhHiLczs/jCA3o6OjYxcbVBwzi4eHh4ODt7e2dBgid9SI2AAAACHRSTlMC\
+				 BBbH+/3+/rN2xo8AAACrSURBVHheRY9FksNADABnraw9aGYIM2eZGf7/o0hJqtKtU5d0ELP6vTg+zcBijIm7+kyHQg\
+				 0RRCHKo1WAYRICT4JEJBnwcEKBF4A+Jj4UnMLS9eFPgFjAQ+a3h4KJ9aeL4qBmdsGaNE2VUm+K+MeTSm6fPvL8R+VI\
+				 RWHjofLXu5dfL1cYGmW00fJGm/fxfHoIXS1fr73ReCefacO5LctvXR5xGGJfEjbZwuf2LXITtlCOK2QAAAAASUVORK\
+				 5CYII=") no-repeat 0 center;}
+a[href*="deviantart."]:hover	{/* da.png: */background: url("data:image/png;base64,\
+				 iVBORw0KGgoAAAANSUhEUgAAABAAAAAOCAMAAAAR8Wy4AAABFFBMVEUAAAAAAAAAAAAAAAAAAAAAAADf39+xwLGtvK\
+				 1ncWiRnZOaqJrc3tymtKadq53Y3djO3M6BjIF8h316hXt4hHppc2no6OizwrPt7e3u7u5+in9+iX6hr6Hs7Ozb3tvq\
+				 6uqcqpyPm5GAi4B/i4Cls6WjsaN8iH3Q29DI18l4g3lvenBmb2ZibGNeaF9YYVlUXVWCjYKquaqotqjK2crm5ubk5e\
+				 TP3M+/z797h3y+zb6bqZu9zL3T29N1gHd0f3VzfnRyfXNxfHJteG7H1sfD0sOap5qYpZiXo5eXopfm5+bN282tu63Q\
+				 3NB2gXfn5+dwe3Fwe3CywbLj4+Nsd21rdmuwv7CWopeVoJbh4uHL2cuOmo+GkoeYi6w0AAAABnRSTlMAAQMSFBv6Gu\
+				 hoAAAAtUlEQVR4Xk3I02IEQRQA0btIY2yubdsb287//0e652GTqrcDRw+bQ40EAMxOq9qtNuFp0zsGeg1j/Iijaj0G\
+				 hSUhxH8ivHmBgyu/LnxM6U4YuAGDUBbuy14/7Q0/tiXT1qHysxpdZOX2+4nzVj+z4xBeOkLxqjQWghsnv48BVL4kY/\
+				 2c+qx3utdVAwAMVVIRUhCSkJrhYCqimItWxJzJwBL/ZTF4+T7/q8EgdtykTUptXisJ8AuYkRuZO38PCQAAAABJRU5E\
+				 rkJggg==") no-repeat 0 center;}
+a[href*="twitter."]:hover	{/* twitter.png */ background: url("data:image/png;base64,\
+				 iVBORw0KGgoAAAANSUhEUgAAABAAAAAOCAMAAAAR8Wy4AAAA7VBMVEUAAAAAAAAAAAAAAAAAAAAAAAArq9bs7e3o6O\
+				 nh4eF+3f2F3fvQ3OCt2eeP1ewyw/M8wu9nwN9JwOdVv+Mwvu0vvOovu+kuueYut+QttOArr9srrNfv7+8qqdQkkbYj\
+				 jbAjjK8jiqwiiKoih6ogf58fe5ouuOVvyuktteJqxOIssd0ssNzb3t8rrtkrrdjN3OHu7u5hweIqp9EppM0ooMgnm8\
+				 Ilk7hewOEkkLQxwfGe2OqY2O1w2Pvd3+AihqghgqOM1u4ffZxp0/YeeZgedpRy2vzh4uKR1evH2+IywvKa2OwjeJMm\
+				 eJIddpNRv+OVVpe7AAAABnRSTlMAAQMUFhvMofZYAAAAtUlEQVR4Xj3ONZYDQQxFUXmgmpmZzczMw7D/5VjlwFfZOw\
+				 o+vJaHh+oFALIzv5UaAo8EPccQb5VNGCp3b3MMS52GdF9kky+dhlhVvsO7hanSkKzMDRMyzHC4NlfZTwypZcssO20g\
+				 y+5dnyBxXJl7n9WR45Y1gLTpyTuu9VtWM89L6I52+zjYUf+kk2HIfT/4+BTFrigRnw4rekF/YWiaNjIIoR+XKYnGBG\
+				 9MSHTCUKuuD3/PADcJNhxxXTEQtAAAAABJRU5ErkJggg==") no-repeat 0 center;}
+a[href*="flickr."]:hover	{/* flickr.png */ background: url("data:image/png;base64,\
+				 iVBORw0KGgoAAAANSUhEUgAAABAAAAAOCAMAAAAR8Wy4AAAA5FBMVEUAAAAAAAAAAAAAAAAAAAAAAADMxclzCHXe3t\
+				 709PTm5ubb29vZ2dnW1tbU09T5+fmusLSwsbOvsLPFqbmnqauenp6bm5uUlJQBWbQAV7QOVqP39/fDAGnh4eEJX7kM\
+				 X7j8/Pynqq7f39/29vbCqLfBqLamp6ekpKSjo6PPy83d3d2YmJiVlZXc3NymsLvk5OSlsLvz8/OzsbMAVbEAVK8AUq\
+				 wAUasATqcBSKICRZ8GO5exsbLFA23FAWyvAWHFAGulr7rAAGgAWLTNycxeDXr4+Pjv7++RkZGIi47s7OycnJzp6en8\
+				 qb8nAAAABnRSTlMAAQMSFBv6GuhoAAAAoklEQVR4XkXNRZLDQAxAUTnJdBuZIczMzDh0//uklVTsL5UWbyP4clpJbp\
+				 YDMO+ltCYA6KUoSdMRNGH8qfqCSN+sw1OdHm41AWHyGy7ni5DG8Zk+Gj0DTHHlX6az+Mj6l70MGMOiHwRFyoCKDr6t\
+				 DAp+YWTt9tTKbwGgnOfJlfAd0iY8bzKw+5Ik4+LYCJKchtAlqqIqyvv8MeDcb8zDfnIAT+bwF6tlM2AgAAAAAElFTk\
+				 SuQmCC") no-repeat 0 center;}
+a[href*="php."]:hover		{/* phpnet.png */ background: url("data:image/png;base64,\
+				 iVBORw0KGgoAAAANSUhEUgAAABAAAAAOCAMAAAAR8Wy4AAAA21BMVEUAAAAAAAAAAAAAAAAAAAB7e7kAAAAqKiyysr\
+				 OysrKnp+OcnM6NjZZ9fbnCwsJ6erd4eLV1dbBxcatvb6htbaRtbaNsbKJqaqBYWIVYWIRWVoFVVYBQUHdOTnVISGy+\
+				 vr4BAQG8vLzAwMB8fLm5ubm2trZbW4laWoh6era0tLSWlrJzc61VVYFXV4NNTXRNTXNMTHJLS3FJSW5dXYxcXIohIS\
+				 JpaZ5jY5WSkqGentRtbaVKSnBJSW+xsbt4eLSUlKpSUnxSUntGRmazs7Ovr+laWodZWYdZWYa3t7esa4OgAAAABXRS\
+				 TlMAAgQQHDGoKPgAAACoSURBVHhePY/VksMwDADdS+0wM3OZmY/h/7/o5LbJjmYfVqMHoW703hIzLwgFx68W8Q0h1B\
+				 dw2SD0IHyLutogTiD8yCXWFEUZaOpNXkPwcFqkBaFK8XS+Qb6eEyI95mAuGeSNK1KxW4nN/tg8ghPfqOm6ZrNMev2F\
+				 EJg84UfDT2pjSoPFXTnbpj5ZAYTQfuKAQgiLvbNzXPcuN4bQmSWrJFldzsAHPPcPMyUYRslNJMQAAAAASUVORK5CYI\
+				 I=") no-repeat 0 center;}
+
+
+/* === desktop : header ================================================================================================= */
+/* specifically override the stuff in the all-browser’s section (lo-fi style) */
+body>header			{margin: 0; border-bottom: none;}
+body>header h1,
+ body>header ul+ul,
+ body>header ul+ul+ul,
+ body>header a[rel=next],
+ body>header a[rel=previous]	{position: static;}
+body>header nav			{padding: 0;}
+body>header ul, body>header li	{float: none;}
+
+body>header			{position: fixed; z-index: 1; left: 0; bottom: 0; right: 0;
+				 -webkit-box-shadow: 0 0 8px rgba(0,0,0,.3);  /* ↓ super shadow: cool, but kills the CPU */
+				    -moz-box-shadow: 0 0 8px rgba(0,0,0,.3);  /*, 0 -60px 120px rgba(0,0,0,.2);*/
+				         box-shadow: 0 0 8px rgba(0,0,0,.3);  /* (CSS-gradient used on `<html>` instead) */
+				 background: #c72;}
+
+/* we use the H1 as the centering base for the header, and the hyperlink within as the actual logo */
+body>header h1			{width: 980px; margin: 0 auto; padding: 0;}
+body>header h1 a		{position: absolute; width: 25px; height: 0 !important;
+				 border: 0 solid #c72; border-width: 19px 20px;
+				 /* cameneye(c)kroccamen.png: */ background: url("data:image/png;base64,\
+				 iVBORw0KGgoAAAANSUhEUgAAADoAAAAgCAMAAAB0KJvnAAABgFBMVEUAAAAAAAAAAAAAAAA8KQg/Kgg7Kgk7LAk9Lg\
+				 v///8+Lww/MA1AMA40MSpAMQ5AMQ5AMQ9IMg5BMhBBMhBDMhBCMxFEMxBDNBJENBJFNBFENBFENRNFNRNGNRNFNRJG\
+				 NhJHNxNHNxRIOBRIOBVMPRtSQyFTRCNZSytbTS5sXkNqXED7+/ptYEV0Z055bFT39vWCdl+EeWKRiHSIfmiMgm6GfG\
+				 WVjXqhmYiooZCwqZmxqpqyq5vr6uf///7///7///7HwLbSz8fNxrzHw7n9/f3Y1s/a19Hb2NLc2tTd29X///7k4t3p\
+				 5+Pp5+O3saPr6eW6s6bu7Onu7On////v7erx7+3v7uv19PJ8b1j5+Pf49/b6+vn6+vn6+vn6+vn6+vr5+fj5+fhiVD\
+				 b7+/rW08z9/fz9/fz9/f3+/v3+/v7+/v7+/v68tqnf3dfAu7Du7Onq6eX///7///////////89Lgv////////+/v78\
+				 /Pv5+Pj7+vn39vX49/b9/f39/fzYZPhjAAAAd3RSTlMAAgMEJyArLzU5QEVKB1NWXh1iaNV2z3l+tciChZDapJSMmd\
+				 /l5ufs7/L48t/DwcLO7PP19fPw6OX2+/39/fz6CvgL+Pf3+Pj5+fv8iHz9hP2fk/6n/v65wst17efk4d7Z0PJy9/Vu\
+				 Z2RfXVn8+/r+/VhTUEk5PpT4lFoAAAIbSURBVHhejZT7X9JQHIaX68Ih42LWKqUyiHKWFniJAXMesQzT0onk0pTKMu\
+				 wmSOeAl/71DsE8lx3C99eH57N938/LlG5Ra8GrAe1mRAuEBkKhmmopZ8zl/pieHDfSS0vGpJEYT+qx65FgGHZ5Wt8l\
+				 At5m8ghhjBFuBiFUf56eeBi95u8s+iOx5CgB5RwSgxH6mdZv++RvHurXvx0hBxIAqMtlXu+TiL5byQUCV1vgII9tqf\
+				 zKI17Q9E9Nsul2UTGxVF0Uzd74m3/ABKfgs9TEe0Kt2kSmRRxIQXFHotqQf9loqg02WAA3Jde+48zz8e/uWfscqErU\
+				 FXZWtQ8Zsw3eK3xKDY8KWHN4zQVYbG/Pc+02Q8PDx6fAhOJKG3mh3zLT0IM1Sl8oYuaEUa3TGs/df0mhPedRVw850w\
+				 QU3ZjBFNgzPaK6zKuvKfGnuAoLQVF9xr1wCdKKHmF+KU886jSDN5gWhwpZXp0NCOrsND0oB5h2p06QkKcq5BY6T39h\
+				 VhlwD4sm/nWHUx/n/rho5DcDelLImx8RxlVpi9uA+4sWbIlrBKg7WHDnUuR3tniYlah4csA1ryTcgj5ajNf5y2UntB\
+				 a3htrrLgFFTEXuosRdq4kvpuqYgK2y7PMJxrJS1+hViTw6Uid7ryodUi1J700PEtXJFctA+U8OijuSopeJSuxugbsr\
+				 6/zVW2NAOVOspg5A5YvjOLtf90E37S8Vio2V4XEsCQAAAABJRU5ErkJggg==") no-repeat;}
+
+/* the tricky bit with the header is that it must stretch the width of the screen, but menu and stuff must be page-width,
+   we can only do this by making certain blocks within 980px wide and positioning them above each other */
+body>header nav			{width: 980px; margin: 19px auto;}
+
+/* menu of content-types and tags */
+body>header ul, body>header li	{display: inline-block;}
+body>header li:not(:last-child)	{padding-right: 6px;}
+
+body>header nav>ul:first-child	{position: absolute; margin: 0 0 0 140px;}	/* ‘all, projects’ */
+body>header ul+ul		{margin: 0 0 0 295px !important;}		/* both type and tag list */
+
+body>header nav			/* bullet hole between menus */
+ >ul:first-child+ul:before	{position: absolute; content: "\2022\ "; margin-left: -15px;
+				 font-family: Verdana, sans-serif; text-align: center;}
+/* previous / next links */
+body>header a[rel=next],
+ body>header a[rel=previous]	{float: right; clear: right; padding-right: 20px; text-align: right;}
+body>header a[rel=previous]	{margin-top: -19px; padding-bottom: 19px;}
+body>header a[rel=next]		{margin-top: -76px; padding-top: 19px; padding-right: 37px !important;}
+body>header ul+a[rel=next]	{margin-top: -57px;}
+
+
+/* === desktop : article ================================================================================================ */
+/* override the all-browser’s (lo-fi style) section */
+article				{border: none; padding: 0 20px 19px;
+				 /* part of the fixed-footer */
+				 min-height: 100%;}
+
+/* in the link section, the URL underneath the title */
+article>h1			{margin-left: 0;}
+article>h1+a			{margin-left: 0;}
+article>h1+a:before		{content: '℅ ';}
+
+/* the set of meta information to the left hand side of an article:
+   (note that most of this is already handled in the all-browser’s section) */
+
+/* the dotted line between items does not connect to the body in the hi-fi design */
+article>header			{width: 100px; /*margin-left: -140px;*/}
+article>header>*		{padding-right: 0; border-top: 1px dotted #431;}
+
+/* --- meta: licence ---------------------------------------------------------------------------------------------------- */
+/* use font-embedding to add the large logos */
+
+article>header small		/* creative-commons logos */
+ a[rel~=license]		{text-indent: 0; font: 126px/104px "CC Icons"; background: none;}
+
+
+/* === desktop : content ================================================================================================ */
+/* content that goes directly on the orange background, e.g. link | poem */
+
+/* ‘link’ type title & url */
+article>h1			{color: white; text-shadow: 0 -1px 0 #431;}
+
+/* blockquotes in the orange background area */
+blockquote			{text-shadow: #ddd 0 -1px 0, white 0 1px 0;}
+article>blockquote,
+ article>:not(section) q	{color: #eee; text-shadow: #431 0 -1px 0;}
+article>header+blockquote	{/* quote section of the site uses large blackquotes */
+				 margin-top: 0; margin-right: -100px; padding-top: 19px;
+				 font-size: 28px; line-height: 38px; text-align: left;}
+article>header+blockquote>cite	{font-size: 18px; line-height: 19px;}
+
+/* content after a large blockquote in quote section of site is sized to fit the blockquote */
+article>header+blockquote~*	{margin-left: 40px; margin-right: 40px;}
+
+
+/* === desktop : section ================================================================================================ */
+section				{background-color: #eee;}
+:not(section)>section		{margin: 0 -20px; padding: 37px 39px;}
+:not(section)>section, figure,
+ article>img			{border: 1px solid white; color: #333; text-shadow: none;
+				 -webkit-box-shadow: 0 0 8px rgba(0,0,0,.5);
+				    -moz-box-shadow: 0 0 8px rgba(0,0,0,.5);
+				         box-shadow: 0 0 8px rgba(0,0,0,.5);}
+
+section+section			{margin-top: 19px;}
+
+section h1			{margin: -38px -40px 36px; padding: 19px 20px 18px;
+				 border: 1px solid #eee; border-bottom: 2px groove white;
+				 color: white; text-shadow: #666 0 -1px 0;
+				 background: #ccd;}
+
+pre				{padding-left: 39px; border-left: solid 1px #eee; border-right: 1px solid #eee;
+				 background: #ddd;}
+dd pre, dd li pre		{padding-left: 79px;}
+
+/* if a code block is the first element, adjust it against the H1,
+   e.g. <//camendesign.com/code/cleanly-grouping-by> */
+section>h1+pre			{border-top: none; margin-top: -36px; padding-top: 19px; margin-bottom: 38px;
+				 /* add a very subtle gradient. WebKit, Gecko1.9.2 (Firefox 3.6+) only */
+				 background-image: -moz-linear-gradient(top, #eee 133px, #ddd);
+				 background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#eee), color-stop(1.0, #ddd));
+				 -webkit-background-size: 100% 133px; background-repeat: repeat-x;}
+
+/* when a pre block finishes a section, merge it to the end */
+section>pre:last-child		{border-bottom: 1px solid #eee; margin-bottom: -40px; padding-bottom: 39px;}
+
+/* block images in articles */
+video,
+ section>img:not([width="640"]),
+      li>img:not([width="640"]),
+      dd>img:not([width="600"])	{border-color: white; background-color: #eee;
+				 -webkit-box-shadow: 0 2px 5px rgba(0,0,0,.3);
+				    -moz-box-shadow: 0 2px 5px rgba(0,0,0,.3);
+				         box-shadow: 0 2px 5px rgba(0,0,0,.3);}
+
+/* === desktop : figure ================================================================================================= */
+figure img			{/*outline: 1px inset rgba(255,255,255,.6); outline-offset: -1px;*/}
+section figure			{background: white;}
+
+figure audio			{width: 100%; margin-top: 8px;}
+
+/* === desktop : fixed-footer =========================================================================================== */
+body>footer			{/* account for the header being fixed to the bottom of the window */
+				 height: 171px; margin: 0; padding: 57px 0 0 0; border-top: none;
+				 /* due to a bug introduced into WebKit with Chrome 4 / Safari 5, the box-model changes
+				    bring done to the body aren’t equal in WebKit / Gecko */
+				 -moz-box-sizing: border-box;}
+body>footer>nav:first-child	{font-size: 14px; line-height: 18px; padding-top: 0;}
+body>footer>nav:first-child>a	{text-decoration: none;}
+
+/* === desktop : directory ============================================================================================== */
+body>ol>li>a			{color: #431;}
+body>ol>li>a:hover		{color: #eee !important; text-shadow: #431 1px 1px 0;}
+
+}
+/* ====================================================================================================================== */
+/* / / lowres / iPad  / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / */
+/* ====================================================================================================================== */
+/* don’t abuse this, thinking that it’s a certified way of detecting the iPad, it’s _not_. for devices 1024px wide, there
+   isn’t going to be much screen height (with the chrome) to deal with a fixed position header; the iPad also can’t handle
+   fixed positioning properly either */
+@media only screen and (max-device-width: 1024px) {
+
+/* afix the header to the top of the page, instead of positioned absolutely at the bottom of the screen */
+html				{padding-top: 95px; padding-bottom: 95px;
+				 background: #c72 -webkit-gradient(linear,0 0,0 100%,from(#b4691e),to(#c72)) repeat-x;
+				 background: #c72 -moz-linear-gradient(top, #b4691e, #c72) repeat-x;
+				 -webkit-background-size: 100% 240px;}
+body>header			{position: absolute; top: 0; bottom: auto; right: 0;
+				 -webkit-box-shadow: none;
+				    -moz-box-shadow: none;
+				         box-shadow: none;}
+
+/* a couple of pixels of the sprite leak on the iPad for some reason. should come up with a better solution */
+body>header>h1>a		{padding-bottom: 17px;}
+
+/* no space needed at the bottom of the page */
+body>footer			{height: 95px !important;}
+
+
+
+}
+/* ====================================================================================================================== */
+/* / / iPhone / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / */
+/* ====================================================================================================================== */
+/* the iPhone doesn’t get the desktop-browser’s section, so we can build on top of just the lo-fi style */
+@media only screen and (max-device-width: 480px) {
+
+html, body			{/* important: this stops the iPhone from scaling the portrait display to fit the landscape
+				    display so that the text reflows for the greater width */
+				 -webkit-text-size-adjust: none; overflow: none;
+				 width: 100%; margin: 0; padding: 0; font-size: 13px;
+				 background: #c72;}
+
+/* --- header ----------------------------------------------------------------------------------------------------------- */
+/* the toolbar at the top */
+body>header			{margin: 0; border: none; position: fixed; width: 100%;
+				 background: #c72 -webkit-gradient(linear, 0 0, 0 100%, from(#c72), color-stop(.7,#b4691e));
+				 -webkit-box-shadow: 0 0 114px rgba(0,0,0,.5) repeat-x;}
+
+/* no logo, just use “all” to get back to the home page */
+body>header h1			{display: none !important;}
+
+/* the menu: we have to override and remove a lot of stuff here and it gets complicated. the menu will contain just the
+             “all” and “projects” links, and _only_ the current category, if there is one */
+body>header nav			{padding: 0;}
+body>header ul			{position: static; float: left; clear: none !important; height: 38px; margin: 0;
+				 font-size: 14px; line-height: 38px;}
+body>header li			{float: left; padding: 0; text-align: center;}
+body>header a			{padding: 0 5px; color: white; text-shadow: 0 -1px 0 #431;}
+
+/* hide all the categories, show only the one in use */
+body>header ul+ul a		{display: none;}
+body>header ul+ul a[rel=tag]	{display: inline-block; }
+body>header ul+ul		/* prefix the current category with “in: ” */
+ a[rel=tag]:before		{content: "in: "; color: #431; text-shadow: #b61 0 -1px 0, rgba(255,255,255,.2) 0 1px 0;}
+
+/* the back / forward buttons */
+body>header a[rel=previous],
+ body>header a[rel=next]	{overflow: hidden; top: 0; width: 40px; height: 38px; padding: 0;}
+body>header a[rel=next]		{right: 40px;}
+
+/* no images needed, we do this with unicode and CSS */
+/* (Unicode only has an up and down filled arrow head, so we rotate them) */
+body>header a[rel=previous]:before,
+body>header a[rel=next]:before	{display: block; width: 40px; height: 38px;
+				 text-indent: 0; text-align: center; font-size: 32px; line-height: 38px; color: white;
+				 text-shadow: 1px 0 0 #431; -webkit-transform: rotate(-90deg);}
+body>header a[rel=next]:before	{content: "\25B2";}
+body>header
+ a[rel=previous]:before		{content: "\25BC";}
+
+/* --- article ---------------------------------------------------------------------------------------------------------- */
+article				{border: none; padding: 37px 20px 0; overflow: hidden;
+				 color: #431; text-shadow: #b61 0 -1px 0, rgba(255,255,255,.2) 0 1px 0;}
+article>*			{margin-left: 0; margin-right: 0;}
+article>header			{display: none;}
+
+/* headings */
+h1				{font-size: 18px; line-height: 19px;}
+article>h1			{padding-top: 19px; color: white; text-shadow: 0 -1px 0 #431;}
+article>h1+a			{display: block !important; word-wrap: break-word; white-space: pre;}
+article>h1+a+*			{margin-top: 19px;}
+
+/* links in the orange areas */
+article>a, article>:not(section):not(figure) a
+				{color: #431; text-decoration: underline;}
+article>a:hover, article>:not(section):not(figure) a:hover,
+article>a:focus, article>:not(section):not(figure) a:focus
+				{color: #eee !important; text-shadow: #431 1px 1px 0;}
+
+/* lists. in the iPhone design we don’t hang the markers to save margin space on content */
+ul, ol				{margin-left: 20px;}
+dd				{margin-left: 20px;}
+
+/* blockquotes in the orange background area */
+blockquote			{text-shadow: #ddd 0 -1px 0, white 0 1px 0;}
+article>blockquote		{color: #eee; text-shadow: #431 0 -1px 0;}
+article>header+blockquote	{margin: 19px 25px 57px;}
+
+/* links in blockquotes within the orange area */
+article>blockquote a,
+ article>header+blockquote a	{text-shadow: #b61 0 -1px 0, #d94 0 1px 0;}
+
+/* --- section ---------------------------------------------------------------------------------------------------------- */
+:not(section)>section, figure	{margin: 0 -20px; padding: 18px 19px; border: 1px solid white;
+				 color: #333; text-shadow: none; background: #eee;
+				 -webkit-box-shadow: 0 0 8px rgba(0,0,0,.5);
+				         box-shadow: 0 0 8px rgba(0,0,0,.5);}
+
+/* the page notes, usually in the third column in the desktop design */
+aside				{position: static; width: 100%; margin: 0 0 19px -10px; padding: 10px;
+				 font-size: 10px; outline: 1px dotted #666; background: #ddd;}
+
+section				/* adjust the drop-cap to an iPhone-friendly size size */
+ >p:first-of-type:first-letter	{padding: 6px 2px 0 0; font: 38px/26px "Baskerville Old Face", "Times New Roman", serif;}
+
+section blockquote,
+ figure blockquote		{margin: 0 25px 0; font-size: 15px;}
+
+pre				{background-color: #ddd; font-size: 12px;}
+
+/* force images to fit the width */
+video				{width: 100%; height: auto;}
+article>img, section>img,
+     dd>img,      li>img	{max-width: 100%; height: auto !important;
+				 -webkit-box-sizing: border-box;
+				    -moz-box-sizing: border-box;
+				         box-sizing: border-box;}
+
+section>img:not([width="640"]),
+     dd>img:not([width="640"]),
+     li>img:not([width="640"])	{background-color: #eee; border-width: 8px; border-style: solid; border-color: white;
+				 -webkit-box-shadow: 0 2px 5px rgba(0,0,0,.3);
+				    -moz-box-shadow: 0 2px 5px rgba(0,0,0,.3);
+				         box-shadow: 0 2px 5px rgba(0,0,0,.3);}
+
+/* --- figure ----------------------------------------------------------------------------------------------------------- */
+figure				{margin: 0 -20px; padding: 8px;}
+figure h1			{color: black; text-shadow: white 0 1px 0; padding-top: 19px;}
+figure img			{max-width: 100%; height: auto !important; margin: 0;
+				 outline: 1px inset rgba(255,255,255,.6); outline-offset: -1px;}
+figure~*			{width: auto;}
+
+/* --- footer ----------------------------------------------------------------------------------------------------------- */
+footer				{display: none !important;}
+
+}
+/* / / iPhone : portrait only / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / */
+/* ====================================================================================================================== */
+/* iPhone when in portrait view. these styles are in addition to the ones above */
+@media only screen and (max-device-width: 480px) and (max-width: 320px) {
+
+/* screen is a bit too thin to be stretching the text */
+article>blockquote		{text-align: left;}
+
+/* portrait mode is not wide enough to show the table of contents on the right */
+section>h1+ol			{/* override the default style (floated on the right) */
+				 float: none; margin-left: 0; font-size: 12px;
+				 /* and make it look better for single-column */
+				 margin-bottom: 38px; padding: 0 0 18px; border: 1px dotted #666; border-width: 0 0 1px;}
+}
+/* / / iPhone : landscape only  / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / */
+/* ====================================================================================================================== */
+/* iPhone when in landscape view. these styles are in addition to the ones above */
+@media only screen and (max-device-width: 480px) and (min-width: 321px) {
+
+/* in landscape we have enough space to fit the page notes on the side (much like table of contents) */
+aside				{float: right; width: 120px; margin: 0 -10px 10px 20px;}
+h1+ol+aside			{float: none; width: 180px; margin: 0 0 20px 0;}
+
+/* avoid the table of contents completely blocking out the text to the left */
+section>h1+ol			{max-width: 200px;}
+
+
+} /* ==================================================================================================== code is art === */

@@ -1,0 +1,14 @@
+def insert(user: User): Future[Int] = {
+    val hashPassword = user.password.bcrypt
+    val updatedUser  = user.copy(password = hashPassword)
+
+    val insertUser = (Users returning Users.map(_.uid)) += updatedUser
+    def insertUserProfile(updatedUserProfile: UserProfile) = (UsersProfile returning UsersProfile.map(_.upid)) += updatedUserProfile
+
+    val insertUserThenProfile = for {
+      createdUserId        <- insertUser
+      createdUserProfileId <- insertUserProfile(UserProfile(Some(0), "First name", "Last name", gender = 0, user_id = createdUserId))
+    } yield createdUserProfileId
+
+    db.run(insertUserThenProfile.transactionally)
+  }

@@ -1,0 +1,26 @@
+Unhandled exception:
+Uncaught Error: The null object does not have a method 'indexOf'.
+
+NoSuchMethodError: method not found: 'indexOf'
+Receiver: null
+Arguments: ["cb"]
+Stack Trace:
+#0      Object.noSuchMethod (dart:core-patch/object_patch.dart:45)
+#1      getValue (file:///C:/Users/karim_000/dart/test/bin/test.dart:5:49)
+#2      connectChat (file:///C:/Users/karim_000/dart/test/bin/test.dart:31:35)
+#3      loginUser.<anonymous closure> (file:///C:/Users/karim_000/dart/test/bin/test.dart:19:18)
+#4      _RootZone.runUnary (dart:async/zone.dart:1151)
+#5      _Future._propagateToListeners.handleValueCallback (dart:async/future_impl.dart:496)
+#6      _Future._propagateToListeners (dart:async/future_impl.dart:579)
+#7      _Future._completeWithValue (dart:async/future_impl.dart:339)
+#8      _Future._asyncComplete.<anonymous closure> (dart:async/future_impl.dart:401)
+#9      _asyncRunCallbackLoop (dart:async/schedule_microtask.dart:41)
+#10     _asyncRunCallback (dart:async/schedule_microtask.dart:48)
+#11     _runPendingImmediateCallback (dart:isolate-patch/isolate_patch.dart:84)
+#12     _RawReceivePortImpl._handleMessage (dart:isolate-patch/isolate_patch.dart:131)
+
+#0      _rootHandleUncaughtError.<anonymous closure> (dart:async/zone.dart:883)
+#1      _asyncRunCallbackLoop (dart:async/schedule_microtask.dart:41)
+#2      _asyncRunCallback (dart:async/schedule_microtask.dart:48)
+#3      _runPendingImmediateCallback (dart:isolate-patch/isolate_patch.dart:84)
+#4      _RawReceivePortImpl._handleMessage (dart:isolate-patch/isolate_patch.dart:131)

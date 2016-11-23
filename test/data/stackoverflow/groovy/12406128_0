@@ -1,0 +1,9 @@
+class Training {
+
+     String type
+     Date createdOn
+     Date modifiedOn
+
+    static belongsTo = [course: Course]
+    static hasMany = [attachments: Attachment]
+  }

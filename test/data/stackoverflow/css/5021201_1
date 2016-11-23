@@ -1,0 +1,9 @@
+<script type="text/javascript">
+$(function()
+{
+    $('.date_pick').datePicker();
+    ('#bl').dpSetPosition($.dpConst.POS_BOTTOM, $.dpConst.POS_LEFT);
+});
+</script>
+
+<input type="text" class="date_pick" id="bl" name="datum_volgende" size="10" value="<?php echo $datum_volgende ?>" />

@@ -1,0 +1,86 @@
+#include <CppUnitTest.h>
+#include <string>
+
+using namespace Microsoft::VisualStudio::CppUnitTestFramework;
+using std::string;
+
+BEGIN_TEST_MODULE_ATTRIBUTE()
+TEST_MODULE_ATTRIBUTE(L"Date", L"2010/6/12")
+END_TEST_MODULE_ATTRIBUTE()
+
+
+static string Indent("");
+
+void openBlock()
+{
+    Logger::WriteMessage((Indent + "{").c_str());
+    Indent += "  ";
+}
+
+void closeBlock()
+{
+    Indent.resize(Indent.size() >= 2 ? (Indent.size() - 2) : 0);
+    Logger::WriteMessage((Indent + "}").c_str());
+}
+
+
+TEST_MODULE_INITIALIZE(ModuleInitialize)
+{
+    Logger::WriteMessage((Indent + "In Module Initialize").c_str());
+    openBlock();
+}
+
+TEST_MODULE_CLEANUP(ModuleCleanup)
+{
+    closeBlock();
+    Logger::WriteMessage((Indent + "In Module Cleanup").c_str());
+}
+
+
+
+TEST_CLASS(Class1)
+{
+public:
+    Class1()
+    {
+        Logger::WriteMessage((Indent + "In Class1").c_str());
+        openBlock();
+    }
+    ~Class1()
+    {
+        closeBlock();
+        Logger::WriteMessage((Indent + "In ~Class1").c_str());
+    }
+
+
+
+    TEST_CLASS_INITIALIZE(ClassInitialize)
+    {
+        Logger::WriteMessage((Indent + "In Class Initialize").c_str());
+        openBlock();
+    }
+    TEST_CLASS_CLEANUP(ClassCleanup)
+    {
+        closeBlock();
+        Logger::WriteMessage((Indent + "In Class Cleanup").c_str());
+    }
+
+
+    BEGIN_TEST_METHOD_ATTRIBUTE(Method1)
+        TEST_OWNER(L"OwnerName")
+        TEST_PRIORITY(1)
+        END_TEST_METHOD_ATTRIBUTE()
+
+    TEST_METHOD(Method1)
+    {
+        Logger::WriteMessage((Indent + "In Method1").c_str());
+        Assert::AreEqual(0, 0);
+    }
+
+    TEST_METHOD(Method2)
+    {
+        Logger::WriteMessage((Indent + "In Method2").c_str());
+        Assert::Fail(L"Fail");
+        Logger::WriteMessage("This won't print due to failure above.");
+    }
+};

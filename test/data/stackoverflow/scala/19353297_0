@@ -1,0 +1,5 @@
+[error] bad symbolic reference. A signature in MyClass123.class refers to type MyClass456
+[error] in package com.mypackage which is not available.
+[error] It may be completely missing from the current classpath, or the version on
+[error] the classpath might be incompatible with the version used when compiling MyClass123.class.
+[error] one error found

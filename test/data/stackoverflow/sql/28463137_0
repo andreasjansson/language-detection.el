@@ -1,0 +1,9 @@
+CREATE EVENT TestEvents
+ON SCHEDULE 
+    EVERY 1 DAY
+    STARTS (TIMESTAMP(CURRENT_DATE) + INTERVAL 1 DAY + INTERVAL 1 SECOND)
+DO
+    BEGIN
+        CALL sp_SchedulerTask_CreateInsertSalesCsvFile();
+        CALL sp_SchedulerTask_CreateUpdateSalesCsvFile();
+    END;

@@ -1,0 +1,2 @@
+hello.el > x.txt
+hello.el | wc

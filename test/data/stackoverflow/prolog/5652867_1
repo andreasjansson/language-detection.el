@@ -1,0 +1,4 @@
+?- test(4, 3).
+Yes (0.00s cpu, solution 1, maybe more)
+X >6 and Y<3    % why output this line?
+X<6

@@ -1,0 +1,3 @@
+table.insert( t, 1, function()
+                        print ("rock");
+                    end );

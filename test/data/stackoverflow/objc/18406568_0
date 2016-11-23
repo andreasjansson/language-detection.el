@@ -1,0 +1,3 @@
+UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Alert" message:@"GIVE YOURE VIDEO A NAME" delegate:self cancelButtonTitle:@"Done" otherButtonTitles:nil];
+        alert.alertViewStyle = UIAlertViewStylePlainTextInput;
+        [alert show];

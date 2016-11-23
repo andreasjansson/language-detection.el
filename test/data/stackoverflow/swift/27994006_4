@@ -1,0 +1,2 @@
+displayImageVC.displayImageView.reloadInputViews()
+displayImageVC.displayImageView.setNeedsDisplay()

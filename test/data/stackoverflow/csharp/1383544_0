@@ -1,0 +1,70 @@
+======== 1079.tif
+Image Description               : Vexcel-UCD-Level-3
+------------------
+CAM_ID:                  UCD-SU-1-0018 [5]
+RECORD_GUID:             64763E99-3573-43AD-995B-8A07E3FE2BE3
+IMG_NO:                  1079
+CAPTURE_TIME:            2004/03/15 02:07:17.641
+IMG_TYPE:                High resolution multi channel RGBI
+ROTATION:                0 [degrees]
+--- Inner Orientation ---------------
+PRINCIPLE_DISTANCE:      101.400 [mm]
+PRINCIPLE_POINT_X:         0.000 [mm]
+PRINCIPLE_POINT_Y:         0.180 [mm]
+PIXEL_SIZE_WIDTH:          9.000 [microns]
+PIXEL_SIZE_HEIGTH:         9.000 [microns]
+SENSOR_AREA_WIDTH:       103.500 [mm]
+SENSOR_AREA_HEIGHT:       67.500 [mm]
+-------------------------------------
+--- Custom Meta Data ----------------
+FMS No:                   1079
+Date:                     070912
+
+Time:                     122005
+Project:                  QOM
+Area:                     QANAVAT
+Line No:                  11
+Segment No:               1
+Waypoint No:              17
+WGS84 Latitude:           N34.559857
+WGS84 Longitude:          E050.760726
+WGS84 Altitude [m]:       1719.1
+Pos Solution:             GPS
+Track [degree]:           271
+Midpulse correction [s]:  0.00086
+-------------------------------------
+
+======== 1080vv.TIF
+Image Description               : Vexcel-UCD-Level-3
+------------------
+CAM_ID:                  UCD-SU-1-0018 [5]
+RECORD_GUID:             64763E99-3573-43AD-995B-8A07E3FE2BE3
+IMG_NO:                  1080
+CAPTURE_TIME:            2004/03/15 02:07:19.974
+IMG_TYPE:                High resolution multi channel RGBI
+ROTATION:                0 [degrees]
+--- Inner Orientation ---------------
+PRINCIPLE_DISTANCE:      101.400 [mm]
+PRINCIPLE_POINT_X:         0.000 [mm]
+PRINCIPLE_POINT_Y:         0.180 [mm]
+PIXEL_SIZE_WIDTH:          9.000 [microns]
+PIXEL_SIZE_HEIGTH:         9.000 [microns]
+SENSOR_AREA_WIDTH:       103.500 [mm]
+SENSOR_AREA_HEIGHT:       67.500 [mm]
+-------------------------------------
+--- Custom Meta Data ----------------
+FMS No:                   1080
+Date:                     070912
+Time:                     122008
+Project:                  QOM
+Area:                     QANAVAT
+Line No:                  11
+Segment No:               1
+Waypoint No:              16
+WGS84 Latitude:           N34.559901
+WGS84 Longitude:          E050.758750
+WGS84 Altitude [m]:       1717.9
+Pos Solution:             GPS
+Track [degree]:           272
+Midpulse correction [s]:  0.00086
+-------------------------------------

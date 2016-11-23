@@ -1,0 +1,7 @@
+axes(handles.axes1);
+   filename = 'A';
+   img = imread(filename);
+   imshow(img);
+   hold on;
+   rect_cord = getrect(handles.axes1);
+   rectangle('Curvature', [0 0],'Position', [rect_cord],'EdgeColor',[1 0 0]);

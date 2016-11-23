@@ -1,0 +1,7 @@
+.class_a {
+background-color:lightblue; 
+}
+
+.class_b {
+background-color: antiquewhite; 
+}

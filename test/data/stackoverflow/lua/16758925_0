@@ -1,0 +1,55 @@
+--------------------
+-- 'mariner module':
+--------------------
+mariner = {}
+
+-- Global private variables:
+local idcounter = 0
+local defaultmaxhp = 200
+local defaultshield = 10  
+
+function mariner.new ()
+   local self = {}
+
+   -- Private variables:  
+   local hp = maxhp        
+
+   -- Public methods:
+
+   function self.sethp (newhp)
+      hp = math.min (maxhp, newhp)
+   end
+   function self.gethp ()
+      return hp
+   end
+   function self.setarmorclass (value)
+      armorclass = value
+      updatearmor ()
+   end
+
+
+   return self
+end
+
+-----------------------------
+-- 'infested_mariner' module:
+-----------------------------
+
+-- Polymorphism sample
+
+infested_mariner = {}
+
+function infested_mariner.bless (self)
+
+   -- New methods:
+   function self.strongerheal (value)
+     -- how to access hp here?
+     hp = hp + value*2  
+   end      
+
+   return self
+end
+
+function infested_mariner.new ()
+   return infested_mariner.bless (mariner.new ())
+end

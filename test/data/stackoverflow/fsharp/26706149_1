@@ -1,0 +1,9 @@
+let awaitConnections (wsl:WebSocketListener) = 
+    let rec loop ()=
+        async { 
+            let! ws = Async.AwaitTask (wsl.AcceptWebSocketAsync(cancellation.Token) )
+            printfn "Connection from %s" (ws.RemoteEndpoint.Address.ToString())
+            Async.Start <| awaitMessages ws
+            do! loop()}
+    loop()
+    printf "The loop ended" // <-- this line

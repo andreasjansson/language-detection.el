@@ -1,0 +1,8 @@
+fn main(){
+    #[derive(Debug)]
+    enum Organs{
+        Head,
+        Tail,
+    };
+    println!("{:?}", Organs::Head);
+}

@@ -1,0 +1,19 @@
+for(flash_page = 0; flash_page < protocol_pages; flash_page++){ //loop through all the pages
+       for(flash_address = 0; flash_address < NUMBER_OF_INSTRUCTIONS_IN_PAGE; flash_address++){ //loop through all the words in the page
+           for (byte_address = 0; byte_address < 4; byte_address++){ //loop through the byte in each word
+               buffer_check();
+               flash_word += buffer[buffer_index] << (8*(3-byte_address));
+               buffer_index++;
+               bytes_written++;
+               if(bytes_written >= data_length)
+                   break;
+           }
+           ///////Write word here
+           NVMWriteWord((void*) &(proto_data_addr[flash_page][flash_address]), flash_word);
+           flash_word = 0;
+           if(bytes_written >= data_length)
+                break;
+       }
+       if(bytes_written >= data_length)
+            break;
+   }

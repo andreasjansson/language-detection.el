@@ -1,0 +1,18 @@
+NSString *embedHTML = [NSString stringWithFormat:@"\
+<html><head>\
+<style type=\"text/css\">\
+body {\
+background-color: transparent;\
+color: white;\
+}\
+</style>\
+</head><body style=\"margin:0\">\
+< src=\"%@\"  \
+</embed>\
+</body></html>", [[NSBundle mainBundle] pathForResource:@"ash(1).mov" ofType:nil]];
+
+
+
+[webView setOpaque:NO];
+NSString *html = [NSString stringWithFormat:embedHTML, webView.frame.size.width, webView.frame.size.height];
+[webView loadHTMLString:html baseURL:nil];

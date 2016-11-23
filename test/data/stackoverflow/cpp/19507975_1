@@ -1,0 +1,11 @@
+set<string> dict;
+dict.insert("hello");
+dict.insert("my");
+
+int maxLen = INT_MIN;
+
+set<string>::iterator itr;
+for (itr=dict.begin(); itr!=dict.end(); itr++) {
+    if ( (*itr).length() > maxLen )
+        maxLen = (*itr).length();
+}

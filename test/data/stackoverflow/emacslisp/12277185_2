@@ -1,0 +1,4 @@
+(interactive "r
+sEnter char to use: 
+sNumbering style used (d for digit, l for letter, r for Roman digits): 
+sShould I dobule line breaks? (RET for yes) ")

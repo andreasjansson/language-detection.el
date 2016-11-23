@@ -1,0 +1,8 @@
+! ----
+pure function IsNull( theNode )
+  logical(LGT)  :: IsNull
+  class(treeNode), pointer, intent(IN)  :: theNode
+
+  IsNull = .not. associated( theNode )
+
+end function IsNull

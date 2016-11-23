@@ -1,0 +1,42 @@
+#autoplay-arrow {
+  display: inline-block;
+  position: absolute;
+  width: 5.91549%;
+  top: 22.05882%;
+  height: 50.74627%;
+  margin-left: 18.30986%;
+  background-size: 100% 100%;
+  background-position: 0 0;
+  background-image: url(../graphics/Arrows_002.png);
+}
+@-moz-keyframes arrowAnimation {
+  from {
+    background-position: 300% 0%;
+  }
+  to {
+    background-position: 0% 0%;
+  }
+}
+@-webkit-keyframes arrowAnimation {
+  from {
+    background-position: 300% 0%;
+  }
+  to {
+    background-position: 0% 0%;
+  }
+}
+@keyframes arrowAnimation {
+  from {
+    background-position: 300% 0%;
+  }
+  to {
+    background-position: 0% 0%;
+  }
+}
+#autoplay-arrow.anim {
+  background-image: url(../graphics/ArrowsAnim.png);
+  background-size: 700% 100%;
+  -moz-animation: arrowAnimation 0.5s steps(3) infinite;
+  -webkit-animation: arrowAnimation 0.5s steps(3) infinite;
+  animation: arrowAnimation 0.5s steps(3) infinite;
+}

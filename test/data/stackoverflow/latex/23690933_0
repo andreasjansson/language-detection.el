@@ -1,0 +1,2 @@
+highlight underline term=underline cterm=underline gui=underline
+match underline /\\underline{\zs.\{-}\ze}/

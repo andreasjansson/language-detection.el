@@ -1,0 +1,3 @@
+function compare_animation_Callback(hObject, eventdata, handles)
+play_Callback(hObject,eventdata, handles);%axes1
+play_results_Callback(hObject,eventdata, handles) %axe2

@@ -1,0 +1,32 @@
+std::map<Point2, Prop*> m_Props_m;
+std::map<Point2, Point2> m_Orders;
+
+struct Point2
+{
+    unsigned int Point2::x;
+    unsigned int Point2::y;
+
+Point2& Point2::operator= (const Point2& b)
+    {
+        if (this != &b) {
+            x = b.x;
+            y = b.y;
+        }
+        return *this;
+    }
+
+    bool Point2::operator== (const Point2& b)
+    {
+        return ( x == b.x && y == b.y);
+    }
+
+    bool Point2::operator< (const Point2& b)
+    {
+        return ( x+y < b.x+b.y );
+    }
+
+    bool Point2::operator> (const Point2& b)
+    {
+        return ( x+y > b.x+b.y );
+    }
+};

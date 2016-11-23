@@ -1,0 +1,43 @@
+// temporarily swap self.curr with a dummy value so we can
+// move out of it
+let tmp = mem::replace(&mut self.curr, (Sentinel,Left));
+
+match tmp {
+    // If the next node is a Sentinel, that means the
+    // "real" next node was either the parent, or we're done
+    (Sentinel,_) => {
+        if self.stack.is_empty() {
+            None
+        } else {
+            self.curr = self.stack.pop().expect("Could not pop iterator parent stack");
+            self.next()
+        }
+    }
+    // If the next node is to yield the current node,
+    // then the next node is it's right child's leftmost
+    // descendent. We only "load" the right child, and lazily
+    // evaluate to its left child next iteration.
+    (Node{box right,point,..},Me) => {
+        self.curr = (right,Left);
+
+        Some(point)
+    },
+    // Left is an instruction to lazily find this node's left-most
+    // non-sentinel child, so we recurse down, pushing the parents on the
+    // stack as we go, and then say that our next node is our right child.
+    // If this child doesn't exist, then it will be taken care of by the Sentinel
+    // case next call.
+    (curr @ Node{..},Left) => {
+        let mut curr = curr;
+        let mut left = get_left(&mut curr);
+
+        while !left.is_sentinel() {
+            self.stack.push((curr,Me));
+            curr = left;
+            left = get_left(&mut curr);
+        }
+
+        let (right,point) = get_right_point(curr);
+        self.curr = (right, Left);
+        Some(point)
+    }

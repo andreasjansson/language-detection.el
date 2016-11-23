@@ -1,0 +1,4 @@
+string House:: getName(int &size){
+
+return name;
+}

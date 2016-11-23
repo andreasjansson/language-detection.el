@@ -1,0 +1,20 @@
+name := "FlywayMigrations"
+
+version := "1.0"
+
+scalaVersion := "2.11.1"
+
+libraryDependencies ++= Seq(
+  "org.postgresql" % "postgresql" % "9.3-1100-jdbc4",
+  "org.flywaydb" % "flyway-sbt" % "3.0"
+  )
+
+seq(flywaySettings: _*)
+
+flywayUrl := "jdbc:postgresql://localhost:5432/flyway"
+
+flywayLocations := Seq( "filesystem:../dbSmileReminder/")
+
+flywayCallbacks := Seq("com.communitect.FlywayCleaner")
+
+flywayUser := "***"

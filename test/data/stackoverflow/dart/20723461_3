@@ -1,0 +1,9 @@
+'http://somelocalserver/WorkoutLogger/web/com/jessewarden/workoutlogger/views/SetView.dart': error: line 1 pos 6: url expected
+part of workoutloggerlib;
+     ^: http://somelocalserver/WorkoutLogger/web/com/jessewarden/workoutlogger/views/SetView.dart
+Internal error: 'http://somelocalserver/WorkoutLogger/web/com/jessewarden/workoutlogger/views/SetView.dart': error: line 1 pos 6: url expected
+part of workoutloggerlib;
+     ^
+Internal error: 'http://somelocalserver/WorkoutLogger/web/com/jessewarden/workoutlogger/views/SetView.dart': error: line 1 pos 6: url expected
+part of workoutloggerlib;
+     ^

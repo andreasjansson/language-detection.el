@@ -1,0 +1,8 @@
+let child: std::thread::JoinHandle<()> = std::thread::spawn(move || {
+      for a in 0..100{
+        println!("D");   
+        std::thread::sleep(std::time::Duration::from_millis(50));
+    }
+});
+
+child.join();

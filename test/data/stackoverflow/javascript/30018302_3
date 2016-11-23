@@ -1,0 +1,7 @@
+"content_scripts": [
+    {
+      "matches": ["*://*/*.pdf"],
+      "css": ["content.css"],
+      "js": ["scripts/content.js"]
+    }
+  ]

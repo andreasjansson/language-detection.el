@@ -1,0 +1,46 @@
+list.c
+    #include "list.h"
+    #define HEAD    node.next       /* first node in list */  
+    #define TAIL    node.previous       /* last node in list */  
+
+    void listDelete(LIST *pList, NODE *pNode)
+    {
+        NODE *mynode;
+        if (pNode->previous == NULL)
+        {
+            pList->HEAD = pNode->next;
+        }
+        else
+        {
+            pNode->previous->next = pNode->next; // pointer to incomplete class type is not allowed
+        }
+
+        if (pNode->next == NULL)
+        {
+            pList->TAIL = pNode->previous;
+        }
+        else
+        {
+            pNode->next->previous = pNode->previous; // pointer to incomplete class type is not allowed
+        }
+
+        pList->count--;
+    }
+
+    void listFree(LIST *pList)
+    {
+        NODE *p1, *p2;
+
+        if (pList->count > 0)
+        {
+            p1 = pList->HEAD; // warning C4133: '=' : incompatible types - from 'NODE *' to 'NODE *'
+            while (p1 != NULL)
+            {
+                p2 = p1->next; // warning C4133: '=' : incompatible types - from 'NODE *' to 'NODE *'
+                free((char *)p1);
+                p1 = p2;
+            }
+            pList->count = 0;
+            pList->HEAD = pList->TAIL = NULL;
+        }
+    }

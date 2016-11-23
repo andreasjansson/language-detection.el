@@ -1,0 +1,27 @@
+#include <stdio.h>
+
+void plusone(int *x,int *y);
+void printresult(int *x, int *y);
+
+int main()
+{
+    int x,y;
+    printf("enter x variable: ");
+    scanf("%d",&x);
+    printf("enter y variable: ");
+    scanf("%d",&y);
+    plusone(&x,&y);
+
+    printf ("%d and %d\n\n",x,y);
+    printresult(&x,&y);
+}
+
+void plusone(int *x,int *y)
+{
+    return *x+1;
+}
+
+void printresult(int *x,int *y)
+{
+    printf("the result is: x:%d y:%d",*x,*y);
+}

@@ -1,0 +1,5 @@
+If CheckBox2.Checked = True Then
+        RichTextBox1.Text = "pear enabled..."
+    Else
+        RichTextBox1.Text = "pear disabled..."
+    End If

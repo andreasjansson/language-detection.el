@@ -1,0 +1,11 @@
+float  a, b, subtotal, stx;
+a=15.95;
+b=24.95;
+subtotal=a+b;
+stx=subtotal*.07;
+
+cout << "Item 1: $" << a << endl;
+cout << "Item 2: $" << b << endl;
+cout << "\nSubtotal: $" <<subtotal<< endl;
+cout << "Sales Tax: $" << stx << endl; 
+cout << "Total: $"  << subtotal+stx << endl;

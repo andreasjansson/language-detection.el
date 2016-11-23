@@ -1,0 +1,9 @@
+myCon = new OleDbConnection(strCon);
+DataTable myData = new DataTable();
+
+myCon.Open();
+
+OleDbDataAdapter myOleAdapter = new OleDbDataAdapter();
+myOleAdapter.SelectCommand = new OleDbCommand(sql,myCon);
+myOleAdapter.Fill(myData);
+myCon.Close();

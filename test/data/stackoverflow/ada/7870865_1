@@ -1,0 +1,24 @@
+-- led_on.adb
+with AVR; use AVR;
+with AVR.MCU;
+with task_bla;
+procedure LED_On is
+ LED : Boolean renames MCU.PortB_Bits (3);
+begin
+ MCU.DDRB_Bits := (others => DD_Output);
+ LED := Low;
+end LED_On;
+
+-- task_bla.ads
+package task_bla is
+ task test;
+end task_bla;
+
+-- task_bla.adb
+package task_bla is
+ task body test is
+  loop
+   null;
+  end loop;
+ end test;
+end task_bla;

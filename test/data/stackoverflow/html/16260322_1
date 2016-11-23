@@ -1,0 +1,11 @@
+Button like = (Button) findViewById(R.id.button1);
+    like.setOnClickListener(new OnClickListener() {
+
+        @Override
+        public void onClick(View v) {
+            WebView myWebView = (WebView) findViewById(R.id.webView1);
+            WebSettings webSettings = myWebView.getSettings();
+            webSettings.setJavaScriptEnabled(true);
+            myWebView.loadUrl("file:///android_asset/www/FacebookLikeView.html");
+        }
+    });

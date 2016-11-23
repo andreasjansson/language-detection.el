@@ -1,0 +1,3 @@
+let x2 = CharParser<[Character], Character>(c: "b")
+let y = AltParser(p: x, q: x2)
+let z = y.parse(Array("a"))

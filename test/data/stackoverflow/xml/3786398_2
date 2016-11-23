@@ -1,0 +1,23 @@
+create table staging_table
+(DInc DATE NULL, LastARD DATE NULL);
+
+with XMLCompanyDetail as 
+(
+SELECT CAST('<?xml version="1.0" encoding="ISO-8859-1" ?> 
+<VN>
+<CompanyList>
+<Row num="1"><CoNum>7878</CoNum><CoName>ExampleName</CoName><DInc>1978-12-30</DInc><DDis></DDis></Row> 
+</CompanyList>
+</VN>
+' AS XML) AS xmldata
+)
+
+INSERT INTO Staging_Table
+SELECT tab.col.value('DInc[1]','DATE') DInc,
+tab.col.value('DDis[1]','DATE') LastARD
+FROM XMLCompanyDetail
+CROSS APPLY
+xmldata.nodes('//VN/CompanyList/Row') AS tab(col)
+
+SELECT * FROM Staging_table
+drop table staging_table

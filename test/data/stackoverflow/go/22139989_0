@@ -1,0 +1,36 @@
+//http://play.golang.org/p/LuMBUWLVT6
+package main
+
+import (
+  "fmt"
+  "reflect"
+)
+
+type T struct {
+  x float64
+}
+
+func (x T) RowMap() map[string]interface{} {
+  return map[string]interface{}{
+    "x": &x.x,
+  }
+}
+
+func main() {
+
+  // this section works as expected, x.x will be 7.1 when done
+  var x = T{3.4}
+  p := reflect.ValueOf(&x.x) // Note: take the address of x.
+  v := p.Elem()
+  v.SetFloat(7.1)
+  fmt.Println(x.x, x) // 7.1 {7.1}
+
+  // this section I do not understand why x.x is not being set to 7.1
+  x = T{3.4}
+  rowmap := x.RowMap()
+  p = reflect.ValueOf(rowmap["x"]) // rowmap["x"] => &x.x just like above, but is containted in interface{}
+  v = p.Elem()
+  v.SetFloat(7.1)
+  fmt.Println(x.x, x) // 3.4 {3.4}  ?? huh, should be // 7.1 {7.1}
+
+}

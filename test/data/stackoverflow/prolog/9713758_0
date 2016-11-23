@@ -1,0 +1,20 @@
+main :-
+open('sample.txt', read, Str),
+read_file(Str,Lines),
+close(Str),
+write(Lines), nl.
+
+read_file(Stream,[]) :-
+at_end_of_stream(Stream).
+
+append1([H|T],Old_list,New_list):-
+New_List = [H|Old_list],
+write(New_List),
+append1(T,New_List,New_list).
+
+read_file(Stream,[X|L]) :-
+\+ at_end_of_stream(Stream),
+read(Stream,X),
+write(X),
+append1(X,[],New_List),
+read_file(Stream,L).

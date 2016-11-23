@@ -1,0 +1,10 @@
+using System.Threading;
+
+class Test
+{
+    volatile int counter = 0;
+    public void Increment()
+    {
+     Interlocked.Increment(ref counter);
+    }
+}

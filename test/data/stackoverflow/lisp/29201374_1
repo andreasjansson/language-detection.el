@@ -1,0 +1,3 @@
+(defun is-a (name type)
+        (setf (get type 'name) name)
+    )

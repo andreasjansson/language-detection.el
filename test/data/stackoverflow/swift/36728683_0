@@ -1,0 +1,16 @@
+let loginRequest = [
+        "UserName" : self.txtUserName.text! as String,
+        "Password" : self.txtPassword.text! as String
+    ]
+
+    let serverUrl = ServerPath.Path + "/Test/login"
+
+    Alamofire.request(.POST, serverUrl, parameters: loginRequest,encoding: .JSON).responseJSON
+        {
+            response in switch response.result {
+            case .Success(let data):
+            ...
+            ...
+             case .Failure(let error):
+                print("Request failed with error: \(error)")
+        }

@@ -1,0 +1,56 @@
+module consts
+
+        !Declare pi as a global variable 
+     real(4),parameter :: pi=3.1415927
+end module
+
+
+PROGRAM simpson
+  use consts
+  implicit none
+  REAL :: area, h, sumo, sume
+  INTEGER (kind=4) :: i, j, k !Loop index, Counter, Number of points
+  REAL (kind=4) ::  rad, TanTab(0) !Radian variable to be calculated in Subroutine, Result array
+!k = number of steps
+   WRITE(6,*) "Please enter number of steps required (odd number)"
+   READ(5,*) k
+
+    IF(MOD(k,2) ==  1) THEN
+
+CONTINUE
+    ELSE
+WRITE(*,*) "Hey, I said as an odd number"
+    READ(5,*) k
+
+    ENDIF
+
+
+h = (60.0)/(k-1) ! Defining step size in relation to number of sampling points
+
+ DO i=1,61,1
+! Get table of tan
+     call degtorad((i-1)*1.0, rad)
+
+     TanTab(j) = tan(rad)
+
+     j=j+1
+    write(*,*) "Tan(", i, ")", TanTab(i)
+    write(*,*) "Tan(", j, ")", TanTab(j)
+ ENDDO
+
+  DO j=1,k-1,h 
+    IF(MOD(k,2) == 1) THEN
+    sumo = sumo + TanTab(j)  !sum of odd functions
+    ELSE
+    sume = sume + TanTab(j)   !sum of even functions
+
+    area = (h/3)*( (4*sumo) + (2*sume) + tan(1.047))
+WRITE(6,*) area
+    ENDIF
+  ENDDO
+
+
+
+
+
+END PROGRAM simpson

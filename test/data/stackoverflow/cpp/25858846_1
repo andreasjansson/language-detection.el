@@ -1,0 +1,17 @@
+cout << "************Testing Root Node**********************\n" << endl;
+        1   Node *newNode = new Node;       
+        2   Node  temp = *newNode;
+        3   temp.word = word;
+        4   temp.lineNumber = lineNumber;
+        5   wtree.setRoot(newNode); 
+
+
+        6   Node temp2 = *newNode;
+        7   cout << "Testing temp.word = " <<temp.word << endl;
+        8   cout << "Testing temp2.word = " << temp2.word << endl;
+
+        9  Node *test = wtree.getRoot();
+        10  Node test2 = *test;
+
+        cout << "RootNode.getWord() should be CATS it is...\n\n\ " << test2.word << endl;
+        cout << "************End of Root Node Test******************\n\n\n\n" << endl;

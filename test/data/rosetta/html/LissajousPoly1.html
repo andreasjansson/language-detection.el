@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Lissajous</title>
+    <script type="text/javascript"><!--
+window.addEventListener('load', function () {
+  // Get the canvas element in the <body> tag
+  var elem = document.getElementById('myCanvas');
+
+  if (!elem || !elem.getContext) {
+    return;
+  }
+
+  // Get the canvas 2d context 
+  var context = elem.getContext('2d');
+  if (!context) {
+    return;
+  }
+
+  var basePointX   = 150;
+  var basePointY   = 100;
+  var currentX     = 0;
+  var currentY     = 0;
+  var offsetX      = 0;
+  var offsetY      = 0;
+  var A            = 200;
+  var B            = 2;
+  var C            = 100;
+  var D            = 5;
+  var angle        = 0;
+  var maxAngle     = 720;
+  var rectWidth    = 90;
+  var rectHeight   = 20;
+ 
+  var sideLength   = rectWidth/2;
+  var vertexCount  = 8;
+  var baseAngle    = 360/vertexCount;
+  var polygonXPts1 = Array(vertexCount);
+  var polygonYPts1 = Array(vertexCount);
+ 
+  // initialize polygon...
+  for(var v=0; v<vertexCount; v++)
+  {
+     theAngle = v*baseAngle*Math.PI/180;
+     offsetX  = sideLength*Math.cos(theAngle);
+     offsetY  = sideLength*Math.sin(theAngle);
+
+     polygonXPts1[v] = basePointX+offsetX; 
+     polygonYPts1[v] = basePointY-offsetY; 
+  }
+
+  for(angle=0; angle<maxAngle; angle++) {
+     offsetX  = A*Math.sin(B*angle*Math.PI/180);
+     offsetY  = C*Math.cos(D*angle*Math.PI/180);
+     currentX = basePointX+offsetX;
+     currentY = basePointY-offsetY;
+
+     // alternate between red and blue
+     if(angle % 2 == 0) {
+        context.fillStyle = '#f00';
+     }
+     else {
+        context.fillStyle = '#00f';
+     }
+
+     // draw the current polygon...
+     context.beginPath();
+     context.moveTo(currentX+polygonXPts1[0], 
+                    currentY+polygonYPts1[0]);
+
+     for(var v=1; v<vertexCount; v++)
+     {
+        context.lineTo(currentX+polygonXPts1[v], 
+                       currentY+polygonYPts1[v]);
+     }
+
+     context.lineTo(currentX+polygonXPts1[0], 
+                    currentY+polygonYPts1[0]);
+     context.fill();
+  }
+}, false);
+    // --></script>
+  </head>
+
+  <body>
+    <canvas id="myCanvas" width="800" height="500">
+         Your browser does not support Canvas
+    </canvas>
+  </body>
+</html>
+

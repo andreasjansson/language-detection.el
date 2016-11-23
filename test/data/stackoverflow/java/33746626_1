@@ -1,0 +1,11 @@
+Test.java:14: error: cannot find symbol
+
+      System.out.println("Apple: " + b.apple);
+
+                      ^
+
+    symbol:   variable apple
+
+    location: variable b of type StaticNestedSubClassOfA
+
+  1 error

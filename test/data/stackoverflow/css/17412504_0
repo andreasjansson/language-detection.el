@@ -1,0 +1,28 @@
+<div class="navbar">
+        <div class="navbar-inner">
+            <a class="brand" href="#">Dbgr.lt</a>
+            <ul class="nav">
+                <li class="active"><a href="#">Posts</a></li>
+                <li><a href="#">Blogs</a></li>
+                <li><a href="#">Questions</a></li>
+                <li><a href="#">People</a></li>
+            </ul>
+
+            <ul class="nav pull-right">
+                <li class="dropdown" id="fat-menu">
+                    <a data-toggle="dropdown" class="dropdown-toggle text-center" role="button" id="drop3" href="#" style="min-width: 100px;"> 
+                        <i class="icon-user pull-left"></i>
+                        Admin
+                        <b class="caret"></b>
+                    </a>
+                    <ul aria-labelledby="drop3" role="menu" class="dropdown-menu">
+                        <li role="presentation"><a href="#" tabindex="-1" role="menuitem">Action</a></li>
+                        <li role="presentation"><a href="#" tabindex="-1" role="menuitem">Another action</a></li>
+                        <li role="presentation"><a href="#" tabindex="-1" role="menuitem">Something else here</a></li>
+                        <li class="divider" role="presentation"></li>
+                        <li role="presentation"><a href="#" tabindex="-1" role="menuitem">Separated link</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>

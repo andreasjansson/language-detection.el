@@ -1,0 +1,50 @@
+Private Sub cmdButton_Click(Index As Integer)
+    Dim iAnswer As Long
+    Dim Ret As Long
+    Dim WrongAnswer(70000) As Long
+    Dim rss As ADODB.Recordset
+    Dim oDatabase As ADODB.Connection : oDatabase = New ADODB.Connection
+    Dim oRs As ADODB.Recordset
+    Dim oQuestion As mcQuestion
+
+    If oQuestions(CLng(lblQuestion.Tag)).Multiple Then
+        If chkAnswer(1).Value Then iAnswer = iAnswer Or 1
+        If chkAnswer(2).Value Then iAnswer = iAnswer Or 2
+        If chkAnswer(4).Value Then iAnswer = iAnswer Or 4
+        If chkAnswer(8).Value Then iAnswer = iAnswer Or 8
+        If chkAnswer(16).Value Then iAnswer = iAnswer Or 16
+    Else
+        If optAnswer(1).Value Then iAnswer = 1
+        If optAnswer(2).Value Then iAnswer = 2
+        If optAnswer(4).Value Then iAnswer = 4
+        If optAnswer(8).Value Then iAnswer = 8
+        If optAnswer(16).Value Then iAnswer = 16
+    End If
+
+    oQuestions(CLng(lblQuestion.Tag)).UserAnswer = iAnswer
+
+    Ret = GetQuestion(Index) ' Index is 0 or 1 - (cmdButton_Click(0) or        cmdButton_Click(1))
+
+
+    If Ret > 0 Then
+        ShowQuestion(Ret) 'Ret = Question number
+        If Index = 1 Then
+            If oQuestions(CLng(lblQuestion.Tag)).Index = 1 Then ' Previous
+                cmdButton(1).Enabled = False
+            Else
+                cmdButton(1).Enabled = True
+            End If
+            cmdButton(0).Enabled = True
+            cmdButton(2).Visible = False
+        Else
+            If oQuestions(CLng(lblQuestion.Tag)).Index = oQuestions.Count Then   ' Next
+                'Last question
+                cmdButton(0).Enabled = False
+                cmdButton(2).Visible = True
+            Else
+                cmdButton(0).Enabled = True
+                cmdButton(2).Visible = False
+            End If
+            cmdButton(1).Enabled = True
+        End If
+    End If

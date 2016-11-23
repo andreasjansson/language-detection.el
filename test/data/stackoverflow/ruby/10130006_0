@@ -1,0 +1,6 @@
+$("#fbInviteButton").click(function(){
+  FB.ui({
+    method: "apprequests",
+    message: "Test"
+  };
+});

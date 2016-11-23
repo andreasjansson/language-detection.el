@@ -1,0 +1,7 @@
+def {
+  try{
+    //do some work
+  }catch(Exception e){
+    response.sendError(500, e.getMessage())
+  }
+}

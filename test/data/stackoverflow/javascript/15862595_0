@@ -1,0 +1,22 @@
+<script>
+$(document).ready(function() {
+  setInterval(
+    function() {
+        $("#DLMessageList").show("slow").load("query.php?qid=11");
+        $("#mainPane").scrollTop(10000);
+    }, 
+  2000);
+});
+</script>
+
+<div id="mainPane">
+    <dl id="DLMessageList">
+        <dd><span>&lt;core&gt;&nbsp;</span>asdasdasdasd</dd>
+        <dt>[13:46:38]&nbsp;</dt>
+        <dd><span>&lt;core&gt;&nbsp;</span>dfgsdfg</dd>
+        <dt>[13:46:41]&nbsp;</dt>
+        <dd><span>&lt;core&gt;&nbsp;</span>fgdfg</dd>
+        <dt>[13:46:48]&nbsp;</dt>
+        <dd><span>&lt;core&gt;&nbsp;</span>test</dd>
+    </div>
+</div>

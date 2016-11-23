@@ -1,0 +1,9 @@
+impl<'a, P> Index<usize> for SubImage<'a, P> {
+      type Output = [P];
+
+      fn index<'b> (&'b self, y: usize) -> &'b [P] {
+        let start = (self.rect.y0 + y) * self.image.size.x + self.rect.x0;
+        let end = start + self.rect.width();
+        &self.image.buf[start..end]
+      }
+    }

@@ -1,0 +1,5 @@
+def test {
+  type A = Foo
+  implicit val fooTpe = reflect.runtime.universe.typeOf[A] // no funciona
+  Bar[A]                                                   // no funciona
+}

@@ -1,0 +1,5 @@
+$/usr/bin/time ./havlak6_go
+5.45user 0.06system 0:05.54elapsed 99%CPU
+
+$/usr/bin/time ./havlak6_gccgo
+11.38user 0.16system 0:11.74elapsed 98%CPU

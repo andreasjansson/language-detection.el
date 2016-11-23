@@ -1,0 +1,20 @@
+static func searchPosts(searchText: String, completionBlock: PFQueryArrayResultBlock) -> PFQuery {
+        /*
+         NOTE: We are using a Regex to allow for a case insensitive compare of usernames.
+         Regex can be slow on large datasets. For large amount of data it's better to store
+         lowercased username in a separate column and perform a regular string compare.
+         */
+
+//        let query = PFQuery(className: "ideaPosts").whereKey(("mood"),
+//                                                             matchesRegex: searchText, modifiers: "i")
+
+        let query = PFQuery(className: "ideaPosts").whereKey(("mood").lowercaseString,
+                                                             equalTo: searchText.lowercaseString)
+
+        query.orderByAscending("createdAt")
+
+        query.findObjectsInBackgroundWithBlock(completionBlock)
+
+
+        return query
+    }

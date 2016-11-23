@@ -1,0 +1,6 @@
+func modify_image(img *gif.GIF) error {
+    for i := 0; i < len(img.Image); i++ {
+        err := modify_frame(img.Image[i])
+    }
+    return nil
+}

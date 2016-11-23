@@ -1,0 +1,12 @@
+;;; Code: 
+(defun omar-hotel ()
+  "another nonce menu function"
+  (interactive)
+  (message "hotel, motel, holiday inn"))
+
+
+ (define-key-after global-map [tool-bar omar-button]
+          '(menu-item "Hotel" omar-hotel
+              :image (image :type xpm :file "/usr/share/emacs/23.4/etc/images/jump-to.xpm")
+              :help "OMG Omar!"
+              ))

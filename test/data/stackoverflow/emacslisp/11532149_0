@@ -1,0 +1,22 @@
+(setq scroll-down-this-time t)
+
+(defun my-scroll-down-line ()
+    (interactive "@")
+    (if scroll-down-this-time
+        (progn
+          (scroll-down-line)
+          (setq scroll-down-this-time nil))
+      (setq scroll-down-this-time t)))
+
+(setq scroll-up-this-time t)
+
+(defun my-scroll-up-line ()
+    (interactive "@")
+    (if scroll-up-this-time
+        (progn
+          (scroll-up-line)
+          (setq scroll-up-this-time nil))
+      (setq scroll-up-this-time t)))
+
+(global-set-key (kbd "<mouse-4>") 'my-scroll-down-line)
+(global-set-key (kbd "<mouse-5>") 'my-scroll-up-line)

@@ -1,0 +1,33 @@
+SELECT
+    personas.id
+  , personas.type
+  , personas.name
+  , xs.value
+FROM (
+  SELECT
+      twitter_personas.id
+    , 'TwitterPersona'
+    , twitter_personas.name
+  FROM twitter_personas
+  WHERE id IN (
+    SELECT persona_id
+    FROM xs
+    ORDER BY
+      xs.value DESC
+    LIMIT 50)
+UNION ALL
+  SELECT
+      facebook_personas.id
+    , 'FacebookPersona'
+    , facebook_personas.name
+  FROM facebook_personas
+  WHERE id IN (
+    SELECT persona_id
+    FROM xs
+    ORDER BY
+      xs.value DESC
+    LIMIT 50)) AS personas(id, type, name)
+  INNER JOIN xs ON xs.persona_id = personas.id
+ORDER BY
+  xs.value DESC
+LIMIT 50

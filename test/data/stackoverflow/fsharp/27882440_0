@@ -1,0 +1,4 @@
+let contract =
+    { Schedule = Guid.Empty; TickTable = Guid.Empty; Price = 0.; Quantity = 0. }
+contract.Schedule = contract.TickTable;; // true - ugh
+contract.Price = contract.Quantity;; // true - ugh

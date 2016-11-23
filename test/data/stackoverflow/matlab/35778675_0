@@ -1,0 +1,6 @@
+pl1_Callback(hObject, eventdata, handles)
+a = str2num(get(handles.a,'string'));
+b = str2num(get(handles.b,'string'));
+
+a = f(a);
+b = g(b);

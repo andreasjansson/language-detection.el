@@ -1,0 +1,6 @@
+@interface ClassA: NSObject {
+    NSUInteger _someNumber;
+    ClassB *_classB;
+}
+@property (nonatomic,retain) ClassB *classB;
+@property (nonatomic,assign) NSUInteger someNumber;

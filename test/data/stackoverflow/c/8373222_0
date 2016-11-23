@@ -1,0 +1,4 @@
+vnode.c: In function 'getSyscall':
+vnode.c:1014: warning: implicit declaration of function 'modfind'
+vnode.c:1022: warning: implicit declaration of function 'modstat'
+*** Error code 1

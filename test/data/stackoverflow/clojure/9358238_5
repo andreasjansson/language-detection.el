@@ -1,0 +1,7 @@
+$ curl -I localhost:8080/welcome
+HTTP/1.1 404 Not Found
+Date: Mon, 20 Feb 2012 08:59:27 GMT
+Set-Cookie: ring-session=c255da15-6cbd-4d2c-8e17-9d120918bde9;Path=/
+Content-Type: text/html; charset=utf-8
+Content-Length: 363
+Server: Jetty(6.1.24)

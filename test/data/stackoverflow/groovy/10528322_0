@@ -1,0 +1,11 @@
+def m = ["smart-1":[stuff:'asdf']]
+println m.getClass()
+
+def p = [id:1]
+println m."smart-$p.id"
+println m["smart-$p.id"]
+println m.get("smart-$p.id")
+
+println m.'smart-1'
+println m['smart-1']
+println m.get('smart-1')

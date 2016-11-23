@@ -1,0 +1,9 @@
+<ItemTemplate>
+<asp:DropDownList ID="ddSupplier" runat="server" DataSource="<%# PopulateControls() %>"  
+                   DataTextField="SupplierName"  DataValueField="SupplierName" />
+</ItemTemplate>
+<ControlStyle BorderStyle="Solid" />
+<HeaderStyle HorizontalAlign="Left" VerticalAlign="Middle" />
+<ItemStyle BorderStyle="None" HorizontalAlign="Left" VerticalAlign="Middle" 
+           Width="50px" />
+ </asp:TemplateField>

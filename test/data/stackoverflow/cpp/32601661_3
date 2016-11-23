@@ -1,0 +1,8 @@
+// second attempt: nested, but still a lot of syntax noise
+unique_ptr<Node<int>> root(new Node<int>{5,
+  new unique_ptr<Node<int>>(new Node<int>{3,
+    new unique_ptr<Node<int>>(new Node<int>{1, nullptr, nullptr}),
+    new unique_ptr<Node<int>>(new Node<int>{2, nullptr, nullptr})
+  }),
+  new unique_ptr<Node<int>>(new Node<int>{4, nullptr, nullptr})
+});

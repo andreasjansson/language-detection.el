@@ -1,0 +1,8 @@
+use std::u32;
+use std::from_str::FromStr;
+
+fn main() {
+
+    let my_str = "String".to_string();
+    let base: u32 = from_str(&my_str);
+}

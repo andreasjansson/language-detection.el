@@ -1,0 +1,26 @@
+@font-face{
+    font-family: 'MuseoSans500';
+    src: url('http://static.tumblr.com/uxfhwz8/JUsn4gm1y/museosans-500.eot'); 
+    src: url('http://static.tumblr.com/uxfhwz8/JUsn4gm1y/museosans- 500.eot?#iefix') format('embedded-opentype'),  
+    url('http://static.tumblr.com/uxfhwz8/vTfn4gm5f/museosans-500.woff') format('woff'), 
+    url('http://static.tumblr.com/uxfhwz8/zEtn4gm2m/museosans-500.ttf') format('truetype'), 
+    url('http://static.tumblr.com/uxfhwz8/HUxn4gm28/museosans-500.svg#MuseoSans500') format('svg'); 
+}
+
+@font-face{
+    font-family: 'MuseoSans700';
+    src: url('http://static.tumblr.com/uxfhwz8/aURn4gm2w/museosans-700.eot'); 
+    src: url('http://static.tumblr.com/uxfhwz8/aURn4gm2w/museosans-700.eot?#iefix') format('embedded-opentype'), 
+    url('http://static.tumblr.com/uxfhwz8/cMgn4gm3i/museosans-700.woff') format('woff'), 
+    url('http://static.tumblr.com/uxfhwz8/Z0tn4gm39/museosans-700.ttf') format('truetype'), 
+    url('http://static.tumblr.com/uxfhwz8/g47n4gm84/museosans-700.svg#MuseoSans700') format('svg'); 
+}
+
+@font-face{
+    font-family: 'MuseoSans900';
+    src: url('http://static.tumblr.com/uxfhwz8/W3Xn4gm3u/museosans-900.eot'); 
+    src: url('http://static.tumblr.com/uxfhwz8/W3Xn4gm3u/museosans-900.eot?#iefix') format('embedded-opentype'), 
+    url('http://static.tumblr.com/uxfhwz8/iYcn4gm4c/museosans-900.woff') format('woff'), 
+    url('http://static.tumblr.com/uxfhwz8/egnn4gm48/museosans-900.ttf') format('truetype'), 
+    url('http://static.tumblr.com/uxfhwz8/6tMn4gm44/museosans-900.svg#MuseoSans900') format('svg'); 
+}

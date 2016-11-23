@@ -1,0 +1,7 @@
+class AdapterNode : public Node
+{
+    private:
+        const TiXmlNode& node;
+    public:
+        AdapterNode(const TiXmlNode& node) : node(node) { }
+        virtual Node* getFirstChild() { Uh... oh, wait.

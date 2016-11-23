@@ -1,0 +1,54 @@
+void ProcessPacket(unsigned char* , int);
+void print_ip_header(unsigned char*, int);
+void print_tcp_packet(unsigned char *, int);
+void print_udp_packet(unsigned char *, int);
+void print_icmp_packet(unsigned char*, int);
+void PrintData(unsigned char*, int);
+
+FILE *logfile;
+
+int data_process()
+{
+  //intialising...   
+  unsigned char *buffer3 = (unsigned char *) malloc(1024);
+
+  //i tried to print the ip address on the terminal but it din't
+
+  struct sockaddr_in client_address;
+  printf("print on the terminal from info agent%s\n",
+      inet_ntoa(client_address.sin_addr));
+
+  infile = open("info_agent_report.txt", O_RDONLY);
+  if (infile == -1)
+  {
+    perror("cannot open info_agent_report file\n");
+    return (1);
+  }
+
+  logfile = fopen("task_agent_processed.csv", "w+");
+  if (logfile == NULL)
+  {
+    printf("Unable to create task_agent_processed file.");
+  }
+
+  do
+  {
+    data_size = read(infile, buffer3, 1024);
+    print_tcp_packet(buffer3, data_size);
+
+  } while (data_size > 0);
+
+  fclose(logfile);
+  close(infile);
+  return 0;
+}
+
+void print_tcp_packet(unsigned char* Buffer, int Size)
+{
+  //initialization,structure.... 
+
+  //i need to use the ip address in the csv file to display it in the same row   
+
+  fprintf(logfile, "%s,%d,%u\n", inet_ntoa(client_address.sin_addr), 1,
+      ntohs(tcph->source));
+}

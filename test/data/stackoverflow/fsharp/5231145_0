@@ -1,0 +1,9 @@
+type A(a:int array) = 
+  member this.Item
+    with get(x) = a.[x]
+    and  set(x) value = a.[x] <- value
+
+type A with
+    member m.Item with
+     get(x:float) = m.[x |> int]
+     and  set(x:float) v = m.[x |> int] <- v

@@ -1,0 +1,4 @@
+Array ("position1" => 'mambo jambo',
+       "position2" => 'more mambo jambo',
+       "position3" => Array("0" => Array(), "1" => Array()),
+       "position4" => Array("0" => Array(), "1" => Array());

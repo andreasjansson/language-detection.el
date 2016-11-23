@@ -1,0 +1,7 @@
+local https = require("socket.http")
+local resp = {}
+local r, c, h, s = https.request{
+    url = "https://my-server:443/example.php",
+    sink = ltn12.sink.table(resp),
+    protocol = "tlsv1"
+}

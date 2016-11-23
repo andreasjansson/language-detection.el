@@ -1,0 +1,15 @@
+let counter =
+    MailboxProcessor.Start(fun inbox ->
+        let rec loop() =
+            async { printfn "waiting for data..."
+                    let! data = inbox.Receive()
+                    failwith "fail" // simulate throwing of an exception
+                    printfn "Got: %d" data
+                    return! loop()
+            }
+        loop ())
+()
+counter.Post(42)
+counter.Post(43)
+counter.Post(44)
+Async.Sleep 1000 |> Async.RunSynchronously

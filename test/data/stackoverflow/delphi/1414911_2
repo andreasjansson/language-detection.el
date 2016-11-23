@@ -1,0 +1,59 @@
+program Test;
+
+{$APPTYPE CONSOLE}
+
+uses
+  SysUtils, Windows;
+
+type
+  TDecodedPixels = array[0..7] of Byte;
+var
+  Pixels: TDecodedPixels;
+  Freq, TimeStart, TimeEnd :Int64;
+  Time1, Time2, Time3, Time4a, Time4b: Extended;
+  i, i2: Integer;
+
+begin
+  if QueryPerformanceFrequency(Freq) then
+  begin
+    for i2 := 1 to 100 do
+    begin
+      QueryPerformanceCounter(TimeStart);
+      for i := 1 to 100000 do
+        DecodePixels1(155, Pixels);
+      QueryPerformanceCounter(TimeEnd);
+      Time1 := Time1 + ((TimeEnd - TimeStart) / Freq * 1000);
+
+      QueryPerformanceCounter(TimeStart);
+      for i := 1 to 100000 do
+        DecodePixels2(155, Pixels);
+      QueryPerformanceCounter(TimeEnd);
+      Time2 := Time2 + ((TimeEnd - TimeStart) / Freq * 1000);
+
+      QueryPerformanceCounter(TimeStart);
+      for i := 1 to 100000 do
+        DecodePixels3(155, Pixels);
+      QueryPerformanceCounter(TimeEnd);
+      Time3 := Time3 + ((TimeEnd - TimeStart) / Freq * 1000);
+
+      QueryPerformanceCounter(TimeStart);
+      for i := 1 to 100000 do
+        DecodePixels4a(155, Pixels);
+      QueryPerformanceCounter(TimeEnd);
+      Time4a := Time4a + ((TimeEnd - TimeStart) / Freq * 1000);
+
+      QueryPerformanceCounter(TimeStart);
+      for i := 1 to 100000 do
+        DecodePixels4b(155, Pixels);
+      QueryPerformanceCounter(TimeEnd);
+      Time4b := Time4b + ((TimeEnd - TimeStart) / Freq * 1000);
+
+    end;
+    Writeln('Time1 : ' + FloatToStr(Time1 / 100) + ' ms.    <- Delphi loop.');
+    Writeln('Time2 : ' + FloatToStr(Time2 / 100) + ' ms.    <- Delphi unrolled loop.');
+    Writeln('Time3 : ' + FloatToStr(Time3/ 100) + ' ms.    <- BASM loop.');
+    Writeln('Time4a : ' + FloatToStr(Time4a / 100) + ' ms.    <- BASM unrolled loop.');
+    Writeln('Time4b : ' + FloatToStr(Time4b / 100) + ' ms.    <- BASM unrolled loop instruction switch.');
+  end;
+  Readln;
+end.

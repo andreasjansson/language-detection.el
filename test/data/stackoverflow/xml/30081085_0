@@ -1,0 +1,14 @@
+public Node saveFile(Node folder, String nodeName, InputStream inputStream, String mimeType, String encoding) throws RepositoryException {
+    Node fileNode = folder.addNode(nodeName, JcrConstants.NT_FILE);
+    Node resourceNode = fileNode.addNode(JcrConstants.JCR_CONTENT, JcrConstants.NT_RESOURCE);
+
+    resourceNode.setProperty(JcrConstants.JCR_MIMETYPE, mimeType);
+    resourceNode.setProperty(JcrConstants.JCR_ENCODING, encoding);
+    resourceNode.setProperty(JcrConstants.JCR_DATA, createBinary(folder.getSession(), inputStream));
+
+    return fileNode;
+}
+
+private Binary createBinary(Session session, InputStream inputStream) throws RepositoryException {
+        return session.getValueFactory().createBinary(new BufferedInputStream(inputStream));
+    }

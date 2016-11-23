@@ -1,0 +1,10 @@
+==26355==  Address 0x782d140 is 0 bytes inside a block of size 320 free'd
+==26355==    at 0x1361A8: je_valgrind_freelike_block (in /home/tupshin/workspaces/rust/cql-ffi/target/basic)
+==26355==    by 0x11272D: heap::imp::deallocate::h7b540039fbffea4dPha (in /home/tupshin/workspaces/rust/cql-ffi/target/basic)
+==26355==    by 0x112679: heap::deallocate::h3897fed87b942253tba (in /home/tupshin/workspaces/rust/cql-ffi/target/basic)
+==26355==    by 0x112627: vec::dealloc::h7978768019700822177 (in /home/tupshin/workspaces/rust/cql-ffi/target/basic)
+==26355==    by 0x112074: vec::Vec$LT$T$GT$.Drop::drop::h239007174869221309 (in /home/tupshin/workspaces/rust/cql-ffi/target/basic)
+==26355==    by 0x111F9D: collections..vec..Vec$LT$i8$GT$::glue_drop.5732::h978a83960ecb86a4 (in /home/tupshin/workspaces/rust/cql-ffi/target/basic)
+==26355==    by 0x111F6D: std..ffi..c_str..CString::glue_drop.5729::h953a595760f34a9d (in /home/tupshin/workspaces/rust/cql-ffi/target/basic)
+==26355==    by 0x112903: cql_ffi::helpers::str_to_ref::hef3994fa55168b90bqd (in /home/tupshin/workspaces/rust/cql-ffi/target/basic)
+=

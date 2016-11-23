@@ -1,0 +1,5 @@
+let mainString = "this is a my string"
+let searchString = "str"
+if mainString.containsString(searchString) {
+
+}

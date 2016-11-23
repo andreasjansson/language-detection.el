@@ -1,0 +1,26 @@
+package Thing_Protected is
+
+   type Thing_Info is private;
+   package Thing_Info_Maps is private;
+
+   protected type Thing is
+      procedure Increment (Key : String);
+      procedure Another_Thing (Key : String);
+   private
+      Thing_Map : Thing_Info_Maps.Map;  --  <<- how would we know about .Map??
+   end Thing;
+
+private
+
+   type Thing_Info is record
+      Key : Ada.Strings.Unbounded.Unbounded_String;
+      Counter_Value : Natural := 0;
+   end record;
+
+   package Thing_Info_Maps is new Ada.Containers.Hashed_Maps
+      (Key_Type => Ada.Strings.Unbounded.Unbounded_String,
+      Element_Type => Thing_Info,
+      Hash => Ada.Strings.Unbounded.Hash,
+      Equivalent_Keys => Ada.Strings.Unbounded."=");
+
+end Thing_Protected;

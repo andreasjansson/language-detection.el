@@ -1,0 +1,10 @@
+for i in {1..4} #there are 4 lines in file2
+do
+chr=$(awk 'NR=="'${i}'" { print $1 }' file2)
+pos=$(awk 'NR=="'${i}'" { print $2 }' file2)
+gene=$(awk 'NR=="'${i}'" { print $3 }' file2)
+
+start=$(echo $pos | awk '{print $1-100}') #start and end variables for 100 unit range
+end=$(echo $pos | awk '{print $1+100}')
+awk '{if ($1=="'$chr'" && $2 > "'$start'" && $2 < "'$end'") print "'$chr'","'$pos'","'$gene'"$3}' file1
+done

@@ -1,0 +1,2 @@
+tock :: (Num s, MonadState s m) => m ()
+tock = do modify (+1)

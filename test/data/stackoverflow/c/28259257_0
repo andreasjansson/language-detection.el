@@ -1,0 +1,67 @@
+#include <stdio.h>
+#include <math.h>
+#include <string.h>
+#include <stdlib.h>
+
+int main()
+{
+      int no,i=0,j,val,small[3],l;
+      int *d;
+      d = malloc(sizeof(int)*500);
+      l=0;
+      if (d != NULL) {
+      printf("1\n");
+      } else {
+      printf("0\n");
+      }
+
+      for(j=0;j<4;j++) //sets initial 0000 combination
+      {
+        d[j]=0;
+      }
+
+      for(no=1;no<8;no++)  //loop for numbers 1-8
+      {
+        val=no;
+        while(val>0)         //decimal to binary conversion
+        {
+
+           small[i]=val%2;
+           i++;
+           val=val/2;
+           l++;
+        }
+        i=0;
+          printf("%d\n",l);
+        if(l<4)                     //creating 4 bit binary number
+        {
+            if(l=1)
+            {
+                small[3]=small[0];
+            }
+            else
+            {
+                for(j=(l-1);j>=0;j--)
+                {
+                    small[(j+(4-l))]=small[j];
+                }
+            }
+            for(j=0;j<(4-l);j++)
+            {
+                small[j]=0;
+            }
+        }
+        l=0;
+        for(j=0;j<4;j++)            //storing binary number in dynamic array
+        {
+            d[(4*no)+j]=small[j];
+            small[j]=0;
+        }
+      }
+
+      for(j=0;j<(4*(no-1))+4;j++) //printing array
+      {
+            printf("%d",d[j]);
+      }
+
+ }

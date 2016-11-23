@@ -1,0 +1,7 @@
+TCounter = class(TInterfacedObject, ICounter)
+private
+  function GetCount: Integer;
+  procedure SetCount(Value: Integer);
+public
+  property Count: Integer read GetCount write SetCount;
+end

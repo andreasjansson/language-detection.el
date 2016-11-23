@@ -1,0 +1,18 @@
+program randtest
+
+implicit none
+
+  real*4        :: u(5)
+  integer       :: i(5)
+  integer       :: k = 4
+  integer, dimension (1) :: seed = (/2817/)
+
+  call random_seed(put=seed) 
+
+  call random_number(u)
+
+i = floor((k+1)*u) 
+
+ print *, i
+
+ end program randtest

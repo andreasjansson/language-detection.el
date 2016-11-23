@@ -1,0 +1,2 @@
+gridview.Columns("CloseDate").DisplayFormat.FormatType = FormatType.DateTime
+gridview.Columns("CloseDate").DisplayFormat.FormatString = "d"

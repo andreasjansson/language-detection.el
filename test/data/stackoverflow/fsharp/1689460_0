@@ -1,0 +1,12 @@
+struct LASTINPUTINFO
+{
+    public uint cbSize;
+    public uint dwTime;
+}
+
+public class IdleTimer
+{
+    [DllImport("User32.dll")]
+    [return: MarshalAs(UnmanagedType.Bool)]
+    private static extern bool GetLastInputInfo(ref LASTINPUTINFO plii);
+}

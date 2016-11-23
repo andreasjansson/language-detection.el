@@ -1,0 +1,3 @@
+edu_le(A,B) :- A = B.
+edu_le(A,B) :- edu_less(A,B).
+edu_le(A,B) :- edu_less(A,C), edu_le(C,B).

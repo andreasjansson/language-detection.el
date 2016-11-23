@@ -1,0 +1,7 @@
+function my_search_form( $form ) {
+$form = '<form role="search" method="get" id="searchform" action="' . home_url( '/' ) . '" >
+<input type="text" name="s" id="search" align="center" size="30" value="' . get_searchform() . '" onfocus="if(this.value ==  . 'search & hit enter' . ) { this.value =  . '' . ; }" onblur="if(this.value ==  . '' . ) {this.value =  . 'search & hit enter' . ; }" />
+<input type="hidden" value="post" name="post_type" id="post_type" />
+</form>';
+
+return $form;

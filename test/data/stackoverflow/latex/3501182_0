@@ -1,0 +1,4 @@
+\newcites{ltex}{\TeX\ and \LaTeX\ References}
+...
+\bibliographystyleltex{alpha}
+\bibliographyltex{lit}

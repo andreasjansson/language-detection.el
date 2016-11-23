@@ -1,0 +1,5 @@
+#row
+for i in range(0,20):
+    for j in range(0,17):
+        if np.product(b[i][j:j+4]) > largest:
+            largest = np.product(b[i][j:j+4])

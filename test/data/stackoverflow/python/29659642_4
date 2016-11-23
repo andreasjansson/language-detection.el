@@ -1,0 +1,13 @@
+def _create_client_dial_live_call():
+    # ...
+    p, created = Prospect.objects.get_or_create_client_dial_prospect(campaign, cid_num)
+    # ...
+    live_call = LiveCall(prospect=p, campaign=campaign.slug)
+    live_call.channel_vars_dict = chan_vars
+    live_call.save()
+    # ...
+
+def get_or_create_channel_driver()
+    # The code is kind of confusing with even more context, 
+    # it basically either gets the existing ProspectChannel
+    # object or creates a new one and then returns it.

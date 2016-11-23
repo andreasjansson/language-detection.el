@@ -1,0 +1,8 @@
+/// 5.2s for max = 2,000,000
+let generatePrimeNumbers max =    
+    let rec generate number numberSequence =
+        if number * number > max then numberSequence else
+        let filteredNumbers = numberSequence |> Seq.filter (fun v -> v = number || v % number <> 0L) |> Seq.toArray |> Array.toSeq
+        let newNumber = filteredNumbers |> Seq.find (fun v -> v > number)
+        generate newNumber filteredNumbers                
+    generate 2L (seq { for i in 2L..max -> i })

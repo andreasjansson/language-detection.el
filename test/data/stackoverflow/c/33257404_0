@@ -1,0 +1,14 @@
+#include <stdio.h>
+#include <stdlib.h>
+void main() {
+        size_t size = (long) 40 * 1024 * 1024 * 1024;
+        int* buffer = malloc(size * sizeof(int));
+        for (size_t i = 0; i < size; i++) {
+                buffer[i] = 1;
+        }
+        printf("hello\n");
+        for (size_t i = 0; i < size; i++) {
+                buffer[i] = 2;
+        }
+        printf("hello\n");
+}

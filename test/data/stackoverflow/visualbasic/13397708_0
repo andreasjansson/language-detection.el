@@ -1,0 +1,18 @@
+Dim iee As New ImageEncoder()
+        iee.AutoConfigurate = True
+        iee.ECI = -1
+        iee.Encoding = 4
+        iee.Fnc1Mode = 0
+        iee.ErrorCorrectionLevel = 0
+        iee.Version = 1
+        iee.ProcessTilde = False
+        iee.MarginSize = 10
+        iee.ModuleSize = 6
+        iee.StructuredAppend = False
+        iee.StructuredAppendCounter = 0
+        iee.StructuredAppendIndex = 0
+        iee.TextData = " http://myApp.com/?querystringdata=here")
+        Dim image As Bitmap = iee.Encode2Image()
+        Dim tempSitePath As String
+        tempSitePath = HttpContext.Current.Server.MapPath(HttpContext.Current.Session("dirTempPath"))
+        image.Save(tempSitePath + "loc_" + locid + ".jpg", System.Drawing.Imaging.ImageFormat.Jpeg)

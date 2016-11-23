@@ -1,0 +1,5 @@
+generic
+   type Element_Type (<>) is tagged;
+package Containers is
+   type Container is abstract tagged null record;
+end Containers;

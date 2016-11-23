@@ -1,0 +1,17 @@
+<html>
+<head><title>Test Print Via Applet</title></head>
+<body>
+<div id="text_to_print">
+This is my Office<br />
+This is my Office Address<br />
+<center>Header of the Receipt</center><br />
+1. Product 1          100.00<br />
+2. Product 2          200.00<br />
+                      ------<br />
+TOTAL                 300.00<br />
+                      ------<br />
+Thanks for the Purchase.
+</div>
+<input type="button" value="Print Directly to the Dot Matrix by using Applet" />
+</body>
+</html>

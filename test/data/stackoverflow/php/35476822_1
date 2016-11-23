@@ -1,0 +1,14 @@
+/**
+     * @var container
+     */
+    protected $container;
+
+    public function __construct(ContainerInterface $container){
+        $this->container = $container;
+    }
+
+public function bannerFilter($filename)
+    {
+        $file = $this->container->getParameter('kernel.root_dir').'../../uploads_dir'.$filename;
+
+    }

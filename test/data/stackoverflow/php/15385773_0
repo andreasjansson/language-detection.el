@@ -1,0 +1,14 @@
+$content = "{youtube}omg{/youtube}";
+$find = array();
+$replace = array();
+
+$find[] = '{youtube((?!}).)*}';
+$replace[] = '[embed]http://www.youtube.com/watch?v=';
+$find[] = '{/youtube((?!}).)*}';
+$replace[] = '[/embed]';
+
+foreach ( $find as $key => $value ) {
+    $find[$key] = '/' . preg_quote($value) . '/';
+}
+
+echo preg_replace($find, $replace, $content);

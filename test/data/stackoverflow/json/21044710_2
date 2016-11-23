@@ -1,0 +1,23 @@
+<script type="text/template" id="modul-details">
+    <div class="modulDetails">
+        <div class="block" id="content-inner">
+            <div class="span_1 col">
+                <h1><%-bezeichnung%></h1>
+                <span class="modulnumer"><%-semester%>.Semester</span>
+                <span class="semester"> </span>
+            </div>
+            <div class="span_1 col">
+                <h2>Inhalte</h2>
+                <p><%-inhalte %></p>
+            </div>
+            <div class="span_1 col">
+                <h3>Credits: </h3><p><%-credits %></p>
+                <h3>Dozenten: </h3>
+                <p>
+                <%-dozenten%>
+                </p>
+                <h3>Voraussetzung: </h3><p><%-voraussetzung %></p>
+            </div>
+        </div>
+    </div>
+</script>

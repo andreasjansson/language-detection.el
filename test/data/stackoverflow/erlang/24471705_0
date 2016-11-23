@@ -1,0 +1,23 @@
+configure: WARNING: No odbc library found skipping odbc
+configure: WARNING: "ODBC library - header check failed"
+configure: WARNING: "ODBC library - link check failed"
+rm: remove write-protected regular file './CONF_INFO'? 
+configure: WARNING: No GLU headers found, wx will NOT be usable
+/home/core/Desktop/otp_src_17.1/lib/wx/./configure: line 5195: wx-config: command not found
+/home/core/Desktop/otp_src_17.1/lib/wx/./configure: line 5893: ./CONF_INFO: Permission denied
+configure: WARNING:
+                wxWidgets must be installed on your system.
+
+        Please check that wx-config is in path, the directory
+        where wxWidgets libraries are installed (returned by
+        'wx-config --libs' or 'wx-config --static --libs' command)
+        is in LD_LIBRARY_PATH or equivalent variable and
+        wxWidgets version is 2.8.4 or above.
+rm: remove write-protected regular file 'doc/CONF_INFO'? 
+/home/core/Desktop/otp_src_17.1/erts/configure: line 6466: doc/CONF_INFO: Permission denied
+configure: WARNING: No 'xsltproc' command found: the documentation cannot be built
+/home/core/Desktop/otp_src_17.1/erts/configure: line 6513: doc/CONF_INFO: Permission denied
+configure: WARNING: No 'fop' command found: going to generate placeholder PDF files
+
+configure: error: No curses library functions found
+configure: error: /bin/bash '/home/core/Desktop/otp_src_17.1/erts/configure' failed for erts

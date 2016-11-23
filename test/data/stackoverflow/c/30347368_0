@@ -1,0 +1,24 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int count_pieces(double *array){
+    int i = 0;
+    while(*(array + i)){  
+        i++;
+    }
+    return i;
+}
+int main()
+{   
+    int i;
+    int n=1005;
+    double r[n];
+    for(i=0;i<n;i++){
+        *(r+i) = 100.0;
+        printf("%f\n", *(r+i));
+    }
+    printf("\n----------------------\n");
+    printf("N=%d",count_pieces(r)); 
+    printf("\n----------------------\n");
+    return 1;
+}

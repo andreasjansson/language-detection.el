@@ -1,0 +1,78 @@
+Private pnlDropDownList As Panel
+                Protected Sub Page_PreInit(ByVal sender As Object, ByVal e As EventArgs) Handles Me.PreInit
+                    'Create a Dynamic Panel 
+                    pnlDropDownList = New Panel()
+                    pnlDropDownList.ID = "pnlDropDownList"
+                    pnlDropDownList.BorderWidth = 1
+                    pnlDropDownList.Width = 300
+                    Me.form1.Controls.Add(pnlDropDownList)
+
+                    'Create a LinkDynamic Button to Add TextBoxes 
+                    Dim btnAddDdl As New Button
+                    btnAddDdl.ID = "btnAddDdl"
+                    btnAddDdl.Text = "Add DropDownList"
+                    AddHandler btnAddDdl.Click, AddressOf btnAdd_Click
+                    Me.form1.Controls.Add(btnAddDdl)
+
+                    'Recreate Controls
+                    RecreateControls("ddlDynamic", "DropDownList")
+                End Sub
+
+                Protected Sub btnAdd_Click(ByVal sender As Object, ByVal e As EventArgs)
+                    Dim cnt As Integer = FindOccurence("ddlDynamic")
+                    CreateDropDownList("ddlDynamic-" & Convert.ToString(cnt + 1))
+                End Sub
+
+                Private Function FindOccurence(ByVal substr As String) As Integer
+                    Dim reqstr As String = Request.Form.ToString()
+                    Return ((reqstr.Length - reqstr.Replace(substr, "").Length) / substr.Length)
+                End Function
+
+                Private Sub RecreateControls(ByVal ctrlPrefix As String, ByVal ctrlType As String)
+                    Dim ctrls As String() = Request.Form.ToString().Split("&"c)
+                    Dim cnt As Integer = FindOccurence(ctrlPrefix)
+                    If cnt > 0 Then
+                        For k As Integer = 1 To cnt
+                            For i As Integer = 0 To ctrls.Length - 1
+                                If ctrls(i).Contains((ctrlPrefix & "-") + k.ToString()) AndAlso Not ctrls(i).Contains("EVENTTARGET") Then
+                                    Dim ctrlID As String = ctrls(i).Split("="c)(0)
+
+                                    If ctrlType = "DropDownList" Then
+                                        CreateDropDownList(ctrlID)
+                                    End If
+                                    Exit For
+                                End If
+                            Next
+                        Next
+                    End If
+                End Sub
+
+                Private Sub CreateDropDownList(ByVal ID As String)
+
+                    Dim ddl As New DropDownList()
+                    ddl.ID = ID
+                    ddl.DataSource = Me.odsNames
+                    ddl.DataTextField = "Name"
+                    ddl.DataValueField = "ID"
+                    ddl.DataBind()
+                    ddl.Items.Insert(0, New ListItem("All", -1))
+                    ddl.SelectedIndex = 0
+                    ddl.AutoPostBack = True
+                    AddHandler ddl.SelectedIndexChanged, AddressOf OnSelectedIndexChanged
+                    pnlDropDownList.Controls.Add(ddl)
+
+
+                    Dim lt As New Literal()
+                    lt.Text = "<br />"
+                    pnlDropDownList.Controls.Add(lt)
+                End Sub
+
+                Protected Sub OnSelectedIndexChanged(ByVal sender As Object, ByVal e As EventArgs)
+                    'Not used, want to get Values from button click
+                End Sub
+
+
+            Protected Sub cmdAdd_Click(ByVal sender As Object, ByVal e As EventArgs) Handles cmdAdd.Click
+                                    Dim cnt As Integer = FindOccurence("ddlDynamic")
+                                    pnlDropDownList.Controls.Remove(pnlDropDownList.FindControl("ddlDynamic-" & Convert.ToString(cnt)))
+            End Sub

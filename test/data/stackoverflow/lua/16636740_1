@@ -1,0 +1,10 @@
+function obj:setName(name)
+    if ((type(self) ~= "table") or (self.setName == nil)) then
+        print("no subject passed")
+
+        return
+    end
+
+    print("obj: ", self)
+    print("name: ", obj)
+end

@@ -1,0 +1,3 @@
+(take 10 (zip-entries "tmp/my.zip"
+  (fn [e] (if (.isDirectory e)
+            (println (.getName e)))))

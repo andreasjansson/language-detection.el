@@ -1,0 +1,47 @@
+class Movies(models.Model):
+    name = models.CharField(max_length=100)
+    metadata = models.ManyToManyField(Metadata, through='MoviesMetadata')
+
+    def __str__(self):
+        return str(self.name)
+
+
+class MoviesMetadata(models.Model):
+    movie = models.ForeignKey(Movies)
+    metadata = models.ForeignKey(Metadata)
+    textValue = models.CharField(max_length=100, blank=True, null=True)
+    dateValue = models.DateField(auto_now=False, auto_now_add=False, blank=True, null=True)
+    userValue = models.ForeignKey(User, blank=True, null=True)
+    decimalValue = models.DecimalField(max_digits=18, decimal_places=2, blank=True, null=True)
+
+    def _value(self):
+        '''
+        @property returns only the values from the selected fieldtype,
+        ignore the other fieldtypes values.
+        '''
+        if self.metadata.fieldtype == '0':
+            return self.textValue
+        elif self.metadata.fieldtype == '1':
+            return self.dateValue
+        elif self.metadata.fieldtype == '2':
+            return self.userValue
+        else:
+            return self.decimalValue
+    value = property(_value)
+
+    def __str__(self):
+        return ('%s: %s' % (self.metadata, self.value))
+
+
+class Metadata(models.Model):
+    name = models.CharField(max_length=100)
+    METADATA_FIELD_TYPE = (
+        ('0', 'Text Value'),
+        ('1', 'Date Value'),
+        ('2', 'User Value'),
+        ('3', 'Decimal Value'),
+    )
+    fieldtype = models.CharField(max_length=1, choices=METADATA_FIELD_TYPE, default='0')
+
+    def __str__(self):
+        return ('%s (%s)' % (self.name, self.get_fieldtype_display()))

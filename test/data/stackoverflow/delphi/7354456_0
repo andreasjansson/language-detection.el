@@ -1,0 +1,23 @@
+procedure TForm1.btnUpdateClick(Sender: TObject);
+var
+  slDBpath: string;
+  sldb: TSQLiteDatabase;
+  sSQL: String;
+  ts: TStringStream;
+begin
+  slDBpath := ExtractFilepath(application.exename) + 'test.db';
+  sldb := TSQLiteDatabase.Create(slDBpath);
+  try
+    ts := TStringStream.Create(memNotes.Text, TEncoding.UTF8);
+    try
+      sldb.BeginTransaction;
+      sSQL := 'UPDATE testtable SET Name = "' + ebName.Text + '", Number = ' + ebNumber.Text + ' WHERE ID = '+ ebID.text +';';
+      sldb.execsql(sSQL);
+      sldb.Commit;
+    finally
+      ts.Free;
+    end;
+  finally
+    sldb.Free;
+  end;
+end;

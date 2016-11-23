@@ -1,0 +1,22 @@
+possibleKnightMove(I, J, I1, J1) :- I1 is I+1, J1 is J+2.
+possibleKnightMove(I, J, I1, J1) :- I1 is I+2, J1 is J+1.
+possibleKnightMove(I, J, I1, J1) :- I1 is I+2, J1 is J-1.
+possibleKnightMove(I, J, I1, J1) :- I1 is I+1, J1 is J-2.
+possibleKnightMove(I, J, I1, J1) :- I1 is I-1, J1 is J-2.
+possibleKnightMove(I, J, I1, J1) :- I1 is I-2, J1 is J+1.
+possibleKnightMove(I, J, I1, J1) :- I1 is I-2, J1 is J-1.
+possibleKnightMove(I, J, I1, J1) :- I1 is I-1, J1 is J+2.
+
+possible_knight_moves(Rows, Columns, X, Y, Visited, NewX, NewY) :-
+    possibleKnightMove(X, Y, NewX, NewY),
+    NewX > 0, NewX =< Rows,
+    NewY > 0, NewY =< Columns,
+    \+ member([NewX,NewY], Visited).
+
+possible_moves_count(Rows, Columns, X, Y, Visited, Count) :-
+    findall(_, possible_knight_moves(Rows, Columns, X, Y, Visited, _NewX, _NewY), Moves),
+    length(Moves, Count).
+
+warnsdorff(Rows, Columns, X, Y, Visited, NewX, NewY, Score) :-
+    possible_knight_moves(Rows, Columns, X, Y, Visited, NewX, NewY),
+    possible_moves_count(Rows, Columns, NewX, NewY, [[NewX, NewY] | Visited], Score).

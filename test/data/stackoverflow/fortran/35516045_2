@@ -1,0 +1,9 @@
+Intel(R) Visual Fortran Intel(R) 64 Compiler XE for applications running on Intel(R) 64, Version 14.0.5.239 Build 20150212
+Copyright (C) 1985-2014 Intel Corporation.  All rights reserved.
+
+Microsoft (R) Incremental Linker Version 12.00.21005.1
+Copyright (C) Microsoft Corporation.  All rights reserved.
+
+-out:empty.exe
+-subsystem:console
+empty.obj

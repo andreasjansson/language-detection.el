@@ -1,0 +1,14 @@
+;checks to see if two sets (represented as lists) are equal
+
+(define (setsEqual? S1 S2)
+(cond
+ ( (null? (cdr S1)) (in_member S1 S2))
+ ( (in_member (car S1) S2) (setsEqual? (cdr S1) S2))
+ (else false)))
+
+;checks for an element in the list
+(define (in_member x list)
+(cond
+ ( (eq? x (car list)) true)
+ ( (null? list) false)
+ (else (in_member x (cdr list)))))

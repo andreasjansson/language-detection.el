@@ -1,0 +1,23 @@
+public static void main(String[] args) {
+    Scanner keyboard= new Scanner (System.in);
+    System.out.print("Please enter your first number: ");
+    int firstnumber= keyboard.nextInt();
+    System.out.print("Please enter the second number: ");
+    int secondnumber= keyboard.nextInt();
+    int sum= firstnumber+secondnumber;
+    System.out.println(sum);
+    int minus= firstnumber-secondnumber;
+    System.out.println(minus);
+    int multiply= firstnumber*secondnumber;
+    System.out.println(multiply);
+    int divide= firstnumber/secondnumber;
+    System.out.println(divide);
+    int moddivide= firstnumber%secondnumber;
+    System.out.println(moddivide);
+    **int average= sum/2;**
+    System.out.println(average);
+
+    keyboard.close();
+
+
+}

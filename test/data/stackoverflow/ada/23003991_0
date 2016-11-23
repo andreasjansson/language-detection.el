@@ -1,0 +1,10 @@
+S_Port : Serial_Port;
+Buffer : Ada.Streams.Stream_Element_Array(1..150);
+GNAT.Serial_Communications.Open(Port => S_Port,Name => "COM1");
+GNAT.Serial_Communications.Set(
+                               Port => S_Port, Parity => Even, Block => False,
+               TimeOut => 4.0
+              );
+
+
+GNAT.Serial_Communications.Read(S_Port,Buffer,Last);

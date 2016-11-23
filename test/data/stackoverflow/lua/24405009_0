@@ -1,0 +1,22 @@
+import java.net.*;
+import java.io.*;
+public class server {
+    public static void main(String args[]) throws Exception {
+        ServerSocket server = null;
+        Socket client = null;
+        PrintStream out = null;
+        BufferedReader buf = null;
+        server = new ServerSocket(8000);
+        client = server.accept();
+        buf = new BufferedReader(
+                new InputStreamReader(client
+                  .getInputStream()));
+        out = new PrintStream(
+                client.getOutputStream());
+        String str = buf.readLine();
+        out.println("Echo:"+str);
+        System.out.println("HELLO"+str);
+        out.close();
+        client.close();
+    }
+};

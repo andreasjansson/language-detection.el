@@ -1,0 +1,6 @@
+ClojureScript:cljs.user> (js* "window")
+==> #<[object DOMWindow]>
+ClojureScript:cljs.user> (js* "window.a=1")
+==> 1
+ClojureScript:cljs.user> (js* "window.a")
+==> 1

@@ -1,0 +1,12 @@
+int bufferSize = socket.getReceiveBufferSize();
+BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream("C:\\test\\test2.txt"));    
+ObjectInputStream ois = new ObjectInputStream(socket.getInputStream());
+byte[] bytes = new byte[bufferSize];
+
+while (true) {
+    FileTest ft = (FileTest) ois.readObject();
+    if (ft != null) {
+        System.out.println(ft.getName());
+        bos.write(ft.getBytes());
+    }
+}

@@ -1,0 +1,19 @@
+<!-- subjects.xml -->
+<Subjects>
+    <Subject>
+        <Id>1</Id>
+        <Name>Maths</Name>
+    </Subject>
+    <Subject>
+        <Id>2</Id>
+        <Name>Science</Name>
+    </Subject>
+    <Subject>
+        <Id>2</Id>
+        <Name>Advanced Science</Name>
+    </Subject>
+    <Subject>
+        <Id>3</Id>
+        <Name>History</Name>
+    </Subject>
+</Subjects>

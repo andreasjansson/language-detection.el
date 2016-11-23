@@ -1,0 +1,13 @@
+passport.use(new SamlStrategy(
+  {
+    path: '/login/callback',
+    entryPoint: 'https://mySFSystem.com/sf/idp/SAML2/SSO/POST/company/XXXXXX',
+    issuer: 'http://localhost:3000/login/callback' <== Not so sure what to put as anything brings me to the same point
+  },
+  function(profile, done) {
+    return done(null,
+        {
+            //get the info retrieved by the login
+        });
+  })
+);

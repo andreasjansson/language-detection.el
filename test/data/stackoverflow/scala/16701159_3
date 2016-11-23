@@ -1,0 +1,2 @@
+val list2 = x1 :: x4 :: HNil // only instances of A
+list2.map(f)

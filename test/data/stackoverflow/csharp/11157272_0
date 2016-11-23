@@ -1,0 +1,17 @@
+try
+        {
+            string dbConnectionString = "something";
+            SqlConnection sqlConnection = new SqlConnection(dbConnectionString);
+            SqlCommand command = new SqlCommand("sp_Test", sqlConnection);
+            command.CommandType = CommandType.StoredProcedure;
+            command.Parameters.AddWithValue("@id ", SqlDbType.Int).Value = TextBox1.Text;
+            command.Parameters.AddWithValue("@FullName", SqlDbType.VarChar).Value = TextBox2.Text;
+            sqlConnection.Open();
+            command.ExecuteNonQuery();
+            sqlConnection.Close();
+        }
+        catch (SqlException ex)
+        {
+            Console.WriteLine("SQL Error" + ex.Message.ToString());
+
+        }

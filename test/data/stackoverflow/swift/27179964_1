@@ -1,0 +1,36 @@
+//MARK: - Physics Methods
+func setupPhysics() {
+    /* Physics World */
+    physicsWorld.gravity = CGVectorMake(0, -9.8)
+    physicsWorld.contactDelegate = self
+    physicsBody = SKPhysicsBody(edgeLoopFromRect: self.frame)
+
+/* Bottom Collision Rect */
+    let bEdge = CGRect(x: CGPointZero.x, y: CGPointZero.y, width: size.width, height: size.height * 0.005)
+    let bottomEdge = SKShapeNode(rect: bEdge)
+    bottomEdge.physicsBody = SKPhysicsBody(edgeLoopFromRect: bEdge)
+    bottomEdge.physicsBody!.categoryBitMask = PhysicsCategory.BottomEdge
+    bottomEdge.physicsBody!.collisionBitMask  = PhysicsCategory.Fish
+    bottomEdge.physicsBody!.dynamic = false
+    gameLayer.addChild(bottomEdge)
+
+    /* Fish */
+    fish.physicsBody = SKPhysicsBody(circleOfRadius: blowfish.size.height / 2.1)
+    fish.physicsBody!.allowsRotation = false
+    fish.physicsBody!.categoryBitMask = PhysicsCategory.Fish
+    fish.physicsBody!.collisionBitMask = PhysicsCategory.Bird | PhysicsCategory.BottomEdge
+
+    /* Left Random Bird */
+    randomLeftBird.physicsBody = SKPhysicsBody(rectangleOfSize: randomLeftBird.size)
+    randomLeftBird.physicsBody!.affectedByGravity = false
+    randomLeftBird.physicsBody!.allowsRotation = false
+    randomLeftBird.physicsBody!.categoryBitMask = PhysicsCategory.Bird
+    randomLeftBird.physicsBody!.collisionBitMask = PhysicsCategory.Fish
+
+    /* Random Right Bird */
+    randomRightBird.physicsBody = SKPhysicsBody(rectangleOfSize: randomRightBird.size)
+    randomRightBird.physicsBody!.affectedByGravity = false
+    randomRightBird.physicsBody!.allowsRotation = false
+    randomRightBird.physicsBody!.categoryBitMask = PhysicsCategory.Bird
+    randomRightBird.physicsBody!.collisionBitMask = PhysicsCategory.Fish
+}

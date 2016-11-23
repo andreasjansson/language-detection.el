@@ -1,0 +1,11 @@
+train(a,b).
+train(b,a).
+train(b,c).
+train(c,b).
+
+route(X,Y,[]) :-
+      train(X,Y)
+   ;  train(Y,X).
+route(X,Y,[H|T]) :-
+   route(X,H,[]),
+   route(H,Y,T).

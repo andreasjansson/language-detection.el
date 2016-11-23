@@ -1,0 +1,18 @@
+void increaseCollectionSize(){
+  collection.size = (collection.size + 1) * REALLOCATE_MODIFIER;
+  char **increasedCollection = malloc(sizeof(char *) * collection.size);
+  char **increasedHead = increasedCollection;
+  for(int i = 0; i < collection.numberOfWords; i++){
+    *increasedCollection = *collection.words;
+    increasedCollection++;
+    collection.words++;
+  }
+  free(collection.words); // I'm getting error here.
+  collection.words = increasedHead;
+}
+
+typedef struct Collection{
+  char **words;
+  size_t numberOfWords;
+  size_t size;
+} Collection;

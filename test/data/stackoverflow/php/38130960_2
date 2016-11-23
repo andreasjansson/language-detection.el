@@ -1,0 +1,29 @@
+Try{
+  $wsdlLocation = 'http://webservice.com/Agent.svc?wsdl'; 
+  $client = new SoapClient($wsdlLocation,array('location' => $wsdlLocation,
+                          'trace' => true,
+                      'exceptions' => true
+               )
+            );
+
+$params = array(
+        'Key' => '123456',
+        'ReturnUrl' => 'http://Anyweb.com',
+        'Name' => 'John Doe',
+        'Office' => 'NorhWest',
+        'Business' => 'PL',
+        'Email' => 'my@email.com',
+        );
+
+$response = $client->__soapCall('GetToken', array('parameters' => $params));
+
+print_r($response);
+
+echo "REQUEST:\n" . $client->__getLastRequest() . "\n";
+
+
+
+} 
+catch (SoapFault $fault) {
+  trigger_error("SOAP Fault: (faultcode: {$fault->faultcode}, faultstring: {$fault->faultstring})", E_USER_ERROR);
+}

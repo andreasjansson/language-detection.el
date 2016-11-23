@@ -1,0 +1,15 @@
+<manifest device="ios" tag="plist/dict">
+    <key>CFBundleURLTypes</key>
+    <array>
+        <dict>
+        ...
+        </dict>
+    </array>
+
+    <!--Here is my own:-->
+    <key>NSAppTransportSecurity</key>
+    <dict>
+        <key>NSAllowsArbitraryLoads</key>
+        <true/>
+    </dict>
+</manifest>

@@ -1,0 +1,23 @@
+procedure Remove_Character(S : in out Ustring; C : in Character; Successful : out Boolean) is
+begin
+    for I in 1..length(S) loop
+        if Element(S, I) = C then
+            Delete(S, I, I);
+            Successful := true;
+            return;
+        end if;
+    end loop;
+    Successful := false;
+end Remove_Character;
+
+function Is_Subset(Subset : Ustring; S : Ustring) return Boolean is
+Could_Remove : Boolean;
+begin
+    for I in 1..length(Subset) loop
+        Remove_Character(S , Element(Subset, I), Could_Remove);
+        if Could_Remove = false then
+            return false;
+        end if;
+    end loop;
+    return True;
+end Is_Subset;

@@ -1,0 +1,6 @@
+/START/,/END/ {
+if ((index($0,"START"))) {
+# do something when range starts
+}
+#do some other things
+}

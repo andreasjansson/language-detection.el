@@ -1,0 +1,36 @@
+global line
+global userinput
+global word
+def main():
+    global userinput
+    name=input("What is your name")
+        print("Hello " +name+ " and welcome to our troubleshooting system!")
+    userinput=input("What is the problem with your mobile device?")
+    userinput=userinput.split()
+    if userinput=="":
+        print("Please try again")
+    power_problems()
+
+def power_problems():
+    global word
+    global line
+    global userinput
+    with open("keywords_1","r+") as datafile_1:
+    datafile_1.read()
+        for line in datafile_1:
+            if "userinput" in line:
+                print("Hold the restart button for 30 seconds")
+            else:
+                phone_problems()
+
+def phone_problems():
+    global word
+    global line
+    global userinput
+    with open("keywords_2", "r+") as datafile_2:
+    datafile_2.read()
+        for line in datafile_2:
+            if "userinput" in line:
+                print("Take the phone to the manufacturer to get a replacement")
+if __name__ == '__main__':
+    main()

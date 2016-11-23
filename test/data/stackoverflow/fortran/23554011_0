@@ -1,0 +1,5 @@
+10  read(10,*,err=11,end=20) f,time(i),(a(i,j),j=1,14)
+    ... 
+    goto 10
+11  i=i+1
+    goto 10

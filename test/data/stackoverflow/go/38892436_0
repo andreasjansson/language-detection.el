@@ -1,0 +1,9 @@
+db.getCollection('spawnlocations').find({
+    'location': {
+        '$geoWithin': {
+            '$center': [[-73.94075, 40.789138], 5000]
+        }
+    }, 
+    "expirationtimems": { "$gte": 1234567890 }, 
+    "_id": { "$gte": "2a920240836c40d8b374203a798a27fa.16" }
+}).sort({"_id":1}).limit(50)

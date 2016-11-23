@@ -1,0 +1,17 @@
+:- module(ch20_utils,
+            [   op(900, xfy, <-),
+                (<-)/2
+            ]).
+
+R <- log2(X) :- R <- log(X) / log(2), !.
+R <- len(L) :- length(L, R), !.
+Sum <- sum_list([], _) :- Sum <- 0.
+Sum <- sum_list([H|T], Func) :- 
+    New_sum <- sum_list(T, Func), 
+    !, Func =..Func_list, 
+    append(Func_list,[H],Apply_func_list),
+    Apply_func =..Apply_func_list,
+    Sum <- New_sum + Apply_func.
+
+R <- X :- compound(X), X =..[OP,X2,X3], R2 <- X2, R3 <- X3, Expr =..[OP,R2,R3], R is Expr, !.
+R <- X :- R is X, !.

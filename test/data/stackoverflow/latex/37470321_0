@@ -1,0 +1,14 @@
+\begin{figure}
+  \centering
+  \begin{subfigure}[b]{0.48\textwidth}
+    \includegraphics[width=\textwidth]{events/pad_p2}
+    \label{fig:pad_p2}
+  \end{subfigure}
+  ~
+  \begin{subfigure}[b]{0.48\textwidth}
+    \includegraphics[width=\textwidth]{events/pad_p8}
+    \label{fig:pad_p8}
+  \end{subfigure}
+
+  \caption{Pads.}
+\end{figure}

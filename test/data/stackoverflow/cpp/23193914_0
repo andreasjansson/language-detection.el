@@ -1,0 +1,6 @@
+#ifdef Q_OS_LINUX
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wcomment"
+#include "header.h"
+#pragma GCC diagnostic pop
+#endif

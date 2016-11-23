@@ -1,0 +1,2 @@
+Func<string> b = () => "b";
+var result = myConcat("a", b());

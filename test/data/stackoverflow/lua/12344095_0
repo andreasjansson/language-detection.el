@@ -1,0 +1,7 @@
+struct mystruct
+{
+  uint32_t field1;
+  char     field2[6];
+  uin64_t  field3;
+  short    field4;
+} __attribute__(packed);

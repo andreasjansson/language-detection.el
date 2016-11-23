@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/scrollView1"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
+
+    <LinearLayout 
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:orientation="vertical"
+      android:background="@color/skyblue" >
+
+        <TextView
+          android:id="@+id/tvPlaceHeader"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="@string/places"
+          android:layout_margin="10dp"
+          android:layout_gravity="center"
+          android:textAppearance="?android:attr/textAppearanceLarge" />
+
+      <ImageView
+         android:contentDescription="@string/search"
+         android:id="@+id/ivPlace"
+         android:layout_gravity="center"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:src="@drawable/logo" />
+
+     <TextView
+         android:contentDescription="@string/search"
+         android:id="@+id/tvTrivia"
+         android:textSize="14sp"
+         android:textStyle="bold"
+         android:layout_margin="10dp"
+         android:layout_width="fill_parent"
+         android:layout_height="wrap_content"
+         android:text="@string/search" />
+
+    </LinearLayout>
+</ScrollView>

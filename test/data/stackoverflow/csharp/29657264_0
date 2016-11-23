@@ -1,0 +1,11 @@
+var schedules = db.Schedules
+    .Where(s => response.SucceededEhrAppointmentIDList.Contains(s.sche_id.ToString()))
+    .ToList();
+
+foreach (Schedule schedule in schedules)
+{                  
+    schedule.synched = true;
+    schedule.PortalPracticeID = practiceID;
+}
+db.SaveChanges();
+return "Success!";

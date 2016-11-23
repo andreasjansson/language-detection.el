@@ -1,0 +1,6 @@
+"Show that a single keyboard event can be checked multiple times"
+Transcript clear; show: 'Type something... '; flush.
+(Delay forSeconds: 2) wait.
+5 timesRepeat: [  
+    Transcript show: (Sensor peekKeyboardEvent); cr
+]

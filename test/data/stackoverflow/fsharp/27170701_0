@@ -1,0 +1,2 @@
+type dbSchema = SqlDataConnection<"Data Source=MYSERVER\INSTANCE;InitialCatalog=MyDatabase;Integrated Security=SSPI;">
+let db = dbSchema.GetDataContext()

@@ -1,0 +1,18 @@
+class ScriptBaseTest {
+
+  @Test
+  void extend_groovy_script() {
+    def compiler = new CompilerConfiguration()
+    compiler.setScriptBaseClass("ScriptBaseTestScript")
+
+    def shell = new GroovyShell(this.class.classLoader, new Binding(), compiler)
+
+    assertEquals shell.evaluate("foo()"), "this is foo"
+  }
+}
+
+abstract class ScriptBaseTestScript extends Script {
+  def foo() {
+    "this is foo"
+  }
+}

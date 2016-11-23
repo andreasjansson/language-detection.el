@@ -1,0 +1,15 @@
+task body My_Task is
+begin 
+  accept Start;
+  loop
+    Put ("1");
+    Put ("2");
+    Put ("3");
+    ...
+    Put ("n");
+
+    loop 
+     if State = RUN then exit; end if;
+    end loop;
+  end loop;
+end My_Task;

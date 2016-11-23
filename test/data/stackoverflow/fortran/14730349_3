@@ -1,0 +1,9 @@
+for (i=0; i<ctrl->ncon; i++) {
+    sum = rsum(ctrl->nparts, ctrl->tpwgts+i, ctrl->ncon);
+    if (sum < 0.99 || sum > 1.01) {
+      IFSET(dbglvl, METIS_DBG_INFO, 
+          printf("Input Error: Incorrect sum of %"PRREAL" for 
+                  tpwgts for constraint %"PRIDX".\n", sum, i));
+      return 0;
+    }
+  }

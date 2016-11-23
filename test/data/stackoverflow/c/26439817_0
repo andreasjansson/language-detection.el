@@ -1,0 +1,19 @@
+// implement foreach with c macro, tag_c
+#include <stdio.h>
+#include <stdlib.h>
+// foreach implementation for char arrays
+#define forchar(iter, array) char* iter; for(iter = array; (*iter) != '\0'; iter++)
+// 'foreach' implementation for string arrays, make sure the array ends with NULL
+#define forstr(iter, array) char** iter; for(iter = array; *iter; iter++)
+
+int main(int argc, char const* argv[])
+{
+    char str[] = "what I think is this.";
+    forchar(iter, str) {printf("%c ", *iter);}
+    printf("\n");
+    char *strarray[] = {"Hello, how are you?", "I am fine, thanks. And you?", "I am ok, thanks."};
+    forstr(iter1, strarray) {
+        printf("%s\n", *iter1);
+    }
+    return 0;
+}

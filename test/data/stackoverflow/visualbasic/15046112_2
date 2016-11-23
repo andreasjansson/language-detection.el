@@ -1,0 +1,43 @@
+@Code 
+ViewData("Title") = "MassEmailSendingStatus"
+TempData.Add("emList", TempData("emailaddresses"))
+end Code
+
+ <div>
+ <a href="#" id="startProcess">Start Long Running Process</a>
+ </div>
+ <br />
+<div id="statusBorder">
+<div id="statusFill">
+</div>
+ </div>
+ <script type="text/javascript">
+  var uniqueId = '@Guid.NewGuid().ToString()';
+  var tdata = '@TempData("emailaddresses")';
+          $(document).ready(function (event) {
+          $('#startProcess').click(function () {
+              $.post("MassEmailSendingStatus", { id: uniqueId }, function () {
+              $('#statusBorder').show();
+              getStatus();
+          });
+          event.preventDefault;
+      });
+  });
+
+  function getStatus() {
+      var url = 'Admin/GetCurrentProgress/' + uniqueId;
+      $.get(url, function (data) {
+          if (data != "100") {
+              $('#status').html(data);
+              $('#statusFill').width(data);
+              window.setTimeout("getStatus()", 100);
+          }
+          else {
+              $('#status').html("Done");
+              $('#statusBorder').hide();
+              alert("The Long process has finished");
+          };
+      });
+  }
+
+</script>

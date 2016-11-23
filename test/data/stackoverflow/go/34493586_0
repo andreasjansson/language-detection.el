@@ -1,0 +1,33 @@
+package main
+
+import "fmt"
+
+func intbyRef(i *int) {
+    *i = 10
+}
+
+type ttt struct {
+    a int
+}
+
+func change(t *ttt) {
+    var p ttt = ttt{7}
+    fmt.Println(p)
+    t = &p
+
+}
+
+func main() {
+
+    i := 1
+    var t *ttt
+
+    fmt.Println(i)
+    fmt.Println(t)
+
+    change(t)
+    intbyRef(&i)
+
+    fmt.Println(i)
+    fmt.Println(t)
+}

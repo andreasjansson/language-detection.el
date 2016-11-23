@@ -1,0 +1,13 @@
+[userMapping mapKeyPath:@"displayName" toAttribute:@"displayName"];
+[userMapping mapKeyPath:@"userName" toAttribute:@"userName"];
+[userMapping mapKeyPath:@"password" toAttribute:@"password"];
+[userMapping mapKeyPath:@"email" toAttribute:@"email"];
+[userMapping mapKeyPath:@"gender" toAttribute:@"gender"];
+[userMapping mapKeyPath:@"birthDate" toAttribute:@"birthDate"];
+[userMapping mapKeyPath:@"bloodGroup" toAttribute:@"bloodGroup"];
+[userMapping mapKeyPath:@"firstName" toAttribute:@"firstName"];
+[userMapping mapKeyPath:@"lastName" toAttribute:@"lastName"];
+
+[userMapping mapKeyPath:@"phoneNumber" toAttribute:@"phoneNumber"];
+
+[[RKObjectManager sharedManager].mappingProvider setMapping:userMapping forKeyPath:@"user"];

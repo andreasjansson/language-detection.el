@@ -1,0 +1,11 @@
+h       =   figure( 1 );
+subplot( 1, 2, 1);
+plot( X, Y );
+grid on;
+xlabel( 'abc' );
+ylabel( 'xyz' );
+title( 'Nice' );        
+legend( 'Awesome' )
+
+handles     =   findall( 0, 'type', 'figure' );
+createPDF( 'outputFileName', numel( handles ) );

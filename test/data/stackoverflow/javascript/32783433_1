@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<style>
+  body {
+    font: 10px sans-serif;
+    margin: 0;
+  }
+
+  .axis path,
+  .axis line {
+    fill: none;
+    stroke: #000;
+    shape-rendering: crispEdges;
+  }
+
+  .line {
+    fill: none;
+    stroke: steelblue;
+    stroke-width: 2px;
+  }
+
+  .area {
+    //fill: #e7e7e7;
+    fill: transparent;
+  }
+
+  .overlay {
+    fill: none;
+    pointer-events: all;
+  }
+
+  .focus circle {
+    fill: none;
+    stroke: red;
+    r: 4.5;
+  }
+
+  .focusLine {
+    stroke: blue;
+    stroke-dasharray: 3,3;
+    opacity: 0.5;
+  }
+</style>
+
+<body>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script>
+  <script>
+    var margin = {
+        top: 20,
+        right: 45,
+        bottom: 20,
+        left: 40
+      },
+      width = 961 - margin.left - margin.right,
+      height = 138 - margin.top - margin.bottom;
+    var parseDate = d3.time.format("%b %Y").parse,
+      bisectDate = d3.bisector(function(d) {
+        return d.date;
+      }).left,
+      formatValue = d3.format(",.2f"),
+      formatDate = d3.time.format("%X"),
+      formatCurrency = function(d) {
+        return formatValue(d);
+      };
+
+    var x = d3.time.scale()
+      .range([0, width]);
+
+    // variable to hold our yscales
+    var ys = {};
+
+    var area = d3.svg.area()
+      .x(function(d) {
+        return x(d.date);
+      })
+      .y0(height)
+      .y1(function(d) {
+        return ys[d.symbol](d.price); //<-- call the y function matched to our symbol
+      });
+
+    var line = d3.svg.line()
+      .x(function(d) {
+        return x(d.date);
+      })
+      .y(function(d, i) {
+        return ys[d.symbol](d.price); //<-- call the y scale function matched to our symbol
+      });
+
+    var xAxis = d3.svg.axis()
+      .scale(x) // x is the d3.time.scale()
+      .orient("bottom") // the ticks go below the graph
+      .ticks(4) // specify the number of ticks
+      .tickFormat(d3.time.format("%H:%M"));
+
+    d3.csv("stocks_chart_komplett.csv", type, function(error, data) {
+
+      // Nest data by symbol.
+      var symbols = d3.nest()
+        .key(function(d) {          
+          return d.symbol;
+        })
+        .entries(data);
+
+      // Compute the maximum price per symbol, needed for the y-domain.
+      symbols.forEach(function(s) {
+        var maxPrice = d3.max(s.values, function(d) {
+          return d.price;
+        });
+        ys[s.key] = d3.scale.linear() //<-- create a scale for each "symbol" (ie Sensor 1, etc...)
+          .range([height, 0])
+          .domain([0, maxPrice]);
+      });
+
+      // Compute the minimum and maximum date across symbols.
+      // We assume values are sorted by date.
+      x.domain([
+        d3.min(symbols, function(s) {
+          return s.values[0].date;
+        }),
+        d3.max(symbols, function(s) {
+          return s.values[s.values.length - 1].date;
+        })
+      ]);
+
+      // Add an SVG element for each symbol, with the desired dimensions and margin.
+      var svg = d3.select("body").selectAll("svg")
+        .data(symbols)
+        .enter().append("svg")
+        .attr("width", width + margin.left + margin.right)
+        .attr("height", height + margin.top + margin.bottom)
+        .append("g")
+        .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+      // Add the area path elements. Note: the y-domain is set per element.
+      svg.append("path")
+        .attr("class", "area")
+        .attr("d",area);
+
+      // Add the line path elements. Note: the y-domain is set per element.
+      svg.append("path")
+        .attr("class", "line")
+        .attr("d", function(d) {
+          return line(d.values);
+        });
+
+      // Add a small label for the symbol name.
+      svg.append("text")
+        .attr("x", width - 6)
+        .attr("y", height - 6)
+        .style("text-anchor", "end")
+        .text(function(d) {
+          return "<"+d.key+"> value now: "+d.values[d.values.length - 1].price+" "+d.values[d.values.length - 1].unit;
+        });
+
+      svg.append('g') // create a <g> element
+        .attr('class', 'x axis') // specify classes
+        .attr("transform", "translate(0," + height + ")")
+        .call(xAxis); // let the axis do its thing
+
+      // build 4 y axis
+      var axisGs = svg.append("g"); //<-- create a collection of axisGs
+
+      axisGs
+        .attr("class", "y axis")
+        .append("text")
+        .attr("transform", "rotate(-90)")
+        .attr("y", 6)
+        .attr("dy", ".71em")
+        .style("text-anchor", "end")
+        .text(function(d) {
+          return d.values[d.values.length - 1].unit;
+        });
+
+      axisGs.each(function(d, i) { //<-- for each axisG create an axis with it's scale
+        var self = d3.select(this);
+        self.call(
+          d3.svg.axis()
+          .scale(ys[d.key])
+          .orient("left")
+          .ticks(4)
+        );
+      });
+
+      var focus = svg.append("g")
+        .attr("class", "focus")
+        .style("display", "none");
+
+       focus.append("circle")
+
+      focus.append("text")
+        .attr("x", 0)
+        .attr("dy", "-.90em")
+        .style("font-size","12px")
+        .style("fill", "grey")
+        .style("text-anchor", "middle");
+
+      svg.append("rect")
+        .attr("class", "overlay")
+        .attr("width", width)
+        .attr("height", height)
+        .on("mouseover", function() {
+          focus.style("display", null);
+        })
+        .on("mouseout", function() {
+          focus.style("display", "none");
+        })
+        .on("mousemove", mousemove);
+
+        // append the x line
+        focus.append("line")
+            .attr('id', 'focusLineX')
+            .attr("class", "focusLine");
+
+        // append the y line
+        focus.append("line")
+            .attr('id', 'focusLineY')
+            .attr("class", "focusLine");
+
+      function mousemove() {
+        var date, index,index_diff;
+        date = x.invert(d3.mouse(this)[0]);
+        var focus = svg.selectAll(".focus");
+        focus.attr("transform", function(d) {
+
+            index = bisectDate(d.values, date, 0, d.values.length - 1);
+
+            var yDomain = d3.extent(d.values, function(d) { return d.price; });
+
+            focus.select('#focusLineX')
+            .attr("x1", 0)
+            .attr("y1", 0)
+            .attr("x2", 0)
+            .attr("y2", ys[d.key](yDomain[0]));
+
+
+            console.log(yDomain[0]);
+
+            //.attr("y2", ys[d.key]);
+
+            // focus.select('#focusLineY')
+            // .attr("x1", -width)
+            // .attr("y1", 0)
+            // .attr("x2", width)
+            // .attr("y2", 0);
+
+           //console.log(index, d.values[index].symbol, d.values[index].date, d.values[index].price);
+            focus.selectAll("text").text(function (d){
+
+                return (""+formatDate(d.values[index].date)+", "+d.values[index].price+"")
+            });
+          // adjust mouseover to use appropriate scale
+          return "translate(" + x(d.values[index].date) + "," + ys[d.key](d.values[index].price) + ")"
+        });
+      }
+    });
+
+    function type(d) {
+      d.price = +d.price;
+      d.date = parseDate(d.date);
+      return d;
+    }
+  </script>
+  </body>
+ </html>

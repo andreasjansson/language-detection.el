@@ -1,0 +1,154 @@
+Imports System
+Imports System.Data
+Imports System.Data.SqlClient
+Imports System.Threading
+Imports System.Object
+Partial Class addbooth
+Inherits System.Web.UI.Page
+
+Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
+
+    If Not Page.IsPostBack Then
+
+        ddlEventTitle.Items.Insert(0, New ListItem("-select-", String.Empty))
+
+    End If
+
+    Dim eventID As String = ddlEventTitle.SelectedValue
+    Dim connString As String = ConfigurationManager.ConnectionStrings("ConnectionString1").ConnectionString
+    ' Dim connString As String = "Data Source=.\SQLEXPRESS;AttachDbFilename=|DataDirectory|\CikguTube3.mdf;Integrated Security=True;User Instance=True"
+    Dim con As SqlConnection = New SqlConnection(connString)
+
+    Dim cmdQuery As String = "SELECT * FROM eventinfo WHERE eventID = '" + eventID + "'"
+    Dim cmd As SqlCommand = New SqlCommand(cmdQuery)
+    Dim myReader As SqlDataReader
+
+
+    cmd.Connection = con
+    cmd.CommandType = CommandType.Text
+    con.Open()
+
+    myReader = cmd.ExecuteReader()
+
+    While myReader.Read()
+
+        Label1.Text = myReader("totalDay").ToString()
+
+    End While
+
+    myReader.Close()
+
+    cmd.ExecuteNonQuery()
+    cmd.Parameters.Clear()
+    con.Close()
+
+    If Label1.Text = "7" Then
+        cbWeek1.Enabled = True
+        cbWeek2.Enabled = False
+        cbWeek3.Enabled = False
+        cbWeek4.Enabled = False
+        cbWeek5.Enabled = False
+        cbWeek6.Enabled = False
+        cbWeek7.Enabled = False
+        cbWeek8.Enabled = False
+
+    ElseIf Label1.Text = "14" Then
+
+        cbWeek1.Enabled = True
+        cbWeek2.Enabled = True
+        cbWeek3.Enabled = False
+        cbWeek4.Enabled = False
+        cbWeek5.Enabled = False
+        cbWeek6.Enabled = False
+        cbWeek7.Enabled = False
+        cbWeek8.Enabled = False
+
+    End If
+
+
+End Sub
+
+
+Protected Sub ButtonAddNewBooth_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles ButtonAddNewBooth.Click
+
+
+
+    Dim connString As String = ConfigurationManager.ConnectionStrings("ConnectionString1").ConnectionString
+    '"Data Source=.\SQLEXPRESS;AttachDbFilename=|DataDirectory|\eventdb.mdf;Integrated Security=True;User Instance=True"
+    Dim con As SqlConnection = New SqlConnection(connString)
+
+
+    Dim cmdQuery As String = "INSERT INTO booth(eventID,boothAlias,boothType,week1,week2,week3,week4,week5,week6,week7,week8) VALUES (@eventID,@boothAlias,@boothType,@week1,@week2,@week3,@week4,@week5,@week6,@week7,@week8)"
+
+    Dim cmd = New SqlCommand(cmdQuery)
+    cmd.Connection = con
+    cmd.CommandType = CommandType.Text
+    con.Open()
+    cmd.Parameters.AddWithValue("@eventID", ddlEventTitle.SelectedValue)
+    cmd.Parameters.AddWithValue("@boothAlias", txtBoothAlias.Text)
+    cmd.Parameters.AddWithValue("@boothType", ddlBoothType.SelectedValue)
+
+
+
+    If (cbWeek1.Checked = True) Then
+        cmd.Parameters.AddWithValue("@week1", "1")
+    Else
+        cmd.Parameters.AddWithValue("@week1", "0")
+    End If
+
+    If (cbWeek2.Checked = True) Then
+        cmd.Parameters.AddWithValue("@week2", "1")
+    Else
+        cmd.Parameters.AddWithValue("@week2", "0")
+    End If
+
+    If (cbWeek3.Checked = True) Then
+        cmd.Parameters.AddWithValue("@week3", "1")
+    Else
+        cmd.Parameters.AddWithValue("@week3", "0")
+    End If
+
+    If (cbWeek4.Checked = True) Then
+        cmd.Parameters.AddWithValue("@week4", "1")
+    Else
+        cmd.Parameters.AddWithValue("@week4", "0")
+    End If
+
+    If (cbWeek5.Checked = True) Then
+        cmd.Parameters.AddWithValue("@week5", "1")
+    Else
+        cmd.Parameters.AddWithValue("@week5", "0")
+    End If
+
+    If (cbWeek6.Checked = True) Then
+        cmd.Parameters.AddWithValue("@week6", "1")
+    Else
+        cmd.Parameters.AddWithValue("@week6", "0")
+    End If
+
+    If (cbWeek7.Checked = True) Then
+        cmd.Parameters.AddWithValue("@week7", "1")
+    Else
+        cmd.Parameters.AddWithValue("@week7", "0")
+    End If
+
+    If (cbWeek8.Checked = True) Then
+        cmd.Parameters.AddWithValue("@week8", "1")
+    Else
+        cmd.Parameters.AddWithValue("@week8", "0")
+    End If
+
+
+    GridViewBoothAdded.DataBind()
+
+    cmd.ExecuteNonQuery()
+    cmd.Parameters.Clear()
+    con.Close()
+
+
+
+
+
+End Sub
+
+End Class

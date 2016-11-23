@@ -1,0 +1,4 @@
+(defun recursive-function (string) "returns list of strings"
+;I am trying to return flat list
+; create list L
+(append (mapcar 'recursive-function L)))

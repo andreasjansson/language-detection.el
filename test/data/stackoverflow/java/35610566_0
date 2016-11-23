@@ -1,0 +1,5 @@
+private static boolean drag = false;
+private Canvas compCanvas;
+private Button btnSend, btnAdd,btnFreeHand,btnArrow,btnCircle,btnSquare,btnLine;
+private Composite mainPanel;
+compCanvas = new Canvas(mainPanel, SWT.NONE);

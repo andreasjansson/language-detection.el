@@ -2,7 +2,7 @@
 
 [![MELPA](https://melpa.org/packages/language-detection-badge.svg)](https://melpa.org/#/language-detection)
 
-Emacs Lisp library that automatically detects the programming language in a buffer or string. Supports 32 languages, with around 94% accuracy.
+Emacs Lisp library that automatically detects the programming language in a buffer or string.
 
 ## Usage
 
@@ -13,10 +13,100 @@ Emacs Lisp library that automatically detects the programming language in a buff
 * `(language-detection-string STRING)`
  - Non-interactive function, returns the language of STRING
 
+## Model performance
+
+<table>
+  <thead>
+    <tr>
+      <th>&nbsp;</th>
+      <th><a href="https://archive.org/details/stackexchange">Stack Overflow</a></th>
+      <th><a href="https://github.com/acmeism/RosettaCodeData">Rosetta Code</a></th>
+      <th><a href="https://github.com/github/linguist/tree/master/samples">Github Linguist</a></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>language-detection.el</td>
+      <td>73%</td>
+      <td>84%</td>
+      <td>87%</td>
+    </tr>
+    <tr>
+      <td><a href="https://highlightjs.org/">Highlight.js</a></td>
+      <td>36%</td>
+      <td>54%</td>
+      <td>56%</td>
+    </tr>
+    <tr>
+      <td><a href="http://pygments.org/docs/api/#pygments.lexers.guess_lexer">Pygments</a></td>
+      <td>10%</td>
+      <td>25%</td>
+      <td>37%</td>
+    </tr>
+  </tbody>
+</table>
+
+## Computational performance
+
+The actual random forest lookup is fast, the bottleneck is regular expression-based tokenization.
+
+```
+Function Name                         Call Count  Elapsed time  Average Time
+language-detection-buffer             441         8.0538804580  0.0182627674
+language-detection-string             441         8.0525858239  0.0182598318
+language-detection-tokenize-string    441         6.2478335339  0.0141674229
+language-detection-token-frequencies  441         1.6420298549  0.0037234237
+language-detection-forest-lookup      441         0.0973103440  0.0002206583
+language-detection-tree-lookup        4851        0.0885046049  1.824...e-05
+```
+
+## Supported languages
+
+* ada
+* awk
+* c
+* clojure
+* cpp
+* csharp
+* css
+* dart
+* delphi
+* emacslisp
+* erlang
+* fortran
+* fsharp
+* go
+* groovy
+* haskell
+* html
+* java
+* javascript
+* json
+* latex
+* lisp
+* lua
+* matlab
+* objc
+* perl
+* php
+* prolog
+* python
+* r
+* ruby
+* rust
+* scala
+* shell
+* smalltalk
+* sql
+* swift
+* visualbasic
+* xml
+
 ## EWW syntax highlighting
 
 Write this in your .emacs:
 
+<!--- BEGIN EWW CODE -->
 ```elisp
 (require 'cl-lib)
 
@@ -88,95 +178,34 @@ Write this in your .emacs:
 (setq shr-external-rendering-functions
       '((pre . eww-tag-pre)))
 ```
+<!--- END EWW CODE -->
 
 ## Classifier training procedure
 
-The model consists of a Random Forest ensemble of 7 Decision Tree classifiers.
+The model consists of a Random Forest ensemble of 11 Decision Tree classifiers.
 
-It was trained on a number of corpuses:
+It was trained on code snippets from the [Stack Overflow data dump](https://archive.org/details/stackexchange), extracted from `<pre>` tags. The number of snippets per language was capped at 10,000. The actual training snippets can be unpickled from `snippets.cpkl`.
 
- * [Advent-Of-Code-Polyglot](https://github.com/ChrisPenner/Advent-Of-Code-Polyglot)
- * [ProgrammingLanguage-Detection](https://github.com/kaushik94/ProgrammingLanguage-Detection)
- * [RosettaCodeData](https://github.com/acmeism/RosettaCodeData)
- * [langolier](https://github.com/mishadoff/langolier)
- * [linguist](https://github.com/github/linguist)
- * [polyglot](https://github.com/polyrabbit/polyglot)
- * [Languages](https://github.com/Gerst20051/Languages)
+The snippets were tokenized simple regex: `([a-zA-Z0-9_]+|[^ a-zA-Z0-9_\n\t]+)`. Single tokens and pairs of consecutive tokens are pruned to the top 500 token/token pairs per language.
 
-Number of lines of code per language:
-
- * c: 419721
- * clojure: 8060
- * cpp: 132972
- * csharp: 9896
- * css: 39426
- * delphi: 8128
- * emacslisp: 948
- * erlang: 12948
- * fsharp: 2340
- * go: 45505
- * groovy: 9149
- * haskell: 22400
- * html: 101109
- * java: 48440
- * javascript: 219667
- * json: 154
- * latex: 172
- * lisp: 8330
- * matlab: 14351
- * objc: 26116
- * perl: 26276
- * php: 354789
- * python: 530642
- * r: 7205
- * ruby: 28461
- * rust: 4291
- * scala: 14568
- * shell: 12414
- * sql: 1969
- * swift: 735
- * visualbasic: 4871
- * xml: 4078
-
-Since the distribution of languges is highly skewed, I created a dataset by concatenating all lines per language and sampling 1000 snippets of 5-100 lines.
-
-I then tokenize the snippets using this simple regex: `([a-zA-Z0-9_]+|[^ a-zA-Z0-9_\n\t]+)` and filter all tokens that are not in the superset of the 200 most common tokens per language.
-
-Finally, the tokens counted for frequency and placed in a 2241-dimensional bag-of-words vector. (2241 is the total number of unique tokens.) For example, this is a bag corresponding to a C snippet:
+Finally, the tokens counted for frequency and placed in a 7772-dimensional bag-of-words vector. (7772 is the total number of unique tokens.) For example, this is a bag corresponding to a Haskell snippet:
 
 ```
-(          : 0.05371
-.          : 0.05115
-);         : 0.03581
-/**        : 0.03325
-void       : 0.03069
-*/         : 0.03069
-const      : 0.02302
-&          : 0.02302
-col        : 0.02302
-to         : 0.0179
-property   : 0.0179
-text       : 0.01535
-,          : 0.01535
-background : 0.01535
-)          : 0.01535
-of         : 0.01535
-focus      : 0.01279
-name       : 0.01279
-bool       : 0.01279
-{          : 0.01023
-not        : 0.01023
-id         : 0.01023
--          : 0.01023
-inline     : 0.01023
-}          : 0.01023
-\          : 0.007673
-default    : 0.007673
-=          : 0.007673
+"         : 0.057971
+(         : 0.0144928
+)         : 0.0144928
+->        : 0.0289855
+-> IO     : 0.0144928
+.         : 0.0289855
+. h       : 0.0289855
+::        : 0.0289855
+IO        : 0.0144928
+h         : 0.0289855
+import    : 0.0289855
 ```
 
-For classification I use a basic sklearn Random Forest. The hyperparameters were found using random grid search. I use an ensemble of 7 decision trees. Cross-validated accuracy of around 94%. Here's a confusion matrix:
+For classification I use a Random Forest with 11 decision trees. The hyperparameters were found using random grid search. Here's a confusion matrix:
 
 ![Confusion matrix](https://github.com/andreasjansson/language-detection.el/raw/master/assets/confusion-matrix.png)
 
-The decision trees are written out as Emacs Lisp sexps in the format `(TOKEN THRESHOLD LEFT_CHILD RIGHT_CHILD VALUE)`. In `language-detection.el` that data structure is traversed recursively until leaves are found in each tree. The most common leaf class is then chosen as the language.
+The decision trees are written out as Emacs Lisp arrays and traversed recursively until leaves are found in each tree.

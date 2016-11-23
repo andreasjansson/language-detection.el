@@ -1,0 +1,13 @@
+<%= form_tag submission_path do %>
+  <% object_forms = @objects.map {|o| fields_for("object[#{o.to_param}]", o) {|f| break f}} %>
+  <table>
+    <% @attributes.each do |attr| %>
+      <tr>
+        <% object_forms.each do |f| %>
+          <td><%= f.text_field attr %></td>
+        <% end %>
+      </tr>
+    <% end %>
+  </table>
+  <%= submit_tag 'Save' %>
+<% end %>

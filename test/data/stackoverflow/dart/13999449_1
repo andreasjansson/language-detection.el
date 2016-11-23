@@ -1,0 +1,56 @@
+import 'dart:html';
+
+void main() {
+  query('#lbl')
+    ..on.dragStart.add(onDragStart)
+    ..on.dragEnd.add(onDragEnd);
+
+  query('#div2')
+    ..on.dragEnter.add(onDragEnter)
+    ..on.dragOver.add(onDragOver)
+    ..on.drop.add(onDrop);
+
+  query('#div2')
+    ..on.dragLeave.add(onDragLeave);
+}
+
+onDragStart(MouseEvent e) {
+  print('started');
+  var lbl = e.target as LabelElement;
+  lbl.style.opacity = '0.4';
+  e.dataTransfer.setData('text', lbl.id);
+}
+
+onDragEnd(MouseEvent e) {
+ var lbl = e.target as LabelElement;
+ lbl.style.opacity = '1.0';
+ print('drag end called');
+}
+
+onDragEnter(MouseEvent e) {
+  e.stopPropagation();
+  e.dataTransfer.dropEffect = 'move';
+  var x = e.target as DivElement;
+  x.classes.add('blueborder');
+}
+
+onDragOver(MouseEvent e) {
+  e.stopPropagation();
+  e.dataTransfer.dropEffect = 'move';
+  var x = e.target as DivElement;
+  x.classes.add('blueborder');
+}
+
+onDragLeave(MouseEvent e) {
+  var x = e.target as DivElement;
+  x.classes.remove('blueborder');
+}
+
+onDrop(MouseEvent e){
+  print('on drop called');
+  var x = e.target as DivElement;
+  x.classes.remove('blueborder');
+  String sid = e.dataTransfer.getData('text');
+  var v = query('#{sid}');
+  x.children.add(v);
+}

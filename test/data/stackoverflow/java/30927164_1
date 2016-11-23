@@ -1,0 +1,19 @@
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+
+public class Input {
+JButton toggleElevators = new JButton("Click me.");
+
+public void addButtonListeners() {
+    toggleElevators.addActionListener(new toggleElevatorsListener());
+}
+
+class toggleElevatorsListener implements ActionListener {
+    public void actionPerformed (ActionEvent event) {
+        toggleElevators.setText("Clicked.");
+        System.out.println("ActionListener called."); //I know the ActionListener is not being called because this line is not being printed out in the console
+    }
+}
+}

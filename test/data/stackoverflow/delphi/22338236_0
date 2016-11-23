@@ -1,0 +1,24 @@
+function HMAC_SHA1(Text, Key: AnsiString): AnsiString;
+var
+  ipad, opad, s: AnsiString;
+  n: Integer;
+  SHA1Context: TSHA1Ctx;
+begin
+  if Length(Key) > 64 then
+    Key := SHA1(Key);
+  ipad := StringOfChar(#$36, 64);
+  opad := StringOfChar(#$5C, 64);
+  for n := 1 to Length(Key) do
+  begin
+    ipad[n] := AnsiChar(Byte(ipad[n]) xor Byte(Key[n]));
+    opad[n] := AnsiChar(Byte(opad[n]) xor Byte(Key[n]));
+  end;
+  SHA1Init(SHA1Context);
+  SHA1Update(SHA1Context, ipad);
+  SHA1Update(SHA1Context, Text);
+  s := SHA1Final(SHA1Context);
+  SHA1Init(SHA1Context);
+  SHA1Update(SHA1Context, opad);
+  SHA1Update(SHA1Context, s);
+  Result := SHA1Final(SHA1Context);
+end;

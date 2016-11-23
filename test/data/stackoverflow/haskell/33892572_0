@@ -1,0 +1,20 @@
+type Barcode = Int
+type Name = String
+type Price = Int
+data Inventory = Inventory Barcode Name Price deriving (Eq, Ord, Show)
+
+marktInventar :: [(Int,String,Int)]
+marktInventar = [ (321, "Salz",     35)
+                , (432, "Butter",   95)
+                , (531, "Milch",    85)
+                , (235, "Eier",    145)
+                , (246, "Schmalz", 245)
+                , (642, "Mehl",    110)
+                , (528, "Safran",  249)
+                , (395, "Wurst",   345)
+                , (294, "Kaese",   215)
+                , (178, "Tomate",   45)
+                , (378, "Banane",   75)
+                , (938, "Orange",   65)
+                , (491, "Kiwi",     95)
+                ]

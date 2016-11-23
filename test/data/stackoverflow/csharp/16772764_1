@@ -1,0 +1,24 @@
+public ViewModel { 
+
+    #region Fields
+    private TestDocument _Document;
+    #endregion
+
+    #region Properties
+    public TestDocument Document
+    {
+        get 
+        {
+            return ModelClass.SelectedDocument; 
+        }
+        set 
+        {
+            if (value != null && value != _Document)
+            {
+                _Document = value;
+                OnPropertyChanged("Document");
+            }
+        }
+    }
+    #endregion
+}

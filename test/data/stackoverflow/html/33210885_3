@@ -1,0 +1,27 @@
+public JsonResult UpdateAlarms(String id)
+    {
+        DashboardViewModel model = new DashboardViewModel();
+
+        model.Alarms = new List<SSAlarm>()
+        {
+            new SSAlarm
+            {
+                ConditionDescription = "Condition Normal",
+                IsConditionNormal  = true
+            },
+
+            new SSAlarm
+            {
+                ConditionDescription = "Lost neutral alarm",
+                IsConditionNormal = false,
+                AlarmLabel1 = "Phase Voltage Red:",
+                AlarmValue1 = "230V",
+                AlarmLabel2 = "Phase Voltage Yellow:",
+                AlarmValue2 = "231V",
+                AlarmLabel3 = "Phase Voltage Blue:",
+                AlarmValue3 = "232V"
+             }
+        };
+
+        return Json(model);
+    }

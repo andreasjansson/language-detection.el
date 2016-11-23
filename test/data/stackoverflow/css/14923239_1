@@ -1,0 +1,113 @@
+body {
+  margin:0;
+  padding:0;
+  background:#eee;
+}
+
+html,body {
+  height:100%; 
+}
+
+#wrapper {
+  width:400px;
+  height: auto !important;
+  height:100%;
+  margin:0 auto;
+  min-height:100%;
+}
+
+#inner {
+  height: 100%;
+  padding:0 0 55px 0;
+  background-color: #ccc;
+  background-image: url(//upload.wikimedia.org/wikipedia/en/b/bc/Wiki.png);
+  background-repeat: repeat-x;
+  background-position: right bottom;
+  overflow: hidden;
+}
+
+#inner p {
+  margin:1em 1em 0;
+  padding:.15em .25em;  
+}
+
+#inner header {
+  margin: 0; 
+  padding: 0;
+  height: 160px;
+}
+
+#wrapper header nav ul {
+  list-style-type: none;
+  margin-top: 4px;
+  padding-left: 240px;
+  height: 46px !important;
+  z-index: 999;
+  position: absolute;
+}
+
+#wrapper header nav ul li {
+  display: inline-block;
+}
+
+#wrapper header nav ul li a {
+  font-size: 16px;
+  font-weight: bold;
+  color: #000;
+  height: 40px !important;
+  line-height: 40px;
+  padding-left: 10px;
+  padding-right: 10px;
+  text-decoration: none;
+  display: block;
+}
+
+#wrapper header nav ul li a:hover {
+  background-color: #333 !important;
+  color: #fff;
+  z-index: 2;
+}
+
+#wrapper header nav ul li.active a {
+  font-size: 18px;
+  font-weight: bold;
+  background-color: #333 !important;
+  color: #fff;
+  height: 46px !important;
+  line-height: 46px;
+  display: block !important;
+  padding-left: 10px;
+  padding-right: 10px;
+  text-decoration: none;
+}
+
+#sidebar div {
+  width: 100px;
+  min-height: 60px;
+  background-color: #ddd;
+  margin-bottom: 20px;
+}
+
+#content {
+  width: 250px;
+  height: 100%;
+  position: relative;
+  float: right;
+  background-color: #ddd;
+}
+
+#footer {
+    width:400px;
+    height:55px;
+    margin:-55px auto 0;
+    background:#222;
+    overflow:hidden;
+}
+
+#footer p{
+    margin:0;
+    padding:.5em 0 0;
+    font-weight:bold;
+    text-align:center;
+    color:#FFF;
+}

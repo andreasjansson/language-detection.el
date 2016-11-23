@@ -1,0 +1,3 @@
+for j in range(4):
+    c=list(csv.DictReader(a[j], fieldnames=b[j]))
+    print c

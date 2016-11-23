@@ -1,0 +1,35 @@
+void bmp_bdraw (BYTE* BUFF)
+{
+
+    word WIDTH, HEIGHT, W, H; // word - unsigned short
+    BYTE R, G, B; // BYTE - unsigned char
+
+    (!BUFF || !BUFF[COUNT-1]) ? // debug1
+        (error("Error in function 'bmp_bdraw'. There is no data to read from.")) : ;                  
+
+    WIDTH = BUFF[18] + BUFF[19] * 256;
+    HEIGHT = BUFF[22] + BUFF[23] * 256;
+    ofs = 54;
+
+    if(BUFF[0] != 'B' | BUFF[1] != 'M') error // debug2
+        ("Warning: Data identifier error in function 'bmp_bdraw' occurred. Invalid BMP file loaded.");
+
+    for(H=HEIGHT-1; H>=0; H--)
+    {
+        for(W=0; W<WIDTH; W++)
+        {
+            B = sgetc(BUFF); // fgetc-like function but from buff
+            G = sgetc(BUFF);
+            R = sgetc(BUFF);
+
+            setpen(R, G, B, 0, 1); // sets the color, transparancy and size of the pen
+            putpixel(W, H); // and puts the pixel at the right location
+        }
+    }
+
+    if(W != WIDTH || H > 1) // debug3
+        error("Error in function 'bmp_bdraw'. Rendering failed. The file might be damaged.");         
+
+    if(real_fps < 11)
+        error("Too low fps rate."); // debug4
+}

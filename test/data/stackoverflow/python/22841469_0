@@ -1,0 +1,40 @@
+import copy as cp
+
+def generateWeights (weights,possibleWeights,N):
+    "Generate all possible combinations of weights"
+    # cycle over number of desired coloumns
+    for i in range(0,N):
+        # copy weights to iterate over every element while i pop stuff out of
+        # the original list
+        weightsCopy = cp.deepcopy(weights)
+        for w in weightsCopy:
+            # make a copy to edit
+            wtemp = cp.deepcopy(w)
+            for p in possibleWeights:
+                # append every possibility 
+                wtemp.append(p)
+                # I only want combinations with sum == 1 so I can start
+                # avoiding those that are > 1
+                if sum(wtemp) <= 1:
+                    weights.append(cp.deepcopy(wtemp))
+                # get the original wtemp back so I can work on it with my next p
+                wtemp.pop()
+            # finished developing the first line of the table. Pop it out and
+            # move on.
+            weights.pop(0)
+    # once again copy weights to iterate over every element while I edit the 
+    # original list
+    weightsCopy = cp.deepcopy(weights)        
+    for w in weightsCopy:
+        # remove all possibilities whose sum < 1
+        # all those > 1 were never added
+        if sum(w) < 1:
+            weights.remove(w)
+    return weights
+
+N=6 # Number of securities
+possibleWeights = [0.0,0.1,0.2,0.3,0.4,0.5]
+# weights is a coloumn because I want to access its elements and still get
+# lists instead of floats.
+weights = [[0.0],[0.1],[0.2],[0.3],[0.4],[0.5]]
+weights = generateWeights(weights,possibleWeights,N)

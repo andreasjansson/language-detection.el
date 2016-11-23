@@ -1,0 +1,2 @@
+bestest_qsort(L=[_|_]) ->
+    bestest_qsort(L, []).

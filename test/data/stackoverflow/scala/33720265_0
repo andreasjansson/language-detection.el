@@ -1,0 +1,69 @@
+object SolutionTest {
+  val lst = List(("Mark", 32), ("Bob", 22), ("Jane", 8), ("Jill", 21),("Nick", 50), ("Nancy", 42), ("Mike", 19), ("Sara", 12), ("Paula", 42),("John", 21))
+                                              //> lst  : List[(String, Int)] = List((Mark,32), (Bob,22), (Jane,8), (Jill,21), 
+                                              //| (Nick,50), (Nancy,42), (Mike,19), (Sara,12), (Paula,42), (John,21))
+    lst.size                                  //> res0: Int = 10
+
+  def filter1(tup:(String, Int)):Boolean={
+    println("from filter1 "+ tup)
+    val (_, age) = tup
+    age > 17
+  }                                               //> filter1: (tup: (String, Int))Boolean
+
+  def filter2(tup:(String, Int)):Boolean={
+    println("from filter2 "+ tup)
+    val (name, _) = tup
+    name.startsWith("J")
+  }                                               //> filter2: (tup: (String, Int))Boolean
+
+
+//NORMAL LIST                                                  
+lst.filter(filter1).filter(filter2).last  //> from filter1 (Mark,32)
+                                              //| from filter1 (Bob,22)
+                                              //| from filter1 (Jane,8)
+                                              //| from filter1 (Jill,21)
+                                              //| from filter1 (Nick,50)
+                                              //| from filter1 (Nancy,42)
+                                              //| from filter1 (Mike,19)
+                                              //| from filter1 (Sara,12)
+                                              //| from filter1 (Paula,42)
+                                              //| from filter1 (John,21)
+                                              //| from filter2 (Mark,32)
+                                              //| from filter2 (Bob,22)
+                                              //| from filter2 (Jill,21)
+                                              //| from filter2 (Nick,50)
+                                              //| from filter2 (Nancy,42)
+                                              //| from filter2 (Mike,19)
+                                              //| from filter2 (Paula,42)
+                                              //| from filter2 (John,21)
+                                              //| res1: (String, Int) = (John,21)
+
+//LAZY LIST
+lst.view.filter(filter1).filter(filter2).last
+                                              //> from filter1 (Mark,32)
+                                              //| from filter2 (Mark,32)
+                                              //| from filter1 (Bob,22)
+                                              //| from filter2 (Bob,22)
+                                              //| from filter1 (Jane,8)
+                                              //| from filter1 (Jill,21)
+                                              //| from filter2 (Jill,21)
+                                              //| from filter1 (Mark,32) RESTARTING THE OPERATION HERE!!!
+                                              //| from filter2 (Mark,32)
+                                              //| from filter1 (Bob,22)
+                                              //| from filter2 (Bob,22)
+                                              //| from filter1 (Jane,8)
+                                              //| from filter1 (Jill,21)
+                                              //| from filter2 (Jill,21)
+                                              //| from filter1 (Nick,50)
+                                              //| from filter2 (Nick,50)
+                                              //| from filter1 (Nancy,42)
+                                              //| from filter2 (Nancy,42)
+                                              //| from filter1 (Mike,19)
+                                              //| from filter2 (Mike,19)
+                                              //| from filter1 (Sara,12)
+                                              //| from filter1 (Paula,42)
+                                              //| from filter2 (Paula,42)
+                                              //| from filter1 (John,21)
+                                              //| from filter2 (John,21)
+                                              //| res2: (String, Int) = (John,21)
+}

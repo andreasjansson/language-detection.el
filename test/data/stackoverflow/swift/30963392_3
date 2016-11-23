@@ -1,0 +1,6 @@
+let response: Response = Mapper<Response>().map(responseObject)!
+
+for item in response.data! {
+    let dataModel: Data = item
+    println(dataModel.name)
+}

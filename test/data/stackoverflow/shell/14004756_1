@@ -1,0 +1,3 @@
+function filter-general {
+    (somehow get input) | sed <bla-blah-blah>
+}

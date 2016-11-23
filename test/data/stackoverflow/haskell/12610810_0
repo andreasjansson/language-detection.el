@@ -1,0 +1,20 @@
+getFilePathBreadtFirst :: FilePath -> IO [FilePath]
+getFilePathBreadtFirst fp = do
+  fileinfo <- getInfo fp 
+  res :: [FilePath]  <- if isReadableDirectory fileinfo
+          then do
+                children  <- getChildren fp 
+                lower    <-  mapM getFilePathBreadtFirst children  
+                return (children ++  concat lower)
+           else return [fp]        -- should only return the files? 
+  return res 
+
+getChildren :: FilePath -> IO [FilePath]
+getChildren path = do 
+          names <- getUsefulContents path
+          let namesfull = map (path </>) names
+          return namesfull
+
+testBF fn = do  -- crashes for /home/frank, does not go to swap 
+  fps <- getFilePathBreadtFirst fn
+  putStrLn $ unlines fps

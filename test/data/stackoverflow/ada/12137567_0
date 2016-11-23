@@ -1,0 +1,2 @@
+with Conventional_Method_Number_Of_Averages;
+package Number_Of_Averages renames Conventional_Method_Number_Of_Averages;

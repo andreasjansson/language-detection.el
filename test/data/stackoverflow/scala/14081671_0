@@ -1,0 +1,28 @@
+private def joinAtoB(a: LineLike, b: LineLike): LineLike = {
+    newFunction(a.start, b.end)
+  }
+
+  private def joinTouchingLines(a: LineLike, b: LineLike): Option[LineLike] = {
+    if ((a.end + 1) == b.start)
+      Some(joinAtoB(a, b))
+    else
+      None
+  }
+
+  @tailrec
+  def joinLinesRec(list: List[LineLike], result: List[LineLike] = List[LineLike]())
+                     :List[LineLike] = {
+    list match {
+      case Nil => result
+      case item :: Nil => item :: result
+
+      case first :: second :: rest => {
+        val joined = joinTouchingLines(first, second)
+        val prepend = joined match {
+          case None => List(first, second)
+          case Some(joinedItem) => List(joinedItem)
+        }
+        joinLinesRec(rest, prepend ::: result)
+      }
+    }
+  }

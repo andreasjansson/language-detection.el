@@ -1,0 +1,3 @@
+TextView usefulLinksIntroTextView = (TextView) findViewById(R.id.useful_links);
+usefulLinksIntroTextView.setText(Html.fromHtml(data.getUsefulLinks()));     
+usefulLinksIntroTextView.setMovementMethod(LinkMovementMethod.getInstance());

@@ -1,0 +1,26 @@
+#!/usr/bin/perl
+use warnings; use strict;
+use utf8; binmode(STDIN, ":utf8"); binmode(STDOUT, ":utf8");
+use IO::File; use Cwd; my $owd = getcwd()."/"; # OriginalWorkingDirectory
+use Text::Tabs qw(expand unexpand);
+$Text::Tabs::tabstop = 4; #sets the number of spaces in a tab
+
+opendir (DIR, $owd) || die "$!";
+my @files = grep {/(.*)\.(c|cpp|h|java)/}  readdir DIR;
+foreach my $x (@files){
+    my $str;
+    my $fh = new IO::File("+<".$owd.$x);
+    if (defined $fh){
+        while (<$fh>){ $str .= $_; }
+        $str =~ s/( |\t)+\n/\n/mgos;#removes trailing spaces or tabs
+        $str = expand($str);#convert tabs to spaces
+        $str =~ s/\/\/(.*?)\n/\/\*$1\*\/\n/mgos;#make all comments multi-line.
+        #print $fh $str;#this just appends to the file
+        close $fh;
+    }
+    $fh = new IO::File(" >".$owd.$x);
+    if (defined $fh){
+        print $fh $str; #this just appends to the file
+        undef $str; undef $fh; # automatically closes the file
+    }
+}

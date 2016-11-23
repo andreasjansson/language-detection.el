@@ -1,0 +1,4 @@
+> (1 ::: 2 ::: 3 ::: Nil) ! (SSucc SZero)
+2
+> (1 ::: Nil) ! (SSucc SZero)
+Couldn't match type 'False with 'True....

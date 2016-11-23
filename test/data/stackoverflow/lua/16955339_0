@@ -1,0 +1,25 @@
+local function RemovePlayer()
+    print("Something")
+end
+
+function change(e)
+    if(e.phase=="began")then
+        Player.alpha=1
+        Player.height=50
+        Player.width=50
+    end
+    if(e.phase=="moved")then
+    angle=(math.atan2( (e.y - Player.y), (e.x - Player.x))*180)/math.pi +90
+    Player.rotation=angle
+    end
+    if(e.phase=="ended")then
+        transition.to(Player,{time=200,height=32,width=32})
+        local xx = (e.x-Player.x)*2
+        local yy = (e.y-Player.y)*2
+        Player.bodyType = "dynamic"
+        Player:applyForce( xx, yy, Player.x, Player.y )
+        timer.performWithDelay ( 10000,RemovePlayer() )
+    end
+
+return true
+end

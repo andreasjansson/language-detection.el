@@ -1,0 +1,21 @@
+initialize
+ | circleWidth circleHeight|
+  super initialize.
+  self label: ''.
+  self borderWidth: 0.
+  bounds := 0@0 corner: 70@70.
+
+  circle := CircleMorph new.
+  circleWidth := self bounds width*0.9.
+  circleHeight := self bounds height*0.9.
+  circle bounds: self bounds*0.9.
+
+  circle color: Color paleBuff.
+  circle borderWidth: 1.
+  self addMorphCentered: circle.
+
+
+  offColor := Color gray darker.
+  onColor := Color gray darker.
+  self useSquareCorners.
+  self turnOff

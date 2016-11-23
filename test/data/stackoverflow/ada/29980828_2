@@ -1,0 +1,46 @@
+with Unchecked_Deallocation, ada.Text_IO;
+use ada.Text_IO;
+package body queues is
+    function is_Empty (Q: Queue) return Boolean is
+    begin
+        return ((Q.front = null) and (Q.back = null));
+    end is_Empty;
+
+    procedure Dequeue (Q : in out Queue) is
+    begin
+       if is_Empty(Q) then
+          raise Queue_Empty;
+       else
+          Q.Back := Q.Back.Next;
+          if Q.Back = null then
+             Q.Front := null;
+          end if;
+
+       end if;
+    end Dequeue;
+
+    procedure Enqueue (Item: ItemType; Q: in out Queue) is
+       tmp : QueueNodePointer := new QueueNode'(Item, null);
+    begin
+        if is_Full(q) then
+            raise Queue_Full;
+        else
+          if Q.Back = Null then
+             Q.Back := tmp;
+          end if;
+          if Q.Front /= null then
+             q.front.next := tmp;
+          end if;
+          q.Front := tmp;
+        end if;
+    end Enqueue;
+
+    function Front (Q: Queue) return ItemType is
+    begin
+        if is_Empty(Q) then
+           raise Queue_Empty;
+        else
+           return Q.back.data;
+        end if;
+    end Front;
+end queues;

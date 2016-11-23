@@ -1,0 +1,11 @@
+HTTP/1.1 200 OK
+Server: nginx/1.4.6 (Ubuntu)
+Date: Wed, 24 Dec 2014 10:10:23 GMT
+Content-Type: application/xml;charset=UTF-8
+Transfer-Encoding: chunked
+Connection: keep-alive
+Vary: Accept-Encoding
+
+99
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?><blah>hello</blah>
+0

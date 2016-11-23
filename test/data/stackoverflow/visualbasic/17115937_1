@@ -1,0 +1,8 @@
+Imports MyProject.cMyClass.MemberVariableIncMyClass 
+
+Public Class myWebForm
+       Inherits myInheritedClass
+
+Public Shared Page_Load(...) Handles Me.Load
+
+       FunctionIWishToUse()

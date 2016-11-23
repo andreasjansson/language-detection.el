@@ -1,0 +1,2 @@
+(setq lexical-binding t)
+(let ((myvarr 42)) (eval 'myvarr t)) ; (void-variable myvarr)

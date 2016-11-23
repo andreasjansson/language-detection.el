@@ -1,0 +1,5 @@
+def foo(p: Foo => LogicalBoolean): Query[(Foo, Boolean)] =
+  from(table[Foo])(f =>
+    where (...)
+    select (f, p(f))
+  )

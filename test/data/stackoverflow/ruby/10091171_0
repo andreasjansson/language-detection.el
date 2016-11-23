@@ -1,0 +1,9 @@
+class Foo
+  def itnialize(name)
+    self.foo = name
+  end
+
+  def set_bar 
+    self.bar = 'it will fail..'
+  end
+end

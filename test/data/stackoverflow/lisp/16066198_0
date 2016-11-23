@@ -1,0 +1,8 @@
+(define-syntax function
+    (syntax-rules ()
+        ((_ () body ...) (lambda () body ...))
+        ((_ (param) body ...) (lambda (param) body ...))
+        ((_ (param_1 param_2 params ...) body ...) (lambda (param_1 . rest)
+            (let ((k (function (param_2 params ...) body ...)))
+                (if (null? rest) k (apply k rest)))))
+        ((_ name params body ...) (define name (function params body ...)))))

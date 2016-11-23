@@ -1,0 +1,27 @@
+public void SetImages(string Image)
+    {
+        switch(Image)
+        {
+            case "Green":
+                Image_BlackDim.Visible = true;
+                Image_RedDim.Visible = true;
+                Image_GreenDim.Visible = false;
+                break;
+            case "Red":
+                Image_BlackDataKeyDim.Visible = true;
+                Image_RedDataKeyDim.Visible = false;
+                Image_GreenDataKeyDim.Visible = true;
+                break;
+            case "Black":
+                Image_BlackDim.Visible = false;
+                Image_RedDim.Visible = true;
+                Image_GreenDim.Visible = true;
+                break;
+            case "None":
+            default:
+                Image_BlackDim.Visible = true;
+                Image_RedDim.Visible = true;
+                Image_GreenDim.Visible = true;
+                break;
+        }
+    }

@@ -1,0 +1,26 @@
+def __init__(self, master_dict, normalization = lambda x: math.exp(x)):
+    """
+    master_dict should be a dictionary mapping classes to lists of matrices
+
+    example = {
+        "cats": [[[]...], [[]...]...],
+        "dogs": [[[]...], [[]...]...]
+    }
+
+    have to be python lists, not numpy arrays
+
+    normalization represents the 0-1 normalization scheme used. Defaults to simple linear
+    """
+    normalization = np.vectorize(normalization)
+    full_tensor = np.array(reduce(operator.add, master_dict.values()))
+    centering = np.sum(np.array(reduce(operator.add, master_dict.values())), axis=0)/len(full_tensor)
+    self.data = {key: self._center(np.array(value), centering, normalization) for key,value in master_dict.items()}
+    self.normalization = normalization
+
+def _center(self, list_of_arrays, centering_factor, normalization_scheme):
+    """
+    Centering scheme for arrays
+    """
+    arrays = list_of_arrays - centering_factor
+    normalize = lambda a: (a - np.min(a)) / (np.max(a) - np.min(a))
+    return normalization_scheme([normalize(array) for array in arrays])

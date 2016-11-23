@@ -1,0 +1,18 @@
+@Override
+public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication auth)
+        throws IOException, ServletException {
+
+    // Here we want to check whether the user has already started the process and redirect to the appropriate stage
+
+    log.info("User {} has been authenticated", auth.getName());
+
+    if(auth.getName().equals("foo@bar.com"))
+    {
+        redirectStrategy.sendRedirect(request, response, "/individual");
+        return;
+    }
+
+
+    redirectStrategy.sendRedirect(request, response, "/application");
+
+}

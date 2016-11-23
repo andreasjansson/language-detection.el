@@ -1,0 +1,8 @@
+<div data-dojo-type="dojox.mobile.View">
+    <h1>view1.html</h1>
+    <ul data-dojo-type="dojox.mobile.EdgeToEdgeList">
+    <li data-dojo-type="dojox.mobile.ListItem">
+        Jack Coleman
+    </li>
+    </ul>
+</div>

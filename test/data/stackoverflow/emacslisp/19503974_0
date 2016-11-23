@@ -1,0 +1,2 @@
+(defalias 'yes-or-no-p 'y-or-no-p)
+(setq confirm-kill-emacs 'y-or-no-p)

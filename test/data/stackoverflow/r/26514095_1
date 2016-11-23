@@ -1,0 +1,5 @@
+install.packages("lme4")
+library(lme4)
+mm <- glmer(mwalkeri~TLR4+repro.state+month+sex+year+(1|AvM), data=a, 
+    family=poisson,control=glmerControl(optimizer="bobyqa"))`
+summary(mm)

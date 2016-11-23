@@ -1,0 +1,36 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int main(void) 
+{
+    typedef struct { 
+        int value1;
+        int value2;
+    }data;
+
+    int n = 1000;
+    int i;
+    int val=0;
+
+    data * array = NULL;
+
+    if ((array = (data *)malloc(sizeof(data *) * n)) == NULL) {
+        printf("unable to allocate memory \n");
+        return -1; 
+    }   
+    printf("allocation successful\n");
+
+    for (i=0 ; i<n ; i++) {
+        array[i].value1 = val++;
+        array[i].value2 = val++;
+    }   
+
+    for (i=0 ; i<n ; i++) {
+        printf("%3d %3d %3d\n", i, array[i].value1, array[i].value2);
+    } 
+
+    free(array);
+    printf("freeing successful\n");
+
+    return 0;
+}

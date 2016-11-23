@@ -1,0 +1,11 @@
+#lang scheme
+
+(define t '( "Apple" 3))
+(define t2 '("Orange", 1))
+
+
+(define compare (lambda (m1 m2)
+                (if (<(cdr m1)(cdr m2)) #t #f)
+                  ))
+
+(compare t t2)

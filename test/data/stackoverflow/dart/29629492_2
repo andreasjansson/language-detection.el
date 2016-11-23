@@ -1,0 +1,17 @@
+<polymer-element name="ui-button" noscript>
+  <template>
+    <!-- FAIL: querySelect('app-element::shadow ui-button::shadow h2') -->
+    <h2>app-element > ui-button > h2</h2>
+  </template>
+</polymer-element>
+
+<polymer-element name="app-element" noscript>
+  <template>
+    <!-- FAIL: querySelect('app-element::shadow').querySelect('h2') -->
+    <!-- FAIL: querySelect('app-element::shadow h2') -->
+    <!-- FAIL: querySelect('app-element').shadowRoot.querySelect('h2') -->
+    <h2>app-element > h2</h2>
+    <content></content>
+    <ui-button></ui-button>
+  </template>
+</polymer-element>

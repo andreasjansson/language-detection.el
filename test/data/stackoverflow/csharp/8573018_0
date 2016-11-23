@@ -1,0 +1,13 @@
+public class Person
+{
+    public int PersonId { get; set; }
+    public string Name { get; set; }
+    public virtual ICollection<Responsibility> Responsibilities { get; set; }
+}
+
+public class Responsibility
+{
+    public int ResponsibilityId { get; set; }
+    public string ResponsibilityType { get; set; }
+    public virtual ICollection<Person> People { get; set; }
+}

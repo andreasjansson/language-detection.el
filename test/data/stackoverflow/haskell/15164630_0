@@ -1,0 +1,3 @@
+a :: Int -> (Int -> (Int -> (Int -> Int)))
+
+b :: (((Int -> Int) -> Int) -> Int) -> Int

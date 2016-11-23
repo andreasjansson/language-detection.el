@@ -1,0 +1,16 @@
+(define m
+  (cons
+    (cons 'a '())
+    (cons
+      (cons 'a '())
+      '())))
+(display m)(newline) ; => ((a) (a))
+(set-car! (cadr m) 'b)
+(display m)(newline) ; => ((a) (b))
+
+(newline)
+
+(define n (list '(x) '(x)))
+(display n)(newline) ; => ((x) (x))
+(set-car! (cadr n) 'y)
+(display n)(newline) ; => ((y) (y))

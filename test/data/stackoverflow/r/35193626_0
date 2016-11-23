@@ -1,0 +1,7 @@
+require(data.table)
+DT1 <- data.table(k1 = 1:2, k2 = c('a', 'a', 'a', 'b', 'b', 'c'), v1 = 1:6, key = 'k2')
+DT2 <- data.table(k1 = c('a', 'b', 'c'), w1 = 3^(1:3), key = 'k1')
+
+DT1[DT2, sum(v1*w1), by=k1]    # fails complaining about being unable to find w1
+DT1[DT2, sum(v1*i.w1), by=k1]  # also fails with the same error
+DT1[DT2][, sum(v1*w1), by=k1]  # works

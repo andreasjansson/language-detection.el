@@ -1,0 +1,31 @@
+use strict;
+use warnings;
+
+my $inputfile  = shift || die "Give files\n";
+my $outputfile = shift || die "Give output\n";
+
+open my $INFILE,  '<', $inputfile   or die "In use / Not found :$!\n";
+open my $OUTFILE, '>', $outputfile  or die "In use :$!\n";
+
+while (<$INFILE>) {
+  s/"//g;
+  my @elements = split /;/, $_;
+
+    my ($varA, $varB, $varC, $varD, $varE, $varF, $varG, $varH) split (';', $elements[10]);
+        $elements[16] = $varA;
+        $elements[17] = $varB;
+        $elements[18] = $varC;
+        $elements[19] = $varD; 
+        $elements[20] = $varE;
+        $elements[21] = $varF;
+        $elements[22] = $varG;
+        $elements[23] = $varH;
+
+my $output_line = join(";", @elements);
+print $OUTFILE $output_line;
+}
+
+close $INFILE;
+close $OUTFILE;
+
+exit 0;

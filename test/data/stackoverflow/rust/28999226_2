@@ -1,0 +1,9 @@
+impl<'a> Iterator for Lexer<'a> {
+    ...
+    fn next<'b>(&'b mut self) -> Option<LexItem>{
+        ....
+        // slicing issue
+        self.text = self.text[i .. self.text.len()]
+
+    }
+}

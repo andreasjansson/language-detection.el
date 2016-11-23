@@ -1,0 +1,4 @@
+NSDictionary *dict = [[NSDictionary alloc]init];
+[dict setValue:[[SomeClass alloc]init] forKey:@"someClass"];
+[dict setValue:[[NSMutableString alloc]init] forKey:@"mutableString"];
+BOOL classIsSomeClass = [[dict objectForKey:@"someClass"] isKindOfClass:[SomeClass class]];

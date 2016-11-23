@@ -1,0 +1,20 @@
+@Transactional
+    public void moveTest(int moveId)
+    {
+        Session s_prod = sfProd.getCurrentSession();
+
+        @SuppressWarnings("unchecked")
+        List<TestADTO> res = (s_prod.createCriteria(TestADTO.class)
+        .add(Restrictions.idEq(moveId)).list());  
+
+        TestADTO testA = res.get(0);
+        // s_prod.evict(testA); // are those lines needed?
+        // s_prod.evict(testA.getText());
+
+        Session s_arc = sfArc.getCurrentSession();
+
+        s_arc.save(testA.getText());
+        s_arc.save(testA);
+
+        // later: s_prod.delete(testA);
+    }

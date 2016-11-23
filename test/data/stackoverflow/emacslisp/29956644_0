@@ -1,0 +1,3 @@
+(define-key keymap "*" (lambda ()
+                          (interactive)
+                          (some-func "*")))

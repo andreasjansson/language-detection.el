@@ -1,0 +1,6 @@
+src/main.rs:234:13: 234:33 error: mismatched types [E0308]
+src/main.rs:234         f = std::ptr::null_mut();
+                            ^~~~~~~~~~~~~~~~~~~~
+src/main.rs:234:13: 234:33 help: run `rustc --explain E0308` to see a detailed explanation
+src/main.rs:234:13: 234:33 note: expected type `&*mut Foo`
+src/main.rs:234:13: 234:33 note:    found type `*mut _`

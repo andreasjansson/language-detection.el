@@ -1,0 +1,7 @@
+(defun extract-foo (start end)
+  "Extract the foo field from a json object in the region"
+  (interactive "r")
+  (let ((my_json (cdr (assoc 'FOO  (json-read-from-string (buffer-substring-no-properties start end))))))
+    (delete-region start end)
+    (SOMETHING) 
+))

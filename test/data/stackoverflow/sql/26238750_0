@@ -1,0 +1,10 @@
+SELECT A.[QID], B.[FirstName], B.[LastName], B.[EmpID],
+   (
+        SELECT FirstName, LastName, HireDate
+        FROM dbo.EmpTable
+        WHERE SupEmpID = B.EmpID
+        FOR XML PATH ('data'), TYPE, ELEMENTS, ROOT ('root')
+        -- IF(DATEDIFF(day,Hiredate,GETDATE())>365) add +1 to longTerm var else add +1 to shortTerm var
+   )
+FROM dbo.attritionCounts AS A
+JOIN empTable AS B ON A.QID = B.QID

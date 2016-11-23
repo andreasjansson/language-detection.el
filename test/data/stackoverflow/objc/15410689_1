@@ -1,0 +1,10 @@
+<form action='URL' method="post" encType='multipart/form-data'>
+<input name="key1" value='123'>
+<input name="key2" value='asdf'>
+<input name="key3" value='qwerty'>
+<input name="key4" value='aaa'>
+<input name="key5" value='aaa'>
+<input name="key6" value='false'>
+<input type="file"  name="files">
+<input type=submit value="Create Forum Posts">
+   </form>

@@ -1,0 +1,2 @@
+compare(Value1, Value2, Result) :- 
+    Result is Value1 > Value2.

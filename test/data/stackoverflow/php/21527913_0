@@ -1,0 +1,28 @@
+public function getBlogPosts() {
+    $stmt = $this->mysqli->prepare("SELECT id, posted_by, date_time, title, message FROM blog_posts");
+    $stmt->execute();
+    $stmt->bind_result($id, $posted_by, $date_time, $title, $message);
+    $stmt->store_result();
+    $stmt2 = $this->mysqli->prepare("SELECT id, posted_by, date_time, post_id, message FROM blog_comments");
+    $stmt2->execute();
+    $stmt2->bind_result($c_id, $c_posted_by, $c_date_time, $c_post_id, $c_message);
+    $stmt2->store_result();
+    while($stmt->fetch() && $stmt2->fetch()) {
+        echo "<h3>$title</h3>Posted by: $posted_by at $date_time.<br /><br />$message<br />";
+        if($stmt2->num_rows > 0) {
+            $stmt3 = $this->mysqli->prepare("SELECT post_id FROM blog_comments WHERE post_id=?");
+            $stmt3->bind_param('s', $id);
+            $stmt3->execute();
+            $stmt3->bind_result($n_id);
+            $stmt3->store_result();
+            if($stmt3->num_rows > 0) {
+                while($stmt3->fetch() && $stmt2->fetch()) {
+                    echo "<br /><br />" . $c_posted_by . " at " . $c_date_time . "<br />" . $c_message;
+                }
+            }
+            $stmt3->close();
+        }
+    }
+    $stmt->close();
+    $stmt2->close();
+}

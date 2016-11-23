@@ -1,0 +1,9 @@
+dart server.dart
+eyJ0eXAiOiJKV1QiLCJhbGciOiJTSEEyNTYifQ==.eyJsdSI6Im9rIn0=.E3TjGiPGSJOIVZFFECJ0OSr0jAWojIfF7MqFNTbFPmI=
+Bad token
+Unhandled exception:
+Uncaught Error: Bad token
+#0      _rootHandleUncaughtError.<anonymous closure> (dart:async/zone.dart:820)
+#1      _asyncRunCallbackLoop (dart:async/schedule_microtask.dart:41)
+#2      _asyncRunCallback (dart:async/schedule_microtask.dart:48)
+#3      _RawReceivePortImpl._handleMessage (dart:isolate-patch/isolate_patch.dart:126)

@@ -1,0 +1,9 @@
+var Values =
+        (from data in DtSet.Tables["tblDetails"].AsEnumerable()
+         group data by data.Field<"No">
+         select new
+         {
+             name_1 = data.Field<double>("No"),
+             name_2 = data.Field<double>("Total"),
+         }
+         );

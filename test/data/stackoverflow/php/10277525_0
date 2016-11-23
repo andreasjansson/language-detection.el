@@ -1,0 +1,26 @@
+public function refundAcceptedDisputes() {            
+        $this->getRequestedEbayOrdersFromDB(); //get all disputes requested on ebay
+        foreach ($this->orders as $order) { /* $order is a Doctrine Entity */
+            try {
+                if ($this->isDisputeAccepted($order)) {
+                    $order->setStatus('accepted');
+                    $order->refund(); //refunds the order on ebay and internally in my system
+                    $this->insertRecordInOrderHistoryTable($order,'refunded');                        
+                } else if ($this->isDisputeCancelled($order)) {
+                    $order->setStatus('cancelled');
+                    $this->insertRecordInOrderHistory($order,'cancelled');
+                    $order->rollBackRefund(); //cancels the refund on ebay and internally in my system
+                } else if ($this->isDisputeOlderThan7Days($order)) {
+                    $order->closeDispute(); //closes the dispute on ebay
+                    $this->insertRecordInOrderHistoryTable($order,'refunded');
+                    $order->refund(); //refunds the order on ebay and internally in my system
+                }
+            } catch (Exception $e) {
+                $order->setStatus('failed');
+                $order->setErrorMessage($e->getMessage());
+                $this->addLog();//log error
+            }
+            $order->setUpdatedAt(time());
+            $order->save();
+        }
+    }

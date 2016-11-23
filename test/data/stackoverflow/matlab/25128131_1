@@ -1,0 +1,21 @@
+% --- Executes on mouse press over axes background.
+function axes6_ButtonDownFcn(~, ~, handles)
+% hObject    handle to axes6 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+hold all;
+set(handles.axes6, 'HitTest', 'off');
+set(handles.axes6, 'ButtonDownFcn', {@Delete_Callback, handles}');
+
+
+% --- Executes on mouse press over figure background, over a disabled or
+% --- inactive control, or over an axes background.
+function figure1_WindowButtonDownFcn(~, ~, handles)
+% hObject    handle to figure1 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+hold all;enter code here
+global h;
+set(handles.axes6, 'HitTest', 'off');
+h = findobj(handles.axes6, 'Type', 'line');
+set(h, 'ButtonDownFcn', {@Delete_Callback});

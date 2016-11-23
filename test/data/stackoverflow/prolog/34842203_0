@@ -1,0 +1,34 @@
+% FACTS. 
+mammal(kitty).
+mammal(ratatat).
+mammal(fido).
+claws(kitty).
+tail(ratatat).
+bestfriend(fido).
+feathers(tweety).
+
+% 9 RULES. 
+% If X is a mammal then X has fur. 
+fur(X) :- mammal(X).
+% If X has fur and X has a tail then X is a rat. 
+rat(X) :- fur(X),tail(X).
+% If X has claws and X has fur then X is a cat.
+cat(X) :- claws(X),fur(X).
+% If X is a cat then X meows.
+meows(X) :- cat(X).
+% If X has feathers then X is a bird.
+bird(X) :- feathers(X).
+% If X is a bestfriend and X has fur then X is a dog.
+dog(X) :- bestfriend(X),fur(X).
+% If X is a dog and Y meows then X likes Y.
+likes(X,Y) :- dog(X),meows(Y).
+% If X is a cat and Y is a bird then X likes Y.
+likes(X,Y) :- cat(X),bird(Y).
+% If X is a cat and Y is a rat then X likes Y.
+likes(X,Y) :- cat(X),rat(Y).
+
+writeln(T) :- write(T), nl.
+
+% QUERY. Uncomment after you have written all predicates.
+q1 :- findall(X, (likes(X,Y), format('~n~w ~w',[X,Y])),_).
+end :- writeln('#'), halt.

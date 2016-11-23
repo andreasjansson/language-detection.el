@@ -1,0 +1,6 @@
+Sub Initialize()
+  MsgBox "Initialize R my functions "
+  RInterface.StartRServer
+  RInterface.RRun "source(""C:\\Users\\analyzer.R"")"
+  RInterface.StopRServer    
+End Sub

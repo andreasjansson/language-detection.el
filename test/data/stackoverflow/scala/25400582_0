@@ -1,0 +1,21 @@
+package neuralnetwork
+
+object hopfield {
+  println("Welcome to the Scala worksheet")
+
+  object Neuron {
+    def apply() = new Neuron(0, 0, false, Nil, "")
+    def apply(l : List[Neuron]) = new Neuron(0, 0, false, l, "")
+  }
+
+  case class Neuron(w: Double, tH: Double, var fired: Boolean, in: List[Neuron], id: String)
+
+  val n2 = Neuron
+  val n3 = Neuron
+  val n4 = Neuron
+  val l = List(n2,n3,n4)
+  val n1 = Neuron(l)
+
+
+
+}

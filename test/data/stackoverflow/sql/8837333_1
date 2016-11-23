@@ -1,0 +1,33 @@
+select distinct (ol.order_no),
+min(os.assgn_dt) as MinDate,
+ow.owner_desc, 
+ol.created_Date,
+md.media_type_desc,
+ow.owner_desc,
+st.status_type_Desc,
+os.comment,
+tt.team_type_desc,
+br.sdescrip as Branch,
+ol.bgrp_cnt
+
+
+from order_log ol
+join activity_type att on ol.activity_type_id = att.activity_type_id
+join branches br on ol.branch = br.lbranch
+join regions rg on br.lregion = rg.lregion
+join businessunit bu on rg.lbusinessunit = bu.lbusinessunit
+join vwCurrentStatus vcs on vcs.order_no = ol.order_no
+join order_status os on os.order_no = vcs.order_no
+join owner ow on os.owner_name = ow.owner_id
+join status_type st on st.status_type_id = os.status_type_id
+join team_type tt on ow.team_type_id = tt.team_type_id
+join media_type md on ol.media_type_id = md.media_type_id
+join rep_name_xref rnx on rnx.order_no = ol.order_no
+join rep_names rn on rn.user_id = rnx.user_id
+
+where ow.owner_desc like '%WF%' 
+and ol.created_date > '01-01-2012'
+and att.activity_type_id in ('14','16')
+and tt.team_type_desc in ('1-10 Membership Team','government')
+
+group by ol.order_no, ow.owner_desc, ol.created_Date,md.media_type_desc,ow.owner_desc,st.status_type_Desc,     os.comment, tt.team_type_desc,br.sdescrip, ol.bgrp_cnt

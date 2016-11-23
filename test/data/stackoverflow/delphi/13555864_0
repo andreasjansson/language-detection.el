@@ -1,0 +1,7 @@
+var hash : string;
+    x: array[0..19] of int8;
+
+begin
+   hash := '713BD6D36D4964F4E4F843CB03D118EA5C372FF6';
+   put_hash_into_x(hash);
+end;

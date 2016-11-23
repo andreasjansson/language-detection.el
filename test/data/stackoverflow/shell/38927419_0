@@ -1,0 +1,6 @@
+target1:
+       export var1=test
+       $(MAKE) target2
+
+target2:
+       echo $(var1)

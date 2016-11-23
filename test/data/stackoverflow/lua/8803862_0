@@ -1,0 +1,22 @@
+require "io"
+require "operations.lua"
+
+do
+print ("Please enter the first number in your problem.")
+x = io.read()
+print ("Please enter the second number in your problem.")
+y = io.read()
+print ("Please choose the operation you wish to perform.")
+print ("Use 1 for addition, 2 for subtraction, 3 for multiplication, and 4 for division.")
+op = io.read()
+op = 1 then
+    function addition
+op = 2 then
+    function subtraction
+op = 3 then
+    function multiplication
+op = 4 then
+    function division
+print (answer)
+io.read()
+end

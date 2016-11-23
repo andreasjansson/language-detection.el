@@ -1,0 +1,34 @@
+subroutine trig_random_value()
+    implicit none
+    integer :: t, z, y, x
+    real(real64) :: theta, r
+    real(real64), parameter :: PI=4.D0*DATAN(1.D0)
+
+    integer, dimension(12) :: date_time
+    integer, dimension(12) :: seed
+
+    call date_and_time(values=date_time)
+    call random_seed
+    seed = date_time(6) * date_time(7) + date_time(8)
+    call random_seed(put = seed)
+
+    do z = 1, z_size
+        do y = 1, y_size
+            do x = 1, x_size
+
+                theta = rand()*2*PI
+                r = 0.1*rand()
+                l1(1, z, y, x) = r*cos(theta)
+                l2(1, z, y, x) = r*sin(theta)
+
+                theta = rand()*2*PI
+                r = 0.1*rand()
+                l1(2, z, y, x) = r*cos(theta)
+                l2(2, z, y, x) = r*sin(theta)
+
+            end do
+        end do
+    end do
+
+    return
+end subroutine trig_random_value

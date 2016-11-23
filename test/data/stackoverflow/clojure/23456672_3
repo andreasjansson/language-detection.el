@@ -1,0 +1,9 @@
+(pdf
+  [[:heading "Heading 1"]
+   [:table
+    {:width 100  :border false  :cell-border false  :widths [30 70]  :offset 35}
+    [[:cell {:align :right}
+      (employee-template employees)]
+     [:cell "dummy"]]]
+   [:heading "Heading 2"]]
+  "output.pdf")

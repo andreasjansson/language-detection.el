@@ -1,0 +1,4 @@
+(defn sel-opt-tmp []
+  (let [cols "test"]))
+
+(prn (sel-opt-tmp))

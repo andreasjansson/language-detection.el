@@ -1,0 +1,57 @@
+void sendFile() {
+// Announce who we're sending data to
+if(DEBUG) { printf("\nSending %s to %s:%d\n", filename, address, port); }
+
+// Open file
+FILE * file = fopen(filename, "rb");
+if (file == NULL) {
+  perror("Invalid File\n");
+  exit(1);
+}
+
+// Get size of the file
+fseek(file, 0, SEEK_END);
+int filesize = ftell(file);
+rewind(file);
+
+int curPos = 0;
+int dataSize = 0;
+
+while(curPos < filesize) {
+
+    struct sockaddr_in server_addr; 
+    struct hostent *recvr;
+
+    char sendData[BUFSIZE]; // stores message to be sent
+    memset(sendData, 0, BUFSIZE);
+
+    int byte, i;
+    for(i = 0; i < BUFSIZE; i++){
+        if((filesize - curPos) > 0) {
+            byte = fgetc(file);
+            sendData[i] = byte;
+            curPos++;
+            dataSize++;
+        }
+        else { break; }
+    }
+
+    recvr = gethostbyname(address);
+    server_addr.sin_family = AF_INET;
+    server_addr.sin_port = htons(port);
+    server_addr.sin_addr = *((struct in_addr *) recvr->h_addr);
+    bzero(&(server_addr.sin_zero), 8);
+
+    if(DEBUG) {
+        char tempData[1201];
+        strncpy(tempData, sendData, 1200);
+        tempData[1201] ='\0';
+        printf("%s\n\n\n\n\n", tempData);
+    }
+
+    sendto(sock, sendData, dataSize, 0,
+            (struct sockaddr *) &server_addr, sizeof (struct sockaddr));
+    dataSize = 0;
+}
+
+fclose(file);}

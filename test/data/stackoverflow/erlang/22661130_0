@@ -1,0 +1,5 @@
+partition_float(N,P,FP,L) ->
+    F = tl(tl(hd(io_lib:format("~.*f",[L,N-trunc(N)])))),
+    lists:flatten([partition_integer(trunc(N),P),FP,F]).
+
+partition_float(Data, $,, $., 6).%% Where Data is ["1234567328.899", ""1217328.89", "67328", ...]

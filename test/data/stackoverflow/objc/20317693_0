@@ -1,0 +1,14 @@
+-(void)afNetworking {
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.responseSerializer = [AFJSONResponseSerializer serializer];
+    [manager GET:@"http://api.openweathermap.org/data/2.5/weather?q=Kortrijk,be"      parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        // ResponseObject is json parsed in een dictionary
+        NSLog(@"Country: %@, City: %@, Coordinates: (longitude: %@, latitude: %@)",
+              [[responseObject valueForKey:@"sys"] valueForKey:@"country"],
+              [responseObject valueForKey:@"name"],
+              [[responseObject valueForKey:@"coord"] valueForKey:@"lon"],
+              [[responseObject valueForKey:@"coord"] valueForKey:@"lat"]
+              );
+    } failure:nil];
+
+}

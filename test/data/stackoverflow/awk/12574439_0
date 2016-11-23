@@ -1,0 +1,3 @@
+{ 
+  print $820,$2,$3,$4, [lots more here, but skipping a few], $819
+}

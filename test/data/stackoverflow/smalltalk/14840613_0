@@ -1,0 +1,8 @@
+Object subclass: #SomeClass
+    classVariableNames: 'ImportantParameter'
+
+SomeClass class>>defaultParameter
+    ^ false
+
+SomeClass class>>initialize
+    ImportantParameter := self defaultParameter

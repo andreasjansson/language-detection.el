@@ -1,0 +1,2 @@
+grep ",$159" xyz.txt | grep -v "^159,159$"
+grep ",$111" xyz.txt | grep -v "^111,111$"

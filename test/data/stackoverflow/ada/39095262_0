@@ -1,0 +1,4 @@
+type Rec_T is record
+   a : Bit_12_T;
+   b : Bit_4_T;
+end record;

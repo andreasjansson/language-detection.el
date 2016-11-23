@@ -1,0 +1,3 @@
+rpc:call(ThisNode, mnesia, stop, []),
+    rpc:call('node_to_be_orphaned', mnesia, del_table_copy, [schema, node()]),
+    rpc:call(ThisNode, mnesia, start, []),

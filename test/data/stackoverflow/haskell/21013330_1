@@ -1,0 +1,8 @@
+instance Monad Tree where
+  {- ... -}
+  Empty >>= f        = Empty
+  (Node v l r) >>= f = merge (f v) (merge newL newR)
+                       where newL = l >>= f
+                             newR = r >>= f
+
+-- No instance for (Ord b) arising from a use of `merge'...

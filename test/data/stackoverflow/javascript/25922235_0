@@ -1,0 +1,14 @@
+$(function () { /*for the slide show*/
+    $ds = $('.fadein div');
+    $ds.hide().eq(0).show();
+    setInterval(function () {
+        $ds.filter(':visible').fadeOut(function () {
+            var $div = $(this).next('div');
+            if ($div.length === 0) {
+                $ds.eq(0).fadeIn();
+            } else {
+                $div.fadeIn();
+            }
+        });
+    }, 5000); //time
+});

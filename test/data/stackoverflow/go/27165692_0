@@ -1,0 +1,20 @@
+{
+"_id" : ObjectId("5474227309d76eb732acd134"),
+"City" : "some city",
+"region" : [ 
+    {
+        "regionid" : "31",
+        "historical_place" : "temple"
+
+    }, 
+    {
+        "regionid" : "32",
+        "historical_place" : "temple"
+    }, 
+    {
+         "regionid" : "33",
+        "historical_place" : "temple"
+
+    }
+]
+}

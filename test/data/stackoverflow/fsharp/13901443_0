@@ -1,0 +1,15 @@
+type test=
+    {
+        value: int
+    }
+
+let solution = Array.zeroCreate 10
+
+solution.[0] <- {value = 1}
+solution.[1].value   // System.NullReferenceException: Object reference not set to an instance of an object
+
+type test =
+  {value: int;}
+val solution : test [] =
+  [|{value = 1;}; null; null; null; null; null; null; null; null; null|]
+val it : unit = ()

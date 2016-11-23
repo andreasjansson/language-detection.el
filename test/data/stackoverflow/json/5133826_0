@@ -1,0 +1,2 @@
+$.getJSON("/Home/Index", { ID:id }, function(){
+});

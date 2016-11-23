@@ -1,0 +1,20 @@
+for (int i = 0; i <= tbl.Columns.Count - 1; i++) 
+{
+    Telerik.Web.UI.GridBoundColumn boundfield = new Telerik.Web.UI.GridBoundColumn();
+
+    if (tbl.Columns[i].ColumnName.ToString() == "Row") 
+    {
+
+        LinkButton lkbtn = new LinkButton();
+        lkbtn.CommandName = i;
+        lkbtn.CommandArgument = "dwnld";
+        lkbtn.Font.Underline = true;
+        lkbtn.Text = tbl.Columns(i).ColumnName.ToString();
+
+        boundfield.DataField = tbl.Columns(i).ColumnName.ToString()
+        boundfield.HeaderText = tbl.Columns(i).ColumnName.ToString();
+
+        GridView2.MasterTableView.Columns.Add(boundfield);
+
+    }
+}

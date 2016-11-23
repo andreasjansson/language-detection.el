@@ -1,0 +1,7 @@
+package v1.site.snippet
+
+class TestSnippet {
+
+  def test = { println("printed from v1") }
+
+}

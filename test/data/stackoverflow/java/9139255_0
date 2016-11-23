@@ -1,0 +1,5 @@
+load banncer
+ appS1  appS2   .....        appSn   
+
+       dao as webservice
+       DB

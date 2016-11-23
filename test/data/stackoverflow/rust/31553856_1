@@ -1,0 +1,3 @@
+./result_test.rs:2:14: 2:17 error: type parameters are not allowed on this type [E0109]
+./result_test.rs:2     Result::<i32, u32>::Ok(3)
+                                ^~~

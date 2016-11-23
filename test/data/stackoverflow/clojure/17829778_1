@@ -1,0 +1,5 @@
+(defmacro load-module-macro [module-name]
+    `(
+        (use '~module-name)
+    )
+)

@@ -1,0 +1,15 @@
+class ExampleClass
+{
+   string _largeCalculatedVariable = null;
+   public string largeCalculatedVariable
+   {
+       get
+       {
+           if (_largeCalculatedVariable == null)
+           {
+              _largeCalculatedVariable = LongRunningCalculate();
+           }
+           return _largeCalculatedVariable
+       }
+   }
+}

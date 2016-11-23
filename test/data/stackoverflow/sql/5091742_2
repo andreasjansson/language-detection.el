@@ -1,0 +1,2 @@
+SELECT SERVERPROPERTY('productversion'), SERVERPROPERTY ('productlevel'), SERVERPROPERTY ('edition')
+9.00.5000.00       SP4       Enterprise Edition (64-bit)

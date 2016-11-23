@@ -1,0 +1,5 @@
+(setq x '("a" "b" "c"))
+(let ((p x))
+  (while (car p)
+    (setcar p (concat ">" (car p)))
+    (setq p (cdr p))))

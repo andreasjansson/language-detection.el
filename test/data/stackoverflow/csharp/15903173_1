@@ -1,0 +1,7 @@
+private void frmMain_Load(object sender, EventArgs e)
+{
+    a = new MyLibrary("localhost", "root", "", "cashieringdb");
+    loadDataGridView_Main();
+    dataLog();
+    fillCombo();
+}

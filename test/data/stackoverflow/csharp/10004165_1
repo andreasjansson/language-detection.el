@@ -1,0 +1,73 @@
+protected override Stream GetRestoreStream()
+{
+    if (SkyDriveFolderId != null)
+    {
+        var task = GetRestoreStreamImpl();
+        task.Start();
+        return task.Result;
+    }
+
+    return Stream.Null;
+}
+
+private async Task<Stream> GetRestoreStreamImpl()
+{
+    var getResult = await GetTaskAsync(SkyDriveFolderId + "/files");
+
+    List<object> data = (List<object>)getResult["data"];
+    foreach (IDictionary<string, object> dictionary in data)
+    {
+        if (dictionary.ContainsKey("name") && (string)dictionary["name"] == BackupFileName)
+        {
+            if (dictionary.ContainsKey("id"))
+            {
+                SkyDriveFileId = (string)dictionary["id"];
+                break;
+            }
+        }
+    }
+
+    if (String.IsNullOrEmpty(SkyDriveFileId))
+    {
+        MessageBox.Show("Restore failed: could not find backup file", "Backup", MessageBoxButton.OK);
+        return Stream.Null;
+    }
+
+    return await DownloadTaskAsync(SkyDriveFileId + "/content");
+}
+
+private Task<IDictionary<string,object>> GetTaskAsync(string path)
+{
+    var client = new LiveConnectClient(_session);
+    var tcs = new TaskCompletionSource<IDictionary<string, object>>();
+
+    client.GetCompleted += (o, e) =>
+        {
+            if (e.Error != null)
+                tcs.TrySetException(e.Error);
+            else if (e.Cancelled)
+                tcs.TrySetCanceled();
+            else
+                tcs.TrySetResult(e.Result);
+        };
+    client.GetAsync(path);
+    return tcs.Task;
+}
+
+private Task<Stream> DownloadTaskAsync(string path)
+{
+    var client = new LiveConnectClient(_session);
+    var tcs = new TaskCompletionSource<Stream>();
+
+    client.DownloadCompleted += (o, e) =>
+        {
+            if (e.Error != null)
+                tcs.TrySetException(e.Error);
+            else if (e.Cancelled)
+                tcs.TrySetCanceled();
+            else
+                tcs.TrySetResult(e.Result);
+        };
+    client.DownloadAsync(path);
+    return tcs.Task;
+}

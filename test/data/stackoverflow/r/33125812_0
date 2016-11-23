@@ -1,0 +1,3 @@
+x<-c(1:10)
+df<-data.frame(x)
+df['y']<-(df['x']>5)

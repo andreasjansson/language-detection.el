@@ -1,0 +1,4 @@
+for (Square::Side side = Square::kLeft; side < Square::kLeft; side << 1) // Warning here
+{
+   // Do stuff
+}

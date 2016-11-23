@@ -1,0 +1,14 @@
+set_peer_state(Id) ->
+    gen_server:cast(?SERVER, {setPeerState, Id}).
+
+handle_cast({setPeerState, Id}, State) ->
+io:format("In the Set Peer State ~p~n", [dict:fetch(runningCounter, State)]),
+Id0 = dict:new(), 
+PeerDownloadQueue = queue:new(),
+PeerUploadQueue = queue:new(),
+Id1 = dict:store(peerDownloadQueue, PeerDownloadQueue, Id0),
+Id2 = dict:store(peerUploadQueue, PeerUploadQueue, Id1),
+Id3 = dict:store(peerDownloadSpeed, 0, Id2),
+Id4 = dict:store(peerUploadSpeed, 0, Id3),
+D = dict:store(Id, Id4, State),
+    {noreply, D};

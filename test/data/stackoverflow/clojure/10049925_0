@@ -1,0 +1,14 @@
+(defn could-be-lazy-juxt
+  [& funs]
+  (fn [& args]
+    (map apply funs (repeat args))))
+
+=> ((juxt inc dec str) 1)
+[2 0 "1"]
+=> ((could-be-lazy-juxt inc dec str) 1)
+(2 0 "1")
+
+=> ((juxt * / -) 6 2)
+[12 3 4]
+=> ((could-be-lazy-juxt * / -) 6 2)
+(12 3 4)

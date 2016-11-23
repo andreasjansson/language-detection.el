@@ -1,0 +1,3 @@
+f.rs:7:28: 7:54 error: the type of this value must be known in this context
+f.rs:7 const pi_n4th_root : f32 = Float::pi().powf(-1.0/4.0);
+                                  ^~~~~~~~~~~~~~~~~~~~~~~~~~

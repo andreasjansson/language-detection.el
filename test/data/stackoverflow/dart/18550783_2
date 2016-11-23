@@ -1,0 +1,2 @@
+Question q = new Question();
+   query('#tmpl-question').model = q;

@@ -1,0 +1,2 @@
+SELECT myfunc(arg) FROM rows;
+SELECT * FROM (select myfunc(arg) FROM rows) x;

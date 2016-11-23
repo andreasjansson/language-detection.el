@@ -1,0 +1,14 @@
+global geoh x1
+
+[path, file] = uigetfile({'*.txt';'*.*'},'File Selector');
+
+if isequal(file, 0)
+   disp('User selected Cancel')
+   set(handles.text4,'String','No Data')
+   return;
+else
+    set(handles.text4,'String','Data 1 loaded'); %this line is for the static textbox. 
+end                                               
+ a = dlmread(path);        
+   x1 = a(:,5);
+geoh = a(:,7);

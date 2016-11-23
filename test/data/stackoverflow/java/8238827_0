@@ -1,0 +1,16 @@
+Iterator stringListIter = stringList.iterator();
+Iterator objectListIter = objectList.iterator();
+while (stringListIter.hasNext())
+{
+    String currentString = (String) stringListIter.next();
+    while (objectListIter.hasNext())
+    {
+        MyObject currentObject = (MyObject) objectListIter.next();
+        String objectString = currentObject.getString();
+        if (objectString.contentEquals(currentString));
+        {
+            //Do something here.....
+            break;
+        }
+    }
+}

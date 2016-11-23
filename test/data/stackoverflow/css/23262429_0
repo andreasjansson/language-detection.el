@@ -1,0 +1,14 @@
+<div class="popUp " id="popUpCorrecto1">
+ <div class="estiloPopUp">
+    <span>Carga Masiva</span>
+    <span value="Cerrar" id="btnCerrar">x</span>
+ </div>
+ <p>Seleccione un archivo de tipo CSV. El archivo no debe excedar los 100KB.</p>
+
+       <form enctype="multipart/form-data" action="uploader.php" method="post" id="uploadForm">
+          <input name="csvUpload" id="upload" type="file" accept=".csv" class="left" />
+       </form>
+
+</div>
+
+http://jsfiddle.net/WKkL5/

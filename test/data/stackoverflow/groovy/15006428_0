@@ -1,0 +1,5 @@
+JdapiIterator progIterator = getWorkForm().getProgramUnits();
+while(progIterator.hasNext()) {
+    ProgramUnit currProgUnit = (ProgramUnit) progIterator.next();
+    ...
+}

@@ -1,0 +1,6 @@
+$ tmux show-buffer | tee myfile
+
+..
+..
+
+tee: write error

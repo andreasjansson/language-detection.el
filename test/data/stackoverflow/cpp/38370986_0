@@ -1,0 +1,5 @@
+template<typename... Args>
+void foo (Args&&... args) { ... }
+
+template<typename T> using pair = std::pair<int, T>;
+foo(pair<int>{1, 1} , pair<double>{2, 2.2}, pair<std::string>{3, "3"});

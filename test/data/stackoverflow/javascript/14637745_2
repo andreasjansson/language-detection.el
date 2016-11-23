@@ -1,0 +1,4 @@
+var keys=Object.keys(arrorobj);
+for (var i=0, count=keys.length;i<count;i++) {
+    // do stuff with keys[i] and arrorobj[keys[i]]
+}

@@ -1,0 +1,39 @@
+INFO: At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs durin$ May 31, 2016 2:09:52 AM org.apache.catalina.core.ContainerBase addChildInternal SEVERE: ContainerBase.addChild: start: org.apache.catalina.LifecycleException: Failed to start component [StandardEngine[Catalina].StandardHost[localhost].StandardContext[]]
+        at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:153)
+        at org.apache.catalina.core.ContainerBase.addChildInternal(ContainerBase.java:899)
+        at org.apache.catalina.core.ContainerBase.addChild(ContainerBase.java:875)
+        at org.apache.catalina.core.StandardHost.addChild(StandardHost.java:652)
+        at org.apache.catalina.startup.HostConfig.deployWAR(HostConfig.java:1091)
+        at org.apache.catalina.startup.HostConfig$DeployWar.run(HostConfig.java:1980)
+        at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:471)
+        at java.util.concurrent.FutureTask.run(FutureTask.java:262)
+        at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+        at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)
+        at java.lang.Thread.run(Thread.java:745) Caused by: java.lang.NoClassDefFoundError: org/apache/tomcat/util/descriptor/tld/TldParser
+        at org.apache.jasper.servlet.TldScanner.<init>(TldScanner.java:86)
+        at org.apache.jasper.servlet.JasperInitializer.newTldScanner(JasperInitializer.java:120)
+        at org.apache.jasper.servlet.JasperInitializer.onStartup(JasperInitializer.java:101)
+        at org.apache.catalina.core.StandardContext.startInternal(StandardContext.java:5573)
+        at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:147)
+        ... 10 more Caused by: java.lang.ClassNotFoundException: org.apache.tomcat.util.descriptor.tld.TldParser
+        at org.apache.catalina.loader.WebappClassLoaderBase.loadClass(WebappClassLoaderBase.java:1858)
+        at org.apache.catalina.loader.WebappClassLoaderBase.loadClass(WebappClassLoaderBase.java:1701)
+        ... 15 more
+
+May 31, 2016 2:09:52 AM org.apache.catalina.startup.HostConfig deployWAR SEVERE: Error deploying web application archive /var/lib/tomcat7/webapps/ROOT.war java.lang.IllegalStateException: ContainerBase.addChild: start: org.apache.catalina.LifecycleException: Failed to start component [StandardEngine[Catalina].StandardHost[localhost].StandardContext[]]
+        at org.apache.catalina.core.ContainerBase.addChildInternal(ContainerBase.java:903)
+        at org.apache.catalina.core.ContainerBase.addChild(ContainerBase.java:875)
+        at org.apache.catalina.core.StandardHost.addChild(StandardHost.java:652)
+        at org.apache.catalina.startup.HostConfig.deployWAR(HostConfig.java:1091)
+        at org.apache.catalina.startup.HostConfig$DeployWar.run(HostConfig.java:1980)
+        at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:471)
+        at java.util.concurrent.FutureTask.run(FutureTask.java:262)
+        at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+        at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)
+        at java.lang.Thread.run(Thread.java:745)
+
+
+May 31, 2016 2:09:52 AM org.apache.catalina.startup.HostConfig deployWAR INFO: Deployment of web application archive /var/lib/tomcat7/webapps/ROOT.war has finished in 6,440 ms 
+May 31, 2016 2:09:52 AM org.apache.coyote.AbstractProtocol start INFO: Starting ProtocolHandler ["http-bio-8080"] 
+May 31, 2016 2:09:52 AM org.apache.coyote.AbstractProtocol start INFO: Starting ProtocolHandler ["ajp-bio-8009"] 
+May 31, 2016 2:09:52 AM org.apache.catalina.startup.Catalina start INFO: Server startup in 6530 ms

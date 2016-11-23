@@ -1,0 +1,11 @@
+private function GetCountry($CountryID) {
+    $Country = \App\Models\CountryModel
+                ::where('CountryID', $CountryID)
+                ->where('IsPredefined', false)
+                ->first();
+    if($Country == null) {
+        \App::abort(404);
+        return;
+    }
+    return $Country;
+}

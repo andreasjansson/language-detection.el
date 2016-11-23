@@ -1,0 +1,21 @@
+package main
+import "fmt" 
+
+func sum(nums []int, c chan int) {
+    var sum int = 0
+    for _, v := range nums {
+        sum += v    
+    }
+    c <- sum
+}
+
+func main() {
+    allNums := []int{1, 2, 3, 4, 5, 6, 7, 8}
+    c1 := make(chan int)
+    c2 := make(chan int)
+    sum(allNums[:len(allNums)/2], c1)
+    sum(allNums[len(allNums)/2:], c2)
+    a := <- c1
+    b := <- c2
+    fmt.Printf("%d + %d is %d :D", a, b, a + b)
+}

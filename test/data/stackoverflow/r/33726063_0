@@ -1,0 +1,4 @@
+set.seed(123)
+frame <- data.frame(id = sort(rep(c(0:5), 5)),year = rep(c(2000:2005), 5), y = sample(0:1,30, replace = TRUE))
+table(frame$year, frame$y)
+ggplot(frame, aes(x = year, y = y)) + geom_point(shape = 1) # Not right

@@ -1,0 +1,16 @@
+var commons = {
+    title: 'myTitle',
+    description: 'MyDesc',
+    menu: {
+      home: {
+        label: 'Home',
+        url: '/',
+      },
+      contacts: {
+        label: 'Contacts',
+        url: '/contacts'
+      }
+    }
+  }
+
+  console.log(commons);

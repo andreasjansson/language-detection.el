@@ -1,0 +1,25 @@
+Create or Replace Function str_con(ad geometry, street geometry)
+Returns Table(address_id integer, address_locations geometry, nearest_streets geometry, traf_speed numeric, street_type character varying) AS $$ Begin
+    Return Query 
+    Execute 'Select
+            address_id,
+            address_locations,
+            nearest_streets,
+            traf_speed,
+            street_type
+
+        From
+            (
+            Select
+                ad.gid As address_id,
+                ad.geom As address_locations,
+                st.geom As nearest_streets,
+                st.trafsp As traf_speed,
+                st.ospmstty As street_type
+            From        
+                public.ad, public.st
+
+                Where ST_DWithin(ad.geom, st.geom, 50.0)
+                Order By address_id, St_Distance(st.geom, ad.geom)
+
+            ) As foo'; End; $$ Language 'plpgsql';

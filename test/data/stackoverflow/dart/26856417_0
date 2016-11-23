@@ -1,0 +1,5 @@
+Uri url = new Uri.http("localhost:8090", "/browseDirectories",{"path":"\log\fastdmo.localhost.log"});
+
+http.get( url).then( (response) {
+    print( response.body);
+ });

@@ -1,0 +1,5 @@
+> :t length
+length :: Foldable t => t a -> Int
+
+> :t filter
+filter :: (a -> Bool) -> [a] -> [a]

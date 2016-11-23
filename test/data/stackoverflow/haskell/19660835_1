@@ -1,0 +1,5 @@
+parseMeta =
+  proc x -> do
+    meta          <- deep (isElem >>> hasName "meta") -< x
+    sampleQueries <- getText <<< getChildren <<< deep (hasName "sampleQuery") -< meta
+    returnA -< Meta sampleQueries

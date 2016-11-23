@@ -1,0 +1,13 @@
+class Flow
+  include Mongoid::Document
+  include Mongoid::Taggable
+
+  attr_accessible :shot, :image, :remote_image_url
+
+  mount_uploader :image, UserUploader
+
+  belongs_to :user
+
+  field :shot, :type => String
+  field :remote_image_url, :type => String
+end

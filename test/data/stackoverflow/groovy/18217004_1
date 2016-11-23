@@ -1,0 +1,35 @@
+public class Checkout{
+def pomFile
+def svnRoot
+def svnProjectDir
+def jenkinsWorkspace
+def libDir
+def queryFile
+def ant
+
+public static void main(String[] args) {
+    pomFile = args[0]
+    svnRoot = args[1]
+    svnProjectDir = args[2]
+    jenkinsWorkspace = args[3]
+    libDir = args[4]
+    queryFile = args[5]
+    new Checkout()
+}
+
+def init(){
+    ant = new AntBuilder()
+    ant.typedef(resource: 'org/tigris/subversion/svnant/svnantlib.xml'){
+        classpath {
+            fileset(dir: libDir, includes: '*.jar')
+        }
+    }
+    ant.echo("INIT")
+    pomFile = args[0]
+    svnRoot = args[1]
+    svnProjectDir = args[2]
+    jenkinsWorkspace = args[3]
+    libDir = args[4]
+    queryFile = args[5]
+    startCheckout()
+}

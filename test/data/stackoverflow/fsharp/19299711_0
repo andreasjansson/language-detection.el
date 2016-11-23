@@ -1,0 +1,4 @@
+let rec unify (exp1:exp) (exp2:exp) (k:(subst -> subst)) (sub:subst) =
+            match checkmap exp1 sub,checkmap exp2 sub with                                          
+                | Var a,Var b when a = b -> k sub                                                   
+                | Var a,Var b -> k (safeInput<|||((safeInput<|||(sub,a,Var(b))),b,Var(a)))

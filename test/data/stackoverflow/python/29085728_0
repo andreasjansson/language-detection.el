@@ -1,0 +1,37 @@
+import numpy as np
+import netCDF4
+import os
+
+# load the data
+
+path='C:\Users\.spyder2'
+os.chdir(path)
+# this load the file into a Nx3 array (three columns)
+data = np.loadtxt('TRMM_1998_01_0100_newntcl.csv', delimiter=',')
+
+
+# create a netcdf Data object
+
+with netCDF4.Dataset('TEST_file.nc', mode="w", format='NETCDF4') as ds:
+    # some file-level meta-data attributes:
+    ds.Conventions = "CF-1.6" 
+    ds.title = 'Non TC precipitation'
+    ds.institution = 'USU'
+
+    lat = data[:,0] # the first column 
+    lon = data[:,1] # the second column 
+    precip = data[:,2] # the third column 
+
+    nlat = lat.reshape( (161, 321) )
+    nlon = lon.reshape( (161, 321) )
+
+    # time = ds.createDimension('time', 0)
+    ds.createDimension('latitude', 161)
+    ds.createDimension('longitude', 321)
+
+
+    precip = ds.createVariable('precip', 'f4', ('latitude', 'longitude'))
+    precip[:] = data[:,:]
+    ## adds some attributes
+    precip.units = 'mm'
+    precip.long_name = 'Precipitation'

@@ -1,0 +1,3 @@
+fn:concat(xs:float("-3.4028235E38"),xs:float("3.4028235E38"))
+ fn:concat(xs:int("-1873914410"),xs:int("-2147483648"))
+ fn:concat(xs:int("-1873914410"))

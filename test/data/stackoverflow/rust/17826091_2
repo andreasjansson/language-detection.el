@@ -1,0 +1,6 @@
+main.rs:21:20: 21:31 error: borrowed value does not live long enough
+main.rs:21         slurp_repos(&repo_child);
+                               ^~~~~~~~~~~
+note: borrowed pointer must be valid for the static lifetime...
+main.rs:13:10: 1:0 note: ...but borrowed value is only valid for the block at 13:10
+error: aborting due to previous error

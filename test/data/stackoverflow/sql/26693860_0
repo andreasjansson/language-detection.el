@@ -1,0 +1,4 @@
+select invoiceID, 
+       avg(invoiceamount) as Average, 
+       Average - invoiceamount
+  from invoice

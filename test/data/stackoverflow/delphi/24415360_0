@@ -1,0 +1,41 @@
+program Project11;
+
+{$APPTYPE CONSOLE}
+
+{$R *.res}
+
+uses
+  System.SysUtils;
+
+procedure Swap(const P1, P2);
+asm
+{$if defined(CPUX86)}
+  xchg ecx, [eax]
+  xchg ecx, [edx]
+  xchg [eax], ecx
+{$else}
+  xchg rcx, [rax]
+  xchg rcx, [rdx]
+  xchg [rax], rcx
+{$endif}
+end;
+
+var
+  I1, I2: Integer;
+
+begin
+  I1 := 19;
+  I2 := 564;
+
+  WriteLn('Swapping..');
+
+  WriteLn('I1: '+I1.ToString());
+  WriteLn('I2: '+I2.ToString());
+
+  Swap(I1, I2);
+
+  WriteLn('I1: '+I1.ToString());
+  WriteLn('I2: '+I2.ToString());
+
+  ReadLn;
+end.

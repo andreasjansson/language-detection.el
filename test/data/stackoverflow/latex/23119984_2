@@ -1,0 +1,4 @@
+sage: from sage.misc.latex import latex_extra_preamble
+sage: latex.add_macro("\\newcommand{\\ket}[1]{\\left|{#1}\\right\\rangle}")
+sage: var("myket", latex_name=r"\ket{\alpha}")
+sage: show(myket)

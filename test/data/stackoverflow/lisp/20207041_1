@@ -1,0 +1,3 @@
+(defun describe-paths-mapcan (location edges)
+  (mapcan #'describe-path
+               (cdr (assoc location edges))))

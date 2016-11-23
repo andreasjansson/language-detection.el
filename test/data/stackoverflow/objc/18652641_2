@@ -1,0 +1,2 @@
+//In .m file. test is not declared in .h file
+double test;

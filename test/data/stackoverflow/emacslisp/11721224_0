@@ -1,0 +1,6 @@
+(cua-mode 1)               
+(transient-mark-mode 1)    
+(setq shift-select-mode t) 
+(global-linum-mode 1)      
+(show-paren-mode 1)        
+(desktop-save-mode 1)

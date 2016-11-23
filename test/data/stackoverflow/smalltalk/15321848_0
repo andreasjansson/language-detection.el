@@ -1,0 +1,9 @@
+Point class>>x: xNumber y: yNumber
+    ^self new
+        setX: xNumber
+        y: yNumber
+
+Point>>setX: xNumber y: yNumber
+    x := xNumber.
+    y := yNumber.
+    ^self

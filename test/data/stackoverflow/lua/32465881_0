@@ -1,0 +1,85 @@
+function table.contains(table, element)
+  for _, value in pairs(table) do
+    if value == element then
+      return true
+    end
+  end
+  return false
+end
+
+queue = {stack={}}
+
+function queue:en(e)
+    table.insert(self.stack, e)
+end
+
+function queue:de()
+    local e = self.stack[1]   
+    self.stack[1] = nil
+
+    local new_stack = {}
+
+    for _, v in pairs(self.stack) do
+        table.insert(new_stack, v)
+    end
+
+    self.stack = new_stack
+
+    return e
+end
+
+function queue:count()
+    return #self.stack
+end
+
+function bfs()
+    start = 1
+    goal  = 10
+    visited = {}
+    path = {}
+
+    graph = {}
+    graph[1] = {2,3,4}
+    graph[2] = {6,5,1}
+    graph[3] = {1}
+    graph[4] = {7,8}
+    graph[5] = {9,10,2}
+    graph[6] = {2}
+    graph[7] = {4,11,12}
+    graph[8] = {4}
+    graph[9] = {5}
+    graph[10] = {5}
+    graph[11] = {7}
+    graph[12] = {7}
+
+
+    queue:en(start)
+    table.insert(visited, start)
+    depth = 1
+
+    while queue:count() > 0 do
+        node = queue:de()
+
+        for _, exit in pairs(graph[node]) do
+            if not table.contains(visited, exit) then
+                table.insert(visited, exit)
+
+                if exit == goal then 
+                    print("GOAL : " .. exit)
+
+                    do return end 
+                end
+
+                if graph[exit] then
+                    print("Node: " .. exit .. ", Depth: " .. depth)
+
+                    queue:en(exit)
+                end
+            end
+        end
+
+        depth = depth + 1
+    end
+end
+
+bfs()

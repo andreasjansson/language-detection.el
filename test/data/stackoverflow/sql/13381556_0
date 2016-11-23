@@ -1,0 +1,2 @@
+"SELECT table1.*, table2.user_id FROM table1 LEFT JOIN table2 ON table1.col1 = table2.col2 
+    WHERE table1.col1 = :param1 AND table1.col2 = 1 AND table1.col3 = 0 ORDER BY table1.col4 DESC LIMIT $min, $max";

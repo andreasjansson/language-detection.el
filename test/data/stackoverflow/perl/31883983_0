@@ -1,0 +1,23 @@
+#!/usr/local/bin/perl
+
+my %hash;
+
+$hash{"A"} = "1";
+$hash{"B"} = "2";
+
+
+print (keys %hash);
+print "\n";
+
+modifyHash(\%hash);
+
+print (keys %hash);
+print "\n";
+
+sub modifyHash {
+    my $hashRef = @_[0];
+    my %myHash = %$hashRef;
+    $myHash{"C"} = "3";
+    print (keys %myHash);
+    print "\n";
+}

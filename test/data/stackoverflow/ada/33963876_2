@@ -1,0 +1,98 @@
+WITH Ada.Text_IO,Ada.Text_IO.Unbounded_IO, Ada.Strings.Unbounded,BinarySearchTree;
+USE Ada.TEXT_IO,Ada.Text_IO.Unbounded_IO,Ada.Strings.Unbounded,BinarySearchTree;
+
+PROCEDURE UseBinSearTree IS
+   PACKAGE IIO IS NEW Ada.Text_IO.Integer_IO(Integer);
+   USE IIO;
+
+   Main      : binarySearchTreePoint;      -- Root
+   tempPoint : BinarySearchTreePoint;      -- Temp Pointer
+   selection : integer               := 0;
+
+
+   PROCEDURE get10 (
+         S : IN OUT String10) IS
+      BUF : Unbounded_String;
+   BEGIN
+      BUF := GET_LINE;
+
+      FOR I IN String10'RANGE LOOP
+         IF I <= LENGTH(BUF) THEN
+            S(I) := ELEMENT(BUF,I);
+         ELSE
+            S(I) := ' ';
+         END IF;
+      END LOOP;
+   END get10;
+
+   Name  : String10 := (OTHERS => ' ');
+   Phone : String10 := (OTHERS => ' ');
+BEGIN
+   init(Main);
+   init(tempPoint);
+   Put_Line("Select a operation:");
+   Put_Line("1. Insert Into BST");
+   Put_Line("2. Find Customer Recursively");
+   Put_Line("3. Find Customer Iteratively");
+   Put_Line("4. Find InOrderSucessor");
+   Put_Line("5. Exit");
+   LOOP
+      Put("Enter a Command : ");
+      get(selection);
+      SKIP_LINE;
+      CASE selection IS
+         WHEN 1 =>
+            Put("Enter a Name: ");
+            get10(name);
+            Put("Enter a Phone Number: ");
+            get10(phone);
+            InsertBinarySearchTree(main,name,phone);
+            Put("Name : ");
+            put(String(name));
+            Put(" , Phone : ");
+            put(String(phone));
+            Put(" , Inserted to BST");
+            NEW_LINE;
+
+         WHEN 2 =>
+            Put_Line("Finding Customer Recursively..");
+            Put("Enter a name to find: ");
+            get10(name);
+            FindCustomerRecursive(Main,name,temppoint);
+            IF CustomerName(tempPoint) = name  THEN
+               name := customerName(temppoint);
+               Phone := customerPhone(tempPoint);
+            ELSE
+               Put_Line("Record not Found");
+            END IF;
+         WHEN 3 =>
+            Put_Line("Finding Customer Iteratively");
+            Put("Enter a name to find: ");
+            get10(name);
+            FindCustomerIterative(Main,name,temppoint);
+            IF CustomerName(tempPoint) = name THEN
+               name := customerName(temppoint);
+               Phone := customerPhone(temppoint);
+               put("Customer Found");
+               Put(String(Name));
+               Put(" : ");
+               Put(String(Phone));
+            ELSE
+               Put_Line("Record not Found");
+            END IF;
+
+         WHEN 4 =>
+            Put_Line("Finding In order successor...");
+            tempPoint := InOrderSuccessor(Main);
+            name := customerName(temppoint);
+            phone := customerPhone(temppoint);
+
+         WHEN 5 =>
+            EXIT;
+
+         WHEN OTHERS =>
+            Put_Line("Incorrect Choice, Please Try Again");
+
+      END CASE;
+   END LOOP;
+END UseBinSearTree;

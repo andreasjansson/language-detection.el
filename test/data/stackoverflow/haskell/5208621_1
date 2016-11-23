@@ -1,0 +1,6 @@
+Test.hs:10:7:
+    No instance for (Show (Int -> Int))
+      arising from a use of `quickCheck' at Test.hs:10:7-33
+    Possible fix: add an instance declaration for (Show (Int -> Int))
+    In the expression: quickCheck prop_composition
+    In the definition of `main': main = quickCheck prop_composition

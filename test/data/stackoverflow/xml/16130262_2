@@ -1,0 +1,25 @@
+Ext.define('Cus.view.phone.Main', {
+extend: 'Ext.Container',
+requires:[
+    'Ext.dataview.List',
+    'Ext.data.Store',
+    'Cus.store.BizList'
+],
+
+config: {
+    layout: 'vbox',
+    items: [
+        {
+            xtype: 'toolbar',
+            docked: 'top',
+            title: 'My List',
+        },
+        {
+            xtype: 'list',
+            store: 'BizList',
+            loadingText: 'loading',
+            itemTpl: '{name} {tel} {address}',
+            flex: 1
+        }
+    ]
+}

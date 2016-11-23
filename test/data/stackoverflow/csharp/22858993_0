@@ -1,0 +1,5 @@
+public class Person
+{
+    [DisplayFormat(DataFormatString = "dd/MM/yyyy")]
+    public DateTime DOB { get; set; }
+}

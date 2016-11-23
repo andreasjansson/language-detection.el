@@ -1,0 +1,4 @@
+find_package(MPI REQUIRED)
+add_definitions(${MPI_Fortran_COMPILE_FLAGS})
+include_directories(${MPI_Fortran_INCLUDE_DIRS})
+link_directories(${MPI_FortranLIBRARY_DIRS})

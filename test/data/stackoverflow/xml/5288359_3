@@ -1,0 +1,3 @@
+else if ([elementName isEqualToString:kTitleElementName]) {
+    self.currentPhotoObject.titleText = self.currentParsedCharacterData;
+}

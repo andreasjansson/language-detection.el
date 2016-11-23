@@ -1,0 +1,47 @@
+<system.serviceModel>
+   <behaviors>
+    <serviceBehaviors>
+      <behavior name="CommonBehavior">
+        <dataContractSerializer maxItemsInObjectGraph="2147483647"/>
+        <serviceMetadata httpGetEnabled="false"/>
+        <serviceDebug includeExceptionDetailInFaults="true" />
+        <serviceThrottling
+          maxConcurrentSessions="1200"
+          maxConcurrentCalls="192"
+          maxConcurrentInstances="1392"
+           />
+      </behavior>
+    </serviceBehaviors>
+  </behaviors>
+
+  <bindings>
+    <netTcpBinding>
+
+      <binding maxReceivedMessageSize="2147483647" name="netTcpBinding" transferMode="Streamed" listenBacklog="2000" maxBufferPoolSize="2147483647"  maxBufferSize="2147483647"  maxConnections="2000"
+                       closeTimeout="08:00:00" openTimeout="08:00:00" receiveTimeout="08:00:00" sendTimeout="08:00:00">
+        <readerQuotas maxDepth="2147483647"  maxStringContentLength="2147483647"  maxArrayLength="2147483647"  maxBytesPerRead="2147483647" maxNameTableCharCount="2147483647" />
+        <reliableSession ordered="true" inactivityTimeout="08:00:00"
+             enabled="false" />
+        <security mode="None">
+          <transport clientCredentialType ="None"/>
+        </security>
+      </binding>
+    </netTcpBinding>
+  </bindings>
+
+
+  <services>
+    <service behaviorConfiguration="CommonBehavior" name="MyBLL">
+      <endpoint address="" binding="netTcpBinding" bindingConfiguration="netTcpBinding" name="MyEndPoint" contract="IMy">
+        <identity>
+          <dns value="localhost"/>
+        </identity>
+      </endpoint>
+      <host>
+        <baseAddresses>
+          <add baseAddress="net.tcp://localhost:8000/MySVC"/>
+        </baseAddresses>
+      </host>
+    </service>
+  </services>
+</system.serviceModel>

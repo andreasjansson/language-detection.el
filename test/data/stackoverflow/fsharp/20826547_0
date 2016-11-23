@@ -1,0 +1,4 @@
+stdin(105,12): error FS0001: This expression was expected to have type
+int list    
+but here has type
+string -> string list

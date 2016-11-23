@@ -1,0 +1,4 @@
+def create
+  @project = @company.projects.build(params[:project])
+  @project.user = current_user
+  ....

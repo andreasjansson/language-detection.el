@@ -1,0 +1,26 @@
+<form>
+    <Animals>
+        <Animal>
+            <AName>Boomer</AName>
+            <AAddress>House</AAddress>
+        </Animal>
+        <Animal>
+            <AName>Growl</AName>
+            <AAddress>Street</AAddress>
+        </Animal>
+        <Animal>
+            <AName>Incognito</AName>
+            <AAddress>Nowhere</AAddress>
+        </Animal>
+    </Animals>
+    <People>
+        <Person>
+            <PName>Willy</PName>
+            <PAddress>123 Common Lane</PAddress>
+        </Person>
+        <Person>
+            <PName>Wonka</PName>
+            <PAddress>Chocolate Factory</PAddress>
+        </Person>
+    </People>
+</form>

@@ -1,0 +1,10 @@
+PBYTE Read(int num_bytes, HANDLER hFile){
+   PBYTE bBuffer;
+   DWORD new_size = sizeof(BYTE)*num_bytes;
+   //after the allocation the debugger already displays a 16 char wide placeholder
+   bBuffer = (PBYTE)malloc(new_size);
+   OVERLAPPED o = { 0 };
+   o.Offset = 0;
+   BOOL bReadDone = ReadFile(hFile, (LPVOID)bBuffer, sizeof(BYTE)*num_bytes, NULL, &o);
+   return bBuffer;
+}

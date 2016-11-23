@@ -1,0 +1,28 @@
+<jms:connector name="Wildfly9JMSConnector"
+    jndiInitialFactory="org.jboss.naming.remote.client.InitialContextFactory"
+    jndiProviderUrl="http-remoting://127.0.0.1:8085"
+    connectionFactoryJndiName="jms/RemoteConnectionFactor"
+    jndiDestinations="true" forceJndiDestinations="true"
+    disableTemporaryReplyToDestinations="true"
+    username="inara"
+    password="whitefall"
+    doc:name="JMS" validateConnections="true">
+</jms:connector>
+
+<flow name="jbossconnectiontestFlow">
+    <http:listener config-ref="HTTP_Listener_Configuration"
+        path="/jbosstest" doc:name="HTTP" />
+
+    <set-payload value="Shiny!" doc:name="Set Payload" />
+
+    <logger message="1. payload: #[payload]" level="INFO" doc:name="Logger" />
+    <jms:outbound-endpoint exchange-pattern="request-response" queue="jms/queue/CoordReceive" connector-ref="Wildfly9JMSConnector" doc:name="JMS">
+        <jms:transaction action="BEGIN_OR_JOIN"/>
+    </jms:outbound-endpoint>
+    <set-payload value="JMS message sent." doc:name="Set Payload"/>
+    <logger message="2. payload: #[payload]" level="INFO" doc:name="Logger"/>
+
+    <catch-exception-strategy doc:name="Catch Emdxception Strategy">
+        <logger level="INFO" doc:name="Logger" />
+    </catch-exception-strategy>
+</flow>

@@ -1,0 +1,40 @@
+$file=shift;
+open(FILE,$file);
+open(FILEFA,">".$file.".fa");
+open(FILEQA,">".$file.".qual");
+while($line=<FILE>)
+{
+    chomp($line);
+    if($line=~m/^@/)
+    {
+
+
+    $header=$line;
+    $header =~ s/@/>/g;
+    $seq=<FILE>;
+    chomp($seq);
+    $nothing=<FILE>;
+    $nothing="";
+    $fastq=<FILE>;
+
+    print FILEFA $header."\n";
+    print FILEFA $seq."\n";
+    $seq="";
+    print FILEQA $header."\n";
+
+        @elm=split("",$fastq);
+        $i=0;
+        while(defined($elm[$i]))
+        {
+            $Q = ord($elm[$i]) - 33;
+            if($Q!="-23")
+            {
+            print FILEQA $Q." ";
+            }
+            $i=$i+1;
+        }
+        print FILEQA "\n";
+    }
+}
+print $file.".fa\n";
+print $file.".qual\n";

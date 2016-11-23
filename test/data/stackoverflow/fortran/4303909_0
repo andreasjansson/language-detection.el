@@ -1,0 +1,20 @@
+PROGRAM QUADEQN
+      INTEGER A,B,C
+      REAL D,X,Y,Q
+      D=(B**2-4*A*C)
+      Q=SQRT(D)
+      READ(*,5)A
+      READ(*,6)B
+      READ(*,7)C
+      IF(B**2-4*A*C)10,15,20
+      X=(-B+Q)/(2*A)
+      Y=(-B-Q)/(2*A)
+  20  WRITE(*,25)X,Y
+  5   FORMAT(I2)
+  6   FORMAT(I2)
+  7   FORMAT(I2)
+  10  WRITE(*,*)'THE ROOTS OF THE QUADRATIC EQUATION IS COMPLEX'
+  15  WRITE(*,*)'THE ROOTS OF THE QUADRATIC EQUATION IS COMPLEX'
+  25  FORMAT(/,'THE ROOTS OF THE EQN ARE',1X,F8.4,'AND',1X,F8.4)
+      STOP
+      END

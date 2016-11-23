@@ -1,0 +1,19 @@
+public static void Main(string[] args)
+{
+    Console.WriteLine(string.Join(", ", collatz(13)));
+}
+
+static IEnumerable<int> collatz(int n)
+{
+    while (n != 1)
+    {
+        yield return n;
+
+        if (n % 2 == 0)
+            n /= 2;
+        else
+            n = 3 * n + 1;
+    }
+
+    yield return 1;
+}

@@ -1,0 +1,2 @@
+awk ' BEGIN {FS = OFS = ","} FNR==NR {a[$2] = $0; next} ($2 in a) {print $0}'  <(gzip -dc /cygdrive/e/Test/Master.csv.gz) <(gzip -dc /cygdrive/f/Jan/Input_Jan.csv.gz) >>Output.txt
+awk ' BEGIN {FS = OFS = ","} FNR==NR {a[$2] = $0; next} ($2 in a) {print $0}'  <(gzip -dc /cygdrive/e/Test/Master.csv.gz) <(gzip -dc /cygdrive/f/Feb/Input_Feb.csv.gz) >>Output.txt

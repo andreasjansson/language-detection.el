@@ -1,0 +1,2 @@
+(defparameter *primes* '(3 5 7 11))
+(push 2 *primes*)

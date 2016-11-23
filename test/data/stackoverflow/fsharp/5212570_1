@@ -1,0 +1,4 @@
+public Matrix(int rows, int cols)
+    {
+        this.matrix = new double[rows, cols];
+    }

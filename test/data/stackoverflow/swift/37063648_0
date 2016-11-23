@@ -1,0 +1,41 @@
+ConnectionManager.sharedInstance.retrievePosts(UserInformationInstance.SCHOOL) {
+        (result: AnyObject) in
+        if let posts = result as? [[String: AnyObject]] {
+            print("Retrieved \(posts.count) posts.")
+            for post in posts {
+                let postIDCurrent = post["id"] as? Int
+                var UPVOTES = 0;
+                var UPVOTED: Bool!
+                var query = ""
+
+                if let profilePictureCurrent = post["profile_picture"] {
+                    // Loading profile picture image
+
+                    let url = NSURL(string: profilePictureCurrent as! String)
+                    let data = NSData(contentsOfURL: url!)
+                    let image = UIImage(data: data!)
+                    UserInformationInstance.postsProfilePictures.append(image!)
+                    print("added profile pic")
+                } else {
+                    print("error")
+                }
+                if let postPictureCurrent = post["image"] {
+                    if (postPictureCurrent as! String != "") {
+                    // Loading image associated with post
+
+                    let url = NSURL(string: postPictureCurrent as! String)
+                    let data = NSData(contentsOfURL: url!)
+                    let image = UIImage(data: data!)
+                    let imageArray: [AnyObject] = [postIDCurrent!, image!]
+                    UserInformationInstance.postsImages.append(imageArray)
+                    print("added image pic")
+                    }
+                } else {
+                    print("error")
+                }
+                UserInformationInstance.POSTS.append(post)
+            }
+        } else {
+            self.loadSearchUsers()
+        }
+    }

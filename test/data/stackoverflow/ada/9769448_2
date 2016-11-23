@@ -1,0 +1,12 @@
+with Ada.Numerics.Long_Elementary_Functions;
+use  Ada.Numerics.Long_Elementary_Functions;
+
+package body Projections is
+
+   procedure Vector_basis_r (A, B, C : in Long_Float; D : out Rectangular) is
+   begin
+      D.Horz := A * Cos (C);
+      D.Vert := B * Sin (c);
+   end Vector_basis_r;
+
+end Projections;

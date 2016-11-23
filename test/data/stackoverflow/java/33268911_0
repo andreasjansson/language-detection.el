@@ -1,0 +1,3 @@
+Exception in thread "main" java.lang.RuntimeException: Failed : HTTP
+error code : 401 at NetClientGet.main(NetClientGet.java:36)
+Java Result: 1

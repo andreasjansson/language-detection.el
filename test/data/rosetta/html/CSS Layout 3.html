@@ -1,0 +1,112 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta name="author" content="Thierry Koblentz" />
+<meta name="document-rights" content="Copyrighted Work" />
+<meta name="Copyright" content="Copyright (c) TJKDesign.com, Thierry Koblentz" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="inc/styles.css" type="text/css" media="screen" rel="stylesheet" />
+<title>CSS Layout 3</title>
+<style type="text/css">
+<!--
+body {background:url(img/background_3.gif) repeat-y 20% 0}
+#header {background:#fcc;height:130px}
+#menu {background:#ffc;height:130px}
+#content {background:#9cf}
+#sub-section {background:#cfc}
+#footer {background:#ccf}
+ul li {display:inline}
+/*******************************************************************/
+body {min-width:640px}
+/* MSIE display:inline-block is to make sure MSIE doesn't paint the backround above the containers, the overflow declaration is to make sure the containers do not drop below siblings if content pushes the width (in modern browsers it doesn't drop, but it spawns an orizontal scrollbar)  */
+#header,#menu,#content,#sub-section,#footer {overflow:hidden;display:inline-block}
+#footer {width:100%} /* safari and opera need this */
+#header,#menu,#sub-section {float:left}
+#content {float:right}
+#header {width:49%}
+/* leaving room for rounding error (MSIE5.5) */
+#menu {width:50.9%}
+#content {width:80%}
+#sub-section {width:20%}
+#footer {clear:both}
+-->
+</style>
+</head>
+<body>
+<div id="header"><h1>header</h1>
+<h2>Navigation</h2>
+<p>Back to <a href="/articles/one_html_markup_many_css_layouts.asp">TJK Design</a></p>
+<ol>
+<li><a href="2.asp">Prev</a></li>
+<li><a href="1.asp">1</a></li>
+<li><a href="2.asp">2</a></li>
+<li>3</li>
+<li><a href="4.asp">4</a></li>
+<li><a href="5.asp">5</a></li>
+<li><a href="6.asp">6</a></li>
+<li><a href="7.asp">7</a></li>
+<li><a href="8.asp">8</a></li>
+<li><a href="4.asp">Next</a></li>
+</ol>
+</div>
+<div id="menu"><h1>menu</h1>
+<h2>Articles:</h2>
+<ul>
+<li><a href="/articles/3cols.asp">3 Columns</a></li>
+<li><a href="/articles/branching.asp">Branching</a></li>
+<li><a href="/articles/popup_window_with_no_extra_markup.asp">Popup Windows</a></li>
+<li><a href="/articles/tip.asp">TIP Method</a></li>
+<li><a href="/articles/css pop ups/default.asp">CSS Popups</a></li>
+<li><a href="/articles/dropdown/default.asp">CSS Dropdown</a></li>
+</ul>
+</div>
+<div id="content"><h1>content</h1>
+<h2>CSS:</h2>
+<pre>
+<code>
+body {min-width:640px}<br />
+#header,#menu,#content,#sub-section,#footer {<br />
+overflow:hidden;<br />
+display:inline-block<br />
+}<br />
+/* safari and opera need this */<br />
+#footer {width:100%}<br />
+#header,#menu,#sub-section {float:left}<br />
+#content {float:right}<br />
+#header {width:49%}<br />
+/* leaving room for rounding error (MSIE) */<br />
+#menu {width:50.9%}<br />
+#content {width:80%}<br />
+#sub-section {width:20%}<br />
+#footer {clear:both}
+</code>
+</pre>
+<h2>HTML:</h2>
+<pre>
+<code>
+&lt;div id=&quot;header&quot;&gt;&lt;h1&gt;header&lt;/h1&gt;&lt;/div&gt;<br />
+&lt;div id=&quot;menu&quot;&gt;&lt;h1&gt;menu&lt;/h1&gt;&lt;/div&gt;<br />
+&lt;div id=&quot;content&quot;&gt;&lt;h1&gt;content&lt;/h1&gt;&lt;/div&gt;<br />
+&lt;div id=&quot;sub-section&quot;&gt;&lt;h1&gt;sub-section&lt;/h1&gt;&lt;/div&gt;<br />
+&lt;div id=&quot;footer&quot;&gt;&lt;h1&gt;footer&lt;/h1&gt;&lt;/div&gt;
+</code>
+</pre>
+</div>
+<div id="sub-section"><h1>sub-section</h1>
+<!-- Creative Commons License -->
+<div><a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/2.0/"><img src="http://creativecommons.org/images/public/somerights20.gif" alt="Creative Commons License" /></a></div>
+<p>This work is licensed under a<br /><a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/2.0/">Creative Commons License</a>.</p>
+<!-- /Creative Commons License -->
+<!-- <rdf:RDF xmlns="http://web.resource.org/cc/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"><Work rdf:about=""><license rdf:resource="http://creativecommons.org/licenses/by-nc-sa/2.0/" /></Work><License rdf:about="http://creativecommons.org/licenses/by-nc-sa/2.0/"><permits rdf:resource="http://web.resource.org/cc/Reproduction" /><permits rdf:resource="http://web.resource.org/cc/Distribution" /><requires rdf:resource="http://web.resource.org/cc/Notice" /><requires rdf:resource="http://web.resource.org/cc/Attribution" /><prohibits rdf:resource="http://web.resource.org/cc/CommercialUse" /><permits rdf:resource="http://web.resource.org/cc/DerivativeWorks" /><requires rdf:resource="http://web.resource.org/cc/ShareAlike" /></License></rdf:RDF> -->
+
+<p>Add <a href="/articles/liquid/3.asp?creative=longer">content</a> to this container</p>
+
+</div>
+<div id="footer"><h1>footer</h1>
+<p>Copyright &copy; 2005 - Thierry Koblentz. All rights reserved.</p>
+<p>Valid <a title="Valid XHTML 1.0!" href="http://validator.w3.org/check?uri=http://www.tjkdesign.com/articles/liquid/3.asp">XHTML</a><br />If you want the Stylesheet to validate, then use a <a href="/articles/conditional_comments.asp"><acronym title="Conditional Comment">CC</acronym></a> to hide IE fixes from the Validator.</p>
+
+</div>
+</body>
+</html>

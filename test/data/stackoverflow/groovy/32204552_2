@@ -1,0 +1,88 @@
+org.elasticsearch.groovy.node.GNode esnode = ESWrapperService.getNode()
+org.elasticsearch.groovy.client.GClient esclient = esnode.getClient()
+
+  try {
+    if ( (params.q && params.q.length() > 0) || params.rectype) {
+
+      params.max = Math.min(params.max ? params.int('max') : 15, 100)
+      params.offset = params.offset ? params.int('offset') : 0
+
+      def query_str = buildQuery(params,field_map)
+
+
+      def search = esclient.search{
+        indices grailsApplication.config.aggr.es.index ?: "default"
+        source {
+          from = params.offset
+          size = params.max
+          sort = params.sort?[
+            ("${params.sort}".toString()) : [ 'order' : (params.order?:'asc') ]
+          ] : []
+
+          query {
+            query_string (query: query_str)
+          }
+          facets {
+            consortiaName {
+              terms {
+                field = 'consortiaName'
+                size = 25
+              }
+            }
+            cpname {
+              terms {
+                field = 'cpname'
+                size = 25
+              }
+            }
+            type {
+              terms {
+                field = 'rectype'
+              }
+            }
+            startYear {
+              terms {
+                field = 'startYear'
+                size = 25
+              }
+            }
+            endYear {
+              terms {
+                field = 'endYear'
+                size = 25
+              }
+            }
+          }
+
+        }
+
+      }
+
+      if ( search?.response ) {
+        result.hits = search.response.hits
+        result.resultsTotal = search.response.hits.totalHits
+
+        // We pre-process the facet response to work around some translation issues in ES
+        if ( search.response.facets != null ) {
+          result.facets = [:]
+          search.response.facets.facets.each { facet ->
+            def facet_values = []
+            facet.value.entries.each { fe ->
+              facet_values.add([term: fe.term,display:fe.term,count:"${fe.count}"])
+            }
+            result.facets[facet.key] = facet_values
+          }
+        }
+      }
+    }
+    else {
+      log.debug("No query.. Show search page")
+    }
+  }
+  finally {
+    try {
+    }
+    catch ( Exception e ) {
+      log.error("problem",e);
+    }
+  }

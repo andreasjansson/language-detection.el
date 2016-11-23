@@ -1,0 +1,8 @@
+fn recu(n: int) {
+    println!("{}", n);
+    recu(n+1)
+}
+
+fn main() {
+    recu(0)
+}

@@ -1,0 +1,26 @@
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+      NSMutableArray *indexPaths = [NSMutableArray arrayWithObject:indexPath];
+
+    if (self.selectedItemIndexPath) {
+        if ([indexPath compare:self.selectedItemIndexPath] == NSOrderedSame) {
+            self.selectedItemIndexPath = nil;
+        } else {
+            [indexPaths addObject:self.selectedItemIndexPath];
+            self.selectedItemIndexPath = indexPath;
+        }
+    } else {
+        self.selectedItemIndexPath = indexPath;
+    }
+
+    [collectionView reloadItemsAtIndexPaths:indexPaths];
+}
+
+- (UICollectionViewCell *)collectionView:(UICollectionView *)cv cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+    if (self.selectedItemIndexPath != nil && [indexPath compare:self.selectedItemIndexPath] == NSOrderedSame) {
+        [cell.tickPhoto setHidden:FALSE];
+    } else {
+        [cell.tickPhoto setHidden:TRUE];
+    }
+
+    return cell;
+}

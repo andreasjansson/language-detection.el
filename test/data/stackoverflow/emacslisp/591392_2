@@ -1,0 +1,6 @@
+(defun sum-odd-with-dolist-incr (list)
+  (let ((total 0)) 
+    (dolist (item list) 
+      (if (oddp item)
+          (incf total item))) 
+      total))

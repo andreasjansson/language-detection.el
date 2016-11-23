@@ -1,0 +1,2 @@
+Error: redirect_uri_mismatch
+The redirect URI in the request: http://zen.example.com/users/auth/google_oauth2/callback did not match a registered redirect URI

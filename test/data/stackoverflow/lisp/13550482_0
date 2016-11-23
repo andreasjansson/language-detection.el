@@ -1,0 +1,7 @@
+(define (rmobject list1 obj)
+  (if (null? list1)
+      '() 
+       (if (= obj (car list1))
+           ((lambda (list1) (cdr list1)) list1)
+           ((lambda (list1) (list1)) list1)))
+        (cons (car list1) (rmobject (cdr list1) obj)))

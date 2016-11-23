@@ -1,0 +1,26 @@
+instance Num Expression where
+   PInt a + PInt b = PInt $ a + b
+   PInt a + PFloat b = PFloat $ a + b
+   PFloat a + PInt b = PFloat $ a + b
+   PFloat a + PFloat b = PFloat $ a + b
+   _ + _ = undefined
+   PInt a - PInt b = PInt $ a - b
+   PInt a - PFloat b = PFloat $ a - b
+   PFloat a - PInt b = PFloat $ a - b
+   PFloat a - PFloat b = PFloat $ a - b
+   _ - _ = undefined
+   PInt a * PInt b = PInt $ a * b
+   PInt a * PFloat b = PFloat $ a * b
+   PFloat a * PInt b = PFloat $ a * b
+   PFloat a * PFloat b = PFloat $ a * b
+   _ * _ = undefined
+   negate (PInt a) = PInt (-a)
+   negate (PFloat a) = PFloat (-a)
+   negate _ = undefined
+   abs (PInt a) = PInt $ abs a
+   abs (PFloat a) = PFloat $ abs a
+   abs _ = undefined
+   signum (PInt a) = PInt $ signum a
+   signum (PFloat a) = PFloat $ signum a
+   signum _ = undefined
+   fromInteger i = (PInt $ fromInteger i)

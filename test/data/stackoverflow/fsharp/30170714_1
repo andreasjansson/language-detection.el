@@ -1,0 +1,3 @@
+type Square2 (width: float, length: float) =
+    member this.area = width * length
+    member this.perimeter = (width + length) * 2.

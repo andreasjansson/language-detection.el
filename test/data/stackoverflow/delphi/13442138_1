@@ -1,0 +1,10 @@
+function ElementIdText(Web:TembeddedWB; Id:string):string;
+var
+  node: string;
+begin
+  if Assigned(Web.Document) and web.DocumentLoaded then begin
+  node:=Web.OleObject.Document.GetElementByID(Id).innerText;
+  if not VarIsNull(Node) and not VarIsClear(Node) and not AnsiSameStr(node,'') then
+  result:=node;
+  end;
+end;

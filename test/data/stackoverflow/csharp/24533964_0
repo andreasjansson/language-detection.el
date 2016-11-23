@@ -1,0 +1,19 @@
+System.Exception
+Package failed updates, dependency or conflict validation.
+
+Windows cannot install package App.a9a122e61.a5503.a4c46.a9cbd.ad0f269743658 because this package depends on another package that could not be found. This package requires minimum version 0.0.0.0 of framework Microsoft.VCLibs.110.00.Debug published by any publisher to install. Provide the framework along with this package.
+   at Microsoft.Expression.HostUtility.Platform.AppContainerProcessDomainFactory.CreateDesignerProcess(String applicationPath, String clientPort, Uri hostUri, IDictionary environmentVariables, Int32& processId, Object& processData)
+   at Microsoft.Expression.DesignHost.Isolation.Primitives.ProcessDomainFactory.ProcessIsolationDomain..ctor(ProcessDomainFactory factory, IIsolationBoundary boundary, AppDomainSetup appDomainInfo, FrameworkName targetFramework, String identifier, String baseDirectory)
+   at Microsoft.Expression.DesignHost.Isolation.Primitives.ProcessDomainFactory.CreateIsolationDomain(IIsolationBoundary boundary)
+   at Microsoft.Expression.HostUtility.Platform.AppContainerProcessDomainFactory.CreateIsolationDomain(IIsolationBoundary boundary)
+   at Microsoft.Expression.DesignHost.Isolation.Primitives.IsolationBoundary.Initialize()
+   at Microsoft.Expression.DesignHost.Isolation.Primitives.IsolationBoundary.CreateInstance[T](Type type)
+   at Microsoft.Expression.DesignHost.Isolation.IsolatedExportProvider.Initialize()
+   at Microsoft.VisualStudio.ExpressionHost.Services.VSIsolationService.CreateExportProvider(IIsolationTarget isolationTarget, ICatalogFactory catalogFactory, IExportFilter filter)
+   at Microsoft.Expression.DesignHost.Isolation.IsolationService.CreateLease(IIsolationTarget isolationTarget)
+   at Microsoft.Expression.DesignHost.IsolatedDesignerService.CreateLease(IIsolationTarget isolationTarget, CancellationToken cancelToken, DesignerServiceEntry& entry)
+   at Microsoft.Expression.DesignHost.IsolatedDesignerService.IsolatedDesignerView.CreateDesignerViewInfo(CancellationToken cancelToken)
+   at Microsoft.Expression.DesignHost.Isolation.IsolatedTaskScheduler.InvokeWithCulture[T](CultureInfo culture, Func`2 func, CancellationToken cancelToken)
+   at Microsoft.Expression.DesignHost.Isolation.IsolatedTaskScheduler.<>c__DisplayClassa`1.<StartTask>b__6()
+   at System.Threading.Tasks.Task`1.InnerInvoke()
+   at System.Threading.Tasks.Task.Execute()

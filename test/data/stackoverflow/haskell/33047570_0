@@ -1,0 +1,2 @@
+foldrRange :: (Int -> t -> t) -> t -> Int -> Int -> t
+foldrRange cons nil a b = foldr cons nil [a..b-1]

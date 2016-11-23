@@ -1,0 +1,2 @@
+tail -f file.txt | tr -d '[^\x20-\x7F]' | grep 'regexp'
+tail -f file.txt | sed 's/[^\x00-\x7F]//' | grep 'regexp'

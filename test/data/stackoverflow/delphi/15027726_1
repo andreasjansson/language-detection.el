@@ -1,0 +1,7 @@
+destructor TEventLogger.Destroy;
+begin
+  ClearQueue; //I'm sure this should be removed
+  FQueue.Free;
+  DeleteCriticalSection(FListLock);
+  inherited;
+end;

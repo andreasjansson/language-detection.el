@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+  <xsl:key name="this-year" match="job" use="year"/>
+
+  <xsl:template match="jobs">
+    <resume>
+      <xsl:apply-templates select="job[count(. | key('this-year', year)[1]) = 1]"/>
+    </resume>
+  </xsl:template>
+
+  <xsl:template match="job">
+    <year y="{year}">
+      <xsl:apply-templates select="key('this-year', year)"/>
+    </year>
+  </xsl:template>
+
+  <xsl:template match="key('this-year', year)">
+    <position><xsl:value-of select="position"/></position>
+  </xsl:template>
+
+</xsl:stylesheet>

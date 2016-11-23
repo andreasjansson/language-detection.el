@@ -1,0 +1,34 @@
+func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+
+
+    let tintColor = TintManager().getTintColour()
+
+    let dateCell:TableHeader = tableView.dequeueReusableHeaderFooterViewWithIdentifier("TableHeader") as! TableHeader
+
+    //dateCell.bringSubviewToFront(dateCell.addNewEventButton)
+
+    dateCell.dayLabel.text = Dates.day.uppercaseString
+
+    dateCell.dateLabel.text = Dates.date
+
+        dateCell.backgroundView = UIView(frame: dateCell.frame)
+        dateCell.backgroundView!.backgroundColor = tintColor
+        dateCell.dayLabel.textColor = UIColor.whiteColor()
+        dateCell.dateLabel.textColor = UIColor.whiteColor()
+        dateCell.addNewEventButton.backgroundColor = tintColor
+
+
+
+    dateCell.addNewEventButton.tag = section
+    dateCell.addNewEventButton.layer.cornerRadius = 20.0
+
+    if (savedEventView.superview === self.view) {
+        dateCell.addNewEventButton.removeTarget(nil, action: nil, forControlEvents: .AllEvents)
+        dateCell.addNewEventButton.addTarget(self, action: #selector(ViewController.userPressedAddButtonToInsertSavedEvent(_:)), forControlEvents:.TouchUpInside)
+    } else {
+        dateCell.addNewEventButton.removeTarget(nil, action: nil, forControlEvents: .AllEvents)
+        dateCell.addNewEventButton.addTarget(self, action: #selector(ViewController.userPressedAddNewEventOnTableViewHeader(_:)), forControlEvents:.TouchUpInside)
+    }
+
+    return dateCell
+}

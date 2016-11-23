@@ -1,0 +1,12 @@
+#!/bin/sh
+
+LOGIN=SOMELOGIN
+PASSWORD=SOMEPASSWORD
+
+# Save cookie
+curl -d "login=$LOGIN&password=$PASSWORD" -c /tmp/some.cookie http://stat.somesite.ru/
+
+# Load page
+curl -s -b /tmp/some.cookie http://stat.somesite.ru/ > /tmp/some.page
+
+# Manipulations with saved page....

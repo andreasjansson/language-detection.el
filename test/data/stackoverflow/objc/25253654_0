@@ -1,0 +1,6 @@
++ (instancetype)tankAtPosition:(CGPoint)position {
+    Tank *tank = [self spriteNodeWithImageNamed:@"tank_base_1"];
+    tank.position = position;
+    tank.anchorPoint = CGPointMake(0.5, 0.5);
+    return tank;
+}

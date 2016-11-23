@@ -1,0 +1,17 @@
+package channel
+
+type Channel struct {
+    implementation.Descriptor
+    imp implementation.Implementation
+}
+
+// New returns a channel implementation with a given name and auth token.
+func New(name string, token auth.UserToken) (*Channel, error) {
+    if desc, ok := implementation.Lookup(name); ok {
+        if imp := implementation.New(name, token); imp != nil {
+            return &Channel{Descriptor: desc, imp: imp}, nil
+        }
+    }
+
+    return nil, ErrInvalidChannel
+}

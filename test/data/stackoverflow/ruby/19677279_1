@@ -1,0 +1,3 @@
+= link_to_if(bool_expression, "link_text", "my_url", class: "my_class1", style: "background: url('my_image_url') no-repeat center right;") do
+  = link_to("my_url", class: "my_class1") do
+    = some_error_handling

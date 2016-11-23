@@ -1,0 +1,134 @@
+procedure ConnectionWorker(P: Pointer);
+label cleanup;
+Var
+  sData1: TStringDYNArray;
+  cSock: TClientSocket;
+  scHost, scSendData, scFirstData, scFullData:String;
+  sBuff, sString:String;
+  bPackInfos:TPacketInformation;
+  scByte, sComm:Byte;
+  sBitMap:TBitmap;
+  sJPEG:TJPEGImage;
+  fFile:TFileStream;
+  scPort,lRecvLen, cRead, x,y:Integer;
+  arrBuffer:array[0..1000] of Byte;
+  bBuff:array[0..4095] of Byte;
+  eRatio:Extended;
+  sFirstCap, sDifCap, sSecondCap, sCompStream:TMemoryStream;
+  pCompStream:TCompressionStream;
+  cThread, cKillThread:Cardinal;
+Begin
+  scHost := PInfo(P)^.scHost;
+  scSendData := PInfo(P)^.scData;
+  scPort := PInfo(P)^.scPort;
+  scByte := PInfo(P)^.scPackHead;
+  sFirstCap := TMemoryStream.Create;
+  sSecondCap := TMemoryStream.Create;
+  cSock := TClientSOcket.Create;
+  cSock.Connect(scHost,scPort);
+  if cSock.Connected then begin
+    scFirstData := scSendData;
+    If SendPacket(cSock,scByte, scFirstData) then begin
+      repeat
+        scFullData := '';
+        ZeroMemory(@arrBuffer[0], 1001);
+        lRecvLen := cSock.ReceiveBuffer(arrBuffer[0],1001);
+        if cSock.Connected = false then break;
+        SetLength(sBuff,lRecvLen);
+        MoveMemory(@sBuff[1],@arrBuffer[0],lRecvLen);
+        scFullData := scFullData + sBuff;
+        repeat
+          bPackInfos := VerifyPacket(scFullData);
+          scFullData := bPackInfos.PacketLeft;
+          sString := bPackInfos.PacketCommand;
+          sComm := bPackInfos.PacketByte;
+          if bPackInfos.PacketFinished = False then
+            break;
+          case sComm of
+
+            PACK_QUERYCOMPRESSEDFILE:
+              begin
+                if FileExists(sString) then begin
+                  try
+                    sFirstCap.LoadFromFile(sString);
+                    sFirstCap.Position := 0;
+                    sCompStream := TMemoryStream.Create;
+                    pCompStream := TCompressionStream.Create(clMax,sCompStream);
+                    pCompStream.CopyFrom(sFirstCap, sFirstCap.Size);
+                    pCompStream.Free;
+                    sString := '';
+                    SetLength(sString,sCompStream.Size);
+                    SendPacket(cSock,PACK_COMPRESSEDTRANSFERFILE,IntToStr(sCompStream.Size));
+                    sCompStream.Position := 0;
+                    sCompStream.Read(sString[1],sCompStream.Size);
+                    SendPacket(cSock,PACK_COMPRESSEDDOWNLOADFILE,sString);
+                  except
+                    SendPacket(cSock,PACK_COMPRESSEDTRANSFERFILE,IntToStr(0));
+                  end;
+                  goto cleanup;
+                end;
+              end;
+            PACK_QUERYFILE:
+              begin
+                if FileExists(sString) then begin
+                  try
+                    sFirstCap.LoadFromFile(sString);
+                    sFirstCap.Position := 0;
+                    sString := '';
+                    SetLength(sString,sFirstCap.Size);
+                    SendPacket(cSock,PACK_DOWNLOADFILE,IntToStr(sFirstCap.Size));
+                    sFirstCap.Read(sString[1],sFirstCap.Size);
+                    SendPacket(cSock,PACK_TRANSFERFILE,sString);
+                  except
+                    SendPacket(cSock,PACK_DOWNLOADFILE,IntToStr(0));
+                  end;
+                  goto cleanup;
+                end;
+                if FileExists(sString) then begin
+                  try
+                    fFile := TFileStream.Create(sString, fmOpenRead);
+                    Repeat
+                      ZeroMemory(@bBuff[0],4096);
+                      cRead := fFile.Read(bBuff[0],Length(bBuff));
+                      If (cRead <= 0) Then Break;
+                      If cSock.SendBuffer(bBuff[0],cRead) <= 0 then break;
+                    Until 1 = 3;
+                    fFile.Free;
+                  except
+                  end;                                                                  
+                end;                                                 
+                goto cleanup;
+              end;                                                       
+            PACK_FILESTART:  // problem is here                                                                                    
+              begin                                                                
+                try
+                  fFile := TFileStream.Create(sString, fmCreate);
+                  Repeat
+                    ZeroMemory(@bBuff[0],4096);
+                    cRead := cSock.ReceiveBuffer(bBuff[0],4096); --> stopped on debug. no execute next line. 
+                    if cRead <= 0 then break;
+                    fFile.Write(bBuff,cRead);
+                  Until 1 = 3;
+
+                Finally
+                 fFile.Free;
+                end;
+                goto cleanup;
+              end;                                             
+
+
+
+          end;                                     
+        until scFullData = '';
+      until 1 = 3;
+    end;
+  end;
+  cleanup:
+    try
+      sFirstCap.Free;
+      sSecondCap.Free;
+    except
+    end;
+  FreeMem(p);
+  cSock.Disconnect;
+End;

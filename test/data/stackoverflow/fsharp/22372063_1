@@ -1,0 +1,5 @@
+let ButtonClicked (evArgs,sender)= 
+     sender.DoSomthing()
+     ...
+
+button.Click.Add(fun evArgs,sender -> ButtonClicked())

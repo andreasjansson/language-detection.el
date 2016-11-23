@@ -1,0 +1,41 @@
+{"response": {
+   "status": "success",
+   "data": {"employeeLst":    [
+            {
+         "employeeID": 1,
+         "name": "Diwakar",
+         "year": "2015",
+         "employeeDate": "Nov 21, 2015"
+      },
+            {
+         "employeeID": 2,
+         "name": "Ponni",
+         "year": "2015",
+         "employeeDate": "Nov 21, 2015"
+      },
+            {
+         "employeeID": 3,
+         "name": "Mahashi",
+         "year": "2015",
+         "employeeDate": "Nov 21, 2015"
+      },
+            {
+         "employeeID": 4,
+         "name": "Ganesh",
+         "year": "2015",
+         "employeeDate": "Nov 21, 2015"
+      },
+            {
+         "employeeID": 5,
+         "name": "Namarata",
+         "year": "2015",
+         "employeeDate": "Nov 21, 2015"
+      }
+   ]}
+}}
+
+Code
+JSONObject jsonObj = new JSONObject(jsonStr);
+
+                    // Getting JSON Array node
+employees = jsonObj.getJSONArray("emplyeeLst");

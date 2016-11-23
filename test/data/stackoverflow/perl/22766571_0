@@ -1,0 +1,2 @@
+% $m->callback( CallbackName => 'Initial', Object => $Object, CustomFields => $CustomFields);
+% print Dumper($CustomFields); //Merge is Not OK

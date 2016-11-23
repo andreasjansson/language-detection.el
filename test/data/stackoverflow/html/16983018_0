@@ -1,0 +1,6 @@
+<body>
+<video id="introVideo" width="774" height="400"  oncanplay="playIntroVideo()">
+    <source src="http://users.telenet.be/A-I/ChromeBugTest.mp4" type="video/mp4" />
+    Uw browser ondersteunt geen html5 video
+</video>
+</body>

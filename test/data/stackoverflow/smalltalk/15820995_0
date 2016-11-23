@@ -1,0 +1,39 @@
+Object subclass: #Rpcalc
+instanceVariableNames: 'anArray top'
+classVariableNames: ''
+poolDictionaries: ''
+category: nil !
+
+pop:
+    | item |
+item := anArray at: top.
+top := top - 1.
+^item!
+
+push: item
+ top := top + 1.
+ anArray at: top put: item!
+
+setsize: n
+  anArray := Array new: n.
+  top := 0! 
+
+evaluate:
+       | expression aToken op1 op2 operator answer|
+   Transcript show: 'Enter Expression' .
+   expression :- stdin nextLine.
+
+   | aStack |
+   aStack := Array new: 10 .
+
+   aToken := self getNextToken.
+       ((aToken key) = 'operand')
+       ifTrue: [push : aToken].
+
+        aToken := self getNextToken.
+       ((aToken key) = 'operator')
+        ifTrue:  [op1 := pop.
+           op2 := pop.
+           operator := aToken.
+   "if(operator := +)"
+   "answer := op1 + op2"

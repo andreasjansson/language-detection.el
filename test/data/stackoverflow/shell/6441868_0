@@ -1,0 +1,20 @@
+#!/bin/bash
+
+token_secret=""
+token_value=""
+
+function extractTokenSecret() {
+  sed -n 's/.*secret":"\([^"]*\)".*/\1/p'
+}
+
+function extractTokenValue() {
+  sed -n 's/.*token":"\([^"]*\)".*/\1/p'
+}
+
+function createToken() {
+  curl -v \
+  -X POST \
+  -s http://localhost:8080/token | tee >/dev/null \
+  >(extractTokenSecret | [ASSIGN THE VARIABLE token_secret HERE]) \
+  >(extractTokenValue | [ASSING THE VARIABLE token_value HERE] \
+}

@@ -1,0 +1,5 @@
+(define replaceNth
+      (lambda (nth item list1)
+        (cond [(and (= nth 1) (eqv? (pair? list1) #f)) (cons item (cdr list1))] ;; If nth = 1 and there is more to the list, replace element at that location and add rest of list
+              [(= nth 1) item] ;; if nth = 1 and there is no more list to add after, return item
+              [else (list (car list1) 'derp (replaceNth (- nth 1) item (cdr (list list1))))]))) ;else decrement nth, and traverse rest of list

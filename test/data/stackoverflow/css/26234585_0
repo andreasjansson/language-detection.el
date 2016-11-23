@@ -1,0 +1,16 @@
+<definition name="login-success" template="/mainTemplate.jsp">
+        <put-attribute name="header" value="/header.jsp"/>    
+        <put-attribute name="title" value="Welcome Page"/>   
+        <put-attribute name="menu" value="/menu.jsp"/>   
+        <put-attribute name="body" value="/Appointments/01_Dummy.jsp"/>   
+        <put-attribute name="footer" value="/footer.jsp"/>   
+    </definition>  
+
+    <definition name="login-error" template="/mainTemplate.jsp">   
+        <put-attribute name="title" value="Login Error"/>   
+        <put-attribute name="body" value="/login-error.jsp"/>   
+    </definition>  
+
+     <definition name="appointment" extends="login-success">
+      <put-attribute name="body"   value="/Appointments/02_FirstScreen.jsp"/>      
+   </definition>

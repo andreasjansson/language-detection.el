@@ -1,0 +1,85 @@
+/*logo*/
+.nav-logo {
+float:left;
+width: 260px;
+margin-left: .2em;
+z-index: 1;}
+
+.nav-logo top {
+float:left;
+width: 250px;
+cursor: pointer;}
+
+.event {
+float:left;
+margin-left: 0;
+margin-top:-8px;
+cursor: pointer;
+clear: both;}
+
+
+/* Nav width setting*/
+.nav-hold {
+width: 98%;
+max-width: 1000px;
+margin: 0 auto;}
+
+/* NAVIGATION */
+.nav-bar {
+width: 100%;
+height: 80px;
+background-image:url(../images/bg-menu80.jpg);}
+
+.nav-hold {
+overflow:hidden;}
+
+.nav-list {
+float: right;
+list-style: none;}
+
+.nav-list li {
+float: left;
+width: auto;
+position: relative;}
+
+.nav-list li a {
+text-decoration: none;
+display:block;
+padding: 30px 7px 28px 7px;
+color: #f9f9f9;
+font-size: .9em;
+font-weight: bold;}
+
+.nav-list li ul {
+display: none;
+list-style: none;
+position: absolute;
+margin: 0;
+padding: 0;
+width: 70px;}
+
+.nav-list li ul li {
+margin: 0;
+padding: 0;}
+
+.nav-list li:hover ul {
+display: block;}
+
+.nav-list li a:hover li {
+float: left;}
+
+.nav-list li:hover li a {
+background-color: #333;
+border-bottom: 1px solid #fff;
+color: #FFF;
+height:50px;
+width:150px;}
+
+.nav-list li a:hover {
+text-decoration: none;
+display: block;
+padding: 30px 7px 28px 7px;
+color: #000;
+font-size: .9em;
+font-weight: bold;
+background-color: #e7e4e4;}

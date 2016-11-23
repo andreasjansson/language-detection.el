@@ -1,0 +1,3 @@
+(let ((width (calculate-width)
+      (height (calculate-height))
+  `(,width . ,height))

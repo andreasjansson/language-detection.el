@@ -1,0 +1,5 @@
+pthread_create(&c_udp_comm, NULL, udp_comm_thread, (void*)this);
+pthread_create(&drive, NULL, driving_thread, (void*)this);
+pthread_create(&update, NULL, update_server_thread(void*)this);
+
+pthread_exit(NULL);

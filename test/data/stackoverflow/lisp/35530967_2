@@ -1,0 +1,4 @@
+(define replaceNth
+  (lambda (nth item list1)
+    (cond [(= nth 1) (cons item (cdr list1))] ;; If nth = 1 replace element at that location and add rest of list
+          [else (list (car list1) (replaceNth (- nth 1) item (cdr (list list1))))]))) ;else decrement nth, and cons/ recursively call replaceNth on rest of list

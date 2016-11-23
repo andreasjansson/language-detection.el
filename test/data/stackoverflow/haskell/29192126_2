@@ -1,0 +1,2 @@
+Prelude> let (a,_) = System.Random.random (System.Random.mkStdGen 4) in a :: Int 
+-106546976

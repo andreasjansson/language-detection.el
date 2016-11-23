@@ -1,0 +1,6 @@
+object ViewHelpers {
+  import org.pegdown.PegDownProcessor
+  private val markdownProcessor = new PegDownProcessor
+
+  def renderMarkdown(text: String) = markdownProcessor.markdownToHtml(text)
+}

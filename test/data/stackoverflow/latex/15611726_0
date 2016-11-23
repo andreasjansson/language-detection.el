@@ -1,0 +1,17 @@
+import matplotlib.pyplot as pyplot  
+import mpl_toolkits.mplot3d
+
+from matplotlib.pyplot import rc  
+rc('text', usetex = True)  
+rc('font', size=9, family='serif', serif='Times')
+
+fig = pyplot.figure(figsize=(8/2.5, 5/2.5))  
+ax = fig.gca(projection='3d')
+
+plot = ax.plot([.1,.2,.3],[.1,.2,.3])
+
+xLabel = ax.set_xlabel('XxxXxxX')  
+yLabel = ax.set_ylabel('YyyYyyY')  
+zLabel = ax.set_zlabel('ZzzZzzZ')  # \n in here produces an error or is ignored see below   
+
+pyplot.show()

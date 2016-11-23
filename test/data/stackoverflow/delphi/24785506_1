@@ -1,0 +1,8 @@
+class constructor TOmniMultiPipelineStage.Create;
+var
+  RTTIType: TRttiType;
+begin
+  //Not really what I want because I want the actual type of the class
+  //Not a fixed ancestor type 
+  RTTIType:= TRttiContext.GetType(TOmniMultiPipelineStage);
+end;

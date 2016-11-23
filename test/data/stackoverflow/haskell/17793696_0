@@ -1,0 +1,3 @@
+f = reify (42::Int) (\ (_::Proxy q) ->
+  let x = Zq 15 :: Zq q -- x = 15 mod 42
+  in ...

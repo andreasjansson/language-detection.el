@@ -1,0 +1,26 @@
+import Data.HashMap.Strict as HM hiding (map) 
+import qualified Data.ByteString.Lazy as BS
+import qualified Data.ByteString.Char8 as BSC8
+import qualified JSONParser as P -- my module
+
+retrieveAssets :: (Text -> Text) -> ExceptT Text IO ()
+retrieveAssets withName = withManager $ (lift ((HM.keys . P.assets)
+  <$> P.raw) ) >>= mapM_ f
+  where
+  f = \x -> dlAsset x "0.1246" (withName x)
+
+dlAsset :: Text -> Text -> Text -> ReaderT Manager (ExceptT Text IO) ()
+dlAsset name size dest = do
+  req <- lift $ (P.assetLookup name size <$> P.raw) >>= checkMaybe
+    name >>= parseUrl . unpack -- lookup of a url
+  res <- httpLbs req 
+  lift $ (liftIO $ BS.writeFile (unpack dest) $ responseBody res)
+    `catchE` (\_ -> return ()) -- always a Right value?
+    where 
+      checkMaybe name a = case a of
+        Nothing -> ExceptT $ fmap Left $ do
+          BSC8.appendFile "./resources/images/missingFiles.txt" $ 
+            BSC8.pack $ (unpack name) ++ "\n"
+          putStrLn $ "lookup of " ++ (unpack name) ++ " failed"
+          return name
+        Just x  -> lift $ pure x

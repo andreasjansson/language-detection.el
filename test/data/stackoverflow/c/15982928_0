@@ -1,0 +1,7 @@
+if (strlen(shortest) > strlen(longest)) {
+            char *temp;
+            strcpy(longest, temp);
+            strcpy(shortest, longest);
+            strcpy(temp, shortest);
+     } 
+ }

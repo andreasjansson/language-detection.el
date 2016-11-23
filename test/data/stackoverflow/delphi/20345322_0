@@ -1,0 +1,13 @@
+procedure TForm1.bFAT1Click(sender: TObject);
+    var
+     FAT: Integer;
+    begin
+       for FAT := 0 to memo1.lines.Count - 1 do
+        begin
+          if AnsiContainsStr(memo1.lines[FAT], 'Olive Oil') then
+          begin
+          ShowMessage('Olive Oil exist!');
+          end;
+        end;
+     // But  how to show message if integer is empty?        
+    end;

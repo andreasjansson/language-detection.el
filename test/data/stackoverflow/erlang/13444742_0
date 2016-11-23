@@ -1,0 +1,25 @@
+do_restart({permanent = RestartType, Delay}, Reason, Child, State) ->
+    do_restart_delay({RestartType, Delay}, Reason, Child, State);
+do_restart(permanent, Reason, Child, State) ->
+    report_error(child_terminated, Reason, Child, State#state.name),
+    restart(Child, State);
+do_restart(Type, normal, Child, State) ->
+    del_child_and_maybe_shutdown(Type, Child, State);
+do_restart({RestartType, Delay}, {shutdown, restart} = Reason, Child, State)
+  when RestartType =:= transient orelse RestartType =:= intrinsic ->
+    do_restart_delay({RestartType, Delay}, Reason, Child, State);
+do_restart(Type, {shutdown, _}, Child, State) ->
+    del_child_and_maybe_shutdown(Type, Child, State);
+do_restart(Type, shutdown, Child = #child{child_type = supervisor}, State) ->
+    del_child_and_maybe_shutdown(Type, Child, State);
+do_restart({RestartType, Delay}, Reason, Child, State)
+  when RestartType =:= transient orelse RestartType =:= intrinsic ->
+    do_restart_delay({RestartType, Delay}, Reason, Child, State);
+do_restart(Type, Reason, Child, State) when Type =:= transient orelse
+                                            Type =:= intrinsic ->
+    report_error(child_terminated, Reason, Child, State#state.name),
+    restart(Child, State);
+do_restart(temporary, Reason, Child, State) ->  %%<<----attention here, just report_error,not calling restart child function
+    report_error(child_terminated, Reason, Child, State#state.name),
+    NState = state_del_child(Child, State),
+    {ok, NState}.

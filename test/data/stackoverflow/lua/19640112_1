@@ -1,0 +1,14 @@
+function initAnims()
+    player.anims = {}
+    getAnimSettings('gfx/players/'..player.modelname..'/animsettings.lua')
+
+    for i = 1, #animlist do
+        for j = 1, #animlist[i][1] do
+                animlist[i][2] = {
+                    left = ('gfx/players/'..player.modelname..'/'..animlist[i][2]..'/'..animlist[i]..j..'-l.png'),
+                    right = ('gfx/players/'..player.modelname..'/'..animlist[i][2]'/'..animlist[i]..j..'-r.png')
+                }
+                table.insert(player.anims, animlist[i][2])
+        end
+    end
+end

@@ -1,0 +1,10 @@
+\documentclass[12pt, journal, compsoc]{IEEEtran}
+\begin{document}
+
+\title{ This is my practice document}
+\author{Yui}
+
+\begin{abstract}
+Abstract content goes here.
+\end{abstract}
+\end{document}

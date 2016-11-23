@@ -1,0 +1,5 @@
+<video  controls="controls"  >                            
+ <source src="video1.mp4" type="video/mp4" > 
+ <source src="video1.ogg" type="video/ogg">
+ <source src="video1.webm" type="video/webm">
+</video>

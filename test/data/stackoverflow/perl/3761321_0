@@ -1,0 +1,39 @@
+package Schema::Base;
+
+use base 'DBIx::Class::Core';
+
+sub update {
+  my $self = shift;
+
+  # track changes to row
+
+  my $instance = $self->next::method(@_);
+
+  # save changeset to audit table
+
+  return $instance;
+}
+
+
+package Schema::Immutable::User;
+
+use Moose;
+use MooseX::NonMoose;
+use namespace::autoclean;
+extends 'DBIx::Class:Core';
+
+__PACKAGE__->load_components("InflateColumn::DateTime");
+
+
+
+package Schema::Mutable::User
+
+use base ('Schema::Base', 'Schema::Immutable::User');
+
+sub update {
+  my $self = shift;
+
+  # encrypt password
+
+  return $self->next::method(@_);
+}

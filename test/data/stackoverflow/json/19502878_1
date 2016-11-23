@@ -1,0 +1,11 @@
+<jboss-deployment-structure xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="urn:jboss:deployment-structure:1.1 urn:jboss:deployment-structure:1.1 ">
+  <deployment>
+    <exclusions>
+      <module name="org.jboss.resteasy.resteasy-jettison-provider" />
+    </exclusions>
+    <dependencies>
+      <module name="org.jboss.resteasy.resteasy-jackson-provider" />
+    </dependencies>
+  </deployment>
+</jboss-deployment-structure>

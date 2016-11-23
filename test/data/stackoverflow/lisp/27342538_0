@@ -1,0 +1,7 @@
+#lang racket
+
+(define (test-string4 lst keyword)
+  (let ((kw (string-upcase keyword)))
+    (cond ((null? lst) '())
+          ((string-upper-case? (car lst))
+           (list

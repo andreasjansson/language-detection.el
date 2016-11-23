@@ -1,0 +1,4 @@
+procedure TQuickRpr1.QRLabel1Print(Sender: TObject; var Value: string);
+begin
+
+end;

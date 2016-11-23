@@ -1,0 +1,30 @@
+' Render the whole list of stuff
+Private Sub RenderList(dict As Dictionary(Of String, Card))
+
+    ' Grab keys into list for sorting
+    Dim lstCards As List(Of String) = dict.Keys.ToList
+    lstCards.Sort()
+
+    ' iteration
+    Dim str As String
+    For Each str In lstCards
+
+        Dim CurrentCard As Card = dict(str)
+
+        Dim CurrentPT As String
+        If IsNumeric(CurrentCard.power) And IsNumeric(CurrentCard.toughness) Then
+            CurrentPT = CurrentCard.power & "/" & CurrentCard.toughness
+        Else
+            CurrentPT = ""
+        End If
+
+        ' Build list item
+        Dim CurrentItem As New ListViewItem(CurrentCard.name)
+        CurrentItem.SubItems.Add(CurrentCard.manaCost)
+        CurrentItem.SubItems.Add(CurrentCard.type)
+        CurrentItem.SubItems.Add(CurrentPT)
+        lvCard.Items.Add(CurrentItem)
+
+    Next
+
+End Sub

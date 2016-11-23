@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script class="jsbin" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+<meta charset=utf-8 />
+<title>Test Page</title>
+<!--[if IE]>
+  <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+<style>
+  article, aside, figure, footer, header, hgroup, 
+  menu, nav, section { display: block; }
+  body {
+    font-family: sans-serif;
+  }
+  p {
+    margin: 0px;
+  }
+</style>
+</head>
+<body>
+  <form>
+    <input type='text'>
+  </form>
+</body>
+</html>

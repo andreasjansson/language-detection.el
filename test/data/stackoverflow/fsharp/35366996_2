@@ -1,0 +1,7 @@
+let formatPhone phoneNumber =
+
+    printf "+%i %s %s" phoneNumber.CountryCode 
+                       phoneNumber.Number.[0..3]
+                       phoneNumber.Number.[4..8]
+
+formatPhone { CountryCode=44; Number="123456789" };;

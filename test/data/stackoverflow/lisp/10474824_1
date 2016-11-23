@@ -1,0 +1,14 @@
+* (multiple-value-bind (first-var second-var) (ql:system-apropos "regex") (defparameter *first-var* first-var) (defparameter *second-var* second-var))
+#<SYSTEM com.informatimago.common-lisp.regexp / com.informatimago-20120407-git / quicklisp 2012-04-07>
+#<SYSTEM lispbuilder-regex / lispbuilder-20110619-svn / quicklisp 2012-04-07>
+#<SYSTEM recursive-regex / recursive-regex-20120407-git / quicklisp 2012-04-07>
+#<SYSTEM recursive-regex-test / recursive-regex-20120407-git / quicklisp 2012-04-07>
+#<SYSTEM regex / regex-1 / quicklisp 2012-04-07>
+*SECOND-VAR*
+* *first-var*
+
+NIL
+* *second-var*
+
+NIL
+*

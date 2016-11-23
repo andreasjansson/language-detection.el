@@ -1,0 +1,9 @@
+#Loop Start (loop through excel line by line)
+
+$VariableA = Dog(from column A); or ($VariableA =elephant(from column A));
+
+**select from database**
+$sql = "select * from animal where name='$VariableA'";
+**perform $sql and other functions**
+
+#End Loop

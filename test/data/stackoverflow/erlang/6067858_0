@@ -1,0 +1,8 @@
+start() ->
+  {ok, Sock} = gen_udp:open(0, []),
+  send(Sock).
+
+send(Sock) ->
+  gen_udp:send(Sock, "127.0.0.1", 3211, "hello world"),
+  timer:sleep(5000),
+  send(Sock).

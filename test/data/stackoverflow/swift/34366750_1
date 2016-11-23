@@ -1,0 +1,7 @@
+func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+    let cell = collectionView.dequeueReusableCellWithReuseIdentifier("collCell2", forIndexPath: indexPath) as! ManageCollectionViewCell
+
+    cell.foodImage.image = self.itemPictures[indexPath.item]
+
+    return cell
+}

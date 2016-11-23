@@ -1,0 +1,2 @@
+book.author = "Mike Miller"
+book.setAuthor("Mike Miller")

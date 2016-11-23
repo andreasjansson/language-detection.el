@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Conchoid</title>
+    <script type="text/javascript"><!--
+window.addEventListener('load', function () {
+  // Get the canvas element in the <body> tag
+  var elem = document.getElementById('myCanvas');
+
+  if (!elem || !elem.getContext) {
+    return;
+  }
+
+  // Get the canvas 2d context 
+  var context = elem.getContext('2d');
+  if (!context) {
+    return;
+  }
+
+  var basePointX  = 250;
+  var basePointY  = 200;
+  var fixedPointX = 700;
+  var fixedPointY = 100;
+  var currentX    = 0;
+  var currentY    = 0;
+  var offsetX     = 0;
+  var offsetY     = 0;
+  var radius      = 0;
+  var smallRadius = 50;
+  var lineWidth   = 4;
+  var lineGap     = 10; // 8*lineWidth;
+  var spiralCount = 4;
+  var Constant1   = 120;
+  var Constant2   = 80;
+  var angle       = 0;
+  var deltaAngle  = 1;
+  var maxAngle    = 721;
+  var rectWidth   = 40;
+  var rectHeight  = 20;
+  var gradient1;
+  var hexArray    = new Array('0','1','2','3','4','5','6','7',
+                              '8','9','a','b','c','d','e','f');
+ 
+  for(angle=0; angle<maxAngle; angle+=deltaAngle) {
+     radius   = Constant1+Constant2/
+                     Math.cos(angle*Math.PI/180);
+ 
+     offsetX  = radius*Math.cos(angle*Math.PI/180);
+     offsetY  = radius*Math.sin(angle*Math.PI/180);
+     currentX = basePointX+offsetX;
+     currentY = basePointY-offsetY;
+
+     gradient1 = context.createRadialGradient(currentX, 
+                                              currentY, 
+                                              0, 
+                                              currentX+smallRadius, 
+                                              currentY+smallRadius,
+                                              2*smallRadius);
+
+     gradient1.addColorStop(0,   '#f00'); 
+     gradient1.addColorStop(0.5, '#ff0'); 
+     gradient1.addColorStop(1,   '#00f'); 
+
+     context.fillStyle = gradient1;
+
+     // draw the current circle
+     context.beginPath();
+     context.lineWidth = lineWidth;
+     context.arc(currentX, currentY, smallRadius, 0, Math.PI*2, true);
+     context.arc(currentY, currentX, smallRadius, 0, Math.PI*2, true);
+     context.arc(currentX+smallRadius, currentY+smallRadius, 
+                 smallRadius, 0, Math.PI*2, true);
+     context.fill();
+
+     if(angle % lineGap == 0) {
+        lineColor = '#' + hexArray[angle%16] +'00';
+        context.strokeStyle = lineColor;
+        context.moveTo(currentX, currentY);
+        context.lineTo(fixedPointX, fixedPointY);
+        context.stroke();
+     }
+  }
+}, false);
+    // --></script>
+  </head>
+
+  <body>
+    <canvas id="myCanvas" width="800" height="500">
+         Your browser does not support Canvas
+    </canvas>
+  </body>
+</html>

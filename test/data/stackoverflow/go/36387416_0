@@ -1,0 +1,9 @@
+reader := bufio.NewReader(os.Stdin)
+fmt.Print("room: width x length: ")
+
+inStr, _ := reader.ReadString('\n')
+result := strings.Split(inStr, "x")
+
+string1, _ := strconv.ParseFloat(result[0], 64)
+string2, _ := strconv.ParseFloat(result[1], 64)
+fmt.Print(string2)

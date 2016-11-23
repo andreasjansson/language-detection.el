@@ -1,0 +1,6 @@
+Dim n As Integer
+
+While Not n > 5
+   n = n + 10
+End While
+Debug.WriteLine(n)

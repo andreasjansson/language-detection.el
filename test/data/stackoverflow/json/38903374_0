@@ -1,0 +1,5 @@
+<service verb="call" noun="MSTService" type="remote-json-rpc" location="http://xxxxxxxxxx.com/Service.svc/Json" authenticate="false" method="GetTestString">
+ <in-parameters>
+        <parameter name="theString" type="String" />
+ </in-parameters>
+ </service>

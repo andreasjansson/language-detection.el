@@ -1,0 +1,18 @@
+def mssl(lst):
+    pos,neg,TotalList=[],[],[]
+    for items in range(len(lst)):
+         if(lst[items]>0):
+            pos+=[lst[items]]
+         else:
+             neg+=[lst[items]]
+    TotalPos=sum(pos)
+    TotalNeg=sum(neg)
+
+    if(len(neg)>0):
+        for negatives in range(len(neg)):
+         TotalList=[TotalPos+neg[negatives]]
+        if(TotalList>TotalList[negatives-1]):
+               print(TotalList)
+    else:
+        TotalList=TotalPos
+    print(TotalList)

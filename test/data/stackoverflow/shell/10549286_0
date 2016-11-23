@@ -1,0 +1,4 @@
+#!/bin/sh
+set backslash_quote = "yes"
+osascript -e "tell application \"System Events\" to set visible of some item of\
+ ( get processes whose name = \"Terminal\" ) to false"

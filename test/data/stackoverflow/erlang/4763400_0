@@ -1,0 +1,7 @@
+receive
+... 
+  {raw, Text} ->
+      send(Socket, Text),
+      master(State);
+...
+end.

@@ -1,0 +1,5 @@
+binfilter = 0
+function lowPassFilterBinary( input)
+    binfilter = binfilter - ( bit.rshift( binfilter, 4) ) + input
+    return bit.rshift( binfilter, 4)
+end

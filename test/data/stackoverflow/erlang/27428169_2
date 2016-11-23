@@ -1,0 +1,17 @@
+fun({Doc}) ->
+    Name = couch_util:get_value(<<\"name\">>, Doc),
+    Value = couch_util:get_value(<<\"Value\">>, Doc),
+    Geocode = couch_util:get_value(<<\"geocode\">>, Doc),
+    % I think 'couch_util:get_value' returns the atom undefined, if the value doesn't exist.
+    Undefined = undefined,
+    if Geocode /= Undefined ->
+        Emit(
+            Name,
+            {[
+                { <<\"value\">>, Value }, 
+                { <<\"geocode\">>, Geocode }            
+            ]}
+        );
+    true -> Emit(Name, {[ { <<\"value\">>, Value } ]})
+    end;
+end.

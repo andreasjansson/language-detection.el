@@ -1,0 +1,21 @@
+Function GetImage(ByVal URL As String) As System.Drawing.Image
+    Dim Request As System.Net.HttpWebRequest
+    Dim Response As System.Net.HttpWebResponse
+    GetImage = Nothing
+
+    Try
+        Request = System.Net.WebRequest.Create(URL)
+        Response = CType(Request.GetResponse, System.Net.WebResponse)
+
+        If Request.HaveResponse Then 
+            If Response.StatusCode = Net.HttpStatusCode.OK Then 
+               GetImage = System.Drawing.Image.FromStream(Response.GetResponseStream)
+            End If
+        End If
+    Catch e As Exception
+        txtActivity.Text = "Error retrieving image from URL " & URL & vbCrLf & e.ToString() & vbCrLf & txtActivity.Text
+        Exit Try
+    Finally
+
+    End Try
+End Function

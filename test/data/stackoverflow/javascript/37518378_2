@@ -1,0 +1,3 @@
+if ($.cookie().indexOf("Bookmarkid_") === 0) {
+    alert('yes')
+}

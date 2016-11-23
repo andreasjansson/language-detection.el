@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="windows-1252"?>
+<!DOCTYPE Power SYSTEM "http://someuri/TestModel_v9.dtd">
+<Power>
+    <Data>
+    </Data>
+    <Control>
+        <Inp1>MyInp</Inp1>
+        <Inp2>MyInp</Inp2>
+    </Control>
+</Power>

@@ -1,0 +1,32 @@
+unless (@ARGV == 2) {
+    print "Use as follows: perl program.pl in1.file in2.file\n";
+    die;
+}
+
+my $in1 = $ARGV[0];
+my $in2 = $ARGV[1];
+
+open ONE, $in1;
+open TWO, $in2;
+
+my %hash1;
+my @hit;    
+
+while (<ONE>){
+    chomp;
+    my @hit = split(/\t/, $_);
+    $hash1{$hit[0]}=1;
+}
+close ONE;
+
+my @col;
+
+while (<TWO>){
+    chomp;
+    my @col = split(/\t/, $_);
+    if ($col[0] =~ /^H/){  #only valid sequence read lines start with "H"
+        print "$col[0]\n" if defined($hash1{$_});   
+
+    }
+}
+close TWO;

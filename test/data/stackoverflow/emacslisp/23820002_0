@@ -1,0 +1,9 @@
+Debugger entered--Lisp error: (wrong-type-argument number-or-marker-p nil)
+  ispell-command-loop(("Brae" "Br ea" "Br-ea" "Bra" "Bread" "Break" "Bream"
+    "Brew" "Bret" "Bred" "Area" "Urea") nil "Brea" 2229 2233)
+  ispell-process-line("^Brea, CA ~ 92821\n" nil)
+  ispell-region(1 6771)
+  ispell-buffer()
+  ispell()
+  call-interactively(ispell nil nil)
+  command-execute(ispell)

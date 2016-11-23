@@ -1,0 +1,4 @@
+$ go run a.go
+shattering a main.Human
+shattering a main.Glasses
+shattering a main.Window

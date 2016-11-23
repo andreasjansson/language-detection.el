@@ -1,0 +1,8 @@
+private def readValue[T](path: String, v: => T): Option[T] = {
+  try {
+    Option(v)
+  } catch {
+    case e: ConfigException.Missing => None
+    case NonFatal(e)                => throw reportError(path, e.getMessage, Some(e))
+  }
+}

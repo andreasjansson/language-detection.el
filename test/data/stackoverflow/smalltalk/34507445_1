@@ -1,0 +1,11 @@
+d := Dictionary new.
+d at: 'foo' put: 100.
+d at: 'bar' put: 200.
+
+cell := CellMorph new
+    model: d;
+    message: #size;
+    color: Color white.
+cell openInWorld.
+
+d at: 'boo' put: 300.  " cell will be updated "

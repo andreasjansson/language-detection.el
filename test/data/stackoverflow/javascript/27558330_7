@@ -1,0 +1,9 @@
+<div class="container">
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <div class="text-center">
+        <p><a href="/login">Login via Company</a></p>
+      </div>
+    </div>
+  </div>
+</div>

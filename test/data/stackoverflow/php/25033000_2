@@ -1,0 +1,11 @@
+public function getNameTranslated($langId=null) {
+    if (!isset($langId) && count($this->nameTranslations) > 1)
+        throw new \Exception('No locale given '.count($this->nameTranslations));
+
+    foreach($this->nameTranslations as $nameTranslation) {
+        if (!isset($langId) || ($nameTranslation->getLanguageId() == $langId))
+            return $nameTranslation;
+    }
+
+    return false;
+}

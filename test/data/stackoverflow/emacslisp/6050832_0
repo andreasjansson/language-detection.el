@@ -1,0 +1,6 @@
+(setq urls '("http://google.com" "http://bing.com" "http://www.yahoo.com"  "http://thisdoesntexist.net"))
+    (while (setq nextlink (car urls))
+      (if (url-http-file-exists-p nextlink)
+          (message "Link works: %s" nextlink)
+        (message "Broken Link found: %s" nextlink))
+      (setq urls (cdr urls)))

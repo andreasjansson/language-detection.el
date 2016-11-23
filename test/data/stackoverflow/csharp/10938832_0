@@ -1,0 +1,7 @@
+using DocumentFormat.OpenXml.Packaging;
+using (WordprocessingDocument wordDoc = WordprocessingDocument.Open(fileNameDocx as string, true))
+{
+      var xdoc = wordDoc.MainDocumentPart;
+
+      mainWebBrowser.NavigateToString(xdoc.Document.OuterXml.ToString());
+}

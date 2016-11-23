@@ -1,0 +1,2 @@
+AppsService service = new AppsService("domain", "admin username", "admin password");
+UserEntry user = service.RetrieveUser("username");

@@ -1,0 +1,3 @@
+System.InvalidOperationException was unhandled
+Message: An unhandled exception of type 'System.InvalidOperationException' occurred in MBrace.Core.dll
+Additional information: Blob stream has already been committed once.

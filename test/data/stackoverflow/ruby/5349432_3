@@ -1,0 +1,10 @@
+class User
+  include Mongoid::Document
+
+  referenced_in :college, :inverse_of => :users  
+
+  embeds_one :permanent_address, :class_name => "Address", :inverse_of => :permanent_address
+  embeds_one :current_address, :class_name => "Address", :inverse_of => :current_address
+
+  # fields and more code
+end

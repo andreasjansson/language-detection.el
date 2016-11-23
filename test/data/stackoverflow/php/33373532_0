@@ -1,0 +1,14 @@
+<div class="row">
+                <div class="col-md-12" style="height: 225px;">
+            <?php foreach ($posts as $webstore): ?>
+                        <div class="col-md-4 text-center thumbnail1234">
+                        <?php foreach($webstore['images'] as $image) : ?>
+       <img class="img-responsive"  src="<?php echo $image ?>"/>
+    <?php endforeach; ?>
+                        <h3><?php echo $webstore['title']; ?></h3> 
+                        <p>Date Added: <?php echo date('d-m-y', strtotime($webstore['created'])) ?></p>
+                         <hr>
+<a href="<?= site_url("Webstore/webstore_large/['id']"); ?>" target="_blank" class="btn btn-primary center-block">View</a>                    
+
+                        <hr>
+                    </div>

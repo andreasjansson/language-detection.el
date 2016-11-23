@@ -1,0 +1,74 @@
+void createSocket(HWND hwnd)
+{
+   ///Socket Binding///
+   WSADATA wsa; 
+   ///Initialise winsock///
+   if (WSAStartup(MAKEWORD(2,2),&wsa) != 0)
+      {
+         exit(EXIT_FAILURE);
+      }
+
+   ///Create a socket///
+   if((socketIdentifier = socket(AF_INET , SOCK_DGRAM , 0 )) == INVALID_SOCKET)
+      {                 
+         //Socket Creation Failed
+      }
+   ///Socket Created///
+
+   ///Prepare the sockaddr_in structure///
+   serverSocket.sin_family = AF_INET;
+   serverSocket.sin_addr.s_addr = INADDR_ANY;
+   serverSocket.sin_port = htons( PORT );
+
+   ///Bind///
+   if( bind(socketIdentifier ,(struct sockaddr *)&serverSocket , sizeof(serverSocket)) == SOCKET_ERROR)
+      {     
+         //Bind Failed      
+      }
+
+    WSAAsyncSelect (socketIdentifier, hwnd, MY_MESSAGE_NOTIFICATION, FD_READ | FD_CONNECT | FD_CLOSE | FD_ACCEPT); //Set
+   ///Bind Done///
+
+}
+
+LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam);    
+int WINAPI WinMain(  HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nShowCmd 
+{
+   //Window Created
+   createSocket() //Socket Created
+   while(GetMessage(&Msg, NULL, 0, 0) > 0)  //Check on Window Messages
+      {         
+         TranslateMessage(&Msg);
+         DispatchMessage(&Msg);
+      }
+   return Msg.wParam;
+}
+
+LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
+{
+   switch(msg)
+   {
+    case MY_MESSAGE_NOTIFICATION: //Is a message being sent?
+        {
+      switch (lParam) //If so, which one is it?
+            {
+            case FD_ACCEPT:
+                //Connection request was made
+                break;
+
+            case FD_CONNECT:
+                //Connection was made successfully
+                break;
+
+            case FD_READ:
+               receiveAtSocket();
+            break;
+
+            case FD_CLOSE:
+                //Lost the connection
+             break;
+            }
+        }
+        break;
+   }
+}

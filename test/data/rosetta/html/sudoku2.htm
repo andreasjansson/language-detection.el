@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<!-- saved from url=(0040)http://10k.aneventapart.com/Uploads/95/# -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Sudoku.js</title>
+<meta charset="utf-8">
+<meta name="description" content="Another day, another sudoku app. Made in javascript, but not quite HTML5. By M.Firdaus, for 10k Apart">
+<script type="text/javascript" src="./sudoku2_files/Sudoku.js"></script>
+<link rel="stylesheet" type="text/css" href="./sudoku2_files/Sudoku.css">
+</head>
+<body>
+<div id="header">
+<h1>Sudoku.js</h1>
+<img id="loading" src="./sudoku2_files/load.gif" class="hidden"><img id="good" src="./sudoku2_files/good.gif" class="hidden"> 
+<div id="stuff">
+<q>Another day, another sudoku app.<br>Made in javascript, but not quite HTML5.</q>
+<br>By <a href="http://twitter.com/mfirdaus">M. Firdaus</a>, for <a href="http://10k.aneventapart.com/">10k Apart</a>.
+</div>
+</div>
+<div id="sudoku">
+<div id="grid" style="width: 450px; "><div class="dark orig">8</div><div class="dark"><span>5 9</span></div><div class="dark orig">4</div><div class=" orig">7</div><div class=""><span>1 5 9</span></div><div class=""><span>1 5</span></div><div class="dark orig">2</div><div class="dark orig">6</div><div class="dark orig">3</div><div class="dark orig">7</div><div class="dark"><span>2 3 5 6 9</span></div><div class="dark"><span>3 5 6</span></div><div class=""><span>1 2 3 6 9</span></div><div class=" orig">4</div><div class=""><span>1 2 3 5</span></div><div class="dark orig">8</div><div class="dark"><span>1 5 9</span></div><div class="dark"><span>1 5 9</span></div><div class="dark"><span>3 6 9</span></div><div class="dark orig">1</div><div class="dark"><span>3 5 6</span></div><div class=""><span>2 3 6 8 9</span></div><div class=""><span>5 6 9</span></div><div class=""><span>2 3 5 8</span></div><div class="dark"><span>4 7 9</span></div><div class="dark"><span>5 9</span></div><div class="dark"><span>5 7 9</span></div><div class=""><span>1 3 6 9</span></div><div class=""><span>3 6 9</span></div><div class=" orig">2</div><div class="dark"><span>1 3 4 6 8 9</span></div><div class="dark"><span>1 6 9</span></div><div class="dark"><span>1 3 4 8</span></div><div class=" orig">5</div><div class=" orig">7</div><div class=""><span>1 8 9</span></div><div class=" orig">4</div><div class=""><span>3 7 9</span></div><div class=""><span>1 3 7 8</span></div><div class="dark orig">5</div><div class="dark"><span>1 7 9</span></div><div class="dark"><span>1 3 7 8</span></div><div class=" orig">6</div><div class=""><span>1 2 3 8 9</span></div><div class=""><span>1 2 8 9</span></div><div class=""><span>1 3 6 9</span></div><div class=""><span>3 5 6 7 9</span></div><div class=""><span>1 3 5 6 7 8</span></div><div class="dark"><span>1 3 6 8 9</span></div><div class="dark orig">2</div><div class="dark"><span>1 3 7 8</span></div><div class=""><span>1 3 9</span></div><div class=" orig">4</div><div class=""><span>1 8 9</span></div><div class="dark"><span>1 3 6</span></div><div class="dark"><span>3 6 7</span></div><div class="dark"><span>1 3 6 7</span></div><div class=""><span>1 2 4</span></div><div class=""><span>1 5 7</span></div><div class=" orig">9</div><div class="dark"><span>1 3 7</span></div><div class="dark"><span>1 2 3 5 8</span></div><div class="dark"><span>1 2 5 6 7 8</span></div><div class="dark orig">2</div><div class="dark orig">8</div><div class="dark orig">9</div><div class=""><span>1</span></div><div class=" orig">3</div><div class=" orig">6</div><div class="dark"><span>1 7</span></div><div class="dark"><span>1 5</span></div><div class="dark orig">4</div><div class="dark orig">5</div><div class="dark orig">4</div><div class="dark"><span>1 3 6 7</span></div><div class=""><span>1 2</span></div><div class=" orig">8</div><div class=""><span>1 2 7</span></div><div class="dark"><span>1 3 7 9</span></div><div class="dark"><span>1 2 3 9</span></div><div class="dark"><span>1 2 6 7 9</span></div></div>
+<div id="input" style="width: 150px; left: 375px; top: 175px; " class="hidden"><div>1</div><div>2</div><div>3</div><div>4</div><div>5</div><div>6</div><div>7</div><div>8</div><div>9</div></div>
+<ul id="control" class="">
+<li><a id="new" href="./sudoku2_files/sudoku2.htm">New Game</a></li>
+<li><a id="reset" href="./sudoku2_files/sudoku2.htm">Reset Puzzle</a></li>
+<li><a id="blank" href="./sudoku2_files/sudoku2.htm">Blank Grid</a></li>
+<li><a id="solve" href="./sudoku2_files/sudoku2.htm">Try Solving</a></li>
+<li>
+<input id="guide" type="checkbox"> Guides<br>
+<input id="limitInput" type="checkbox"> Limit Inputs 
+<select id="difficulty">
+<option value="30">Easier</option>
+<option value="80" selected="selected">Normal</option>
+<option value="150">Harder</option>
+</select>
+</li>
+</ul>
+</div>
+
+</body></html>

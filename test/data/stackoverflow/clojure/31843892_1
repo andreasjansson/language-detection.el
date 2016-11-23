@@ -1,0 +1,11 @@
+(defmacro foo
+  []
+  (println "foo"))
+
+(defmacro bar
+  []
+  (println "bar"))
+
+(if true (foo) (bar))
+;foo
+;bar

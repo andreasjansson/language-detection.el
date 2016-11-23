@@ -1,0 +1,4 @@
+@interface ControlFromXib : UIControl
+
+- (void)commonInit;
+@end

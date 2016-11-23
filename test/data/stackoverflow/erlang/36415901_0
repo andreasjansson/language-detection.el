@@ -1,0 +1,3 @@
+empty_channel_details_when_getting_details_of_channel_that_does_not_exist_test() ->
+  start(),
+  ?assertMatch({ok, #channel_details{name = "name", users = #{}}}, irc_channel_manager_server:get_channel_details("name")).

@@ -1,0 +1,11 @@
+convertVectorsToArray(Sudoku,P):-
+  ( for(I,1,9),
+      param(Sudoku,P)
+    do
+      X is Sudoku[I],
+      Y is P[I],
+      write(I),nl,
+      write(X),nl,
+      write(Y),nl,
+      array_list(X, Y)
+  ).

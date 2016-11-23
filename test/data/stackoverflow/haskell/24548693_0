@@ -1,0 +1,3 @@
+main = do
+    line_with_n_in_it <- getLine
+    putStrLn $ show $ (read line_with_n_in_it :: Int) + 1

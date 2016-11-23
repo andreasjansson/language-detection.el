@@ -1,0 +1,11 @@
+//1
+    getOrElse(() => {
+      println("id is not found: " + x.Id)
+      new MyClass(-1)
+   })
+
+   //2
+    getOrElse {
+      println("id is not found: " + x.Id)
+      new MyClass(-1)
+    }

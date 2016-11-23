@@ -1,0 +1,62 @@
+if($filename_path ==''){
+     $filename_path = './Upload/Cal_temp/'.$filename2;
+     $filename_pathnew = base_url().'Upload/Cal_temp/'.$filename2;
+}
+
+$calendid = $this->input->post('calendar_id');
+
+$handle = fopen($filename_path, "r");
+$contents = fread($handle, filesize($filename_path));
+fclose($handle);
+
+$finaldata =  base64_encode($contents);
+ $finaldata = chunk_split($finaldata);
+
+$dataone = filesize($filename_path);
+$datatwo = strlen($contents); 
+
+
+define('DATE_ICAL', 'Ymd\THis');
+$fromname = 'example';   
+
+$vcal  = "BEGIN:VCALENDAR\n";
+$vcal .= "VERSION:2.0\n";
+$vcal .= "METHOD:PUBLISH\n"; //requied by Outlook
+$vcal .= "X-MS-OLK-FORCEINSPECTOROPEN:TRUE\n";
+$vcal .= "BEGIN:VEVENT\n";
+/* $vcal .= "STATUS:".$this->input->post('status')."\n"; */
+$vcal .= "DTSTART:".date(DATE_ICAL, strtotime($s_date.' '.$s_time))."\n";
+$vcal .= "DTEND:".date(DATE_ICAL, strtotime($e_date.' '.$e_time))."\n";
+$vcal .= "SUMMARY: ".$desc_txt." ".$empname['firstname'].' '.$empname['lastname']."-".$clientname['firstname'].' '.$clientname['lastname']."\n";
+$vcal .= "DESCRIPTION: Your appointment has been updated for ".$empname['firstname'].' '.$empname['lastname']." with ".$clientname['firstname'].' '.$clientname['lastname']." with regard to ".$jobnumber." and ".$taskcode." between ".$s_date.' '.$s_time." and ".$e_date.' '.$e_time."\r\n\r\n";
+$vcal .= "ATTACH;ENCODING=BASE64;VALUE=BINARY;X-FILENAME=".$filename2.":".$finaldata."=\n";
+
+$vcal .= "CLASS:PUBLIC\n";
+$vcal .= "TRANSP:OPAQUE\n";
+$vcal .= "UID:". $calendid ."\n";
+$vcal .= "SEQUENCE:0\n";
+
+
+$vcal .= "SUMMARY;LANGUAGE=en-us:excel\n";
+$vcal .= "X-MICROSOFT-CDO-BUSYSTATUS:BUSY
+            X-MICROSOFT-CDO-IMPORTANCE:1
+            X-MICROSOFT-DISALLOW-COUNTER:FALSE
+            X-MS-OLK-ALLOWEXTERNCHECK:TRUE
+            X-MS-OLK-AUTOFILLLOCATION:FALSE
+            X-MS-OLK-CONFTYPE:0
+            BEGIN:VALARM
+            TRIGGER:-PT15M
+            ACTION:DISPLAY
+            DESCRIPTION:Reminder
+            END:VALARM
+            END:VEVENT
+            END:VCALENDAR";
+
+
+$headers = "From: ".$fromemail."\r\nReply-To: "; 
+$headers .= "\r\nMIME-version: 1.0\r\nContent-Type: text/calendar; method=REQUEST; charset=\"utf-8\"";
+$headers .= "\r\n Content-Transfer-Encoding: base64\r\nX-Mailer: Microsoft Office Outlook 12.0"; 
+//$headers .= "Content-Disposition: attachment; filename=\"".$filename."\"\r\n\r\n";
+$subject = 'Your appointment has been updated';
+
+mail($email, $subject, $vcal, $headers);

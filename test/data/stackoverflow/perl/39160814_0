@@ -1,0 +1,10 @@
+#!/usr/bin/perl
+use strict;
+use warnings;
+use feature 'say';
+
+
+use Spreadsheet::Read;
+
+my $workbook = ReadData ("C:/Users/tej/Desktop/Work.xlsx");
+say $workbook->[1]{A1};

@@ -1,0 +1,6 @@
+<ul class="tags">
+{% assign tags = page.meta_keywords | split:"," %}
+{% for tag in tags %}
+<a href="#" rel="tag">{{tag}}</a>
+{% endfor %}
+</ul>

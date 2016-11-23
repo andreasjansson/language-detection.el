@@ -1,0 +1,13 @@
+{OctetString('Ethernet8/6'): Integer(1),
+ OctetString('Ethernet8/7'): Integer(2),
+ OctetString('Ethernet8/8'): Integer(2),
+ OctetString('Ethernet8/9'): Integer(1),
+ OctetString('Vlan1'): Integer(2),
+ OctetString('Vlan10'): Integer(1),
+ OctetString('Vlan15'): Integer(1),
+ OctetString('loopback0'): Integer(1),
+ OctetString('mgmt0'): Integer(1),
+ OctetString('port-channel1'): Integer(1),
+ OctetString('port-channel10'): Integer(1),
+ OctetString('port-channel101'): Integer(1),
+ OctetString('port-channel102'): Integer(1)}

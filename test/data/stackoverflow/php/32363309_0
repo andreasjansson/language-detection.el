@@ -1,0 +1,27 @@
+$cat = Cat::find($request->cookie('cat_id'));
+if (null !== $cat) {
+    if ($cat->name === 'Felix') {
+        $cat->age = 10;
+    } else {
+        $cat->age = 8;
+    }
+
+    //duplicated code
+    $cat->fur = 'soft';
+    $cat->tail = 'wavy';
+    $cat->save();
+
+    return redirect('/');
+
+} else {
+    $cat = new Cat;
+    $cat->name = 'Ralf';
+    $cat->age = 12;
+
+    //duplicated code
+    $cat->fur = 'soft';
+    $cat->tail = 'wavy';
+    $cat->save();
+
+    return redirect('/')->withCookie(cookie('cat_id', $cat->id,10000));
+}

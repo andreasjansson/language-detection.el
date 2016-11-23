@@ -1,0 +1,4 @@
+let dm : float[][] = Unchecked.defaultof<float[][]>
+
+    for i = 0 to 49 do
+        for j = 0 to 49 do

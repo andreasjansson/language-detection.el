@@ -1,0 +1,7 @@
+java {
+  source = 1.5
+}
+
+java.directories {
+  sources = "customsrcdir",
+}

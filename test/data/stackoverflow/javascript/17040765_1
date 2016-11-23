@@ -1,0 +1,5 @@
+<ul>
+    <li ng-repeat="person in persons">{{person.firstname}} {{persone.lastname}}
+    <img ng-src="{{get_photo(person)}}" />
+    </li>
+</ul>

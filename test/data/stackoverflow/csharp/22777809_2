@@ -1,0 +1,18 @@
+ReactiveAsyncCommand addPerson = new ReactiveAsyncCommand();
+  public ListBoxEventsViewModel()
+        {
+            var getOrgDetails = new ReactiveAsyncCommand();
+
+            getOrgDetails.Subscribe(x =>
+            {
+                StudentDetails = new ObservableCollection<ListBoxEventsModel>();
+                StudentDetails = ListBoxEventsModel.extract(myData.ToString());
+
+            });
+            getOrgDetails.Execute(true);
+
+            addPerson = new ReactiveAsyncCommand();
+            addPerson.Subscribe(x=>{
+                MessageBox.Show("Selected..");
+            });
+        }

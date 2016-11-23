@@ -1,0 +1,2 @@
+GroovyShell shell = new GroovyShell();
+script = shell.parse(source);

@@ -1,0 +1,3 @@
+for $trap in /RULES/TRAP
+    for $var in $rule/VAR_LIST/VAR
+       return (opening-tag-declaration($trap), opening-tag-declaration($var), "&#10;")

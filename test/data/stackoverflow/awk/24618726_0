@@ -1,0 +1,4 @@
+awk 'BEGIN {FS = ","};
+{ a=$6;
+print $a;
+}' /location/canzee/textfile.txt

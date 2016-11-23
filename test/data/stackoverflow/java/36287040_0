@@ -1,0 +1,5 @@
+Caused by: java.lang.RuntimeException: Transaction Service Not Running?
+    at com.atomikos.icatch.jta.J2eeUserTransaction.checkSetup(J2eeUserTransaction.java:70)
+    at com.atomikos.icatch.jta.J2eeUserTransaction.getStatus(J2eeUserTransaction.java:125)
+    at org.springframework.transaction.jta.JtaTransactionManager.
+        isExistingTransaction(JtaTransactionManager.java:797)

@@ -1,0 +1,2 @@
+String message = "Hello world"
+ message.split(' ');

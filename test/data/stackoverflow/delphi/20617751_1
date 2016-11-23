@@ -1,0 +1,3 @@
+initialization  
+  if Not Assigned(NaharThemeManager) then
+    NaharThemeManager := TNaharThemeManager.Create;

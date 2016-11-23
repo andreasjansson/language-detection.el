@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+    <html lang="en">
+
+   <!--
+    documentation segment
+    website: Operating Systems
+    web page: Home
+    author: Clinton B Scott
+    date created: May.2014
+    -->
+
+    <head>
+    <meta charset="utf-8">
+    <title>Windows</title>
+
+    <style type="text/css">
+
+    #wrapper
+    {
+    width: 1000px;
+    margin: 0 auto;
+    }
+
+    #master
+    {
+    position: absolute;
+    padding: 0px;
+    border: 1px solid #000;
+    background-color: #fff;
+    width: 1000px;
+    height: 3125px;
+    top: 10px;
+    }
+
+    #header
+    {
+    position: absolute;
+    padding: 10px;
+    border: 1px solid #000;
+    background-color: #fff;
+    width: 950px;
+    height: 80;
+    top: 10px;
+    left: 15px;
+    }
+
+    #navigation
+    {
+    position: absolute;
+    padding: 10px;
+    border: 1px solid #000;
+    background-color: #fff;
+    width: 950px;
+    height: auto;
+    top: 120px;
+    left: 15px;
+    }
+
+    #contents-left
+    {
+    position: absolute;
+    padding: 10px;
+    border: 1px solid #000;
+    background-color: #fff;
+    width: 460px;
+    height: auto;
+    top: 175px;
+    left:15px;
+    }
+
+    #contents-right
+    {
+    position: absolute;
+    padding: 10px;
+    border: 1px solid #000;
+    background-color: #fff;
+    width: 460px;
+    height: auto;
+    top: 175px;
+    left:505px;
+    }
+
+    #footer
+    {
+    position: absolute;
+    padding: 10px;
+    border: 1px solid #000;
+    background-color: #fff;
+    width: 950px;
+    height: 100px;
+    top: 2790px;
+    left: 15px;
+    }
+
+    a
+    {
+    font-family: Trebuchet MS;
+    font-size: 1em;
+    margin: 1em;
+    font-weight: 900;
+    text decoration: none
+    }
+
+    a:linked, a:visited, a:active
+    {
+    color: #0000ff;
+    }
+
+    a: hover
+    {
+    color: #c0c0c0;
+    }
+
+    .medium
+    {
+    font-family: Trebuchet MS. Helvetical. Sans-Serif;
+    font-size: 1.5em;
+    font-style: normal;
+    font-weight: 500;
+    text-align: left;
+    background: #fff;
+    color: #000;
+    }
+
+    .large
+    {
+    font-family: Trebuchet MS. Helvetical. Sans-Serif;
+    font-size: 2em;
+    font-style: normal;
+    font-weight: 500;
+    text-align: left;
+    background: #fff;
+    color: #000;
+    }
+
+    </style>
+    </head>
+
+    <body>
+
+    <div id = "wrapper"><!-- center wrapper -->
+
+    <div id = "master" align="center"><!-- master -->
+
+    <div id = "header" align="left"><!-- header -->
+
+    <div align="center" class="large">Operating Systems</div>
+
+    </div><!-- end header -->
+
+    <div id = "navigation" align="left"><!-- navigation -->
+
+    <a href="../index.htm">Home</a>
+
+    <a href="index_files/MacOS.htm">Mac</a>
+
+    </div><!-- end navigation -->
+
+    <div id="contents-left" align="center"><!-- contents-left -->
+
+    <div align="left">
+
+    <p>Operating system
+    From Wikipedia, the free encyclopedia
+
+    <p>An operating system (OS) is an interface between hardware and user which is...
+
+
+    <p>The introduction of the Intel 80386 CPU chip with 32-bit architecture and paging...
+
+    </div><!-- end contents-left -->
+
+    <div id="contents-right" align="center"><!-- contents-right -->
+
+    <div align="left">
+
+    <p>Windows NT family
+
+    <p>The NT family of Windows systems was fashioned and marketed for higher....
+    </div><!-- end contents-right -->
+
+    <div id = "footer" align="left"><!-- footer -->
+
+    </div><!-- end footer -->
+
+    </body>
+    </html>

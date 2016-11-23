@@ -1,0 +1,8 @@
+$.ajax({
+            url: '/Category/GetSubCategories',
+            type: "POST",
+            contentType: "application/json",
+            data: JSON.stringify({ categoryId: id }),
+            cache: false,
+            async: true,
+            success: function (result) {

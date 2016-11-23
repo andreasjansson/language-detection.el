@@ -1,0 +1,6 @@
+(ns my-ns
+  (:use [another-ns :only (another-fct)]))
+
+(defn my-fct
+  []
+  (another-fct 123)) ; this works fine

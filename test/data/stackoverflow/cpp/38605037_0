@@ -1,0 +1,16 @@
+const char *handler_name = NULL;
+while (handler_name = all_handlers->get(), handler_name)
+{
+    if (condition)
+    {
+        //Add pointer element to every event handler it registers
+        std::list<void *> scripts = responders[handler_name];
+        if (scripts.size() == 0)
+        {
+            responders[handler_name] = scripts;
+        }
+        scripts.push_back(static_cast<void *> (L));
+        active_states[static_cast<void *> (L)] = 1; //set to active so we only delete it once
+    }
+    handler_name = NULL;
+}

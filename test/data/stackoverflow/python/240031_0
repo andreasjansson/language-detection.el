@@ -1,0 +1,9 @@
+Error returned.  TIFF FreeImage_Save: failed to open file C:/OCRtmp/ocr page0
+Traceback (most recent call last):
+  File "C:\Python25\Projects\OCRPageUnzipper\PageUnzipper.py", line 102, in <mod
+ule> OCRBox.convertToPages("C:/OCRtmp/ocr page",FIPY.FIF_TIFF)
+  File "C:\Python25\lib\site-packages\FreeImagePy\FreeImagePy\FreeImagePy.py", l
+ine 2080, in convertToPages self.Save(FIF, dib, fileNameOut, flags)
+  File "C:\Python25\lib\site-packages\FreeImagePy\FreeImagePy\FreeImagePy.py", l
+ine 187, in Save return self.__lib.Save(typ, bitmap, fileName, flags)
+WindowsError: exception: priviledged instruction

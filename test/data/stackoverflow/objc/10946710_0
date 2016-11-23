@@ -1,0 +1,5 @@
+@interface SecondViewController : UIViewController{    
+NSString *changeName;    
+}
+
+@property (readwrite, retain) NSString *changeName;

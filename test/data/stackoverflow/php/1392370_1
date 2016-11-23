@@ -1,0 +1,2 @@
+$conForm = new Form_Contactus();
+echo $conForm;

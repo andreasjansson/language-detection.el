@@ -1,0 +1,37 @@
+var mydata = {
+        Incomplete: ko.computed(function () {
+           // return the count of items that are not IsActive
+        }),
+        Categories: ko.observable([
+              {
+                  Description: "Dairy", ListItems: ko.observableArray([
+                  { Description: "Eggs", Quantity: "1 Dz.", IsActive: ko.observable(false) },
+                   { Description: "Milk", Quantity: "1 Gallon", IsActive: ko.observable(false) }
+                  ])
+              },
+              {
+                  Description: "Produce", ListItems: ko.observableArray([
+                      { Description: "Lettuce", Quantity: "1 Head", IsActive: ko.observable(false) },
+                      { Description: "Oranges", Quantity: "5 ea.", IsActive: ko.observable(false) },
+                      { Description: "Greenbeans", Quantity: "1 Thingy", IsActive: ko.observable(false) },
+                  ])
+              },
+        ])
+    };
+
+<div data-bind="foreach: Categories" id="list-items">
+            <h3 data-bind="text: Description" id="list-heading"></h3>
+            <ul data-bind="foreach: ListItems">
+                <li>
+                    <div class="title">
+                        <input type="checkbox" data-bind="checked: IsActive"/>
+                        <input type="text" data-bind="value: Quantity, disable: IsActive" class="input-readonly" readonly />
+                        <input type="text" data-bind="value: Description, disable: IsActive" class="input-readonly" readonly />
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div >
+            <span data-bind="text: Incomplete"></span>
+            <span >Items left in your list</span>
+        </div>

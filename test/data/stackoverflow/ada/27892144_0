@@ -1,0 +1,6 @@
+$ gnatmake divide_by_zero.adb
+gcc -c divide_by_zero.adb
+divide_by_zero.adb:6:19: warning: division by zero
+divide_by_zero.adb:6:19: warning: "Constraint_Error" will be raised at run time
+gnatbind -x divide_by_zero.ali
+gnatlink divide_by_zero.ali

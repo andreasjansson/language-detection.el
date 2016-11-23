@@ -1,0 +1,3 @@
+Private Sub MyUpDown_MouseWheel(sender As Object, e As MouseEventArgs) Handles Me.MouseWheel
+    Me.Value += e.Delta * Me.Increment ' / WHEEL_DELTA
+End Sub

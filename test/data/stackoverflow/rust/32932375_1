@@ -1,0 +1,5 @@
+use std::cmp;
+
+fn sort(arr: &mut [&std::cmp::PartialOrd]) {
+    // actual sorting
+}

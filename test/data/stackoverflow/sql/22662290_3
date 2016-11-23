@@ -1,0 +1,4 @@
+Limit  (cost=13042543.16..13042793.16 rows=100000 width=52)
+  ->  Sort  (cost=13029043.16..13129748.57 rows=40282164 width=52)
+        Sort Key: id
+        ->  Seq Scan on chpl_text t  (cost=0.00..1056505.64 rows=40282164 width=52)

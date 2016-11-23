@@ -1,0 +1,8 @@
+#+TAGS: NOTE REPORT export noexport MEETING
+#+TYP_TODO: TODO Weekly WAITING NEXT | Meeting DONE
+#+STARTUP: hidestars content hideblocks
+
+The exponential running mean is shown for various alpha values in Figure \ref{fig:saturation_varying_alphaval_00f6set2}.  
+     #+CAPTION:    Plot of varying alpha values for the exponential running mean ($EM$) with $S_{min} = 0.0008 \text{ and } P_m = 0.20$
+     #+LABEL:      fig:saturation_varying_alphaval_00f6set2
+     #+ATTR_LaTeX: width=0.4\textwidth placement=[h!tb]

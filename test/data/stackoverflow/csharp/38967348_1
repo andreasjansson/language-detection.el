@@ -1,0 +1,9 @@
+import requests
+
+with open("some_file", "rb") as f:
+    byte_string = f.read()
+
+requests.post(
+    "http://target-host.com/some/endpoint",
+    data={"some-label": "value"},
+    files={"file": ("my-filename.txt", byte_string)})

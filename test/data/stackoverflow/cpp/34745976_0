@@ -1,0 +1,22 @@
+#include "stdafx.h"
+#include<iostream>
+using namespace std;
+
+struct computer {
+  int ram;
+  int usb;
+  int hdd;
+};
+int main()
+{
+computer["computer1"]=0;
+computer["computer2"]=1;
+for (int i = 0; i <= 1; i++ ){ 
+    cout<<"How much RAM?";
+    cin>>computer(i).ram;
+    cout<<"How much USB ports?";
+    cin>>computer1.usb;
+    cout<<"How much HDD?"
+    cin>>computer1.hdd;
+}
+}

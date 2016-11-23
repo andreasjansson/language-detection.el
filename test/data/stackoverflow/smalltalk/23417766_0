@@ -1,0 +1,2 @@
+| working |
+working := FileSystem disk workingDirectory.

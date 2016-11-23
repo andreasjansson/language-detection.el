@@ -1,0 +1,7 @@
+UIActivityIndicatorView *activeM = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+        activeM.frame = CGRectMake(60, 60, activeM.frame.size.width, activeM.frame.size.height);
+        [imageView addSubview:activeM];
+        [imageView bringSubviewToFront:activeM];
+        [activeM startAnimating];
+        [activeM release];
+        activeM = nil;

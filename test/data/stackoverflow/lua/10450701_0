@@ -1,0 +1,42 @@
+do 
+
+    local asc_sccp =Proto("asc_sccp", "ASC Skinny Client Control Protocol") 
+
+    local f =asc_sccp.fields 
+
+
+    f.length = ProtoField.bytes("asc_sccp.length", "length")  
+    f.version =ProtoField.uint8("asc_sccp.version", "version", base.HEX, 0xC)
+
+
+
+    function asc_sccp.init() 
+    end  
+
+
+    function asc_sccp.dissector(buffer,pinfo,tree)
+
+        local subtree = tree:add (asc_sccp, buffer())
+        local offset = 0
+
+        pinfo.cols.protocol = asc_sccp.name
+
+        local length = buffer (offset, 4)
+
+        subtree:add (f.length, length)
+        subtree:append_text ("Data length: " .. length) 
+
+        offset = offset + 4 
+
+        local version = buffer (offset, 4)
+
+        subtree:add (f.version, version)
+        subtree:append_text ("    Version: " .. version)
+
+
+    end
+
+    local tcp_table = DissectorTable.get("tcp.port") 
+    tcp_table:add(2000, asc_sccp)  
+
+end

@@ -1,0 +1,37 @@
+import java.util.concurrent.CopyOnWriteArrayList;
+
+import javafx.application.Platform;
+import javafx.beans.InvalidationListener;
+import javafx.beans.Observable;
+
+public class ObservableModel implements Observable
+{
+    protected final CopyOnWriteArrayList<InvalidationListener> listenerList = new CopyOnWriteArrayList<>();
+
+    @Override
+    public void addListener(InvalidationListener listener)
+    {
+        this.listenerList.add(listener);
+    }
+
+    @Override
+    public void removeListener(InvalidationListener listener)
+    {
+        this.listenerList.remove(listener);
+    }
+
+    public void clearListeners()
+    {
+        this.listenerList.clear();
+    }
+
+    public void fireValueChangedEvent()
+    {
+        Platform.runLater(this::doFireValueChangedEvent); 
+    }
+
+    protected void doFireValueChangedEvent()
+    {
+        this.listenerList.forEach(lsnr -> lsnr.invalidated(this));
+    }
+}

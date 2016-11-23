@@ -1,0 +1,6 @@
+(define-macro (look-up key container)
+  (cond
+    ((table? container) `(table-ref ,key ,container))
+    ((pair? container) `(assoc ,container ,key))
+      etc.
+    (else `(error "Unknown type to look-up))))

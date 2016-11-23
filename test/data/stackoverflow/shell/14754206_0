@@ -1,0 +1,6 @@
+function emacs()
+{
+if [ ! -f ${1} ]; then \
+cp /FILEPATH/template.sh ${1}; fi;
+builtin emacs ${1}
+}

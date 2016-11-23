@@ -1,0 +1,4 @@
+//Weapon variables
+const int totalWeapons = 2;
+int currentWeapon = 1;
+weapon weapons[totalWeapons] = {new machineGun, new flamer};

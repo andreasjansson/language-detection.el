@@ -1,0 +1,8 @@
+import pandas
+blah = pandas.DataFrame(numpy.empty([1, 1]), columns=['A'], index=pandas.DatetimeIndex(['2008-01-01']))
+blah[numpy.array([true], bool)]
+
+            A
+2008-01-01  0
+
+blah[numpy.array([True], bool)] = 0.0

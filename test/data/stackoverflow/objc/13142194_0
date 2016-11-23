@@ -1,0 +1,11 @@
+[operationQueue addOperationWithBlock:^{
+        imageData =  [NSData dataWithContentsOfURL:imageURL];
+        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+            UIImage *image = nil;
+
+            if(imageData){
+                UIImage *image = [UIImage imageWithData:imageData];
+                cell.imageView.image = image;
+            }
+        }];
+    }];

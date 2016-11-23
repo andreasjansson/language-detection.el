@@ -1,0 +1,4 @@
+real      EPSLON,VERSION
+  real      xlag,xltol,tmin,tmax
+  integer   nd,nlag,ndir,nvarg,isill,test
+  character outfl*512

@@ -1,0 +1,13 @@
+#ifndef A_H
+  #define A_H
+
+  #include <QObject>
+
+  class TestObject : public QObject
+  {
+     Q_OBJECT
+  signals:
+     void testObjectSignal();
+  };
+
+  #endif

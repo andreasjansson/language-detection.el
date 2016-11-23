@@ -1,0 +1,7 @@
+>> ps = PrimarySettings();
+>> clear ps;
+Destroying PrimarySettings. 
+
+>> ss = secondarySettings();
+>> clear ss;
+Destroying SecondarySettings.

@@ -1,0 +1,4 @@
+-define(DEBUG(Arg1, Arg2),
+    ((fun () ->
+      io:format("~p ~p~n", [Arg1, Arg2])
+    end)())).

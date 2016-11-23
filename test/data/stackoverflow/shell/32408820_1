@@ -1,0 +1,2 @@
+./run_test.sh: line 9: syntax error near unexpected token `else'
+./run_test.sh: line 9: `    else then;'

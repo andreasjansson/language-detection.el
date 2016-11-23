@@ -1,0 +1,3 @@
+(if (buffer-exists "my-buffer-name")
+    ; do something
+ )

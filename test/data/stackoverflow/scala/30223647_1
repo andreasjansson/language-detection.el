@@ -1,0 +1,3 @@
+<console>:25: error: polymorphic expression cannot be instantiated to expected type;
+ found   : [B]scalaz.effect.IO[B]
+ required: scalaz.IndexedStateT[scalaz.Id.Id,Int,?,?]

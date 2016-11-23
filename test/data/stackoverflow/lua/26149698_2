@@ -1,0 +1,2 @@
+print("You are in ", locxy[x][y]["locdesc"]) -- this works
+print("You can see a ", locxy[x][y]["monsters]["Name"],".") - does not work

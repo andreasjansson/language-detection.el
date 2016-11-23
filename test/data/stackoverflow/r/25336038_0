@@ -1,0 +1,9 @@
+> within
+# function (data, expr, ...) 
+# UseMethod("within")
+# <bytecode: 0x4403f78>
+# <environment: namespace:base>
+> methods("within")
+# [1] within.data.frame  within.data.table* within.list       
+#
+#   Non-visible functions are asterisked

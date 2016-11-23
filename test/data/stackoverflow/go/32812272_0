@@ -1,0 +1,28 @@
+package main
+
+import (
+        "database/sql"
+        "fmt"
+        _ "github.com/go-sql-driver/mysql"
+        "time"
+)
+
+func main() {
+
+        db, _ := sql.Open("mysql", "/test")
+        tx, _ := db.Begin()
+        tx.Query("select * from tbl lock in share mode")
+        go func() {
+                tx, _ := db.Begin()
+                t := time.Now()
+                tx.Exec("update tbl set col = ?", "new")
+                fmt.Println(time.Since(t))
+                tx.Commit()
+        }()
+        time.Sleep(5 * time.Second)
+        tx.Commit()
+        db.Close()
+
+        var input string
+        fmt.Scanln(&input)
+}

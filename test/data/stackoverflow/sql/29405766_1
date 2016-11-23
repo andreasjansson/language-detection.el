@@ -1,0 +1,3 @@
+UPDATE albums  
+SET release_d = '1800'         
+WHERE release_d <= '1980';

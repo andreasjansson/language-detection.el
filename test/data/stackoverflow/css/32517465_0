@@ -1,0 +1,6 @@
+.highlight{
+ background-color: #C8C8C8 !important;
+}
+<span class="highlight">Test </span>
+
+<span class="highlight">Text</span>

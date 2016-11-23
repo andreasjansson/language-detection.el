@@ -1,0 +1,20 @@
+(define (stat a-stat stats)
+  (match a-stat
+    ["str" (stats-str stats)]
+    ["con" (stats-con stats)]
+    ["dex" (stats-dex stats)]
+    ["int" (stats-int stats)]
+    ["wis" (stats-wis stats)]
+    ["cha" (stats-cha stats)]
+    [_ (error "Not a stat!")]))
+
+(define (modify-stats mods base)
+  (define (add-stat string)
+    (+ (stat string mods)
+       (stat string base)))
+  (stats (add-stat "str")
+         (add-stat "con")
+         (add-stat "dex")
+         (add-stat "int")
+         (add-stat "wis")
+         (add-stat "cha")))

@@ -1,0 +1,51 @@
+interface
+
+    function Encrypt(aStr: String): String;
+    function Decrypt(aStr: String): String;
+    function NeedEncrypt(): Boolean;
+
+    implementation
+
+    uses
+    windows,
+      strUtils,
+      LbClass;
+
+    var
+      LbRijndael: TLbRijndael;
+      localNeedEncrypt: Boolean;
+
+
+
+
+
+    function NeedEncrypt(): Boolean;
+    begin
+      Result := localNeedEncrypt;
+      localNeedEncrypt := False;
+    end;
+
+function Encrypt(aStr: AnsiString): AnsiString;
+begin
+  Result := aStr;
+  if RightStr(aStr, 2) = '==' then
+    Exit;
+  Result := LbRijndael.EncryptString(aStr);
+end;
+
+function Decrypt(aStr: AnsiString): AnsiString;
+begin
+  Result := aStr;
+  if RightStr(aStr, 2) = '==' then
+    Result := LbRijndael.DecryptString(aStr)
+  else
+    localNeedEncrypt := True;
+end;
+
+    initialization
+      LbRijndael := TLbRijndael.Create(nil);
+      LbRijndael.GenerateKey('KEYABC');
+      LbRijndael.CipherMode := cmECB;
+      LbRijndael.KeySize := ks128;
+
+    end.

@@ -1,0 +1,5 @@
+puts GC.stat
+CSSPool::CSS::Document.parse(File.new('/home/jason/big.css'))
+ObjectSpace.garbage_collect
+sleep 1
+puts GC.stat

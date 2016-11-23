@@ -1,0 +1,18 @@
+var context = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
+    var request = NSFetchRequest(entityName: "Diary")
+    request.returnsObjectsAsFaults = false
+
+    //Fetching Data
+
+
+    do {
+        self.DataArray = try context.executeFetchRequest(request) as! [Diary]
+
+    } catch {
+        print("error")
+    }
+
+    var DATES  = (self.DataArray as NSArray).valueForKey("date") as! NSArray
+   print(DATES) // all content is visible
+
+    months = DATES as! [String] // here the app crashes with error in the console - months = ([String]!) nil

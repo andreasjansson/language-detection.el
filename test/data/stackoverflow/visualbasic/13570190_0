@@ -1,0 +1,10 @@
+Private Function FindLogic(ByVal LV As ListView, ByVal CIndex As Integer, ByVal SearchFor As String) As Integer
+Dim idx As Integer
+Dim It = From i In LV.Items Where i.index > CIndex And i.Text = SearchFor
+If It.Count > 0 Then
+    idx = It(0).Index
+Else
+    idx = -1
+End If
+Return idx
+End Function

@@ -1,0 +1,13 @@
+@CustomTag('my-form')
+class MyCustomForm extends MyForm {
+    // The below commented out line would work if I only had one form.
+    // var submitFunction = submitForm1;
+
+    submitForm1() {
+        // do stuff with form 1
+    }
+
+    submitForm2() {
+        // do stuff with form 2
+    }
+}

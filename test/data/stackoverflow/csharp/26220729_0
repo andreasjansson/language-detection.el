@@ -1,0 +1,20 @@
+List<Char> keyChar = new List<Char>();
+        if (keyTextBox.Text == "")
+        {
+            MessageBox.Show("Empty");
+        }
+        else
+        {
+
+            string key = keyTextBox.Text;
+            MessageBox.Show("Vaild key: " + key);
+            for (int i = 0; i < IOTextBox.Text.Length; i++)
+            {
+                if (i % 4 == 0)
+                {
+                    keyChar.Add(keyTextBox.Text[i]);
+                }
+            }
+
+        }
+        MessageBox.Show(keyChar.ToString());

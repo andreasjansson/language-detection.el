@@ -1,0 +1,13 @@
+class myClass{
+    var $x = 'x';
+    var $y = 'y';
+    public function hello(){
+        echo 'Hello, '.$this->x;
+    }
+}
+$a = new myClass();
+$values = new values($a);
+foreach ($values as $k => $v){
+   $values[$k] = $v.' modified';
+}
+$a->hello();

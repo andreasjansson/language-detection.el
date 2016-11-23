@@ -1,0 +1,8 @@
+<div class="form-group">             
+               <input type="checkbox" id="inputCheck" name="enhancement">
+                <label for="inputCheck"> Add subtitles(text): </label>
+         <form id="post" accept-charset="UTF-8"  name="post" method="post" action="/application/controllers/media.php">
+                       <textarea rows="5" cols="85" name="blogentry" form="post"></textarea>
+                       <input class="button" type="submit" value="Submit">
+         </form>            
+        </div>

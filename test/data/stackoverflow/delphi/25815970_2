@@ -1,0 +1,2 @@
+Writeln(Format('%p', [@FooConst]));
+Writeln(Format('%p', [@FooVar]));

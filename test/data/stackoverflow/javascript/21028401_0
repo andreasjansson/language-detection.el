@@ -1,0 +1,14 @@
+app.directive('myDirective', function($compile, $timeout) {
+  var num=0;
+  return {
+    link: function(scope, el, attrs) {
+      var uniqNum = scope.$index || num++;
+      var container = document.createElement('div');
+      container.className = "container";
+      el.wrap(container);
+    }
+  };
+});
+
+<textarea my-directive ng-repeat="str in arr track by $index" ng-model="arr[$index]">
+</textarea>

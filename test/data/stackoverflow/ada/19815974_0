@@ -1,0 +1,4 @@
+procedure Say_Something is
+begin
+   Put("Something.");
+end Say_Something;

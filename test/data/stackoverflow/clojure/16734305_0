@@ -1,0 +1,13 @@
+(:require
+        [clojure.zip :as z] 
+        [clojure.data.zip.xml :only (attr text xml->)]
+        [clojure.xml :as xml ]
+        [clojure.contrib.zip-filter.xml :as zf]
+        )
+
+       (def data-url "http://api.eventful.com/rest/events/search?app_key=4H4Vff4PdrTGp3vV&keywords=music&location=Belgrade&date=Future")
+
+     (defn zipp [data] (z/xml-zip data))
+
+    (defn contents[cont & tags] 
+      (assert (= (zf/xml-> (zipp(parsing cont)) (seq tags) text))))

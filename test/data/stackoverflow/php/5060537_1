@@ -1,0 +1,5 @@
+$image = Mage::getStoreConfig('system/filesystem/media/Chris-Sig.gif');
+            if (is_file($image)) {
+                $image = Zend_Pdf_Image::imageWithPath($image);
+                $page->drawImage($image, $x, $y, $x+30, $y+15);
+            }

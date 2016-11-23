@@ -1,0 +1,12 @@
+local function wrapFOM(F,...)
+  local openModule = needsModule[F]
+  if openModule == nil then
+    return function() return F(unpack(arg)) end
+  end
+  return function()
+    if LrApplicationView.getCurrentModuleName() ~= openModule then
+      LrApplicationView.switchToModule(openModule)
+    end
+    return F(unpack(arg)) --proper tail call
+  end
+end

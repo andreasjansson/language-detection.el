@@ -1,0 +1,27 @@
+<?php
+$args = array(
+          'post_type' => 'todo_listing',
+          'posts_per_page' => 4,
+          'order' => 'asc',
+          'meta_key' => '1014',
+          'meta_query' => array(
+              array(
+                  'key' => '$id',
+                  'meta_value_num' => '1',
+
+                  )
+              )
+          );
+  $loop = new WP_Query( $args );
+
+ ?>     
+
+ <?php
+ while ( $loop->have_posts() ) : $loop->the_post();
+ ?>
+ <?php echo get_the_ID();?> <?php the_title(); ?>
+
+
+ <?php
+endwhile;
+?>

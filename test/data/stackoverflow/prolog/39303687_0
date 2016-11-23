@@ -1,0 +1,14 @@
+solveFirst(TargetX, TargetY, SourceX, SourceY, T):-
+    connects(square(SourceX, SourceY), NewSquare),
+    solve(TargetX, TargetY, SourceX, SourceY, NewSquare, T2),
+    T = T2.
+
+solve(TargetX, TargetY, SourceX, SourceY, NewSquare ,[Tail]):-
+    getFirst(Tail, HeadOfTail),
+    (
+    connects(NewSquare, square(TargetX, TargetY)), 
+    addFirst(NewSquare, Tail, T2),
+    Tail = T2 ;
+    connects(NewSquare, E),
+    solve(TargetX, TargetY, SourceX, SourceY, E, Tail)
+    ).

@@ -1,0 +1,8 @@
+(define-key c-mode-base-map (kbd "RET") (quote newline-and-indent)) 
+
+eval-buffer(#<buffer *load*> nil "c:/home/.emacs" nil t)
+
+; Reading at buffer position 311
+load-with-code-conversion("c:/home/.emacs" "c:/home/.emacs" t t)
+
+load("~/.emacs" t t)

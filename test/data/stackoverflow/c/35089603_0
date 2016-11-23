@@ -1,0 +1,15 @@
+typedef struct position_struct{
+    int x;
+    int y;
+} pos;
+
+typedef struct item_struct{
+    char member1;
+    pos member2;
+} item;
+
+typedef struct room_stuct{
+    item * member3;
+    pos * member4;
+    pos member5;
+} roomLayout;

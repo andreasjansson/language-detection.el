@@ -1,0 +1,25 @@
+if (sqlite3_open([[self filePath] UTF8String], &db) == SQLITE_OK) {         
+        NSString *sql = [NSString stringWithFormat:@"SELECT * FROM Picture Where PicID = '14'"];
+        sqlite3_stmt *statement;
+
+        if (sqlite3_prepare_v2( db, [sql UTF8String], -1, &statement, nil) == SQLITE_OK) {
+            while (sqlite3_step(statement) == SQLITE_ROW)
+            {
+                char *field1 = (char *) sqlite3_column_text(statement, 0);//the name of the picture
+                NSString *field1Str = [[NSString alloc] initWithUTF8String: field1];
+                field.text= field1Str;
+
+                NSData *data = [[NSData alloc] initWithBytes:sqlite3_column_blob(statement, 1) length:sqlite3_column_bytes(statement, 1)];
+
+if (data==nil) {
+    UIAlertView *alert = [[UIAlertView alloc] 
+                          initWithTitle:@"NULL" message:@"" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+    [alert show];
+    [alert release];
+}
+                UIImage *newImage = [UIImage imageWithData:data]; 
+                [Img setImage:newImage];//Img is a UIImageView instance             
+            }
+            sqlite3_close(db);
+                 }
+}

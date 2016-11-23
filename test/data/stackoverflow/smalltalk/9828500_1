@@ -1,0 +1,4 @@
+string1 := 'Lemon'.
+string2 := 'm'.
+string3 := 'ss'.
+string1 subst: string2 by: string3.

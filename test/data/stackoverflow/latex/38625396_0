@@ -1,0 +1,17 @@
+---
+title: "A Problem With Centering Headings"
+output: pdf_document
+toc: yes
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# This Title Shows Up In My TOC
+
+\begin{center}\Large
+\textbf{This Title Does Not Show Up in My TOC}
+\end{center}
+
+This is some text that is completely irrelevant to the example

@@ -1,0 +1,2 @@
+test $some_var; bg_suffix=&
+long_command $bg_suffix

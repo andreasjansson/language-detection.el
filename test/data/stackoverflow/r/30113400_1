@@ -1,0 +1,2 @@
+Error in merge(dataframe, tsq, by = "Date", all = T) : 
+ unused arguments (tsq, by = "Date", all = T)

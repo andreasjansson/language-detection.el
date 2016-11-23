@@ -1,0 +1,8 @@
+\usepackage{fancyhdr}
+
+\pagestyle{fancy}
+\lhead{\footnotesize \parbox{11cm}{Custom left-head-note} }
+\lfoot{\footnotesize \parbox{11cm}{\textit{#2}}}
+\rfoot{\footnotesize Page \thepage\ of \pageref{LastPage}}
+\renewcommand\headheight{24pt}
+\renewcommand\footrulewidth{0.4pt}

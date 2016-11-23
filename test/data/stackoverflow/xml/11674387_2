@@ -1,0 +1,28 @@
+XDocument doc = new XDocument(
+            new XElement("pfpMessage",
+                new XAttribute("version", 1.5),
+                new XElement("header",
+                    new XElement("source",
+                        new XElement("component",
+                            new XAttribute("type", "pfsdk"),
+                            new XElement("host",
+                                new XAttribute("ip", pfAuthParams.IpAddress),
+                                new XAttribute("hostname", pfAuthParams.Hostname)
+                            )
+                        )
+                    )
+                )
+            ),
+            new XElement("request",
+                new XAttribute("request-id", y),
+                new XAttribute("async", 0),
+                new XAttribute("response-url", ""),
+                new XAttribute("language", "en"),
+                new XElement("phoneAppValidateDeviceTokenRequest",
+                    new XElement("phoneAppValidateContext"),
+                    new XElement("guid", (Application.Current as App).SharedGUID),
+                    new XElement("deviceToken", (Application.Current as App).SharedURI)
+                    ),
+                    new XElement("version", "1.0.0")
+                )                   
+        );

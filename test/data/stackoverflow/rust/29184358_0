@@ -1,0 +1,9 @@
+use std::ops::Mul;
+
+fn cube<T: Mul>(x: T) -> T {
+    x * x * x
+}
+
+fn main() {
+    println!("5^3 = {}", cube(5));
+}

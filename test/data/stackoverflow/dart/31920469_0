@@ -1,0 +1,16 @@
+client.post(url, body: request, headers:{"Content-Type":"application/json"}).then((res) {
+    if (res.statusCode == 200) {
+        if ("application/json" == res.headers["content-type"]) {
+            // parse JSON here
+
+        } else {
+            // download the content if Content-Disposition is set
+        }
+    }
+}).whenComplete(() {
+    client.close();
+}).catchError((exception, stacktrace) {
+    print(exception);
+    print(stacktrace);
+    showErrorMessage("An Error Occurred");
+});

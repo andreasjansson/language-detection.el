@@ -1,0 +1,5 @@
+.directive('navigationPart', function(){
+    return {
+        templateUrl: 'components/navigation.html'
+    };
+})

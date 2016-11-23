@@ -1,0 +1,15 @@
+=ERROR REPORT==== 30-Dec-2011::10:33:24 ===
+exception on TCP connection <0.331.0> from 10.1.30.70:52269
+{channel0_error,starting,
+    {error,{case_clause,[{printableString,"Users"},
+                         {printableString,"John Ruiz"}]},
+                         'connection.start_ok',
+                         [{rabbit_ssl,find_by_type,2,[]},
+                         {rabbit_auth_mechanism_ssl,init,1,[]},
+                         {rabbit_reader,handle_method0,2,[]},
+                         {rabbit_reader,handle_method0,3,[]},
+                         {rabbit_reader,handle_input,3,[]},
+                         {rabbit_reader,recvloop,2,[]},
+                         {rabbit_reader,start_connection,7,[]},
+                         {proc_lib,init_p_do_apply,3,
+                             [{file,"proc_lib.erl"},{line,227}]}]}}

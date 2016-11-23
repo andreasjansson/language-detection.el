@@ -1,0 +1,5 @@
+with Text_IO;
+package avg is
+  type int_array is Array (1..200) of integer;
+  function avrage (ParArray: int_array) return float;
+end avg;

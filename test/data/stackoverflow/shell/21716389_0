@@ -1,0 +1,16 @@
+WBINFO="/usr/bin/wbinfo -t"
+TMP="/tmp/winbind"
+RESTART="/sbin/service winbind restart"
+TXT="failed"
+
+
+$WBINFO > $TMP
+TARGET='cat $TMP |grep $TXT | wc -l'
+
+if [ "$TARGET" -eq "1" ];
+then
+$RESTART
+else
+echo good
+
+fi

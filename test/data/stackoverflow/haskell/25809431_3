@@ -1,0 +1,39 @@
+ParserCombinator.hs:12:18:
+    Couldn't match type `x' with `b'
+      `x' is a rigid type variable bound by
+          the instance declaration at ParserCombinator.hs:9:24
+      `b' is a rigid type variable bound by
+          the type signature for
+            >>= :: Parser x a -> (a -> Parser x b) -> Parser x b
+          at ParserCombinator.hs:10:5
+    Expected type: a
+      Actual type: x
+    In the first argument of `f', namely `parsed'
+    In the first argument of `parse', namely `(f parsed)'
+    In a stmt of a 'do' block: parse (f parsed) rest
+
+ParserCombinator.hs:12:26:
+    Couldn't match type `a' with `b'
+      `a' is a rigid type variable bound by
+          the type signature for
+            >>= :: Parser x a -> (a -> Parser x b) -> Parser x b
+          at ParserCombinator.hs:10:5
+      `b' is a rigid type variable bound by
+          the type signature for
+            >>= :: Parser x a -> (a -> Parser x b) -> Parser x b
+          at ParserCombinator.hs:10:5
+    Expected type: [b]
+      Actual type: [a]
+    In the second argument of `parse', namely `rest'
+    In a stmt of a 'do' block: parse (f parsed) rest
+
+ParserCombinator.hs:13:38:
+    Couldn't match type `a' with `x'
+      `a' is a rigid type variable bound by
+          the type signature for return :: a -> Parser x a
+          at ParserCombinator.hs:13:5
+      `x' is a rigid type variable bound by
+          the instance declaration at ParserCombinator.hs:9:24
+    In the expression: a
+    In the first argument of `Right', namely `(a, ts)'
+    In the expression: Right (a, ts)

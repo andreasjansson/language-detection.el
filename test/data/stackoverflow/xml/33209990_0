@@ -1,0 +1,5 @@
+<AutoCompleteTextView
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:hint="choose a subreddit"
+        android:id="@+id/subreddit" />.

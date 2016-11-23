@@ -1,0 +1,14 @@
+for index:=0 to (sprite_list.count-1) do begin
+ s:=sprite_list[index];
+ s.update;
+ glBindTexture(GL_TEXTURE_2D,s.sprite_id);
+ glColor4b(127,127,127,s.ialpha);
+ if immediate then begin
+  glBegin(GL_QUADS);
+   glTexCoord2f(0,0); glVertex2i(coords[0].x,coords[0].y);
+   glTexCoord2f(0,1); glVertex2i(coords[1].x,coords[1].y);
+   glTexCoord2f(1,1); glVertex2i(coords[2].x,coords[2].y);
+   glTexCoord2f(1,0); glVertex2i(coords[3].x,coords[3].y);
+  glEnd();
+ end else 
+  glDrawArrays(GL_QUADS, 0, 4);

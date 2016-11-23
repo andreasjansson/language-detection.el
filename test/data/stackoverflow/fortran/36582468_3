@@ -1,0 +1,19 @@
+write(*,*)nlay
+
+  ! Allocate vars related to the # of layers
+  Allocate( irz(nlay)           &
+          , nrcol(nlay)         &
+          , stat=nAllocErr )
+  if (nAllocErr .ne. 0) then
+    write(*,*) 'Out of memory.  Try reducing the model size.'
+    stop
+  endif
+
+  ! Don't know how many cols there are.  So pre-read through the layers
+  ! and keep the max #.  Then allocate local vars to hold the data, and
+  ! re-read through the layer data.
+  do i = 1,nlay
+    read (iof,*,end=198,err=199) irz(i), nrcol(i)
+    write(*,*)irz(i), nrcol(i)
+    read (iof,*,end=198,err=199) (ii, j=1,nrcol(i)) ! discard these for now
+  enddo

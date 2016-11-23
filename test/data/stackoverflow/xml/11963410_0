@@ -1,0 +1,104 @@
+<s:Envelope xmlns:s="http://schemas.xmlsoap.org/soap/envelope/" xmlns:u="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd">
+   <s:Header>
+      <o:Security s:mustUnderstand="1" xmlns:o="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd">
+         <u:Timestamp u:Id="_0">
+            <u:Created>2012-08-15T02:11:45.336Z</u:Created>
+            <u:Expires>2012-08-15T02:16:45.336Z</u:Expires>
+         </u:Timestamp>
+      </o:Security>
+   </s:Header>
+   <s:Body>
+      <GetDetailsResponse xmlns="http://tg.gov.au/services/">
+         <GetDetailsResult i:type="Rto" xmlns:i="http://www.w3.org/2001/XMLSchema-instance">
+            <Codes>
+               <OrganisationCode>
+                  <StartDate>2003-10-28</StartDate>
+                  <Code>0022</Code>
+               </OrganisationCode>
+            </Codes>
+            <Contacts>
+               <Contact>
+                  <EndDate>2011-10-21</EndDate>
+                  <StartDate>2003-10-27</StartDate>
+                  <Email>email@address.com</Email>
+                  <Fax>08555555</Fax>
+                  <FirstName>Steve</FirstName>
+                  <JobTitle>Chief Executive Officer</JobTitle>
+                  <LastName>Austin</LastName>
+                  <OrganisationName>ATEX</OrganisationName>
+                  <Phone>13333333</Phone>
+                  <PostalAddress>
+                     <CountryCode>1101</CountryCode>
+                     <Line1>PO Box 555</Line1>
+                     <Postcode>5515</Postcode>
+                     <StateCode>04</StateCode>
+                     <Suburb>PT ADELAIDE</Suburb>
+                  </PostalAddress>
+                  <RoleCode>1</RoleCode>
+                  <Title>Ms</Title>
+                  <TypeCode>0</TypeCode>
+               </Contact>
+            </Contacts>
+            <CreatedDate xmlns:a="http://schemas.datacontract.org/2004/07/System">
+               <a:DateTime>2011-06-09T19:05:11.5427569Z</a:DateTime>
+               <a:OffsetMinutes>600</a:OffsetMinutes>
+            </CreatedDate>
+            <DataManagers>
+               <DataManagerAssignment>
+                  <StartDate>2003-10-28</StartDate>
+                  <Code>03</Code>
+               </DataManagerAssignment>
+            </DataManagers>
+            <Locations>
+               <OrganisationLocation>
+                  <StartDate>2003-10-27</StartDate>
+                  <Address>
+                     <CountryCode>1101</CountryCode>
+                     <Line1>12 Aden Street</Line1>
+                     <Postcode>4444</Postcode>
+                     <StateCode>04</StateCode>
+                     <Suburb>PT ADELAIDE</Suburb>
+                  </Address>
+               </OrganisationLocation>
+            </Locations>
+            <ResponsibleLegalPersons>
+               <ResponsibleLegalPerson>
+                  <StartDate>2003-10-27</StartDate>
+                  <Abns xmlns:a="http://schemas.microsoft.com/2003/10/Serialization/Arrays">
+                     <a:string>58209574933</a:string>
+                  </Abns>
+                  <Name>ATEX INC</Name>
+               </ResponsibleLegalPerson>
+            </ResponsibleLegalPersons>
+            <TradingNames>
+               <TradingName>
+                  <StartDate>2011-09-23</StartDate>
+                  <Name>ATEX</Name>
+               </TradingName>
+            </TradingNames>
+            <UpdatedDate xmlns:a="http://schemas.datacontract.org/2004/07/System">
+               <a:DateTime>2012-08-02T02:42:29.1278397Z</a:DateTime>
+               <a:OffsetMinutes>600</a:OffsetMinutes>
+            </UpdatedDate>
+            <Urls>
+               <Url>
+                  <StartDate>2011-09-23</StartDate>
+                  <Link>http://www.atex.au</Link>
+               </Url>
+            </Urls>
+            <Scopes>
+               <Scope>
+                  <EndDate>2013-10-27</EndDate>
+                  <StartDate>2008-10-27</StartDate>
+                  <ExtentCode>01</ExtentCode>
+                  <IsImplicit>true</IsImplicit>
+                  <IsRefused>false</IsRefused>
+                  <NrtCode>XXWWRR43</NrtCode>
+                  <TrainingComponentType>Unit</TrainingComponentType>
+               </Scope>
+                ...
+            </Scopes>
+        </GetDetailsResult>
+      </GetDetailsResponse>
+   </s:Body>
+</s:Envelope>

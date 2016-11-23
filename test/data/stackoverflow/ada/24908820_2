@@ -1,0 +1,71 @@
+with Qt4.Icons;
+with Qt4.Model_Indices;
+with Qt4.Standard_Item_Models.Constructors;
+with Qt4.Strings;
+with Qt4.Variants;
+with Table_View_Small.MOC;
+pragma Warnings (Off, Table_View_Small.MOC);
+
+
+package body Table_View_Small is
+
+   use Qt4;
+
+   package body Constructors is
+
+      function Create return not null Small_Table_Access is
+
+         Self   : constant Table_View_Small.Small_Table_Access := new Table_View_Small.Small_Table;
+
+      begin
+
+         Qt4.Table_Views.Directors.Constructors.Initialize (Self);
+
+         declare
+
+            Icon : Qt4.Icons.Q_Icon;
+
+            Data_Role : Qt4.Item_Data_Role := qt4.Decoration_Role;
+
+            Index : Qt4.Model_Indices.Q_Model_Index;
+
+         begin
+
+            Self.Small_Table_Item_Model := Qt4.Abstract_Item_Models.Q_Abstract_Item_Model_Access
+              (Qt4.Standard_Item_Models.Constructors.Create (1, 6, Self));
+
+            Icon := Qt4.Icons.Create(Qt4.Strings.From_Ucs_4("anypng.png"));
+
+            Index := Self.Small_Table_Item_Model.Index(0,0);
+
+            Qt4.Abstract_Item_Models.Set_Data(Self.Small_Table_Item_Model,index,icon.To_Q_Variant,Data_Role);
+
+            Self.Set_Model(Self.Small_Table_Item_Model);
+
+
+            -- Drag & Drop
+
+            Self.Set_Accept_Drops(true);
+
+            Self.Set_Drag_Enabled(true);
+
+            Self.Set_Drop_Indicator_Shown(true);
+
+            -- Self.Set_Drag_Drop_Mode(Qt4.Abstract_Item_Views.Internal_Move);
+
+            return Self;
+
+         end;
+
+      end Create;
+
+   end Constructors;
+
+   --     overriding procedure Mouse_Press_Event
+   --       (Self  : not null access Small_Table;
+   --        Event : not null access Qt4.Mouse_Events.Q_Mouse_Event'Class)
+   --     is
+   --     null;
+   --     end Mouse_Press_Event;
+
+end Table_View_Small;

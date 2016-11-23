@@ -1,0 +1,28 @@
+Create table student
+  (
+    Id number,
+    Batch varchar2(2),
+    Batch_roll_no number 
+  )
+
+Create or replace procedure assign_roll_no
+Is
+ V_roll_no number; 
+Begin
+For c1 in (select distinct batch from student order by 1)
+Loop
+Select nvl(Max(batch_roll_no+1),1)
+Into v_roll_no
+From student
+ where batch = c1.batch;
+  For c2 in ( select id from batch where batch_roll_no is null and batch= c1.batch
+ Order by 1)
+ Loop
+Update student
+set batch_roll_no=v_roll_no
+Where id=c2.id
+And batch= c1.batch;
+V_roll_no:=v_roll_no + 1;
+End loop;
+End loop;
+End;

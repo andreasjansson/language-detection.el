@@ -1,0 +1,10 @@
+use std::collections::HashMap;
+let mut map = HashMap::new();
+let id = "data".to_string();  // This needs to be a String
+let cloned = id.clone();
+
+map.insert(id, 5);
+
+let one = map.get(&cloned);
+let two = map.get("data");
+println!("{:?}", (one, two));

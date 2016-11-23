@@ -1,0 +1,5 @@
+\newenvironment{example}
+  {\begin{list}
+     {}
+     {\setlength\leftmargin{2em}}}
+  {\end{list}\everypar{\setbox0\lastbox}}

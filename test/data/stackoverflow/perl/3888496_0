@@ -1,0 +1,36 @@
+my $string = <<EOS; # auto generated query
+                SELECT
+                        users.*
+                        , roles.label AS role_label
+                        , hr_orders.position_label
+                        , deps.label AS dep_label
+                        , top_deps.label AS top_dep_label
+                FROM
+                        users
+                        LEFT JOIN $conf->{systables}->{roles} AS roles ON users.id_role = roles.id
+                        LEFT JOIN (
+                                SELECT
+                                        id_user
+                                        , MAX(dt) AS max_dt
+                                FROM
+                                        hr_orders
+                                WHERE
+                                        fake = 0
+                                AND
+                                        IFNULL(position_label, ' ') <> ' '
+                                GROUP BY id_user
+                        ) last_hr_orders ON last_hr_orders.id_user = users.id
+                        LEFT JOIN hr_orders ON hr_orders.id_user = last_hr_orders.id_user AND hr_orders.dt = last_hr_orders.max_dt
+                        $join
+                WHERE
+                        $filter
+                ORDER BY
+                        $order
+                $limit
+EOS
+
+my $where = "WHERE\nusers.fake = -1 AND ";
+
+$string =~  s{where}{$where}i;
+
+print "result: \n$string";

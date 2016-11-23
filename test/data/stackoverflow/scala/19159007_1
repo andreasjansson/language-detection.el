@@ -1,0 +1,20 @@
+def extractEither[
+  Key, TLeft, TRight, M[_] <: TraversableOnce[_]
+]
+(monad: M[(Key, Either[TLeft, TRight])])
+(implicit cbf: CanBuildFrom[
+M[(Key, Either[TLeft, TRight])],
+  (Key, TRight),
+  M[(Key, TRight)]
+]): Either[TLeft, M[(Key, TRight)]] = {
+  val builder = cbf(monad)
+  builder.sizeHint(monad.size)
+  (monad: GenTraversableOnce[_]).foreach { x =>
+    val (key, either) = x.asInstanceOf[(Key, Either[TLeft, TRight])]
+    either.fold(
+      leftVal => return Left(leftVal),
+      rightVal => builder += ((key, rightVal))
+    )
+  }
+  Right(builder.result())
+}

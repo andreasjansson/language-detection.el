@@ -1,0 +1,3 @@
+fileID=fopen('Tm.txt','w');
+fwrite(fileID,M);
+fclose(fileID);

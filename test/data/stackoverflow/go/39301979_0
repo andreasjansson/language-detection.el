@@ -1,0 +1,5 @@
+expr:
+  INT | STRING | IDENT | lambda | '(' expr ')'
+
+lambda:
+  '(' expr ')' '{' stmt_list '}'

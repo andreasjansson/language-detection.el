@@ -1,0 +1,12 @@
+<UserValue title="project_variants" value="">
+    <UserList id="id19" type="list">
+    <Item value="LTD3,A"></Item>
+    <Item value="LTD4,A"></Item>
+    <Item value="PRODUCTION,B"></Item></UserList>
+</UserValue>
+<UserValue>
+<UserList id="id11" type="list">
+    <Item value="1 EACH"></Item>
+    <Item value="2 EACH"></Item>
+    <Item value="3 EACH"></Item>
+</UserList>

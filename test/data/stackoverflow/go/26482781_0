@@ -1,0 +1,20 @@
+text/tabwriter/tabwriter.go
+380:func (b *Writer) updateWidth() {
+go/ast/commentmap.go
+246:func (cmap CommentMap) Update(old, new Node) Node {
+
+container/heap/example_pq_test.go
+54:func (pq *PriorityQueue) update(item *Item, value string, priority int) {
+
+expvar/expvar.go
+129:func (v *Map) updateKeys() {
+
+encoding/gob/encode.go
+101:func (state *encoderState) update(instr *encInstr) {
+
+crypto/cipher/gcm.go
+236:func (g *gcm) updateBlocks(y *gcmFieldElement, blocks []byte) {
+247:func (g *gcm) update(y *gcmFieldElement, data []byte) {
+
+index/suffixarray/qsufsort.go
+145:func (x *suffixSortable) updateGroups(offset int) {

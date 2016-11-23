@@ -1,0 +1,11 @@
+var x = 1;
+    $('.newest_posts').each(function() {
+
+      $('.showFull' + x).on('click', function(e) {
+        $('.newest_small' + x).hide(); // hide image preview on delete click
+        $('.newest_full' + x).show(); // hide image delete link on click
+        e.preventDefault();
+      });
+
+      x = x + 1;
+    });

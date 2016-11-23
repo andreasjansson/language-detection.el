@@ -1,0 +1,8 @@
+Await.result(supervisor ? (Props[Discovery], "Discovery"), Duration.create(60, SECONDS)) match {
+    case actor: ActorRef =>
+      discoveryActor = actor
+
+    case ex: Exception =>
+      logger.error("Failed to initialize discovery actor", ex)
+      sys.exit(1)
+}

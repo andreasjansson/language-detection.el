@@ -1,0 +1,2 @@
+Causes the produced binaries to be thread-safe. This requires proper
+ support in the source code itself.

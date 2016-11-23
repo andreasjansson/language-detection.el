@@ -1,0 +1,15 @@
+stty -a
+
+*speed 38400 baud; line = 0;
+rows = 24; columns = 80
+min = 1; time = 1;
+intr = DEL; quit = ^\; erase = DEL; kill = @
+eof = ^D; eol = ^@; eol2 <undef>; swtch <undef>
+stop = ^S; start = ^Q; susp <undef>; dsusp <undef>
+werase <undef>; lnext <undef>
+-parenb -parodd cs8 -cstopb hupcl cread -clocal -loblk -crts
+-ignbrk brkint -ignpar -parmrk -inpck istrip -inlcr -igncr icrnl -iuclc
+ixon ixany -ixoff -imaxbel -rtsxoff -ctsxon -ienqak
+isig icanon -iexten -xcase echo -echoe echok -echonl -noflsh
+-echoctl -echoprt -echoke -flusho -pendin
+opost -olcuc onlcr -ocrnl -onocr -onlret -ofill -ofdel -tostop tab3*

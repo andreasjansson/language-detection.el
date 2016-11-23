@@ -1,0 +1,4 @@
+let get_keyset tblseq = 
+                tblseq |> Seq.iter (fun x ->  
+                       x.Keys |> Set.ofSeq                   
+                     )

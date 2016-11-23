@@ -1,0 +1,9 @@
+x <- as.data.frame(matrix(rnorm(100 * 10), 100, 10))
+y <- seq.int(1, 100)
+fit.lm <- lm("y ~ .", data =  cbind(y, x))
+R.lm <- qr.R(fit.lm$qr)
+
+library(biglm)
+fmla <- as.formula(paste("y ~ ", paste(colnames(x), collapse = "+")))
+fit.biglm <- biglm(fmla, data = cbind(y, x))
+R.biglm <- qr.R.biglm(fit.biglm)

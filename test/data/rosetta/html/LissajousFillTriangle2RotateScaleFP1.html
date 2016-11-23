@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Lissajous</title>
+    <script type="text/javascript"><!--
+window.addEventListener('load', function () {
+  // Get the canvas element in the <body> tag
+  var elem = document.getElementById('myCanvas');
+
+  if (!elem || !elem.getContext) {
+    return;
+  }
+
+  // Get the canvas 2d context 
+  var context = elem.getContext('2d');
+  if (!context) {
+    return;
+  }
+
+  var basePointX  = 150;
+  var basePointY  = 100;
+  var fixedPointX = 700;
+  var fixedPointY = 100;
+  var currentX    = 0;
+  var currentY    = 0;
+  var offsetX     = 0;
+  var offsetY     = 0;
+  var A           = 200;
+  var B           = 2;
+  var C           = 100;
+  var D           = 5;
+  var smallRadius = 20;
+  var lineWidth   = 4;
+  var lineGap     = 10; // 8*lineWidth;
+  var angle       = 0;
+  var deltaAngle  = 1;
+  var maxAngle    = 721;
+  var rectWidth   = 40;
+  var rectHeight  = 20;
+  var hexArray    = new Array('0','1','2','3','4','5','6','7',
+                              '8','9','a','b','c','d','e','f');
+ 
+  for(angle=0; angle<maxAngle; angle+=deltaAngle) {
+     offsetX  = A*Math.sin(B*angle*Math.PI/180);
+     offsetY  = C*Math.cos(D*angle*Math.PI/180);
+     currentX = basePointX+offsetX;
+     currentY = basePointY-offsetY;
+
+     // alternate between red and blue
+     if((Math.floor(angle/deltaAngle)) % 2 == 0) {
+        context.fillStyle = '#f00';
+     }
+     else {
+        context.fillStyle = '#00f';
+     }
+
+     // counter-clockwise from upper-left vertex
+     context.beginPath();
+     context.lineWidth = lineWidth;
+     context.moveTo(currentX, currentY);
+     context.lineTo(currentX, currentY+rectHeight);
+     context.lineTo(currentX+rectWidth, currentY+rectHeight);
+     context.lineTo(currentX, currentY);
+     context.rotate(angle*Math.PI/180/rectWidth);
+
+     context.moveTo(currentX, currentY+rectHeight);
+     context.lineTo(currentX-rectWidth, currentY+rectHeight);
+     context.lineTo(currentX, currentY+2*rectHeight);
+     context.lineTo(currentX, currentY+rectHeight);
+
+     if(angle % rectWidth == 0) {
+        context.scale(0.8+angle/maxAngle, 1+angle/maxAngle);
+      //context.scale(1.1-angle/maxAngle, 0.8-angle/maxAngle);
+     }
+
+     context.fill();
+     context.closePath();
+
+     if(angle % lineGap == 0) {
+        lineColor = '#' + hexArray[angle%16] +'00';
+        context.strokeStyle = lineColor;
+        context.moveTo(currentX, currentY);
+        context.lineTo(fixedPointX, fixedPointY);
+        context.stroke();
+     }
+  }
+}, false);
+    // --></script>
+  </head>
+
+  <body>
+    <canvas id="myCanvas" width="800" height="500">
+         Your browser does not support Canvas
+    </canvas>
+  </body>
+</html>

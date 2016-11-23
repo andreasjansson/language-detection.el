@@ -1,0 +1,5 @@
+Shiny.addCustomMessageHandler ("callbackHandler",
+    function (value)
+    {
+        window.open(value.file);
+    });

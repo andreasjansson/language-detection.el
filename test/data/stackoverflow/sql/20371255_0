@@ -1,0 +1,34 @@
+SELECT 
+    Ticket_No,
+    _id,
+    Date_Add,
+    trip_no,
+    f.Location_Name AS FromName,
+    From_LocationID,
+    To_LocationID,
+    t.Location_Name AS ToName
+FROM Tbl_InOut
+LEFT JOIN Tbl_Ticket
+    ON Tbl_InOut._id = Tbl_Ticket.Trip_ID
+LEFT JOIN Tbl_Location AS f
+    ON f.Location_ID = Tbl_Ticket.From_LocationID
+LEFT JOIN Tbl_Location AS t
+    ON t.Location_ID = Tbl_Ticket.To_LocationID
+
+UNION ALL
+
+SELECT Ticket_No,
+    _id,
+    Date_Add,
+    trip_no,
+    f.Location_Name AS FromName,
+    From_LocationID,
+    To_LocationID,
+    t.Location_Name AS ToName
+FROM Tbl_Ticket
+LEFT JOIN Tbl_InOut
+    ON Tbl_InOut._id = Tbl_Ticket.Trip_ID
+LEFT JOIN Tbl_Location AS f
+    ON f.Location_ID = Tbl_Ticket.From_LocationID
+LEFT JOIN Tbl_Location AS t
+    ON t.Location_ID = Tbl_Ticket.To_LocationID

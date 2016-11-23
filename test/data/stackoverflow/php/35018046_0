@@ -1,0 +1,3 @@
+PHP message: PHP Fatal error: require_once(): 
+Failed opening required 'class.phpmailer.php' 
+(include_path='.:/usr/share/php:/usr/share/pear') in ...

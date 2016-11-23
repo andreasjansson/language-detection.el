@@ -1,0 +1,8 @@
+<div id="slider-full-width">
+<div class="container">
+  <h2>Seeking a refreshening management service?</h2>
+  <h2>You've come to the right place</h2>
+  <div id="button-bg">
+  <a href="properties.html" class="presentation-button">Properties</a>
+  <a href="#body-span-class" class="presentation-button">See why</a>
+</div>

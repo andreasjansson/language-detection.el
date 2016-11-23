@@ -1,0 +1,9 @@
+FactoryGirl.define do
+  factory :company do
+    sequence(:code){|n| n + 1000 }
+  end
+
+  factory :terminal_value do
+    company
+  end
+end

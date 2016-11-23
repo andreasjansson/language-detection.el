@@ -1,0 +1,5 @@
+// get the forecast 
+    $.each( parsed_json['hourly_forecast'], function( i, value )    {
+        if( value.FCTTIME.mday  == 15 && value.FCTTIME.hour == 19) {
+            six_hour_forecast = value.temp.english;
+        }

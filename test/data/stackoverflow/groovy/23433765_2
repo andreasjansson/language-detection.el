@@ -1,0 +1,6 @@
+2014-05-03 19:17:05,723 [http-bio-8080-exec-3] ERROR errors.GrailsExceptionResolver  -
+MissingMethodException occurred when processing request:   
+[GET]/XXXClassified/classified/displayGraph/1
+No signature of method: [B.toByteArray() is applicable for argument types: () values:  
+[]. Stacktrace follows: Message: No signature of method: [B.toByteArray() is applicable  
+for argument types: () values: []

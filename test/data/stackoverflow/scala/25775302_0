@@ -1,0 +1,30 @@
+class Mytable extends LongKeyedMapper[Mytable] with IdPK {
+
+  def getSingleton = Myclass
+
+  object owner extends MappedLongForeignKey(this, User) 
+  object description extends MappedString(this, 140)
+  object name extends MappedString(this, 140)
+  object status extends MappedInt(this) 
+  object entry_number extends MappedInt(this) 
+  object quantity extends MappedDecimal(this, MathContext.DECIMAL64, 2) 
+}
+
+object Mytable extends Mytable with LongKeyedMetaMapper[Mytable] with CRUDify[Long, Mytable] {
+
+  override def editMenuLoc:Box[Menu] = Empty
+  override def deleteMenuLoc:Box[Menu] = Empty
+  override def viewMenuLoc:Box[Menu] = Empty
+  override def createMenuLocParams: List[Loc.AnyLocParam] = List(If(User.loggedIn_? _, "Not logged in"))
+  override def showAllMenuLocParams: List[Loc.AnyLocParam] = List(If(User.loggedIn_? _, "Not logged in"))
+
+  override def findForList(start: Long, cnt: Int): List[Mytable] =
+    findAll(StartAt(start), MaxRows(cnt), By(owner, User.currentUser))
+
+  override def findForParam(in: String): Box[Mytable] =
+    for {
+      user <- User.currentUser
+      id <- Helpers.asLong(in)
+      mytable <- find(By(this.id, id), By(owner, user))
+    } yield mytable
+}

@@ -1,0 +1,17 @@
+my $replace_string
+    = "s/typedef struct WebFontDescription WebFontDescription/struct WebFontDescription/g";
+
+print $fh "perl -p -i -e \""
+        . $replace_string
+        . "\" \""
+        . $idl_filename
+        . "\"\r\n";
+
+$replace_string
+    = "s/\(WebFontDescription\\* webFontDescription/\(struct WebFontDescription\\* webFontDescription/g";
+
+print $fh "perl -p -i -e \""
+        . $replace_string
+        . "\" \""
+        . $idl_filename
+        . "\"\r\n";

@@ -1,0 +1,9 @@
+(defun my-simplify-prefix (prefix)
+  ;; (interactive "sPrefix: ")
+  (interactive (list "rainbow-delimiters"))
+  (font-lock-add-keywords
+   nil `((,(rx-to-string `(group ,prefix))
+          (0 (progn (compose-region (match-beginning 1) (match-end 1)
+                                    "RD")
+                    nil)))))
+  (font-lock-fontify-buffer))

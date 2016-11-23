@@ -1,0 +1,2 @@
+`$segments = array("specialController","specialFunction",$segments[0]);
+        return $segments;`

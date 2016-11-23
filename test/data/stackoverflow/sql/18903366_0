@@ -1,0 +1,6 @@
+SELECT C.CarID, C.Make, Y.Year, M.Model , e.Engine
+FROM Car C 
+INNER JOIN CarYear CY ON CY.CarID = C.CarID
+INNER JOIN Year y     ON y.YearID = CY.YearID
+INNER JOIN Model m    ON m.CarID = C.CarID
+INNER JOIN Engine e   ON e.ModelId = m.ModelID

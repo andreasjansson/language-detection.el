@@ -1,0 +1,19 @@
+.method assembly static int32 f@11 (class FSharpFunc`2<int32, int32> body, int32 num)
+{
+ldarg.1
+ldc.i4 1000000
+bne.un.s IL_0015
+
+ldstr "Done!"
+call void Console::WriteLine(string)
+ldc.i4.0
+ret
+
+IL_0015: ldarg.0
+ldarg.1
+ldc.i4.1
+add
+tail.
+callvirt instance !1 class FSharpFunc`2<int32, int32>::Invoke(!0)
+ret
+}

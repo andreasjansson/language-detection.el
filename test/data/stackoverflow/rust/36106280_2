@@ -1,0 +1,6 @@
+let mut reader : BufRead = io::stdin();  // Fails.
+let mut reader : BufReader<Read> = io::stdin();  // Fails.
+let mut reader : BufReader<_> = io::stdin(); // Fails
+let mut reader : BufRead = io::stdin().lock(); // Fails later.
+let mut reader = BufReader::new(io::stdin());  // Fails with type mismatch.
+let mut reader = BufReader::new(io::stdin().lock());  // Fails with type mismatch.

@@ -1,0 +1,11 @@
+Hide X:
+INS DEL Entry:
+            Mode: org-mode
+            Regexp: a\|b
+INS DEL Entry:
+            Mode: text-mode
+            Regexp: b\|c
+INS
+    State : STANDARD.
+   Some variable
+Groups: X

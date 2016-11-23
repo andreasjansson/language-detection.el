@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Conchoid</title>
+    <script type="text/javascript"><!--
+window.addEventListener('load', function () {
+  // Get the canvas element in the <body> tag
+  var elem = document.getElementById('myCanvas');
+
+  if (!elem || !elem.getContext) {
+    return;
+  }
+
+  // Get the canvas 2d context 
+  var context = elem.getContext('2d');
+  if (!context) {
+    return;
+  }
+
+  var basePointX  = 200;
+  var basePointY  = 200;
+  var fixedPointX = 100;
+  var fixedPointY = 100;
+  var currentX    = 0;
+  var currentY    = 0;
+  var offsetX     = 0;
+  var offsetY     = 0;
+  var radius      = 0;
+  var lineWidth   = 4;
+  var lineGap     = 3; // 8*lineWidth;
+  var spiralCount = 4;
+  var Constant1   = 120;
+  var Constant2   = 80;
+  var angle       = 0;
+  var maxAngle    = 720;
+  var rectWidth   = 90;
+  var rectHeight  = 50;
+  var hexArray    = new Array('0','1','2','3','4','5','6','7',
+                              '8','9','a','b','c','d','e','f');
+ 
+  for(angle=0; angle<maxAngle; angle++) {
+     radius   = Constant1+Constant2/
+                     Math.cos(angle*Math.PI/180);
+ 
+     offsetX  = radius*Math.cos(angle*Math.PI/180);
+     offsetY  = radius*Math.sin(angle*Math.PI/180);
+     currentX = basePointX+offsetX;
+     currentY = basePointY-offsetY;
+
+     // alternate between red and blue
+     if(angle % 2 == 0) {
+        context.fillStyle = '#f00';
+     }
+     else {
+        context.fillStyle = '#00f';
+     }
+
+     // draw the current rectangle
+     context.fillRect(currentX, currentY, rectWidth, rectHeight);
+     context.fillRect(currentY, currentX, rectHeight, rectHeight);
+
+     if(angle % lineGap == 0) {
+        lineColor = '#' + hexArray[angle%16] +'00';
+        context.strokeStyle = lineColor;
+        context.moveTo(currentX, currentY);
+        context.lineTo(fixedPointX, fixedPointY);
+        context.stroke();
+     }
+  }
+}, false);
+    // --></script>
+  </head>
+
+  <body>
+    <canvas id="myCanvas" width="800" height="500">
+         Your browser does not support Canvas
+    </canvas>
+  </body>
+</html>
+

@@ -1,0 +1,7 @@
+impl Foo {
+    pub fn get<K>(&'a mut self, key: &K) -> Option<&'a str>
+        where K: Hash + Eq
+    {
+        // ...
+    }
+}

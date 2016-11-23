@@ -1,0 +1,12 @@
+chrome.app.runtime.onLaunched.addListener(function(launchData) {
+
+  chrome.app.window.create(
+
+  'htmlFile.html',
+
+  {...},
+
+  function(createdWindow) {
+    createdWindow.contentWindow.launchData = launchData;
+  });
+});

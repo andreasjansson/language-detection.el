@@ -1,0 +1,13 @@
+....
+            sys = simsizes(s);
+
+
+        case 1  % derivative
+
+                sys = mysys(t,x,u,opts);
+
+
+        case 3  % output
+
+            sys = x ;
+.....

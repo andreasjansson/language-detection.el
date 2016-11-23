@@ -1,0 +1,24 @@
+let xname = XNamespace.Get "http://localuri"
+
+let syn = "<synonyms xmlns=\"http://localuri\"><synonym>a word</synonym><synonym>another word</synonym></synonyms>"
+
+let getRoot (doc:System.Xml.Linq.XDocument) = doc.Root
+
+let getValue (element:System.Xml.Linq.XElement) = element.Value
+
+let getElements (element:System.Xml.Linq.XElement) =
+    element.Elements(xname + "synonym")
+        |> Seq.cast<System.Xml.Linq.XElement>
+
+let synonyms str =
+    let items = [str]
+    items
+    |> List.map System.Xml.Linq.XDocument.Parse
+    |> List.map getRoot
+    |> List.map getElements
+    |> Seq.collect (fun x -> x)
+    |> Seq.map getValue
+
+let a = synonyms syn
+
+Dump a

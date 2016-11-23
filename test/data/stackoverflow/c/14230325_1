@@ -1,0 +1,9 @@
+#include<stdio.h>
+    void func(int *x,int *y){
+
+    }
+    int main(){
+        int a=10,b=6;
+        func(&a,&b);
+        return 0;
+    }

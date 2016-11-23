@@ -1,0 +1,11 @@
+digitQArr = (queue*)0x7fff5fbff6d0
+    *digitsArr=(queue)0x100105480
+        capacity=(int)10
+        size=(int)0
+        front=(int)0
+        rear=(int)0
+        array=(int*)0x1001054a0
+    [1]=(queue)0x1001054d0
+    ...
+    ...
+    [4]=(queue)0x1001055d0

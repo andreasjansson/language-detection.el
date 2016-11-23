@@ -1,0 +1,11 @@
+NSString *FeedURL = @"MYURLGOESHERE";
+    NSURLRequest *theRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:FeedURL]];
+    NSURLResponse *resp = nil;
+    NSError *err = nil;
+    NSData *response = [NSURLConnection sendSynchronousRequest: theRequest returningResponse: &resp error: &err];
+    NSString *theString = [[NSString alloc] initWithData:response encoding:NSUTF8StringEncoding]; 
+
+    NSLog(@"Response: %@", theString);];
+
+    [resp release];
+    [err release];

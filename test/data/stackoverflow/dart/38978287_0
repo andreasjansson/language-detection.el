@@ -1,0 +1,13 @@
+$('#fullCalendar').fullCalendar(
+{
+    events: function(start, end, timezone, callback) {
+        var generated_events=[
+        {
+            title  : 'test',
+            start  : '2016-08-08'
+        }];
+        callback(generated_events);
+    },
+    allDaySlot: false
+    //More options can go here
+});

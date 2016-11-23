@@ -1,0 +1,4 @@
+getMean <- function(expr) {  
+  return(with(subset(dat, var1 %in% c('a', 'b', 'c') eval(expr)), mean(var3)))  
+}
+getMean(expression(& var2 %in% c('a', 'b')))

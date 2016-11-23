@@ -1,0 +1,11 @@
+declare @sql nvarchar(4000)
+declare @order nvarchar(4000)
+
+
+set @sql = 'select id, name'
+set @sql = @sql + ' ....' 
+
+if(@sortOrder)
+    set @order = 'order by name desc'
+
+exec @sql + @order

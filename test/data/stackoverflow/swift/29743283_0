@@ -1,0 +1,17 @@
+var myDate:NSDateComponents = NSDateComponents()
+    myDate.year = 2015
+    myDate.month = 04
+    myDate.day = 20
+    myDate.hour = 12
+    myDate.minute = 38
+    myDate.timeZone = NSTimeZone.systemTimeZone()
+
+    var calendar:NSCalendar = NSCalendar(calendarIdentifier: NSCalendarIdentifierGregorian)!
+    var date:NSDate = calendar.dateFromComponents(myDate)!
+
+    var notification:UILocalNotification = UILocalNotification()
+    notification.category = "First Category"
+    notification.alertBody = "Hi, I'm a notification"
+    notification.fireDate = date
+
+    UIApplication.sharedApplication().scheduleLocalNotification(notification)

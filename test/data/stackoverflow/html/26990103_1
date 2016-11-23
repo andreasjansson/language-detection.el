@@ -1,0 +1,4 @@
+<section class=gs></section>
+    <input id=googleSearch class=googleSearch name=search autocomplete="off"></input>
+    <div id=resultGS class=result></div>
+</section><//section>

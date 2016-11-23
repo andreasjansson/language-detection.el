@@ -1,0 +1,8 @@
+$yellow: #FFFF00;
+
+.color($colorName) { 
+color: $colorName; 
+}
+
+<div class="color(yellow)">
+</div>

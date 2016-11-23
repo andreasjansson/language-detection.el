@@ -1,0 +1,6 @@
+<Directory "/">
+    Options +ExecCGI +FollowSymLinks -Includes -IncludesNOEXEC +Indexes -MultiViews -SymLinksIfOwnerMatch 
+    AllowOverride All    
+    Order deny,allow
+
+</Directory>

@@ -1,0 +1,13 @@
+% mix deps.get
+Could not find Hex, which is needed to build dependency :phoenix
+Shall I install Hex? [Yn] y
+** (MatchError) no match of right hand side value: {:error, {:ssl, {'no such file or directory', 'ssl.app'}}}
+    (mix) lib/mix/utils.ex:409: Mix.Utils.read_httpc/1
+    (mix) lib/mix/utils.ex:354: Mix.Utils.read_path/2
+    (mix) lib/mix/local.ex:107: Mix.Local.read_path!/2
+    (mix) lib/mix/local.ex:86: Mix.Local.find_matching_versions_from_signed_csv!/2
+    (mix) lib/mix/tasks/local.hex.ex:23: Mix.Tasks.Local.Hex.run/1
+    (mix) lib/mix/dep/loader.ex:140: Mix.Dep.Loader.with_scm_and_app/4
+    (mix) lib/mix/dep/loader.ex:98: Mix.Dep.Loader.to_dep/3
+    (elixir) lib/enum.ex:1043: anonymous fn/3 in Enum.map/2
+%

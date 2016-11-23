@@ -1,0 +1,25 @@
+package main
+
+import (
+    "fmt"
+    "reflect"
+    "unsafe"
+)
+
+func main() {
+    type myType struct {
+        a int
+        b int64
+        c float32
+        d float64
+        e float64
+    }
+    info := myType{1, 2, 3.0, 4.0, 5.0}
+    getSize(info)
+}
+
+func getSize(T interface{}) {
+    v := reflect.ValueOf(T)
+    const size = unsafe.Sizeof(v)
+    fmt.Println(size)
+}

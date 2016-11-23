@@ -1,0 +1,3 @@
+(forward-char 1)
+(cua-set-mark)
+(backward-char 1)

@@ -1,0 +1,7 @@
+let num = match input_num {
+    Some(num) => num,
+    None      => {
+        println!("Please input a number!");
+        continue;
+    }
+};

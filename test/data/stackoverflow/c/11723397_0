@@ -1,0 +1,10 @@
+int main()
+{
+    FILE* f, *f1;
+    f = fopen("mytext", "w");
+    if ((f1 = fopen("mytext", "w")) == 0)
+       printf("unable\n");
+    fprintf(f, "hello\n");
+    fprintf(f1, "hi\n");
+    return 0;
+}

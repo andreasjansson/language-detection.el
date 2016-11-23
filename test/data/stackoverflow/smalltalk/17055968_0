@@ -1,0 +1,10 @@
+Number subclass: #NumberWithUnits
+instanceVariableNames: 'myName unitTracker'
+classVariableNames: ''
+poolDictionaries: ''
+category: 'hw3'
+
+
++ aNumber theUnits
+    unitTracker adjustUnits: theUnits.
+    ^super + aNumber

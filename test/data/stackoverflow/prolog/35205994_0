@@ -1,0 +1,5 @@
+ancestor_of(X, Y) :-
+   child_of(Y, X).
+ancestor_of(X, Z) :-
+   child_of(Z, Y),
+   ancestor_of(X, Y).

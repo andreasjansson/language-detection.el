@@ -1,0 +1,5 @@
+//if 'this' isn't an instance of mylib...
+ if (!(this instanceof mylib)) {
+     //return a new instance
+     return new mylib();   
+ }

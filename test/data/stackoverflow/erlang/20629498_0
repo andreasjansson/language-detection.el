@@ -1,0 +1,25 @@
+{
+    {<<"message">>,<<"Hello World">>},             
+    {<<"users">>, [
+        {
+            {<<"first_name">>,<<"Jules">>},
+            {<<"last_name">>,<<"Winfield">>},
+            {<<"id">>,1}
+        },
+        {
+            {<<"first_name">>,<<"Vincent">>},
+            {<<"last_name">>,<<"Vega">>},
+            {<<"id">>,2}
+        }
+    ]},
+    {<<"activities">>, [
+        {
+            {<<"type">>,<<"fetching bag">>},
+            {<<"user_id">>,1}
+        },
+        {
+            {<<"type">>,<<"discussing metrical system">>},
+            {<<"user_id">>,2}
+        }
+    ]},
+}

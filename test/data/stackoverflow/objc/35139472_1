@@ -1,0 +1,2 @@
+cell.textLabel.text = [self.titles objectAtIndex:indexPath.row];
+ cell.imageView.image = [UIImage imageNamed:[self.thumblenails objectAtIndex:indexPath.row]];

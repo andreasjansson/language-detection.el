@@ -1,0 +1,133 @@
+--NAVIGATOR.H-----
+
+#import <Foundation/Foundation.h>
+#import "cocos2d.h"
+#import "LevelIcon.h"
+
+@interface Navigator : CCLayer {
+    LevelIcon *level1;
+}
+
++ (id) scene;
+
+@end
+
+
+-----NAVIGATOR.M------
+#import "Navigator.h"
+#import "LevelIcon.h"
+
+@implementation Navigator
+
++(id) scene {
+    CCScene *scene = [CCScene node];
+    CCLayer *layer = [Navigator node];//??
+    [scene addChild:layer];
+    return scene;     
+}
+
+-(id)init 
+{
+    CCLOG(@"init");
+    if((self=[super init])){        
+        CCLOG(@"%@: %@", NSStringFromSelector(_cmd), self);
+        self.isAccelerometerEnabled=YES;
+        self.isTouchEnabled = YES;
+
+        [self scheduleUpdate];  
+        level1 = [LevelIcon levelIconWithParentNode:self];
+    }
+    return self;
+}
+
+-(void)dealloc
+{
+    CCLOG(@"Navigator dealloc");
+    CCLOG(@"%@: %@", NSStringFromSelector(_cmd), self);
+
+    level1 = nil;
+    [level1 dealloc];
+
+    [super dealloc];
+}
+[..]
+@end
+
+
+------LEVELICON.H------------
+#import <Foundation/Foundation.h>
+#import "cocos2d.h"
+
+@interface LevelIcon : NSObject<CCTargetedTouchDelegate> {
+    CCSprite* levelIconSprite;
+ }
+
++(id) levelIconWithParentNode:(CCNode*)parentNode;
+-(id) initWithParentNode:(CCNode*)parentNode;
+
+@end
+
+
+
+-----LEVEL ICON.M----------------
+#import "LevelIcon.h"
+#import "GameScene.h"
+
+@implementation LevelIcon
+
+// Static autorelease initializer, mimics cocos2d's memory allocation scheme.
++(id) levelIconWithParentNode:(CCNode*)parentNode
+{
+    CCLOG(@"levelIconWithParentNode");  
+    return [[[self alloc] initWithParentNode:parentNode] autorelease];
+}
+
+-(id) initWithParentNode:(CCNode*)parentNode 
+{
+    CCLOG(@"initWithParentNode");
+    if ((self = [super init]))
+    {
+        CCLOG(@"initWithParentNode: inside if");
+        CGSize screenSize = [[CCDirector sharedDirector] winSize];
+
+        levelIconSprite = [CCSprite spriteWithFile:@"Icon.png"];
+        levelIconSprite.position = CGPointMake(CCRANDOM_0_1() * screenSize.width, CCRANDOM_0_1() * screenSize.height);
+        [parentNode addChild:levelIconSprite];
+
+        // Manually schedule update via the undocumented CCScheduler class used internally by CCNode.
+        [[CCScheduler sharedScheduler] scheduleUpdateForTarget:self priority:0 paused:NO];
+
+        // Manually add this class as receiver of targeted touch events.
+        [[CCTouchDispatcher sharedDispatcher] addTargetedDelegate:self priority:-1 swallowsTouches:YES];
+    }
+
+    return self;
+}
+
+-(void) dealloc
+{
+    CCLOG(@"Level icon dealloc");
+    // Must manually unschedule, it is not done automatically for us.
+    [[CCScheduler sharedScheduler] unscheduleUpdateForTarget:self];
+
+    // Must manually remove this class as touch input receiver!
+    [[CCTouchDispatcher sharedDispatcher] removeDelegate:self];
+    [super dealloc];
+}
+
+-(void) update:(ccTime)delta
+{
+    CCLOG(@"Icon Update!");
+}
+
+
+-(BOOL) ccTouchBegan:(UITouch *)touch withEvent:(UIEvent *)event
+{
+    CCLOG(@"Touch");
+    [[CCTouchDispatcher sharedDispatcher] removeDelegate:self];
+    GameScene * game = [GameScene scene];
+    [[CCDirector sharedDirector] replaceScene:game];
+    return TRUE;
+}
+
+@end

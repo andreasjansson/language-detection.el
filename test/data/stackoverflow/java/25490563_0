@@ -1,0 +1,55 @@
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+<!-- ************************************* -->
+<!--        1:  Files Properties Load      -->
+<!-- ************************************* -->
+<bean id="placeholderPropertiesFile" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+    <property name="locations">
+        <list>
+            <value>file:./properties/dataBase.properties</value>
+            <value>file:./properties/webServicesUserPass.properties</value>
+        </list>
+    </property>
+    <property name="placeholderPrefix" value="$file{" />
+    <property name="systemPropertiesModeName" value="SYSTEM_PROPERTIES_MODE_OVERRIDE" />
+    <property name="ignoreUnresolvablePlaceholders" value="true" />
+    <property name="order" value="0" />
+</bean>
+
+
+
+<!-- ************************************* -->
+<!--        2:  Data Sources Load          -->
+<!-- ************************************* -->  
+
+<bean id="dataSourceOracleRead" class="org.apache.commons.dbcp.BasicDataSource">
+    <property name="driverClassName" value="$file{db.driverClassName}" />
+    <property name="url" value="$file{dbRead.url}" />
+    <property name="username" value="$file{dbRead.username}" />
+    <property name="password" value="$file{dbRead.password}" />
+    <property name="poolPreparedStatements" value="true" />
+</bean>
+
+<bean id="dataSourceOracleWrite" class="org.apache.commons.dbcp.BasicDataSource">
+    <property name="driverClassName" value="$file{db.driverClassName}" />
+    <property name="url" value="$file{dbWrite.url}" />
+    <property name="username" value="$file{dbWrite.username}" />
+    <property name="password" value="$file{dbWrite.password}" />
+    <property name="poolPreparedStatements" value="true" />
+</bean>
+
+
+<!-- ************************************* -->
+<!--        3:  Database Properties Load   -->
+<!-- ************************************* -->
+<bean id="placeholderPropertiesDatabase" class="xxx.xxx.DbPropertyPlaceholderConfigurer" >
+    <property name="dt" ref="dataSourceOracleRead" />
+    <property name="table" value="CONFIG0" />
+    <property name="key" value="I_CODIGO" />
+    <property name="value" value="C_VALOR" />
+
+    <property name="placeholderPrefix" value="$db{" />
+    <property name="systemPropertiesModeName" value="SYSTEM_PROPERTIES_MODE_OVERRIDE" />
+    <property name="ignoreUnresolvablePlaceholders" value="false" />
+    <property name="order" value="1" />
+</bean>

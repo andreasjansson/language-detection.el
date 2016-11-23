@@ -1,0 +1,16 @@
+(define (dbllink li) 
+    (letrec ((step (lambda (lis prev head) 
+                           (if (null? lis) 
+                               head 
+                               (let ((cell (cons (car lis) 
+                                                 (cons prev '()))))
+                                 (if (null? prev) 
+                                     (step (cdr lis);<--recursive call
+                                           cell 
+                                           cell) 
+                                     (begin (set-cdr! (cdr prev)
+                                                      cell) 
+                                            (step (cdr lis);<--recursive call
+                                                  cell 
+                                                  head ))))))))
+        (step li '() '())))

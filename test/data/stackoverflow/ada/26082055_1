@@ -1,0 +1,7 @@
+package quick_sort is
+generic
+    type element_type is private;
+    type array_type is array(Natural range <>) of element_type;
+
+    procedure Quicksort(arr: in out array_type);
+end quick_sort;

@@ -1,0 +1,5 @@
+do j=1,100
+    do i=1,100
+         A_aux(i,j)=real(A(i,j))
+    enddo
+enddo

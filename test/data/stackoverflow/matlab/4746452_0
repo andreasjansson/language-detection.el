@@ -1,0 +1,2 @@
+with G(V,E)
+find all subsets of V that are acyclic paths

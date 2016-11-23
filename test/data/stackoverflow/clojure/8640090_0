@@ -1,0 +1,25 @@
+Enter rover's moves LMMRM 
+Enter rover's moves LMMRM 
+
+(defn prompt-for-rover-moves
+    []
+    (do
+        (println "Enter rover's moves LMMRM ")
+        (read-line)
+    ))
+
+(defn -main 
+    [& args]
+    (do
+        (let [grid-dim-in [0 5]
+              mr1-pos     [\N 2 4]
+              mr2-pos     [\N 1 5]
+              mr1-movs    (prompt-for-rover-moves)
+              mr2-movs    (prompt-for-rover-moves)]
+
+            (reset! grid-dim grid-dim-in)
+            (reset! mr1-id {:mr1 mr1-pos})
+            (reset! mr2-id {:mr2 mr2-pos})
+
+            (.start (Thread. (rover-thread mr1-id mr1-movs)))
+            (.start (Thread. (rover-thread mr2-id mr2-movs))))))

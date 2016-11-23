@@ -1,0 +1,9 @@
+// 1.
+var wholecontento = "";
+var wholecontento = document.documentElement.outerHTML;
+alert(wholecontento.search("New Value"));
+
+// 2.
+var wholecontento = "";
+var wholecontento = document.body.outerHTML;
+alert(wholecontento.search("New Value"));

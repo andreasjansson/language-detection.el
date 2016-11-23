@@ -1,0 +1,18 @@
+SELECT
+        *
+    FROM
+        tbl_mobdev
+    LEFT JOIN
+        tbl_mobdev_type ON mobdev_type_id = mobdev_type
+    LEFT JOIN
+        tbl_marke ON marke_id = mobdev_type_marke
+    LEFT JOIN
+        tbl_user ON tbl_user.id = mobdev_user
+    WHERE
+        CONCAT(tbl_marke.marke_name,' ',tbl_mobdev_type.mobdev_type_bezeichnung) LIKE '%".$_POST['marke_name']."%'
+    AND
+        CONCAT(tbl_user.name,' ',tbl_user.vorname) LIKE '%".$_POST['user']."%'
+    AND
+        mobdev_aktiv = '1'
+    ORDER BY
+        ".$_GET['sort']." ".$_GET['sort2']."

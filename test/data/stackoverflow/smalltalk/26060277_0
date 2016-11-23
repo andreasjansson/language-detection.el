@@ -1,0 +1,3 @@
+stdout << 'Before'; nl.
+ObjectMemory snapshot: 'image.im'.
+stdout << 'After'; nl.

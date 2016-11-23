@@ -1,0 +1,2 @@
+Runtime run = Runtime.getRuntime();
+Process mailx = run.exec("cat Docs/Mailmsgtmp.txt | mailx -s 'Subject' -r 'sender@mail.com' " + "reciever@mail.com");

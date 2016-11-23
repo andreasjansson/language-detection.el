@@ -1,0 +1,34 @@
+Sub Application_Error(ByVal sender As Object, ByVal e As EventArgs)
+    ' Code that runs when an unhandled error occurs
+    Dim str As String = CType(sender, HttpApplication).Context.Request.Url.ToString
+    Helper.ApplicationErrorHandler()
+End Sub
+
+Public Shared Sub ApplicationErrorHandler()
+    Dim ex As Exception
+
+    ex = HttpContext.Current.Server.GetLastError
+
+    Dim str As String = HttpContext.Current.Request.Url.ToString()
+
+    ' filter out 404 responses 
+    Dim httpException = TryCast(ex, HttpException)
+    If httpException IsNot Nothing AndAlso httpException.GetHttpCode() = 404 Then
+        Return
+    End If
+
+
+    If TypeOf ex Is HttpUnhandledException AndAlso ex.InnerException IsNot Nothing Then
+        ex = ex.InnerException
+    End If
+
+    If (ex IsNot Nothing) Then
+
+        Dim msg As String = String.Format("An unhandled exception occurred:{0}Message: {1}{0}{0} Stack Trace:{0}{2}", System.Environment.NewLine, ex.Message, ex.StackTrace)
+        Utility.SendEMail("LaborDB@alixpartners.com", System.Configuration.ConfigurationManager.AppSettings("ErrorEmailRecipient"), msg, "Labor Error")
+
+    End If
+    HttpContext.Current.Session.Add("Error", ex.Message)
+    HttpContext.Current.Server.Transfer("error.aspx")
+
+End Sub

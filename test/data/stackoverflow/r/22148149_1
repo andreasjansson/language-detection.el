@@ -1,0 +1,26 @@
+TotSpecies<-15  
+Community<-30
+
+for(n in 1:TotSpecies){
+  Ao<-rlnorm(TotSpecies,3,2)    
+  m<-sample(seq(min(x)+5:max(x)-5),TotSpecies)  
+  r<-runif(TotSpecies,min=0,max=max(x)) 
+  a<-(runif(TotSpecies,min=.1,max=4))       
+  g<-(runif(TotSpecies,min=.1,max=4))       
+}
+Abundance <- matrix(0,nrow=length(x),ncol=TotSpecies)
+colnames(Abundance) = c("Sp1","Sp2","Sp3","Sp4","Sp5","Sp6","Sp7","Sp8","Sp9","Sp10","Sp11","Sp12","Sp13","Sp14","Sp15")
+  for(L in 1:TotSpecies){
+    Abundance[,L] <- curve(Ao[L],m[L],r[L],a[L],g[L])
+}
+
+#Alter matrix to removed NANs and replace with zeroes
+Abundance.NA<-is.na(Abundance)
+Abundance[Abundance.NA]<-0      #this makes Abundance have 0's where abundance is NaN
+Pres.Abs<-Abundance
+Pres.Abs[Pres.Abs>0]<-1         #presence-absence matrix
+
+#creates a data frame with the values of each variable
+Species<-1:TotSpecies
+Year<-rep(1,TotSpecies)
+year1data<-data.frame(Species,Year,Ao,m,r,a,g)

@@ -1,0 +1,35 @@
+Node  **headNode = NULL;
+Node  **curr = NULL;
+
+Boolean insert( char *new_string ){
+Node *temp = (Node *)malloc(sizeof(Node));
+temp->item = new_string;
+if(headNode == NULL){
+  temp->next = NULL;
+  headNode = &temp;  
+}
+else{
+  temp->next = (*headNode);
+  headNode = &temp;
+}
+return true;
+}
+
+void loadFile()
+{
+ #define LINE_SIZE 256
+  char input[LINE_SIZE];
+  char *token = NULL;
+
+  while ( fgets( input, LINE_SIZE, stdin ) )
+  {
+     // parse the data into separate elements
+     token = strtok( input, " \t\n" );
+     while ( token )
+     {
+       insert( token ); 
+
+       token = strtok( NULL, " \t\n" );
+      }
+   }
+}

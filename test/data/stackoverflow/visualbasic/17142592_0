@@ -1,0 +1,14 @@
+Interface IData
+    ReadOnly Property ID As Integer
+    ReadOnly Property Name As String
+End Interface
+
+Public Class Data1
+    Implements IData
+    ReadOnly Property CoolProperty1 As String
+End Class
+
+Public Class Data2
+    Implements IData
+    ReadOnly Property CoolProperty2 As String
+End Class

@@ -1,0 +1,10 @@
+<Request>
+    <Header><Log><Level>None</Level></Log></Header>
+    <Body>
+        <Action>
+            <GetService>
+                <Code>ABC</Code>
+                <CodeValue>XYZ</CodeValue>
+            </GetService>
+        </Action>
+    </Body> </Request>

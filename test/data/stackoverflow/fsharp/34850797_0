@@ -1,0 +1,66 @@
+open System.IO
+open System
+
+
+let X = [|57; 97; 17; 31; 54; 98; 87; 27; 89; 81; 18; 70; 3; 34; 63; 100; 46; 30; 99;
+    10; 33; 65; 96; 38; 48; 80; 95; 6; 16; 19; 56; 61; 1; 47; 12; 73; 49; 41;
+    37; 40; 59; 67; 93; 26; 75; 44; 58; 66; 8; 55; 94; 74; 83; 7; 15; 86; 42;
+    50; 5; 22; 90; 13; 69; 53; 43; 24; 92; 51; 23; 39; 78; 85; 4; 25; 52; 36;
+    60; 68; 9; 64; 79; 14; 45; 2; 77; 84; 11; 71; 35; 72; 28; 76; 82; 88; 32;
+    21; 20; 91; 62; 29|]
+
+// not tail recursive. answer = 488
+
+let N = X.Length
+
+let mutable count = 0
+
+let swap (A:int[]) a b =
+    let tmp = A.[a]
+    A.[a] <- A.[b]
+    A.[b] <- tmp
+    A
+
+let rec quicksortNT (A:int[]) = 
+    let L = A.Length
+
+
+    match L with 
+         | 1 -> A
+         | 2 -> count <- count + 1
+                if (A.[0]<A.[1]) then A 
+                   else [|A.[1];A.[0]|]
+
+         | x -> let p = x
+                let pval = A.[p-1]
+                let A = swap A 0 (p-1)
+                let mutable i = 1
+                for j in 1 .. (x-1) do 
+                     if (A.[j]<pval) then let A = swap A i j
+                                          i <- i+1
+                // end of for loop
+
+                // putting back pivot at its right place
+                let A = swap A 0 (i-1)
+                let l1 = i-1
+                let l2 = x-i
+
+                if (l1=0) then
+                            let A =  Array.append [|A.[0]|] (quicksortNT A.[1..p-1])               
+                            count <- count + (l2-1)
+                            A
+                     elif (l2=0) then 
+                            let A = Array.append (quicksortNT A.[0..p-2]) [|A.[p-1]|]
+                            count <- count + (l2-1)
+                            A
+                else
+                            let A = Array.append ( Array.append (quicksortNT A.[0..(i-2)]) [|A.[i-1]|] ) (quicksortNT A.[i..p-1])
+                            count <- count + (l1-1)+(l2-1)
+                            A
+
+
+let Y = quicksortNT X
+for i in 1..N do printfn "%d" Y.[i-1]
+printfn "count = %d" count
+
+Console.ReadKey() |> ignore

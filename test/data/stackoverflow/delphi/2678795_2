@@ -1,0 +1,11 @@
+IFooBar = interface(IFoo)
+  procedure Bar;
+end;
+
+TFooBar = class(TInterfacedObject, IFoo, IFooBar)
+private
+  FFoo: IFoo;
+public
+  procedure Bar;
+  property Foo: IFoo read FFoo implements IFoo;
+end;

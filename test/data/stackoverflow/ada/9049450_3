@@ -1,0 +1,3 @@
+Pragma TRAMPOLINE
+NOTE : Pragma TRAMPOLINE is reserved for internal MAXAda use only;
+it is not intended for use in user-defined code.

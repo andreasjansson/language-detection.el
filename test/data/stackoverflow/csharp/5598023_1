@@ -1,0 +1,46 @@
+public class TimingInterceptor : IInterceptor
+{
+    private static ThreadLocal<TimeSpan> callTime = new ThreadLocal<TimeSpan>();
+    public static TimeSpan CallTime
+    {
+        get
+        {
+            if (!callTime.IsValueCreated) throw new InvalidOperationException("callTime was never set");
+            return callTime.Value;
+        }
+    }
+
+    public void Intercept(IInvocation invocation)
+    {
+        // Timing concerns
+        DateTime beforeStamp = DateTime.UtcNow;
+
+        // Call method
+        invocation.Proceed();
+
+        // Timing concerns
+        DateTime afterStamp = DateTime.UtcNow;
+        callTime.Value = afterStamp - beforeStamp;
+    }
+}
+public class LoggingInterceptor : IInterceptor
+{
+    private ILog m_Log;
+    public LoggingInterceptor(ILog log)
+    {
+        m_Log = log;
+    }
+
+    public void Intercept(IInvocation invocation)
+    {
+        // Logging concerns
+        string fullMethodName = invocation.TargetType.Name + "." + invocation.MethodInvocationTarget.Name;
+        m_Log.Debug(fullMethodName + " started.");
+
+        // Call method
+        invocation.Proceed();
+
+        // Logging concerns
+        m_Log.Debug(fullMethodName + " finished. Took " + TimingInterceptor.CallTime.TotalMilliseconds + "ms.");
+    }
+}

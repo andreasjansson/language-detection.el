@@ -1,0 +1,3 @@
+open(0,">/file.txt");
+print 0 "Hello world.";
+close(0);

@@ -1,0 +1,4 @@
+pub fn first() -> Option<&T> {
+    let v = Vec::new();
+    v.first()
+}

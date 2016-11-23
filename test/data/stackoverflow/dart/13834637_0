@@ -1,0 +1,3 @@
+dependencies:
+  rikulo_uxl:
+    git: git://github.com/rikulo/uxl.git

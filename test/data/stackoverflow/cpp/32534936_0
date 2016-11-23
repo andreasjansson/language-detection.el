@@ -1,0 +1,14 @@
+#pragma once
+#include <iostream>
+#include <cmath>
+using namespace std;
+#define MAX_SIZE 50
+
+typedef struct{
+   int num; //numerator
+   int den; //denominator
+}Frac; //fraction
+
+template<class T>
+
+void InputArray(T a[],int n);

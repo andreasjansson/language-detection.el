@@ -1,0 +1,2 @@
+answer := numOne + numTwo;
+ put_line(answer'img);

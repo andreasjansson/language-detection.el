@@ -1,0 +1,8 @@
+Protected Overrides Sub Render(ByVal writer As HtmlTextWriter)
+ if (some condition is true) then    
+   Dim d As New Button()    
+   d.RenderControl(writer)    
+ else    
+   MyBase.Render(writer)    
+ end if    
+end sub

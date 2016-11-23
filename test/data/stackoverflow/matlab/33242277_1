@@ -1,0 +1,6 @@
+Spell analysis - Number of events at set duration and speed
+
+Wind speed [m/s]    <=3hrs  6hrs    9hrs    12hrs   15hrs&>
+ 2-4                    1     -       -       -         -
+ 4-6                    -     -       -       -         -
+ 6-8>                   2     1       1       -         -

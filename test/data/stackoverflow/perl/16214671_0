@@ -1,0 +1,5 @@
+if (/$search/i) 
+   {
+
+        printf $out "%s\t%s\n",$File::Find::name,$1;       
+   }

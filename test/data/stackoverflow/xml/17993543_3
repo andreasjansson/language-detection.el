@@ -1,0 +1,8 @@
+<result>
+    <state>
+        <tag>value</tag>
+    </state>
+    <content xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="job">
+        <status>ok</status>
+    </content>
+</result>

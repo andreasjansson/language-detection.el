@@ -1,0 +1,3 @@
+$x = $rt[0]
+$y = Scalar(@rt)
+$z = $rt[2]

@@ -1,0 +1,25 @@
+<html>
+  <head>
+    <style>
+      li.menu:hover {
+        background-color: #0ff;
+      }
+
+      li.menu a {
+        background-color: #0f0;
+      }
+
+      li.menu a:hover {
+        background-color: #00f;
+      }
+    </style>
+  </head>
+  <body>
+    <ul>
+      <li class="menu"><a>item1</a></li>
+      <li class="menu"><a>item2</a></li>
+      <li class="menu">item3</li>
+      <li class="menu">item4</li>
+    <ul>
+  </body>
+</html>

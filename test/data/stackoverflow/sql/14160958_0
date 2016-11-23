@@ -1,0 +1,9 @@
+SELECT 
+    Table1.IDField, Table2.IDField
+FROM 
+    Table1
+LEFT OUTER JOIN 
+    Table2 ON Table1.PersonID = Table2.PersonID
+WHERE 
+    (Table1.IDField = '12345')
+    AND (Table2.Category = 'Foo')

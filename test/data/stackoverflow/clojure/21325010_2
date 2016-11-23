@@ -1,0 +1,5 @@
+(let [cache (bdb/opendb "local-cache" "subject-map")]
+  ;; do stuff
+  (doseq [node (function "that returns a sequence of maps")]
+    (bdb/add-record cache (:foo node) (:bar node)))
+  (bdb/closedb cache))

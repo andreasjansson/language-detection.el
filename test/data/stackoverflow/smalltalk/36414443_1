@@ -1,0 +1,2 @@
+'a %% b %% c %%% d %% e %% f' subStrings: ' %%% '
+"#('a' 'b' 'c' 'd' 'e' 'f')"

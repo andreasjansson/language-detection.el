@@ -1,0 +1,8 @@
+function test1()
+   test2()
+end
+
+function test2()
+   --How to get here name of function which have called my function test2.
+   --How to get here "test1"?
+end

@@ -1,0 +1,2 @@
+let unmodified = Set.intersect abc zxc
+let newAndModified = a - unmodified

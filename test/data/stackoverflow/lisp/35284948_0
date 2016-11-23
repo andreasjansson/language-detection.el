@@ -1,0 +1,5 @@
+#lang racket
+
+(define (foo x) x)
+
+(define bar (eval '(foo 1)))

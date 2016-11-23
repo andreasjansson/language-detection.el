@@ -1,0 +1,3 @@
+alter table TABLE
+add foreign key (FIELD)
+references TABLE2 (FIELD2)

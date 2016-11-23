@@ -1,0 +1,5 @@
+library(sqldf)
+sqldf("Select b.minSc, b.maxSc, count(*) as total, sum(target) as compra
+     from  train a left join lims b 
+    on a.sc<=b.maxSc and a.sc>b.minSc
+    group by b.minSc, b.maxSc")

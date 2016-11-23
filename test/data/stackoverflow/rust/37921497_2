@@ -1,0 +1,5 @@
+error: the trait bound `gfx_device_gl::Resources: gfx_core::Resources`
+is not satisfied [E0277]
+    src/main.rs:39     fn setSprite(&mut self, sprite: Texture<Resources>) {
+    src/main.rs:40         self.sprite = Some(sprite);
+    src/main.rs:41     }

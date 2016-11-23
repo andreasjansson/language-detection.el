@@ -1,0 +1,46 @@
+Public Class Form1
+
+Private Sub clearButton_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles clearButton.Click
+    'Clear all textboxes and total variable
+
+    amountTextBox.Clear()
+    totalTextBox.Clear()
+End Sub
+
+Private Sub exitButton_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles exitButton.Click
+    'Close the program
+
+    Me.Close()
+End Sub
+
+Private Sub printButton_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles printButton.Click
+    'Print the program
+
+    PrintForm1.PrintAction = Printing.PrintAction.PrintToPreview
+    PrintForm1.Print()
+End Sub
+
+Private Sub calculateButton_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles calculateButton.Click
+    'Create variables
+
+    Dim totalAmount As Decimal
+    Dim depositAmount As Decimal
+    Dim checkAmount As Decimal
+    Dim serviceAmount As Decimal
+
+    'Create if/else statements to give variables amounts
+
+    If depositRadio.Checked Then
+        depositAmount = amountTextBox.Text
+    ElseIf checkRadio.Checked Then
+        checkAmount = amountTextBox.Text
+    ElseIf serviceChargeRadio.Checked Then
+        serviceAmount = amountTextBox.Text
+    End If
+
+    'Calculate total
+
+    totalAmount = depositAmount - checkAmount - serviceAmount
+    totalTextBox.Text = totalAmount
+
+End Sub

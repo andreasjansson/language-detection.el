@@ -1,0 +1,23 @@
+initialize  
+super initialize.
+self bounds: ((0@0) extent: (400@400)).
+self color: Color gray.
+
+textField := TextFieldMorph new. 
+textField color: Color lightYellow.
+textField contents: 'text'.
+textField bounds: ((25@25) extent: (300@75)).
+
+button := ButtonTest new.
+button borderWidth: 2.
+button bounds: ((150@150) extent: (200@200)).
+button label: 'print text'.
+button target: button.  
+button mouseDownOn: #yellowButtonPressed  event: [Transcript show: 'hello'].
+
+stringLabel := StringMorph new contents: 'This is a string'.
+stringLabel bounds:  ((150@180) extent: (200@200)).
+
+self addMorph: textField.
+self addMorph: button.
+self addMorph: stringLabel.

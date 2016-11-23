@@ -1,0 +1,6 @@
+-module(main).
+-compile(export_all).
+
+start()->  ssl:start(),  lhttpc:start(),
+  Url="http://www.google.com",
+  lhttpc:request(Url, get, [], 5000).

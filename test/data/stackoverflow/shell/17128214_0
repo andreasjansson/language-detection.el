@@ -1,0 +1,43 @@
+#!/bin/bash
+#declare -i decoded
+charset=$1              
+startstring=$2              
+
+
+start=$((${#charset}-1))
+echo "Setting up CharMap to CharSet"
+
+for i in $(eval echo {0..$start})   
+do                  
+    echo $i " = " ${charset:$i:1}     
+done            
+
+echo "Proving Chars Were Mapped Correctly."
+
+start2=$((${#startstring}))     
+start3=$((${#charset}-1))         
+
+for i in $(eval echo {0..$start2})  
+do                          
+
+    for p in $(eval echo {0..$start3})          
+    do                          
+
+        if [ "${startstring:$i:1}" == "${charset:$p:1}" ]   
+            then                            
+            echo "found that" ${startstring:$i:1}"=" $p 'from the charmap.'     
+            decoded+=$p      #<--### I DONT THINK THIS IS WHAT I NEED ###       
+            fi                          
+    done                             
+done                            
+##################Just trying to print my new array#########################
+start4=$((${#decoded}-1))               
+echo 'Testing the array $decoded'
+echo 'the var start4(length of $decoded) = '$start4 
+echo 'this number should equal ----------> '$start2            
+echo 'Printing out the $decoded array in a for loop'
+
+for c in $(eval echo {0..$start4})          
+do                          
+   echo  ${decoded[$c]} ###DOESNT WORK LIKE I THOUGHT# also tried echo ${decode:$c:1}                     
+done

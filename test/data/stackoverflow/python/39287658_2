@@ -1,0 +1,9 @@
+from django.apps import AppConfig
+from watson import search as watson
+
+class MagConfig(AppConfig):
+    name = 'apps.mag'
+
+    def ready(self):
+        Entry = self.get_model("Entry")
+        watson.register(Entry)

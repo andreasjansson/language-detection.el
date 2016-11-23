@@ -1,0 +1,9 @@
+def data = [1,2,3,4,5,6,7]
+
+def someFilter = {it-> it % 2 == 0}
+
+def newData = data.findAll{it,someFilter ->
+   someFilter(it)
+}
+
+newData

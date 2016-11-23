@@ -1,0 +1,32 @@
+#!/bin/sh
+
+HOST='192.168.1.2'
+USER='raspftp'
+PASSWD='raspftp'
+
+
+uploadFiles(){
+    FILETOUPLOAD=$1
+        ftp -dvin $HOST <<EOF
+        quote USER $USER
+        quote PASS $PASSWD
+binary
+put $FILETOUPLOAD  /rasp3/$FILETOUPLOAD
+quit
+EOF
+
+sudo rm -f $1
+}
+pla='.h264'
+
+while true
+do
+
+        #Endlosschleife
+
+        d=`date +%Y.%m.%d-%H.%M.%S`
+
+        raspivid -o $d$pla -t 200000 --framerate 10 -w 1280 -h 720
+
+        uploadFiles $d$pla &
+done

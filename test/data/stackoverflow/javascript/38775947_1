@@ -1,0 +1,53 @@
+Product found:true
+    Adding product.....
+    Product found:false
+    Adding product.....
+    Product found:false
+    Adding product.....
+    Product found:false
+    Adding product.....
+
+    api.post('/me/cart', wagner.invoke(function(Cart) {
+        return function(req, res, next) {
+            console.log("new post request"+ req.headers['usr'] );
+
+            Cart.findOne({userId: req.headers['usr']}, 
+            function(err,data){
+                if(err){
+                    throw err;
+                }
+                console.log("found this..."+ (!data));
+                //if No user is found add a new cart
+                if(!data && data.length < 0){
+                    var cart = new Cart();
+                    cart.userId = req.headers['usr'];
+                    cart.products.push({product: req.body._id,
+                    quantity:1, isAdded:true});
+                    cart.save(function(error, data) {
+                        if (error){
+                           return res.
+                           status(status.INTERNAL_SERVER_ERROR).
+                           json({ error: error.toString() });
+                        };
+                        return res.json({ product: data });
+                    });
+               }
+               //if user is found updated found users cart
+               else if (data){            
+                   for(var i=0; i < data.products.length; i++){
+                       //if the requested product is not found 
+                       if(!data.products[i].product.equals(req.body._id)){
+                           data.products.push({product: req.body._id,   
+                           isAdded: true, quantity:1});         
+                       }
+                       console.log("Adding product.....");             
+                   }//for loop             
+                   data.save(function(err, updatedCart){
+                       if(err)
+                          throw err;
+                       console.log(updatedCart);
+                       return res.json(updatedCart);
+                   });
+               }//else if
+            });
+    };

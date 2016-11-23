@@ -1,0 +1,8 @@
+class Car < ActiveRecord::Base
+  belongs_to :store
+end
+
+class Store < ActiveRecord::Base
+  belongs_to :owner
+  has_one :car
+end

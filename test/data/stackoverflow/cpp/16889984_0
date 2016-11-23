@@ -1,0 +1,20 @@
+void __fastcall TForm1::FormCreate(TObject *Sender)
+{ 
+float i=3.14;
+ Double j=3.14;
+ Double k=0;
+ Double m,n;
+
+ Edit1->Text=FloatToStr(i);         //  It's show 3.14000010490417
+ Edit2->Text=FloatToStr(j);         //  It's show 3.14
+
+ Edit3->Text=FloatToStr(314/100);   // It's  show 3
+
+ k=314/100;
+ Edit4->Text=FloatToStr(k);         // It's show  3
+
+ m=314;
+ n=100;
+ Edit5->Text=FloatToStr(m/n);       // It's  show 3.14
+
+}

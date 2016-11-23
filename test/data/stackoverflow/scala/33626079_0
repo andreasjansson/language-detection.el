@@ -1,0 +1,11 @@
+case class Info {
+    name: String,
+    age: Int,
+    dept: String
+}
+
+
+case class Foo {
+    id: String,
+    info: Info    
+}

@@ -1,0 +1,3 @@
+name: aName address: anAddress.
+     self name: aName.
+     self address: anAddress

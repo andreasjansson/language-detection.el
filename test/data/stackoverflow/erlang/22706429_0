@@ -1,0 +1,9 @@
+Config Error, aborting ! {undef,
+                         [{xmerl_scan,file,
+                              ["/root/.tsung/tsung.xml",
+                               [{fetch_path,["/usr/share/tsung/","./"]},
+                                {validation,true}]]},
+                          {ts_config,read,2},
+                          {ts_config_server,handle_call,3},
+                          {gen_server,handle_msg,5},
+                          {proc_lib,init_p_do_apply,3}]}

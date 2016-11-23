@@ -1,0 +1,4 @@
+pvals <- mydf %>%
+  dplyr::group_by_("grp") %>%
+  dplyr::summarise_(N = n(),
+    p = suppressWarnings(stats::chisq.test(table("x", "dep"))$p.value))

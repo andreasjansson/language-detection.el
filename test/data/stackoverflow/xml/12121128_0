@@ -1,0 +1,22 @@
+<LinearLayout
+    style="@style/QuestionPane.AnswerPane"
+    android:layout_width="match_parent"
+    android:layout_height="0dp"
+    android:layout_weight="1"
+    android:orientation="vertical" >
+
+    <Button
+        android:id="@+id/btn_yes"
+        style="@style/ButtonStyle"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:text="Yes" />
+
+    <Button
+        android:id="@+id/btn_no"
+        style="@style/ButtonStyle"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:text="No" />
+</LinearLayout>

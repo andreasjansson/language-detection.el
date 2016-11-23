@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<data>
+    <level0 id="1" t="0">
+      <level1 id="lev1id01" att1="2015-05-12" val="12" status="0"/>
+      <level1 id="lev1id02" att1="2015-06-13" val="13" status="0"/>
+      <level1 id="lev1id03" att1="2015-07-10" val="13" status="0"/>
+    </level0>
+
+    <level0 id="2" t="0">
+        <level1 id="lev1id11" att1="2015-05-12" val="121" status="0"/>
+        <level1 id="lev1id12" att1="2015-06-13" val="132" status="0"/>
+        <level1 id="lev1id13" att1="2015-07-11" val="113" status="0"/>
+    </level0>
+
+    <level0 id="2" t="1">
+        <level1 id="lev1id21" att1="2015-05-12" val="121" status="0"/>
+        <level1 id="lev1id22" att1="2015-06-13" val="132" status="0"/>
+        <level1 id="lev1id23" att1="2015-07-11" val="113" status="0"/>
+        <level1 id="lev1id23" att1="2015-07-11" val="113" status="0"/>
+    </level0>
+</data>

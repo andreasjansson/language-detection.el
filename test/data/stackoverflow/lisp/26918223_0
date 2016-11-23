@@ -1,0 +1,2 @@
+(define (my-map f lst)    
+ (foldr (lambda (x y) (cons (f x) y)) empty lst))

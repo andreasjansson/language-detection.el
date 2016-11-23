@@ -1,0 +1,27 @@
+select det.*, 
+       od1.T_EQ T_SHABLON_EQ, 
+       od1.T_NV T_SHABLON_NV, 
+       od1.T_PRIM T_SHABLON_PRIM,
+       od2.T_EQ T_PRAVKA_EQ, 
+       od2.T_NV T_PRAVKA_NV, 
+       od2.T_PRIM T_PRAVKA_PRIM,
+       od3.T_EQ T_VALCOV_EQ, 
+       od3.T_NV T_VALCOV_NV, 
+       od3.T_PRIM T_VALCOV_PRIM,
+       od4.T_EQ T_REZKA2_EQ, 
+       od4.T_NV T_REZKA2_NV, 
+       od4.T_PRIM T_REZKA2_PRIM
+from CMKNEW.details det 
+left join CMKNEW.OperDetails od1 
+       ON det.nrec = od1.cdetail 
+      and 81 = od1.coper 
+left join CMKNEW.OperDetails od2 
+       ON det.nrec = od2.cdetail 
+      and 82 = od2.coper 
+left join CMKNEW.OperDetails od3 
+       ON det.nrec = od3.cdetail 
+      and 83 = od3.coper 
+left join CMKNEW.OperDetails od4 
+       ON det.nrec = od4.cdetail 
+      and 84 = od4.coper 
+where det.ckd=:CKD order by det.NREC

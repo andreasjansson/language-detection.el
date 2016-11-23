@@ -1,0 +1,23 @@
+local TeleportService = game:GetService("TeleportService")
+
+script.Parent.OnServerEvent:connect(function(player, id)
+    place = player.GuiFolder
+    print(game.Players:GetUserIdFromNameAsync(id))
+    --ISSUE IN LINE BELOW-- ISSUE IS IN THE LINE BELOW
+    friend, msg = pcall(game.Players:GetUserIdFromNameAsync(id))
+    if friend then
+    print(player.Name, player, player.PlayerGui.MainMenu.Name)
+    if player:IsFriendsWith(friend) then
+        place.IsFriend.Value = true
+        local success, errorMsg, placeId, instanceId = TeleportService:GetPlayerPlaceInstanceAsync(friend)
+            if success then
+                place.foundplayerbar.Value = "Found player. Would you like to join?"
+                place.Activated.Value = true
+            else enter code here
+                place.errorbar.Value = "ERROR: Player not online!"
+            end
+        else place.errorbar.Value = "ERROR: Not Friends with person!"
+    end
+    else place.errorbar.Value = "ERROR: Player doesn't exist!"
+    end
+end)

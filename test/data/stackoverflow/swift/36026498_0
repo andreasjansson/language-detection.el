@@ -1,0 +1,26 @@
+protocol MyProto {
+    func sayHello()
+}
+
+extension MyProto {
+    func sayHello() {
+        print("hello")
+    }
+}
+
+struct MyStruct: MyProto {
+}
+
+class MyClass {
+    var protos: [MyProto] = []
+    func doSomethingAndThenStore(newProtos: [MyProto]) {
+        for proto in newProtos {
+            proto.sayHello()
+        }
+        protos.appendContentsOf(newProtos)
+    }
+}
+
+let myStructs = [MyStruct(), MyStruct()]
+let myClass = MyClass()
+myClass.doSomethingAndThenStore(myStructs)

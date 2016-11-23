@@ -1,0 +1,3 @@
+(defun cons-stream (a b) (cons a b))
+(defun stream-cdr (stream) (sicp-force (cdr stream)))
+(defun sicp-force (exp) (funcall exp))

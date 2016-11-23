@@ -1,0 +1,16 @@
+initializeContents
+    self
+        add:
+            ((RETextField new)
+                id: 'myTextField';
+                on: #textFieldContents of: self).
+    self
+        add:
+            ((REButton new)
+                label: 'Try me!';
+                callback: [ 
+                    self triggerThenDo: [
+                        textFieldContents := textFieldContents , ' and something else'.
+                        (self canvas jQuery: '#myTextField') 
+                            load html: 
+                               [ :h | h text: textFieldContents ] ] ])

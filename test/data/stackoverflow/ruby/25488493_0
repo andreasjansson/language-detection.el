@@ -1,0 +1,67 @@
+class Game
+
+    def initialize
+        @theComputer = Computer.new
+        @player = Player.new
+    end 
+
+    def play
+
+        print "\n\nThe Random code is:\n#{@theComputer.random_code}\n\n"
+
+        10.times do |i|
+
+            current_guess = @player.guess_code
+            standing = evaluate_guess(current_guess)
+
+        end 
+
+    end #end play
+
+    def evaluate_guess(current_guess) 
+
+        current_guess.each_with_index do |color, position|
+
+            print "#{match?(color, position)} "
+
+        end 
+        puts ""
+    end
+
+    def almost_match?(color) 
+        @theComputer.random_code.include?(color)
+    end
+
+    def match?(color, position) 
+        color == @theComputer.random_code[position]
+
+    end
+end
+
+class Computer
+
+    COLORS = ["B", "G", "R", "O", "Y", "P"]
+
+    attr_reader :random_code
+
+    def initialize
+        @random_code = secret_code
+    end
+    def secret_code 
+        sample_code = []
+        sample_code << COLORS.sample(4)
+        sample_code
+    end
+end 
+
+class Player
+
+    def guess_code
+        puts "Guess the code! Choose 4 colors from B, G, R, O, Y, P"
+        guess = gets.chomp
+        guess.split(" ")
+    end
+end 
+
+g = Game.new
+g.play
