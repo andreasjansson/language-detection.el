@@ -1,6 +1,6 @@
 # language-detection.el
 
-[![MELPA](https://melpa.org/packages/language-detection-badge.svg)](https://melpa.org/#/language-detection)
+[![MELPA](https://melpa.org/packages/language-detection-badge.svg)](https://melpa.org/#/language-detection) [![Build Status](https://travis-ci.org/andreasjansson/language-detection.el.svg?branch=master)](https://travis-ci.org/andreasjansson/language-detection.el)
 
 Emacs Lisp library that automatically detects the programming language in a buffer or string.
 
