@@ -29,14 +29,18 @@
 ;;
 ;; Supported languages:
 ;;
+;;  * ada
+;;  * awk
 ;;  * c
 ;;  * clojure
 ;;  * cpp
 ;;  * csharp
 ;;  * css
+;;  * dart
 ;;  * delphi
 ;;  * emacslisp
 ;;  * erlang
+;;  * fortran
 ;;  * fsharp
 ;;  * go
 ;;  * groovy
@@ -47,16 +51,19 @@
 ;;  * json
 ;;  * latex
 ;;  * lisp
+;;  * lua
 ;;  * matlab
 ;;  * objc
 ;;  * perl
 ;;  * php
+;;  * prolog
 ;;  * python
 ;;  * r
 ;;  * ruby
 ;;  * rust
 ;;  * scala
 ;;  * shell
+;;  * smalltalk
 ;;  * sql
 ;;  * swift
 ;;  * visualbasic
